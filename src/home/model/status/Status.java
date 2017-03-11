@@ -5,11 +5,35 @@ package home.model.status;
  */
 public interface Status {
     /**
+     * create a simple status.
+     * @param name
+     *  the name of status
+     * @return
+     *  the status created
+     */
+    static Status createSimpleStatus(final StatusName name) {
+        return new StatusImpl(name);
+    }
+    /**
+     * create a simple status with initial value.
+     * @param name
+     *  the name of status
+     * @param initialValue
+     *  the initial value of status
+     * @return
+     *  the status created
+     */
+    static Status createStatusWithValue(final StatusName name, final int initialValue) {
+        final Status s = new StatusImpl(name);
+        s.addValue(initialValue);
+        return s;
+    }
+    /**
      * 
      * @return
      *          the name of Status
      */
-    String getName();
+    StatusName getName();
     /**
      * 
      * @return

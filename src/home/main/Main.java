@@ -1,5 +1,4 @@
 package home.main;
-
 /**
  * This class is used to start the videogame
  * and to set some values.

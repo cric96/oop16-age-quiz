@@ -1,10 +1,15 @@
 package home.model.status;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * Models the different status of the kingdom.
  */
 public interface Status {
     /**
+     * 
      * create a simple status.
      * @param name
      *  the name of status
@@ -13,6 +18,15 @@ public interface Status {
      */
     static Status createSimpleStatus(final StatusName name) {
         return new StatusImpl(name);
+    }
+    /**
+     * create a set of all statuses in the game.
+     * @return
+     *  the set of statuses
+     */
+    static Set<Status> createStatuses() {
+        return Arrays.stream(StatusName.values()).map(x -> new StatusImpl(x))
+                                                 .collect(Collectors.toSet());
     }
     /**
      * create a simple status with initial value.

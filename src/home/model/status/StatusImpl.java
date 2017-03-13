@@ -1,6 +1,6 @@
 package home.model.status;
 
-class StatusImpl implements Status {
+final class StatusImpl implements Status {
 
     private static final int MAX = 100;
     private static final int MIN = 0;

@@ -1,4 +1,7 @@
 package home.main;
+
+import home.utility.Pair;
+
 /**
  * This class is used to start the videogame
  * and to set some values.

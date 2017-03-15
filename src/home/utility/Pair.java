@@ -1,6 +1,9 @@
 package home.utility;
+
+import org.junit.Test;
+
 /**
- * models a pair of object
+ * models a pair of object.
  * @param <X>
  *      the first type of the pair
  * @param <Y>
@@ -33,6 +36,11 @@ public interface Pair<X, Y> {
             public U getY() {
                 return this.y;
             }
+
+            @Override
+            public String toString() {
+                return "[" + first.toString() + " - " + second.toString() + "]";
+            }
         };
     }
     /**
@@ -45,5 +53,7 @@ public interface Pair<X, Y> {
      *  the second object
      */
     Y getY();
+    
+    
 
 }

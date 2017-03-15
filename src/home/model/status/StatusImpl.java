@@ -43,4 +43,8 @@ final class StatusImpl implements Status {
             throw new IllegalArgumentException();
         }
     }
+    @Override
+    public String toString() {
+        return "StatusImpl [name=" + name + ", value=" + value + "]";
+    }
 }

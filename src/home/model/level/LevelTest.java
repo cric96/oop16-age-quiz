@@ -12,18 +12,23 @@ public class LevelTest {
      */
     @Test
     public void testLevelAge() {
-        final Level level = Level.Building.createBuildingLevel();
-        System.out.println(level.toString());
+        final Level.Building level = Level.Building.createBuildingLevel();
         final Level age = Level.Age.createAgeLevel();
-        System.out.println(age.toString());
-        for (int i = 0; i < AgeEnum.values().length - 1; i++) {
-            System.out.println(age.getLevelInfo());
-            age.nextLevel();
-        }
-        System.out.println(age.getLevelInfo());
+        assertEquals(age.getExperienceAmount(), AgeEnum.ETA_DELLA_PIETRA.getExperience());
         try {
-            age.nextLevel();
+            level.getExperienceAmount();
             fail();
         } catch (IllegalStateException exc) { }
+        assertFalse(age.nextLevel(1));
+        assertTrue(age.nextLevel(AgeEnum.ETA_DELLA_PIETRA.getExperience() + 1));
+        level.setMaxiumLevel(1);
+        assertFalse(level.nextLevel(1));
+        assertTrue(level.nextLevel(1000 + 1));
+        try {
+            level.nextLevel(1);
+            fail();
+        } catch (IllegalStateException exv) {
+
+        }
     }
 }

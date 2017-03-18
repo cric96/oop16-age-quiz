@@ -3,7 +3,7 @@ package home.model.level;
 import java.util.Optional;
 
 import home.model.level.Level.Building;
-import home.utility.Pair;
+import home.model.utility.Pair;
 //package-protected
 final class LevelBuildingImpl extends AbstractLevel implements Building {
     /* TODO Usare un file per prendere la parola giusta riguardo al livello */
@@ -30,16 +30,14 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     public boolean isUpgradable() {
         return this.maxLevel > this.getCurrentLevel();
     }
-
-    @Override
-    public Pair<String, Integer> getLevelInfo() {
-        return Pair.createPair(LEVEL + this.getCurrentLevel(), this.getCurrentLevel());
-    }
     /* TODO implementa una versione più carina */
     @Override
     protected void goOnNextLevel() {
         this.setExperienceAmount(this.getCurrentLevel() * INITIAL_EXPERIENCE);
     }
-    
 
+    @Override
+    public int getIncrementalLevel() {
+        return this.getCurrentLevel();
+    }
 }

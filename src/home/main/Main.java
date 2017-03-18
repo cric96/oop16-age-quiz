@@ -1,6 +1,6 @@
 package home.main;
 
-import home.utility.Pair;
+import home.model.utility.Pair;
 
 /**
  * This class is used to start the videogame

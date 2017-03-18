@@ -6,7 +6,6 @@ import java.util.Optional;
 abstract class AbstractLevel implements Level {
     private int currentLevel;
     private int experienceAmount;
-    
     @Override
     public boolean nextLevel(final int experienceAmount) {
         this.checkUpgradable();

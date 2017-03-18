@@ -8,15 +8,17 @@ import java.util.List;
 /**
  * 
  */
-public class QuizImpl implements Quiz {
+//package-protected
+class QuizImpl implements Quiz {
     private final List<Query> quiz;
     private final Iterator<Query> quizIterator;
     /**
      * Class constructor.
      */
     //la classe dovrà ancora essere rivista per la gestione del caricamento delle domande da file
-    public QuizImpl(final Category cat, final int level) {
+    QuizImpl(final Category cat, final int level) {
         this.quiz = new ArrayList<>();
+        this.addQuery();
         this.quizIterator = quiz.iterator();
     }
     /**

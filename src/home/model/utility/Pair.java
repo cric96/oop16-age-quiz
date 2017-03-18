@@ -1,4 +1,4 @@
-package home.utility;
+package home.model.utility;
 
 import org.junit.Test;
 

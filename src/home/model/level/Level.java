@@ -1,6 +1,6 @@
 package home.model.level;
 
-import home.utility.Pair;
+import home.model.utility.Pair;
 
 /**
  * Models the concept of level in a videogame.
@@ -22,11 +22,11 @@ public interface Level {
      */
     boolean isUpgradable();
     /**
-     * get info about a level.
+     * 
      * @return
-     *  a pair of level name and an incremental value of level
+     *  an incremental value that define the current level
      */
-    Pair<String, Integer> getLevelInfo();
+    int getIncrementalLevel();
     /**
      * 
      * @return
@@ -56,5 +56,10 @@ public interface Level {
         static Level.Age createAgeLevel() {
             return new LevelAgeImpl();
         }
+        /**
+         * @return
+         *  name of the age
+         */
+        String getLevelName();
     }
 }

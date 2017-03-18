@@ -23,7 +23,7 @@ public interface Pair<X, Y> {
      * @return
      *  the pair created
      */
-    static <Z, U> Pair<Z, U>createPair(final Z first, final U second){
+    static <Z, U> Pair<Z, U>createPair(final Z first, final U second) {
         return new Pair<Z, U>() {
             private final Z x = first;
             private final U y = second;
@@ -53,7 +53,5 @@ public interface Pair<X, Y> {
      *  the second object
      */
     Y getY();
-    
-    
 
 }

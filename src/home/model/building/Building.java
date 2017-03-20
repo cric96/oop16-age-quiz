@@ -1,7 +1,11 @@
 package home.model.building;
 
+import java.util.Optional;
+import java.util.Set;
+
 import home.model.level.Level;
 import home.model.quiz.Category;
+import home.model.quiz.QuizGame;
 import home.model.utility.Pair;
 /**
  * define an interface for building.
@@ -19,11 +23,12 @@ public interface Building {
      *  an incremental value that define current level
      */
     int getLevel();
-    /*TODO attendere la costruzione di QuizGame*/
     /**
      * create a new quiz.
+     * @return 
+     *  the quiz created
      */
-    void startQuiz();
+    QuizGame startQuiz();
     /**
      * 
      * @return
@@ -35,9 +40,9 @@ public interface Building {
      * @param experience
      *  the experience amount 
      * @return
-     *  true if the building level up false otherwise 
+     *  return the experiece used if level up Optional.empty otherwhise
      */
-    boolean levelUp(int experience);
+    Optional<Integer> levelUp(int experience);
     /**
      * 
      * @return
@@ -45,27 +50,24 @@ public interface Building {
      */
     boolean isUpgradable();
     /**
-     * models a building with an image.
+     * go to the next age.
      */
-    interface Image extends Building {
+    void nextAge();
+
+    /**
+     * a building with some component.
+     */
+    interface Composite extends Building {
+        /**
+         * @return
+         *  all components attach on Building
+         */
+        Set<BuildingComponent> getComponents();
         /**
          * 
-         * @return
-         *  the Image associated to the Building
+         * @param component
+         *  add a component to a specific building
          */
-        Image getImage();
-    }
-    /**
-     * models a building with an age.
-     */
-    interface Age extends Building {
-        /**
-         * go to the next age if it is possible
-         * @param currentAge
-         *  the next age to go
-         * @return
-         *  true if the building go on the next age false otherwise
-         */
-        boolean nextAge(int currentAge);
+        void addComponent(BuildingComponent component);
     }
 }

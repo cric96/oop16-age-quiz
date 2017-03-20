@@ -31,17 +31,21 @@ abstract class AbstractLevel implements Level {
     }
     private boolean checkAmout(final int experienceAmount) {
         //here i can do the the check on experienceAmount but it is check before
-        return experienceAmount - this.experienceAmount > 0;
+        return experienceAmount - this.experienceAmount >= 0;
     }
+    @Override
+    public int getIncrementalLevel() {
+        return this.getCurrentLevel();
+    }
+    @Override
+    public String toString() {
+        return "[currentLevel=" + currentLevel + " upgradable=" + this.isUpgradable() + "]";
+    }
+    //TEMPLATE METHOD set of operation to do when a level pass on the other
+    protected abstract void goOnNextLevel();
     private void checkUpgradable() {
         if (!isUpgradable()) {
             throw new IllegalStateException();
         }
-    }
-    //set of operation to do when a level pass on the other
-    protected abstract void goOnNextLevel();
-    @Override
-    public String toString() {
-        return "[currentLevel=" + currentLevel + " upgradable=" + this.isUpgradable() + "]";
     }
 }

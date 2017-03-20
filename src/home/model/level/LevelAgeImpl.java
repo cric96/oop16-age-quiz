@@ -26,9 +26,5 @@ final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     public String getLevelName() {
         return AgeEnum.values()[this.getCurrentLevel()].toString();
     }
-    @Override
-    public int getIncrementalLevel() {
-        return this.getCurrentLevel();
-    }
 
 }

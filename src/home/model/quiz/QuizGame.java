@@ -1,9 +1,10 @@
 package home.model.quiz;
 
-import java.util.Set;
+
+import java.util.Map;
 
 import home.model.status.StatusName;
-import home.utility.Pair;
+
 
 /**
  *It allows to create a quiz (series of query) for a specific building, with specific category and
@@ -22,6 +23,10 @@ public interface QuizGame {
      * @param answer
      */
     void hitAnswer(String answer);
+    /**
+     * It allows to click for next question.
+     */
+    void next();
     /**
      * It tests the answer.
      * @return true if answer is correct, false otherwise
@@ -43,5 +48,5 @@ public interface QuizGame {
      * of correct answers.
      * @return a set of pair of StatusName and the score to add or to remove from it
      */
-    Set<Pair<StatusName, Integer>> getStatusScore(); //metodo che non c'è sull'UML
+    Map<StatusName, Integer> getStatusScore(); //metodo che non c'è sull'UML
 }

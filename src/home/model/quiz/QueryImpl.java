@@ -46,5 +46,10 @@ final class QueryImpl implements Query {
     public Category getCategory() {
         return this.category;
     }
+    @Override
+    public String toString() {
+        return "QueryImpl [question=" + question + ", answers=" + answers + ", correctAnswer=" + correctAnswer
+                + ", category=" + category + ", difficulty=" + difficulty + "]";
+    }
 
 }

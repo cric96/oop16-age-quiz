@@ -1,6 +1,6 @@
 ## Synopsis
 
-**Age of quiz** is a videogame rpg-based. You advance in the story answers some question.
+**Age of quiz** is a videogame rpg-based. You advance in the story answering some question.
 
 ## Motivation
 

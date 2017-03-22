@@ -4,5 +4,7 @@ package home.model.status;
  */
 public enum StatusName {
     KNOWLEDGE,
-    HAPPINESS;
+    HAPPINESS,
+    HEALTH,
+    TECHNICAL;
 }

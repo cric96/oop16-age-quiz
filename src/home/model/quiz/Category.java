@@ -14,7 +14,7 @@ public enum Category {
     /**
      * Every category influences some status.
      */
-    SCIENCE(StatusName.KNOWLEDGE, StatusName.HAPPINESS), 
+    SCIENCE(StatusName.KNOWLEDGE), 
     /**
      * 
      */
@@ -22,12 +22,15 @@ public enum Category {
     /**
      * 
      */
-    MANUFACTURING(StatusName.KNOWLEDGE),
+    MANUFACTURING(StatusName.TECHNICAL),
     /**
      * 
      */
-    MEDICINE(StatusName.HAPPINESS); 
-
+    MEDICINE(StatusName.KNOWLEDGE, StatusName.HEALTH),
+    /**
+     * 
+     */
+    SPORT(StatusName.HAPPINESS, StatusName.HEALTH);
     private final Set<StatusName> influencingStatus;
 
     Category(final StatusName ...statusName) {

@@ -18,7 +18,7 @@ public class BuildingTest {
     public void testBuilding() {
         final Level.Building level = Level.Building.createBuildingLevel();
         final Building building = BuildingFactory.get()
-                                           .createSimpleBuilding(BuildingType.HANDWOOD,
+                                           .createSimpleBuilding(BuildingType.ACADEMY,
                                                                  level,
                                                                  0);
         //In general a building could be upgrade when it is instatiate
@@ -29,7 +29,7 @@ public class BuildingTest {
         assertNotEquals(building.levelUp(level.getExperienceAmount()), Optional.empty());
         //by default the maxium level that a building can reach is 1
         assertFalse(building.isUpgradable());
-        assertSame(building.getInfluecedCategory(), BuildingType.HANDWOOD.getCategory());
+        assertSame(building.getInfluecedCategory(), BuildingType.ACADEMY.getCategory());
         building.nextAge();
         //when building go on the next age the level maxium value change
         assertTrue(building.isUpgradable());

@@ -7,11 +7,23 @@ public enum BuildingType {
     /**
      * 
      */
-    HANDWOOD(Category.MANUFACTURING),
+    SCHOOL(Category.SCIENCE),
     /**
      * 
      */
-    HOSPITAL(Category.MEDICINE);
+    HOSPITAL(Category.MEDICINE),
+    /**
+     * 
+     */
+    BUILDING_SITE(Category.MANUFACTURING),
+    /**
+     * 
+     */
+    ACADEMY(Category.LIBERAL_ARTS),
+    /**
+     * 
+     */
+    SPORT_CENTER(Category.SPORT);
     private Category influezed;
     BuildingType(final Category category) {
         this.influezed = category;

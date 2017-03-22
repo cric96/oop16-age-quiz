@@ -38,11 +38,16 @@ public interface Level {
      * a specific level of a building.
      */
     interface Building extends Level {
+        /**
+         * 
+         * @return
+         *  a level with a max level 
+         */
         static Level.Building createBuildingLevel() {
-            return new LevelBuildingImpl(0);
+            return new LevelBuildingImpl();
         }
         /**
-         * change the maxium level of a level
+         * change the maximum level of a level
          * @param level
          *      the new value, if is less then 0 throw new IllegalArgumentException
          *      if is less then the current level throw new IllegalArgumentException

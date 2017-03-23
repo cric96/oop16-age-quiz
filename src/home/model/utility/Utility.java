@@ -2,10 +2,10 @@ package home.model.utility;
 
 import java.util.Arrays;
 /**
- * some method that can be useful
+ * some method that can be useful.
  */
 public final class Utility {
-    private Utility(){}
+    private Utility() { }
     /**
      * check if some object in input is null.
      * @param objects
@@ -13,9 +13,9 @@ public final class Utility {
      * @return
      *  true if one of these is null
      */
-    public static boolean checkNullOb(final Object ... objects){
-        for (final Object o : objects){
-            if (o == null){
+    public static boolean checkNullOb(final Object ... objects) {
+        for (final Object o : objects) {
+            if (o == null) {
                 return true;
             }
         }

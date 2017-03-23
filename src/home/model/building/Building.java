@@ -40,13 +40,19 @@ public interface Building {
      * @param experience
      *  the experience amount 
      * @return
-     *  return the experiece used if level up Optional.empty otherwhise
+     *  return true if building level up false otherwise
      */
-    Optional<Integer> levelUp(int experience);
+    boolean levelUp(int experience);
     /**
      * 
      * @return
      *  true if the building is upgradable false otherwise
+     */
+    int getExperienceNecesary();
+    /**
+     * 
+     * @return
+     *  the experience necessary to level up
      */
     boolean isUpgradable();
     /**
@@ -57,17 +63,17 @@ public interface Building {
     /**
      * a building with some component.
      */
-    interface Composite extends Building {
+    interface Composite extends Building, AgeComponent {
         /**
          * @return
          *  all components attach on Building
          */
-        Set<BuildingComponent> getComponents();
+        Set<AgeComponent> getComponents();
         /**
          * 
          * @param component
          *  add a component to a specific building
          */
-        void addComponent(BuildingComponent component);
+        void addComponent(AgeComponent component);
     }
 }

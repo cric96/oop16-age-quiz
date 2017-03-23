@@ -1,8 +1,5 @@
 package home.model.level;
 
-import java.util.Optional;
-
-import home.model.utility.Pair;
 /*the class that implements an age*/
 final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     //package protected

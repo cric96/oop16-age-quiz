@@ -1,9 +1,9 @@
 package home.model.level;
 
-import home.model.utility.Pair;
-
 /**
- * Models the concept of level in a videogame.
+ * an interface to define a level in the game.
+ * a level could be upgrade with some experience
+ * every level has a specific experience to level up
  */
 public interface Level {
     /**
@@ -35,11 +35,12 @@ public interface Level {
      */
     int getExperienceAmount();
     /**
-     * a specific level of a building.
+     * The level of a building.
+     * a building can change the maximum level in base of his age
      */
     interface Building extends Level {
         /**
-         * 
+         * Simple factory
          * @return
          *  a level with a max level 
          */
@@ -55,9 +56,14 @@ public interface Level {
         void setMaxiumLevel(int level);
     }
     /**
-     * define an age.
+     * a specific level that define an age with the name of age.
      */
     interface Age extends Level {
+        /**
+         * Simple factory
+         * @return
+         *  an age created
+         */
         static Level.Age createAgeLevel() {
             return new LevelAgeImpl();
         }

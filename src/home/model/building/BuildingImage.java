@@ -7,7 +7,7 @@ import java.io.File;
  * when an image go on the next age an incremental value concat on the end
  * if the image is not save throw new IllegalStateException
  */
-public interface BuildingImage extends BuildingComponent {
+public interface BuildingImage extends AgeComponent {
     /**
      * 
      * @param path

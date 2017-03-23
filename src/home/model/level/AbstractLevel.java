@@ -1,7 +1,4 @@
 package home.model.level;
-
-import java.util.Optional;
-
 //package-protected
 abstract class AbstractLevel implements Level {
     private int currentLevel;

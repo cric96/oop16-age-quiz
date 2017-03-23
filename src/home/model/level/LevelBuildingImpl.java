@@ -1,9 +1,6 @@
 package home.model.level;
 
-import java.util.Optional;
-
 import home.model.level.Level.Building;
-import home.model.utility.Pair;
 //package-protected
 final class LevelBuildingImpl extends AbstractLevel implements Building {
     /*the initial max level of a building*/

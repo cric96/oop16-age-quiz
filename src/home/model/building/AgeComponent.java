@@ -2,7 +2,7 @@ package home.model.building;
 /**
  * models a component of a building.
  */
-public interface BuildingComponent {
+public interface AgeComponent {
     /**
      * @return
      *  the type of component

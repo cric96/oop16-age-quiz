@@ -9,7 +9,7 @@ import home.model.level.Level;
 import home.model.quiz.Category;
 
 final class CompositeBuildingiImpl extends AbstractBuilding implements Building.Composite {
-    private final Set<BuildingComponent> components;
+    private final Set<AgeComponent> components;
     CompositeBuildingiImpl(final String name, final Level.Building level,
             final  Category category, final int currentAge) {
         super(name, level, category, currentAge);
@@ -17,14 +17,14 @@ final class CompositeBuildingiImpl extends AbstractBuilding implements Building.
     }
 
     @Override
-    public Set<BuildingComponent> getComponents() {
+    public Set<AgeComponent> getComponents() {
         return this.components.stream()
                               .map(x -> new BuildingComponentClone(x))
                               .collect(Collectors.toSet());
     }
 
     @Override
-    public void addComponent(final BuildingComponent component) {
+    public void addComponent(final AgeComponent component) {
         Objects.requireNonNull(component);
         this.components.add(component);
     }
@@ -32,10 +32,14 @@ final class CompositeBuildingiImpl extends AbstractBuilding implements Building.
     protected void advanceOnAge() {
         this.components.forEach(x -> x.nextAge());
     }
+    @Override
+    public Class<?> getType() {
+        return Building.Composite.class;
+    }
     /*In questo modo proteggo lo stato interno dell'oggetto altrimenti da fuori si potrebbe chiamare l'operazione nextAge*/
-    private static class BuildingComponentClone implements BuildingComponent {
-        private final BuildingComponent component;
-        BuildingComponentClone(final BuildingComponent component) {
+    private static class BuildingComponentClone implements AgeComponent {
+        private final AgeComponent component;
+        BuildingComponentClone(final AgeComponent component) {
             this.component = component;
         }
         @Override

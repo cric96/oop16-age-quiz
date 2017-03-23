@@ -6,7 +6,10 @@ import java.io.File;
  * an interface to define a session of game.
  */
 public interface Game {
-    
+    /**
+     * create a new game.
+     */
+    void nextGame();
     /**
      * save the current game.
      */

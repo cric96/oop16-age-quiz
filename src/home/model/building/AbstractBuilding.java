@@ -1,7 +1,5 @@
 package home.model.building;
 
-import java.util.Optional;
-
 import home.model.level.Level;
 import home.model.quiz.Category;
 import home.model.quiz.QuizGame;
@@ -47,14 +45,8 @@ abstract class AbstractBuilding implements Building {
     }
 
     @Override
-    public Optional<Integer> levelUp(final int experience) {
-        //the amount of previous level
-        final int previousAmount = this.level.getExperienceAmount();
-        if (this.level.nextLevel(experience)) {
-            return Optional.of(previousAmount);
-        } else {
-            return Optional.empty();
-        }
+    public boolean levelUp(final int experience) {
+        return this.level.nextLevel(experience);
     }
 
     @Override
@@ -68,12 +60,14 @@ abstract class AbstractBuilding implements Building {
         this.level.setMaxiumLevel(this.level.getIncrementalLevel() + 1);
         this.advanceOnAge();
     }
+    public int getExperienceNecesary() {
+        return this.level.getExperienceAmount();
+    }
     @Override
     public String toString() {
         return "AbstractBuilding [name=" + name + ", level=" + level + ", category=" + category + ", currentAge="
                 + currentAge + "]";
     }
-
     /*TEMPLATE METHOD what to do when the age change */
     protected abstract void advanceOnAge();
 }

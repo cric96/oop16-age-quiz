@@ -48,6 +48,7 @@ class QuizImpl implements Quiz {
     @Override
     public Query next() {
         return this.quizIterator.next();
+        
     }
 
 }

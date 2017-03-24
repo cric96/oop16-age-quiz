@@ -5,7 +5,7 @@ package home.model.level;
  * a level could be upgrade with some experience
  * every level has a specific experience to level up
  */
-public interface Level {
+public interface Level extends ImmutableLevel {
     /**
      * go to the next level (if is possible).
      * throws illegalStateException if is on the maximum level
@@ -15,25 +15,6 @@ public interface Level {
      *  true is the level goes on the next level false otherwise 
      */
     boolean nextLevel(int experienceAmount);
-    /**
-     * tell if a level is upgradable.
-     * @return
-     *  true if is upgradable false otherwise
-     */
-    boolean isUpgradable();
-    /**
-     * 
-     * @return
-     *  an incremental value that define the current level
-     */
-    int getIncrementalLevel();
-    /**
-     * 
-     * @return
-     *  the experience amount to the next level
-     *  throws illegalStateException if is not upgradable
-     */
-    int getExperienceAmount();
     /**
      * The level of a building.
      * a building can change the maximum level in base of his age

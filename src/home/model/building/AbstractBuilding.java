@@ -1,5 +1,6 @@
 package home.model.building;
 
+import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.quiz.Category;
 import home.model.quiz.QuizGame;
@@ -30,8 +31,8 @@ abstract class AbstractBuilding implements Building {
     }
 
     @Override
-    public final int getLevel() {
-        return this.level.getIncrementalLevel();
+    public final ImmutableLevel getLevel() {
+        return this.level;
     }
     /*TODO aspettare l'interfaccia di creazione*/
     @Override
@@ -49,10 +50,6 @@ abstract class AbstractBuilding implements Building {
         return this.level.nextLevel(experience);
     }
 
-    @Override
-    public final boolean isUpgradable() {
-        return this.level.isUpgradable();
-    }
     @Override
     public void nextAge() {
         this.currentAge++;

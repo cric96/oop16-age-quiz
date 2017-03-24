@@ -2,9 +2,11 @@ package home.model.building;
 
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import home.model.Component;
 import home.model.level.Level;
 import home.model.quiz.Category;
 
@@ -17,9 +19,9 @@ final class CompositeBuildingiImpl extends AbstractBuilding implements Building.
     }
 
     @Override
-    public Set<AgeComponent> getComponents() {
+    public Set<Component> getComponents() {
         return this.components.stream()
-                              .map(x -> new BuildingComponentClone(x))
+                              .<Component>map(x -> (Component) x)
                               .collect(Collectors.toSet());
     }
 
@@ -36,19 +38,22 @@ final class CompositeBuildingiImpl extends AbstractBuilding implements Building.
     public Class<?> getType() {
         return Building.Composite.class;
     }
-    /*In questo modo proteggo lo stato interno dell'oggetto altrimenti da fuori si potrebbe chiamare l'operazione nextAge*/
-    private static class BuildingComponentClone implements AgeComponent {
-        private final AgeComponent component;
-        BuildingComponentClone(final AgeComponent component) {
-            this.component = component;
-        }
-        @Override
-        public Class<?> getType() {
-            return this.component.getType();
-        }
-        @Override
-        public void nextAge() {
-            throw new IllegalStateException("cannot be called this operation out of building!");
-        }
+    /**
+     * TODO DA FARE!
+     */
+    @Override
+    public Class<?> getParentType() {
+        // TODO Auto-generated method stub
+        return null;
     }
+    /**
+     * TODO DA FARE!
+     */
+
+    @Override
+    public Optional<?> getParent() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
 }

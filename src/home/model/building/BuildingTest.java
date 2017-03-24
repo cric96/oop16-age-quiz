@@ -22,17 +22,17 @@ public class BuildingTest {
                                                                  level,
                                                                  0);
         //In general a building could be upgrade when it is instatiate
-        assertTrue(building.isUpgradable());
+        assertTrue(building.getLevel().isUpgradable());
         //a the beginning a building have level equals to 0
-        assertEquals(building.getLevel(), 0);
-        assertEquals(building.levelUp(level.getExperienceAmount() - 1), Optional.empty());
-        assertNotEquals(building.levelUp(level.getExperienceAmount()), Optional.empty());
+        assertEquals(building.getLevel().getIncrementalLevel(), 0);
+        assertFalse(building.levelUp(level.getExperienceAmount() - 1));
+        assertTrue(building.levelUp(level.getExperienceAmount()));
         //by default the maxium level that a building can reach is 1
-        assertFalse(building.isUpgradable());
+        assertFalse(building.getLevel().isUpgradable());
         assertSame(building.getInfluecedCategory(), BuildingType.ACADEMY.getCategory());
         building.nextAge();
         //when building go on the next age the level maxium value change
-        assertTrue(building.isUpgradable());
-        assertSame(building.getLevel(), 1);
+        assertTrue(building.getLevel().isUpgradable());
+        assertSame(building.getLevel().getIncrementalLevel(), 1);
     }
 }

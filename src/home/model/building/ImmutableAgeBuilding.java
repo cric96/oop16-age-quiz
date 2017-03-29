@@ -35,6 +35,7 @@ public interface ImmutableAgeBuilding {
     Category getInfluecedCategory();
     /**
      * go to the next level.
+     * @throws IllegalStateException if it is call when the object can't level up
      * @return
      *  return true if building level up false otherwise
      */

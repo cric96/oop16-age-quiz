@@ -47,7 +47,6 @@ abstract class AbstractBuilding implements BuildingComposite {
     public QuizGame startQuiz() {
         return null;
     }
-
     @Override
     public final Category getInfluecedCategory() {
         return this.category;
@@ -66,10 +65,6 @@ abstract class AbstractBuilding implements BuildingComposite {
     }
     public final int getExperienceNecesary() {
         return this.level.getExperienceAmount();
-    }
-    @Override
-    public String toString() {
-        return "AbstractBuilding [name=" + name + ", level=" + level + ", category=" + category + "]";
     }
     @Override
     public final <Y> Set<Y> getComponents(final Class<Y> type) {
@@ -108,6 +103,10 @@ abstract class AbstractBuilding implements BuildingComposite {
             throw new IllegalStateException("call attach on component first!");
         }
         this.components.add(component);
+    }
+    @Override
+    public String toString() {
+        return "AbstractBuilding [name=" + name + ", level=" + level + ", category=" + category + "]";
     }
     protected abstract void onAgeChange();
 }

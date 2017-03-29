@@ -7,6 +7,7 @@ import java.util.Optional;
  * @param <E> the parent type of component
 */
 public interface Component <E> {
+    /*AGGIUNGI IL FATTO CHE UN COMPONENT POSSA ESSERE O NON ESSERE ABILITATO*/
     /**
      * @return
      *  the type of component or what the component wrap

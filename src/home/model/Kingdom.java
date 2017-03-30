@@ -1,5 +1,7 @@
 package home.model;
 
+import java.util.Map;
+
 import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
 import home.model.status.StatusName;
@@ -46,7 +48,7 @@ public interface Kingdom extends Composite {
      * @return
      *  get the statistic of the status
      */
-    Pair<StatusName, Integer> getStatusStatistic();
+    Map<StatusName, Integer> getStatusStatistic();
     /**
      * 
      * @param name
@@ -58,4 +60,12 @@ public interface Kingdom extends Composite {
      *  throws an IllegalArgumentException if something goes wrong
      */
     boolean changeStatus(StatusName name, int amount);
+    /*TODO RIGUARDA! SEPARARE DUE METODI O MENO*/
+    /**
+     * go on the next age.
+     * update all component attach on kingdom
+     * @return
+     *  true if the experience is enough false otherwhise
+     */
+    boolean nextAge();
 }

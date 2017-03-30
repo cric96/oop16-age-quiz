@@ -1,12 +1,9 @@
 package home.model.building;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import home.model.Kingdom;
-import home.model.composite.Component;
+import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
 import home.model.composite.EventType;
 import home.model.level.ImmutableLevel;
@@ -15,12 +12,11 @@ import home.model.quiz.Category;
 import home.model.quiz.QuizGame;
 import home.model.utility.Utility;
 //package-protected
-abstract class AbstractBuilding implements BuildingComposite {
+abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
     /*TODO ricorda che devi trovare un modo per salire di livello in base all'era*/
     private final String name;
     private final Level.Building level;
     private final Category category;
-    private final Set<Component<?>> components;
     private Optional<Kingdom> parent;
     AbstractBuilding(final String name, final Level.Building level, final Category category) {
         if (Utility.checkNullOb(category, level, name)) {
@@ -29,7 +25,6 @@ abstract class AbstractBuilding implements BuildingComposite {
         this.name = name;
         this.level = level;
         this.category = category;
-        this.components = new HashSet<>();
         this.parent = Optional.empty();
     }
 
@@ -67,12 +62,6 @@ abstract class AbstractBuilding implements BuildingComposite {
         return this.level.getExperienceAmount();
     }
     @Override
-    public final <Y> Set<Y> getComponents(final Class<Y> type) {
-        return this.components.stream().filter(x -> x.getType() == type)
-                                .map(x -> type.cast(x))
-                                .collect(Collectors.toSet());
-    }
-    @Override
     public final Class<?> getType() {
         return ImmutableAgeBuilding.Container.class;
     }
@@ -93,16 +82,9 @@ abstract class AbstractBuilding implements BuildingComposite {
         /*if the type is age change and */
         if (event.getTypes().equals(EventType.AGE_CHANGE.name())) {
             //if you want you can check if the source is correct
-            this.components.forEach(x -> x.update(event));
+            this.getComponents().forEach(x -> x.update(event));
             onAgeChange();
         }
-    }
-    @Override
-    public void addComponent(final Component<?> component) {
-        if (component.getParent() == Optional.empty()) {
-            throw new IllegalStateException("call attach on component first!");
-        }
-        this.components.add(component);
     }
     @Override
     public String toString() {

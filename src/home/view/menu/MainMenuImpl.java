@@ -2,7 +2,7 @@ package home.view.menu;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -15,11 +15,13 @@ public class MainMenuImpl implements MainMenu {
     private final String title = "Age of Quitz";
 
     @Override
-    public Set<String> buttonsNameList() {
-        return buttonsName.stream().map(a-> a.getText()).collect(Collectors.toSet());
+    public List<Optional<String>> buttonsNameList() {
+        return buttonsName.stream().map(a -> Optional.of(a.getText())).collect(Collectors.toList());
     }
 
-    @Override
+    /**
+     * @return the path of background image.
+     */
     public String backgroundPath() {
         return menuBackground;
     }

@@ -2,13 +2,22 @@ package home.view.menu;
 
 /**
  * 
- * the menu's buttons who a player can press
+ * the menu's buttons who a player can press.
  *
  */
 public enum MenuButtons {
 
-    NEW_GAME("New Game"),
+    /**
+     * load an old game.
+     */
     LOAD_GAME("Load Game"),
+    /**
+     * create a new game.
+     */
+    NEW_GAME("New Game"),
+    /**
+     * close the application.
+     */
     EXIT("Exit");
 
     private final String text;

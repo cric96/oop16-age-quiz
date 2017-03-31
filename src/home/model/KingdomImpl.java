@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import home.model.composite.AbstractComposite;
+import home.model.composite.Event;
+import home.model.level.AgeEnum;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -84,9 +86,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         final int currentAmount = this.age.getExperienceAmount();
         if (this.age.nextLevel(this.experience)) {
             this.decExperiene(currentAmount);
-            /* TODO RICORDA DI METTERE A POSTO GLI EVENTI 
-            this.getComponents().forEach(x -> x.update(event));
-            */
+            this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeEnum.valueOf(this.age.getLevelName()))));
             return true;
         }
         return false;

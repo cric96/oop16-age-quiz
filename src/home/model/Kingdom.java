@@ -6,8 +6,6 @@ import java.util.Map;
 import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
 import home.model.status.StatusName;
-import home.model.utility.Pair;
-
 
 //TODO CONCLUDI TUTTA QUESTA INTERFACCIA
 /**

@@ -13,13 +13,13 @@ import java.util.Optional;
 
 import home.model.building.BuildingFactory;
 import home.model.level.Level;
-import home.model.status.*;
+import home.model.status.Status;
 
 final class GameImpl implements Game {
     private static final Game SINGLETON = new GameImpl();
     private Optional<Kingdom> currentKingdom;
     //package protected
-    static Game get() {
+    public static Game get() {
         return GameImpl.SINGLETON;
     }
     private GameImpl() {

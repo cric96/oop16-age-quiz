@@ -15,23 +15,21 @@ import home.model.utility.Utility;
 abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
     private static final long serialVersionUID = 1L;
     /*TODO ricorda che devi trovare un modo per salire di livello in base all'era*/
-    private final String name;
+    private final BuildingType type;
     private final Level.Building level;
-    private final Category category;
     private Optional<Kingdom> parent;
-    AbstractBuilding(final String name, final Level.Building level, final Category category) {
-        if (Utility.checkNullOb(category, level, name)) {
+    AbstractBuilding(final Level.Building level, final BuildingType type) {
+        if (Utility.checkNullOb(level, type)) {
             throw new IllegalArgumentException();
         }
-        this.name = name;
+        this.type = type;
         this.level = level;
-        this.category = category;
         this.parent = Optional.empty();
     }
 
     @Override
     public final String getName() {
-        return this.name;
+        return this.type.name();
     }
 
     @Override
@@ -45,7 +43,7 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     }
     @Override
     public final Category getInfluecedCategory() {
-        return this.category;
+        return this.type.getCategory();
     }
 
     @Override
@@ -83,13 +81,17 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
         /*if the type is age change and */
         if (event.getTypes().equals(EventType.AGE_CHANGE.name())) {
             //if you want you can check if the source is correct
-            this.getComponents().forEach(x -> x.update(event));
-            onAgeChange();
+            //i can do cast because i'm sure that the event is associated with age
+            this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
+            onAgeChange((Event.Age<?>) event);
         }
     }
     @Override
     public String toString() {
-        return "AbstractBuilding [name=" + name + ", level=" + level + ", category=" + category + "]";
+        return "AbstractBuilding [name=" + type.name() + ", level=" + level + ", category=" + type.getCategory() + "]";
     }
-    protected abstract void onAgeChange();
+    protected abstract void onAgeChange(Event.Age<?> event);
+    protected BuildingType getBuildingType() {
+        return this.type;
+    }
 }

@@ -3,10 +3,13 @@ package home.model;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.Set;
 
 import org.junit.Test;
 
+import home.model.building.ImmutableAgeBuilding;
 import home.model.status.StatusName;
+import home.model.utility.Pair;
 
 /**
  * some test in the game.
@@ -18,16 +21,6 @@ public class GameTest {
     /**
      * simple test for the interface Game.
      */
-    @Test
-    public void testGame() {
-        final Game game = Game.getGame();
-        try {
-            game.getCurrentKingdom();
-            fail();
-        } catch (IllegalStateException exc) { }
-        game.newGame();
-        final Kingdom king = game.getCurrentKingdom();
-    }
     /**
      * test to check save.
      */
@@ -90,4 +83,16 @@ public class GameTest {
             fail();
         } catch (IllegalStateException exc) { }
     }
+    @Test
+    public void testKingdomComponent() {
+        //FINISCI QUA CHE HAI QUASI FATTO CRETINO!
+        Game.getGame().newGame();
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        Game.getGame().getCurrentKingdom().nextAge();
+        Set<Pair<ImmutableAgeBuilding, Boolean>> building = Game.getGame()
+                                                               .getCurrentKingdom()
+                                                               .getComponents(ImmutableAgeBuilding.class);
+        building.forEach(System.out::println);
+    }
+    
 }

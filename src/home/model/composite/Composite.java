@@ -2,6 +2,8 @@ package home.model.composite;
 
 import java.util.Set;
 
+import home.model.utility.Pair;
+
 /**
  * a container of component objects.
  */
@@ -14,9 +16,9 @@ public interface Composite {
      * @param <Y> 
      *  the type of interface
      * @return
-     *  a Set of component with type selected
+     *  a Set of component with type selected and a boolean that specify if a component is enable or not
      */
-    <Y> Set<Y> getComponents(Class<Y> type);
+    <Y> Set<Pair<Y, Boolean>> getComponents(Class<Y> type);
     /**
      * add a component in the kingdom.
      * @param component

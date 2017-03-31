@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import home.model.utility.Pair;
 /**
  * a skeleton of a composite.
  */
@@ -16,9 +18,9 @@ public abstract class AbstractComposite implements Composite {
         this.components = new HashSet<>();
     }
     @Override
-    public <Y> Set<Y> getComponents(final Class<Y> type) {
-       return this.components.stream().filter(x -> x.getType() == type)
-                             .map(x -> type.cast(x))
+    public <Y> Set<Pair<Y, Boolean>> getComponents(final Class<Y> type) {
+       return this.components.stream().filter(x -> type.isAssignableFrom(x.getType()))
+                             .map(x -> Pair.createPair(type.cast(x), x.isEnable()))
                              .collect(Collectors.toSet());
     }
 

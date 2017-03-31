@@ -3,6 +3,7 @@ package home.model.level;
 import home.model.level.Level.Building;
 //package-protected
 final class LevelBuildingImpl extends AbstractLevel implements Building {
+    private static final long serialVersionUID = 1L;
     /*the initial max level of a building*/
     private static final int INITIAL_MAX_LEVEL = 1;
     /* TODO Useare un file per associare ad ogni livello una certa esperienza (O qualcosa di simile)*/

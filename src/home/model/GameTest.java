@@ -2,6 +2,8 @@ package home.model;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
 import org.junit.Test;
 
 import home.model.status.StatusName;
@@ -12,6 +14,7 @@ import home.model.status.StatusName;
 public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
+    private static final String FILE_NAME = "C:\\Users\\Gianluca\\prova.obj";
     /**
      * simple test for the interface Game.
      */
@@ -24,6 +27,20 @@ public class GameTest {
         } catch (IllegalStateException exc) { }
         game.newGame();
         final Kingdom king = game.getCurrentKingdom();
+    }
+    /**
+     * test to check save.
+     */
+    @Test
+    public void testSave() {
+        final File fileName = new File(FILE_NAME);
+        Game.getGame().newGame();
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        Game.getGame().save(fileName);
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        Game.getGame().load(fileName);
+        assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), EXPERIENCE);
+        fileName.delete();
     }
     /**
      * simple test for the kingdom.

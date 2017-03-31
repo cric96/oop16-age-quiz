@@ -13,6 +13,7 @@ import home.model.quiz.QuizGame;
 import home.model.utility.Utility;
 //package-protected
 abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
+    private static final long serialVersionUID = 1L;
     /*TODO ricorda che devi trovare un modo per salire di livello in base all'era*/
     private final String name;
     private final Level.Building level;

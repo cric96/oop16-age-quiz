@@ -1,13 +1,11 @@
 package home.model;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import home.model.composite.AbstractComposite;
-import home.model.composite.Component;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -16,9 +14,8 @@ import home.model.utility.Utility;
  
 //package protected 
 final class KingdomImpl extends AbstractComposite implements Kingdom {
-    
+    private static final long serialVersionUID = 1L;
     private final Set<Status> statuses;
-    private final Set<Component<?>> component;
     private final Level.Age age;
     private int experience;
     //package protected
@@ -28,7 +25,6 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         }
         this.statuses = statuses;
         this.age = age;
-        this.component = new HashSet<>();
     }
 
     @Override

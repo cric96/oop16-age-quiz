@@ -1,5 +1,6 @@
 package home.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import home.model.composite.Composite;
@@ -13,7 +14,7 @@ import home.model.utility.Pair;
  * define the interface of a kingdom.
  */
 
-public interface Kingdom extends Composite {
+public interface Kingdom extends Composite, Serializable {
     /**
      * 
      * @return

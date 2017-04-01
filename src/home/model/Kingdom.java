@@ -12,7 +12,7 @@ import home.model.status.StatusName;
  * define the interface of a kingdom.
  */
 
-public interface Kingdom extends Composite, Serializable {
+public interface Kingdom extends Composite {
     /**
      * 
      * @return

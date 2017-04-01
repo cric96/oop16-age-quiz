@@ -17,14 +17,14 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     /*TODO ricorda che devi trovare un modo per salire di livello in base all'era*/
     private final BuildingType type;
     private final Level.Building level;
-    private Optional<Kingdom> parent;
+    //i can't use Optional<Kingdom> because it can't be saved
+    private Kingdom parent;
     AbstractBuilding(final Level.Building level, final BuildingType type) {
         if (Utility.checkNullOb(level, type)) {
             throw new IllegalArgumentException();
         }
         this.type = type;
         this.level = level;
-        this.parent = Optional.empty();
     }
 
     @Override
@@ -49,10 +49,10 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     @Override
     public boolean levelUp() {
         /*if i don't add a kingdom i can't level up!*/
-        final Kingdom k = this.parent.orElseThrow(() -> new IllegalStateException());
+        this.getParent().orElseThrow(() -> new IllegalStateException());
         final int amount = this.level.getExperienceAmount();
-        if (this.level.nextLevel(k.getExperienceAmount())) {
-            k.decExperiene(amount);
+        if (this.level.nextLevel(this.parent.getExperienceAmount())) {
+            this.parent.decExperiene(amount);
             return true;
         }
         return false;
@@ -66,14 +66,15 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     }
     @Override
     public Optional<Kingdom> getParent() {
-        return this.parent;
+        return Optional.ofNullable(this.parent);
     }
     @Override
     public void attachOn(final Kingdom parent) {
-       if (this.parent.isPresent()) {
+        //if is already attach on a object it can't attach in other composite
+       if (this.getParent().isPresent()) {
            throw new IllegalStateException("the component is already attach");
        }
-       this.parent = Optional.ofNullable(parent);
+       this.parent = parent;
        parent.addComponent(this);
     }
     @Override

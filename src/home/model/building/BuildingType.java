@@ -1,5 +1,5 @@
 package home.model.building;
-import home.model.quiz.Category;
+import home.model.query.Category;
 /**
  * define all type of building with an associated category.
  */

@@ -8,7 +8,8 @@ import java.util.Optional;
 
 import java.util.stream.Collectors;
 
-
+import home.model.query.Category;
+import home.model.query.Query;
 import home.model.status.StatusName;
 
 //package protected

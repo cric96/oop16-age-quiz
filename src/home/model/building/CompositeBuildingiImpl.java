@@ -1,7 +1,7 @@
 package home.model.building;
 
 import home.model.level.Level;
-import home.model.quiz.Category;
+import home.model.query.Category;
 
 final class CompositeBuildingiImpl extends AbstractBuilding implements BuildingComposite {
 

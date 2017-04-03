@@ -8,7 +8,7 @@ import home.model.composite.Event;
 import home.model.composite.EventType;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
-import home.model.quiz.Category;
+import home.model.query.Category;
 import home.model.quiz.QuizGame;
 import home.model.utility.Utility;
 //package-protected

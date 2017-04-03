@@ -1,14 +1,14 @@
-package home.model.quiz;
+package home.model.query;
 
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import home.model.quiz.Query.Builder;
+import home.model.query.Query.Builder;
 //package-protected
 class QueryBuilder implements Builder {
     private String question;
-    private Set<String> answers;
+    private Set<String> answers = new HashSet<>();
     private String correctAnswer;
     private Category category;
     private Integer difficulty;
@@ -20,12 +20,12 @@ class QueryBuilder implements Builder {
     }
 
     @Override
-    public Builder addAnswers(final Set<String> answers) {
+    public Builder addAnswer(final String answer) {
         Objects.requireNonNull(answers);
         if (this.correctAnswer != null && !answers.contains(this.correctAnswer)) {
             throw new IllegalArgumentException("There should be the correct answer you have inserted");
         }
-        this.answers = new HashSet<>(answers);
+        this.answers.add(answer);
         return this;
     }
 

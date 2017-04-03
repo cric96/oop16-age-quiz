@@ -1,6 +1,6 @@
 package home.model.building;
 import home.model.level.ImmutableLevel;
-import home.model.quiz.Category;
+import home.model.query.Category;
 import home.model.quiz.QuizGame;
 import home.model.composite.Composite;;
 

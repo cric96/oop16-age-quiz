@@ -1,4 +1,4 @@
-package home.model.quiz;
+package home.model.query;
 
 import java.util.Set;
 /**
@@ -48,7 +48,7 @@ public interface Query {
          * @param answers
          * @return Builder, using the fluent interface.
          */
-        Builder addAnswers(Set<String> answers);
+        Builder addAnswer(String answer);
         /** 
          * @param correctAnswer
          * @return Builder, using the fluent interface.

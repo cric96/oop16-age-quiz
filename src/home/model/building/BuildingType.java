@@ -1,7 +1,11 @@
 package home.model.building;
+<<<<<<< HEAD
+import home.model.query.Category;
+=======
 import home.model.level.AgeEnum;
 import home.model.level.ImmutableLevel;
 import home.model.quiz.Category;
+>>>>>>> ac205f398766d231b7cebe85ef5ca038e718bae2
 /**
  * define all type of building with an associated category.
  */

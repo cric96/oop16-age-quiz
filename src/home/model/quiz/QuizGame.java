@@ -3,6 +3,7 @@ package home.model.quiz;
 
 import java.util.Map;
 
+import home.model.query.Query;
 import home.model.status.StatusName;
 
 

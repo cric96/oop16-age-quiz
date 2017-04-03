@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+
+import home.model.query.Category;
+import home.model.query.Query;
 /**
  * 
  */
@@ -25,16 +28,16 @@ class QuizImpl implements Quiz {
      * add.
      */
     public void addQuery() {
-        this.quiz.add(new QueryBuilder()
+        this.quiz.add(Query.Builder.createBuilder()
                 .addQuestion("Quante sono le note musicali?")
-                .addAnswers(new HashSet<>(Arrays.asList("5", "6", "7", "9")))
+                .addAnswer("7")
                 .addCorrectAnswer("7")
                 .addCategory(Category.LIBERAL_ARTS)
                 .addDifficulty(1)
                 .build());
-        this.quiz.add(new QueryBuilder()
+        this.quiz.add(Query.Builder.createBuilder()
                 .addQuestion("Qual è la sigla del cloruro di sodio?")
-                .addAnswers(new HashSet<>(Arrays.asList("NaCl", "Na3Cl2", "Na2Cl3", "Na4Cl4")))
+                .addAnswer("NaCl")
                 .addCorrectAnswer("NaCl")
                 .addCategory(Category.SCIENCE)
                 .addDifficulty(1)
@@ -48,7 +51,6 @@ class QuizImpl implements Quiz {
     @Override
     public Query next() {
         return this.quizIterator.next();
-        
     }
 
 }

@@ -3,7 +3,7 @@ package home.model;
 import java.io.File;
 
 /**
- * an interface to define a session of game.
+ * define a session of game.
  * this interface be interested in maintain a unique instance of Kingdom
  * 
  */

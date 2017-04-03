@@ -18,6 +18,8 @@ final class CompositeBuildingiImpl extends AbstractBuilding implements BuildingC
         if (this.getBuildingType().getAgeEnable() == event.currentAge()) {
             this.enable = true;
         }
+        /*TODO A SIMPLE VERSION REMEMBER THAT YOU CHANGE THIS*/
+        this.getBuildingLevel().setMaxiumLevel(this.getLevel().getIncrementalLevel() + 1);
     }
     @Override
     public boolean isEnable() {

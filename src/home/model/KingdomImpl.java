@@ -1,6 +1,5 @@
 package home.model;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -16,9 +15,9 @@ import home.model.status.StatusName;
 import home.model.utility.Utility;
  
 //package protected 
-final class KingdomImpl extends AbstractComposite implements Kingdom, Serializable {
+final class KingdomImpl extends AbstractComposite implements Kingdom {
     private static final long serialVersionUID = 1L;
-    private final Set<Status> statuses;
+    private final Set<Status> statuses; //the status of this kingdom
     private final Level.Age age;
     private int experience;
     //package protected

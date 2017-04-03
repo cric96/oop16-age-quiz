@@ -95,4 +95,7 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     protected BuildingType getBuildingType() {
         return this.type;
     }
+    protected Level.Building getBuildingLevel() {
+        return this.level;
+    }
 }

@@ -37,6 +37,7 @@ public class GameTest {
         Game.getGame().getCurrentKingdom().nextAge();
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
         this.getBuildings(Game.getGame().getCurrentKingdom()).forEach(x -> x.getX().levelUp());
+        Game.getGame().getCurrentKingdom().changeStatus(StatusName.HEALTH, MAX_STATUS);
         //check if the state of save object is legal or not
         Game.getGame().save(FILE_NAME);
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
@@ -46,6 +47,7 @@ public class GameTest {
             final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
             final ImmutableAgeBuilding building = this.getBuildingWithName(buildings, BUILDING_TEST);
             assertSame(building.getLevel().getIncrementalLevel(), 1);
+            assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH),MAX_STATUS);
         } catch (Exception exc) {
             System.out.println(exc);
             fail();
@@ -108,10 +110,11 @@ public class GameTest {
         final Kingdom king = Game.getGame().getCurrentKingdom();
         king.addExperience(EXPERIENCE);
         final Set<Pair<ImmutableAgeBuilding, Boolean>> building = this.getBuildings(king);
+        final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
         try {
             //try to level up a reign 
-            final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
             assertTrue(site.levelUp());
+            assertFalse(site.getLevel().isUpgradable());
             assertSame(king.getExperienceAmount(), 0);
         } catch (Exception exc) {
             fail("there is a building!");
@@ -123,6 +126,7 @@ public class GameTest {
         king.nextAge();
         //now some building is not blocked
         assertNotSame(blockedBuilding, countBuilding(this.getBuildings(king)));
+        assertTrue(site.getLevel().isUpgradable());
     }
     private int countBuilding(final Set<Pair<ImmutableAgeBuilding, Boolean>> building) {
         return (int) building.stream().filter(x -> !x.getY())

@@ -1,10 +1,20 @@
 package home.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
+import java.io.File;
+import java.util.Set;
 
 import org.junit.Test;
 
+import home.model.building.ImmutableAgeBuilding;
 import home.model.status.StatusName;
+import home.model.utility.Pair;
 
 /**
  * some test in the game.
@@ -12,18 +22,35 @@ import home.model.status.StatusName;
 public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
+    private static final String BUILDING_TEST = "BUILDING_SITE";
+    private static final File FILE_NAME = new File("C:\\Users\\Gianluca\\prova.obj");
     /**
      * simple test for the interface Game.
      */
+    /**
+     * test to check save.
+     */
     @Test
-    public void testGame() {
-        final Game game = Game.getGame();
+    public void testSave() {
+        Game.getGame().newGame();
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        Game.getGame().getCurrentKingdom().nextAge();
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        this.getBuildings(Game.getGame().getCurrentKingdom()).forEach(x -> x.getX().levelUp());
+        //check if the state of save object is legal or not
+        Game.getGame().save(FILE_NAME);
+        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        Game.getGame().load(FILE_NAME);
+        assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), 0);
         try {
-            game.getCurrentKingdom();
+            final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
+            final ImmutableAgeBuilding building = this.getBuildingWithName(buildings, BUILDING_TEST);
+            assertSame(building.getLevel().getIncrementalLevel(), 1);
+        } catch (Exception exc) {
+            System.out.println(exc);
             fail();
-        } catch (IllegalStateException exc) { }
-        game.newGame();
-        final Kingdom king = game.getCurrentKingdom();
+        }
+        //FILE_NAME.delete();
     }
     /**
      * simple test for the kingdom.
@@ -32,7 +59,6 @@ public class GameTest {
     public void testKingdom() {
         Game.getGame().newGame();
         final Kingdom king = Game.getGame().getCurrentKingdom();
-        System.out.println(king.getAgeName());
         //at the beginning the experience amount is equals to 0
         assertEquals(king.getExperienceAmount(), 0);
         //i can't go on the next level without experience
@@ -48,7 +74,6 @@ public class GameTest {
         king.addExperience(EXPERIENCE);
         //now i can go on the next age
         assertTrue(king.nextAge());
-        System.out.println(king.getAgeName());
         assertSame(king.getExperienceAmount(), 0);
         //if i go in the next age the incremental value must be change
         assertNotSame(king.getAge().getIncrementalLevel(), 0);
@@ -68,9 +93,48 @@ public class GameTest {
         while (king.getAge().isUpgradable()) {
             assertTrue(king.nextAge());
         }
-        try{
+        try {
             king.nextAge();
             fail();
         } catch (IllegalStateException exc) { }
+    }
+    /**
+     * Test about the building associated with a kingdom.
+     */
+    @Test
+    public void testKingdomComponent() {
+        //FINISCI QUA CHE HAI QUASI FATTO CRETINO!
+        Game.getGame().newGame();
+        final Kingdom king = Game.getGame().getCurrentKingdom();
+        king.addExperience(EXPERIENCE);
+        final Set<Pair<ImmutableAgeBuilding, Boolean>> building = this.getBuildings(king);
+        try {
+            //try to level up a reign 
+            final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
+            assertTrue(site.levelUp());
+            assertSame(king.getExperienceAmount(), 0);
+        } catch (Exception exc) {
+            fail("there is a building!");
+        }
+        //some building is blocked at the begging of game
+        final int blockedBuilding = countBuilding(building);
+        assertNotSame(blockedBuilding, 0);
+        king.addExperience(EXPERIENCE);
+        king.nextAge();
+        //now some building is not blocked
+        assertNotSame(blockedBuilding, countBuilding(this.getBuildings(king)));
+    }
+    private int countBuilding(final Set<Pair<ImmutableAgeBuilding, Boolean>> building) {
+        return (int) building.stream().filter(x -> !x.getY())
+                .count();
+    }
+    private Set<Pair<ImmutableAgeBuilding, Boolean>> getBuildings(final Kingdom king) {
+        return king.getComponents(ImmutableAgeBuilding.class);
+    }
+    private ImmutableAgeBuilding getBuildingWithName(final Set<Pair<ImmutableAgeBuilding, Boolean>> building, 
+                                                        final String name) {
+        return building.stream().filter(x -> x.getX().getName().equals(name))
+        .map(x -> x.getX())
+        .findFirst().get();
     }
 }

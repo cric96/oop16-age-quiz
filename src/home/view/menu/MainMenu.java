@@ -1,6 +1,7 @@
 package home.view.menu;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 /**
  *  a interface to define logic of a general main menu model. 
@@ -10,7 +11,7 @@ public interface MainMenu {
      * 
      * @return a set that represent the text of buttons in the main menu
      */
-    Set<String> buttonsNameList();
+    List<Optional<String>> buttonsNameList();
 
     /**
      * 

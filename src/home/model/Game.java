@@ -13,7 +13,7 @@ public interface Game {
      * @return
      * an object of Game
      */
-    public static Game getGame(){
+    static Game getGame() {
         return GameImpl.get();
     }
     /**

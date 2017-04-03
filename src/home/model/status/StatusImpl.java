@@ -2,6 +2,7 @@ package home.model.status;
 
 final class StatusImpl implements Status {
 
+    private static final long serialVersionUID = 1L;
     private static final int MAX = 100;
     private static final int MIN = 0;
     private final StatusName name;

@@ -1,16 +1,26 @@
 package home.model.building;
 
+import home.model.composite.Event;
+import home.model.level.AgeEnum;
 import home.model.level.Level;
 import home.model.query.Category;
 
 final class CompositeBuildingiImpl extends AbstractBuilding implements BuildingComposite {
-
-    CompositeBuildingiImpl(final String name, final Level.Building level, final Category category) {
-        super(name, level, category);
-        // TODO Auto-generated constructor stub
+    private static final long serialVersionUID = -8506796377291602901L;
+    private static final AgeEnum INITIAL_AGE = AgeEnum.values()[0];
+    private boolean enable;
+    CompositeBuildingiImpl(final Level.Building level, final BuildingType type) {
+        super(level, type);
+        this.enable = type.getAgeEnable() == INITIAL_AGE;
     }
     @Override
-    protected void onAgeChange() {
-        /*TODO DO */
+    protected void onAgeChange(final Event.Age<?> event) {
+        if (this.getBuildingType().getAgeEnable() == event.currentAge()) {
+            this.enable = true;
+        }
+    }
+    @Override
+    public boolean isEnable() {
+        return enable;
     }
 }

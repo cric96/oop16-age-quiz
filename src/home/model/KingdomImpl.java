@@ -1,13 +1,13 @@
 package home.model;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import home.model.composite.AbstractComposite;
-import home.model.composite.Component;
+import home.model.composite.Event;
+import home.model.level.AgeEnum;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -16,9 +16,8 @@ import home.model.utility.Utility;
  
 //package protected 
 final class KingdomImpl extends AbstractComposite implements Kingdom {
-    
-    private final Set<Status> statuses;
-    private final Set<Component<?>> component;
+    private static final long serialVersionUID = 1L;
+    private final Set<Status> statuses; //the status of this kingdom
     private final Level.Age age;
     private int experience;
     //package protected
@@ -28,7 +27,6 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         }
         this.statuses = statuses;
         this.age = age;
-        this.component = new HashSet<>();
     }
 
     @Override
@@ -88,9 +86,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         final int currentAmount = this.age.getExperienceAmount();
         if (this.age.nextLevel(this.experience)) {
             this.decExperiene(currentAmount);
-            /* TODO RICORDA DI METTERE A POSTO GLI EVENTI 
-            this.getComponents().forEach(x -> x.update(event));
-            */
+            this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeEnum.valueOf(this.age.getLevelName()))));
             return true;
         }
         return false;

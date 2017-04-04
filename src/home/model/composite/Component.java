@@ -32,5 +32,11 @@ public interface Component <E> {
      *  the event of what i want
      */
     void update(Event<?> event);
+    /**
+     * check if a component is enable.
+     * @return
+     *  true if the component is enable false otherwise
+     */
+    boolean isEnable();
  
 }

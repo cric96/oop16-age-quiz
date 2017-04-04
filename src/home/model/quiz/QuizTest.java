@@ -1,6 +1,8 @@
 package home.model.quiz;
 import static org.junit.Assert.*;
 import org.junit.Test;
+
+import home.model.query.Category;
 /**
  *
  */

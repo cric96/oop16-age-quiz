@@ -1,4 +1,4 @@
-package home.model.quiz;
+package home.model.query;
 
 import java.util.Arrays;
 import java.util.Collections;

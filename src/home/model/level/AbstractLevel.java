@@ -1,6 +1,7 @@
 package home.model.level;
 //package-protected
 abstract class AbstractLevel implements Level {
+    private static final long serialVersionUID = 1L;
     private int currentLevel;
     private int experienceAmount;
     @Override

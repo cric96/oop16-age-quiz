@@ -2,6 +2,7 @@ package home.model.level;
 
 /*the class that implements an age*/
 final class LevelAgeImpl extends AbstractLevel implements Level.Age {
+    private static final long serialVersionUID = 1L;
     //package protected
     LevelAgeImpl() {
         super();

@@ -1,19 +1,18 @@
 package home.model;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
 import home.model.status.StatusName;
-import home.model.utility.Pair;
-
 
 //TODO CONCLUDI TUTTA QUESTA INTERFACCIA
 /**
  * define the interface of a kingdom.
  */
 
-public interface Kingdom extends Composite {
+public interface Kingdom extends Composite, Serializable {
     /**
      * 
      * @return

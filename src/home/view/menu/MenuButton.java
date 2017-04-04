@@ -27,8 +27,9 @@ public class MenuButton extends StackPane {
     /**
      * 
      * @param name name.
+     * @param color the shape color of button exit
      */
-    public MenuButton(final String name) {
+    public MenuButton(final String name, final Color color) {
         text = new Text(name);
         text.getFont();
         text.setFont(Font.font(FONT));
@@ -42,7 +43,7 @@ public class MenuButton extends StackPane {
         setOnMouseEntered(e -> {
             bg.setTranslateX(10);
             text.setTranslateX(10);
-            bg.setFill(Color.WHITE);
+            bg.setFill(color);
             text.setFill(Color.BLACK);
         });
 

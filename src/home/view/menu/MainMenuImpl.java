@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
  *
  */
 public class MainMenuImpl implements MainMenu {
-    private final List<MenuButtons> buttonsName = Arrays.asList(MenuButtons.values());
-    private final String menuBackground = "";
+    private final List<Buttons> buttonsName = Arrays.asList(Buttons.values());
+    private final String menuBackground = "res/images/backgroundMenu.jpg";
     private final String title = "Age of Quitz";
 
     @Override

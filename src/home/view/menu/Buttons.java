@@ -5,7 +5,7 @@ package home.view.menu;
  * the menu's buttons who a player can press.
  *
  */
-public enum MenuButtons {
+public enum Buttons {
 
     /**
      * load an old game.
@@ -26,7 +26,7 @@ public enum MenuButtons {
         return this.text;
     }
 
-    MenuButtons(final String text) {
+    Buttons(final String text) {
         this.text = text;
     }
 }

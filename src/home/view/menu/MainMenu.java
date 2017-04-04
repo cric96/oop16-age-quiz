@@ -11,7 +11,7 @@ public interface MainMenu {
      * 
      * @return a set that represent the text of buttons in the main menu
      */
-    List<Optional<String>> buttonsNameList();
+    List<String> buttonsNameList();
 
     /**
      * 

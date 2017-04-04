@@ -15,8 +15,8 @@ public class MainMenuImpl implements MainMenu {
     private final String title = "Age of Quitz";
 
     @Override
-    public List<Optional<String>> buttonsNameList() {
-        return buttonsName.stream().map(a -> Optional.of(a.getText())).collect(Collectors.toList());
+    public List<String> buttonsNameList() {
+        return buttonsName.stream().map(a -> a.getText()).collect(Collectors.toList());
     }
 
     /**

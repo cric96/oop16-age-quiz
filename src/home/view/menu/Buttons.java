@@ -18,7 +18,7 @@ public enum Buttons {
     /**
      * close the application.
      */
-    EXIT("Exit");
+    EXIT("Esci");
 
     private final String text;
 

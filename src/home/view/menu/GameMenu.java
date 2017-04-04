@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import home.view.MainView;
 import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -14,7 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-class GameMenu extends Parent {
+public class GameMenu extends Parent {
     private static final int WINDOW_HEIGHT = 600;
     private static final int WINDOW_WIDTH = 800;
     private static final int X_TRANSLATE = 100;
@@ -23,13 +27,11 @@ class GameMenu extends Parent {
     private static final int BOX = 15;
     private static final int TITLE_SIZE = 45;
     private static final double OPACITY = 0.4;
-    private final List<Optional<String>> listName = MAIN_MENU.buttonsNameList();
+    private final List<String> listName = MAIN_MENU.buttonsNameList();
     private Set<MenuButton> setButton = new HashSet<>();
     private Rectangle bg;
-    private Menu menu;
 
-    GameMenu(final Menu menu) {
-        this.menu = menu;
+    public GameMenu(final MainView menu) {
         VBox menuZero = new VBox(BOX);
         VBox menuOne = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
@@ -42,8 +44,8 @@ class GameMenu extends Parent {
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
 
-        for (int i = 0; i < MAIN_MENU.buttonsNameList().size() - 1; i++) {
-            MenuButton btn = new MenuButton(MAIN_MENU.buttonsNameList().get(i).get(), Color.WHITE);
+        for (int i = 0; i < MAIN_MENU.buttonsNameList().size(); i++) {
+            MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
             btn.setOnMouseClicked(e -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
                 ft.setFromValue(1);
@@ -54,10 +56,8 @@ class GameMenu extends Parent {
             setButton.add(btn);
         }
 
-        MenuButton btnExit = new MenuButton(MAIN_MENU.buttonsNameList().get(listName.size() - 1).get(), Color.RED);
+        MenuButton btnExit = new MenuButton(listName.get(listName.size() - 1), Color.RED);
         btnExit.setOnMouseClicked(e -> {
-            menu.allert("Are you sure?");
-            System.exit(0);
         });
 
         menuZero.getChildren().addAll(setButton);
@@ -69,4 +69,6 @@ class GameMenu extends Parent {
 
         getChildren().addAll(bg, menuZero);
     }
+
+
 }

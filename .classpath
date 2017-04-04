@@ -1,30 +1,9 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="images"/>
 	<classpathentry kind="src" path="libs"/>
-=======
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="res"/>
->>>>>>> 9a41168599662d88735fd76cbe86da684b966a51
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
-<<<<<<< HEAD
-=======
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="images"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
->>>>>>> ac205f398766d231b7cebe85ef5ca038e718bae2
->>>>>>> 9a41168599662d88735fd76cbe86da684b966a51

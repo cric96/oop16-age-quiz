@@ -2,6 +2,7 @@ package home.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -47,7 +48,7 @@ public class GameTest {
             final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
             final ImmutableAgeBuilding building = this.getBuildingWithName(buildings, BUILDING_TEST);
             assertSame(building.getLevel().getIncrementalLevel(), 1);
-            assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH),MAX_STATUS);
+            assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
             System.out.println(exc);
             fail();
@@ -68,11 +69,15 @@ public class GameTest {
         try {
             king.decExperiene(-EXPERIENCE);
             fail("can't use negative value");
-        } catch (IllegalArgumentException exc) { }
+        } catch (IllegalArgumentException exc) { 
+            assertNotNull(exc);
+        }
         try {
             king.decExperiene(EXPERIENCE);
             fail("no more experience!");
-        } catch (IllegalArgumentException exc) { }
+        } catch (IllegalArgumentException exc) { 
+            assertNotNull(exc);
+        }
         king.addExperience(EXPERIENCE);
         //now i can go on the next age
         assertTrue(king.nextAge());
@@ -98,7 +103,9 @@ public class GameTest {
         try {
             king.nextAge();
             fail();
-        } catch (IllegalStateException exc) { }
+        } catch (IllegalStateException exc) { 
+            assertNotNull(exc);
+        }
     }
     /**
      * Test about the building associated with a kingdom.

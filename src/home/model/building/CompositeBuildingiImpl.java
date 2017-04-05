@@ -3,8 +3,6 @@ package home.model.building;
 import home.model.composite.Event;
 import home.model.level.AgeEnum;
 import home.model.level.Level;
-import home.model.query.Category;
-
 final class CompositeBuildingiImpl extends AbstractBuilding implements BuildingComposite {
     private static final long serialVersionUID = -8506796377291602901L;
     private static final AgeEnum INITIAL_AGE = AgeEnum.values()[0];

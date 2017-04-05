@@ -1,6 +1,5 @@
 package home.model.utility;
 
-import org.junit.Test;
 
 /**
  * models a pair of object.
@@ -25,16 +24,14 @@ public interface Pair<X, Y> {
      */
     static <Z, U> Pair<Z, U>createPair(final Z first, final U second) {
         return new Pair<Z, U>() {
-            private final Z x = first;
-            private final U y = second;
             @Override
             public Z getX() {
-                return this.x;
+                return first;
             }
 
             @Override
             public U getY() {
-                return this.y;
+                return second;
             }
 
             @Override

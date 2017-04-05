@@ -1,8 +1,6 @@
 package home.model.composite;
 
 import home.model.level.AgeEnum;
-import home.model.level.ImmutableLevel;
-
 /**
  * an event that can be send by object to another.
  * @param <E> the source of the event

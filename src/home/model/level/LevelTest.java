@@ -1,6 +1,10 @@
 package home.model.level;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 /*Some test on status*/
@@ -23,8 +27,8 @@ public class LevelTest {
         try {
             level.nextLevel(1);
             fail();
-        } catch (IllegalStateException exv) {
-
+        } catch (IllegalStateException exc) {
+            assertNotNull(exc);
         }
     }
 }

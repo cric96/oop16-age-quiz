@@ -23,14 +23,14 @@ public abstract class AbstractComposite implements Composite, Serializable {
         this.components = new HashSet<>();
     }
     @Override
-    public <Y> Set<Pair<Y, Boolean>> getComponents(final Class<Y> type) {
+    public final <Y> Set<Pair<Y, Boolean>> getComponents(final Class<Y> type) {
        return this.components.stream().filter(x -> type.isAssignableFrom(x.getType()))
                              .map(x -> Pair.createPair(type.cast(x), x.isEnable()))
                              .collect(Collectors.toSet());
     }
 
     @Override
-    public void addComponent(final Component<?> component) {
+    public final void addComponent(final Component<?> component) {
         if (component.getParent() == Optional.empty()) {
             throw new IllegalStateException("call attach on component first!");
         }
@@ -41,7 +41,7 @@ public abstract class AbstractComposite implements Composite, Serializable {
      * @return
      *  the set of component
      */
-    protected Set<Component<?>> getComponents() {
+    protected final Set<Component<?>> getComponents() {
         return this.components;
     }
 

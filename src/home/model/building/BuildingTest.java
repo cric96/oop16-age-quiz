@@ -1,12 +1,12 @@
 package home.model.building;
 
-import static org.junit.Assert.*;
 
-import java.util.Optional;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import home.model.level.Level;
 /**
  * the test on building.
  */
@@ -22,7 +22,9 @@ public class BuildingTest {
         try {
             building.levelUp();
             fail();
-        } catch (IllegalStateException exc) { }
+        } catch (IllegalStateException exc) { 
+            assertNotNull(exc);
+        }
         assertEquals(building.getLevel().getIncrementalLevel(), 0);
     }
 }

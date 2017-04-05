@@ -34,4 +34,13 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
     public File getPath() {
         return new File(ROOT + System.getProperty("file.separator") + this.name + this.currentImage + EXTENSION);
     }
+    @Override
+    public String getExtension() {
+        return EXTENSION;
+    }
+    @Override
+    public String toString() {
+        return "ImageComponentImpl [name=" + name + ", currentImage=" + currentImage + "]";
+    }
+    
 }

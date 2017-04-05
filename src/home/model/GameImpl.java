@@ -30,7 +30,7 @@ final class GameImpl implements Game {
     public void save(final File save) {
         try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream(save))) {
             out.writeObject(this.currentKingdom.orElseThrow(() -> new IllegalStateException()));
-        //DA VEDERE COME FARE    
+        //TODO DA VEDERE COME FARE    
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -43,7 +43,7 @@ final class GameImpl implements Game {
     public void load(final File load) {
         try (ObjectInput in = new ObjectInputStream(new FileInputStream(load))) {
             this.currentKingdom = Optional.of((Kingdom) in.readObject());
-        //DA VEDERE COME FARE    
+        //TODO DA VEDERE COME FARE    
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

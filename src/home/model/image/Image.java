@@ -12,4 +12,10 @@ public interface Image {
      *  where the image is located
      */
     File getPath();
+    /**
+     * 
+     * @return
+     *  the extension of the image
+     */
+    String getExtension();
 }

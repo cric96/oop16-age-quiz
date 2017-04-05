@@ -14,7 +14,6 @@ import home.model.utility.Utility;
 //package-protected
 abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
     private static final long serialVersionUID = 1L;
-    /*TODO ricorda che devi trovare un modo per salire di livello in base all'era*/
     private final BuildingType type;
     private final Level.Building level;
     //i can't use Optional<Kingdom> because it can't be saved
@@ -77,13 +76,16 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
        this.parent = parent;
        parent.addComponent(this);
     }
+    //TEMPLATE METHOD
     @Override
     public void update(final Event<?> event) {
         /*if the type is age change and */
         if (event.getTypes().equals(EventType.AGE_CHANGE.name())) {
             //if you want you can check if the source is correct
             //i can do cast because i'm sure that the event is associated with age
-            this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
+            if (this.isEnable()) {
+                this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
+            }
             onAgeChange((Event.Age<?>) event);
         }
     }

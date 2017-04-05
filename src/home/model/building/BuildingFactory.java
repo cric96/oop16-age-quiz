@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import home.model.image.ImageComponent;
 import home.model.level.Level;
 
 /**
@@ -37,6 +38,11 @@ public final class BuildingFactory {
     public Set<BuildingComposite> createAllBuilding() {
         return Arrays.stream(BuildingType.values())
                      .map(x -> this.createSimpleBuilding(x))
+                     .peek(x -> {
+                         final ImageComponent image = ImageComponent.createComponent(x.getName());
+                         image.attachOn(x);
+                         x.addComponent(image);
+                     })
                      .collect(Collectors.toSet());
     }
 }

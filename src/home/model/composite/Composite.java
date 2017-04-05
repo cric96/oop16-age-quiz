@@ -8,7 +8,6 @@ import home.model.utility.Pair;
  * a container of component objects.
  */
 public interface Composite {
-    //TODO RICORDATI DI ASSOCIARE AD OGNI COMPONENT LA POSSIBILITà CHE SIA ABILITATO O MENO
     /**
      * get component by giving is type.
      * @param type

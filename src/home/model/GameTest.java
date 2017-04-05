@@ -11,9 +11,11 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.util.Set;
 
+
 import org.junit.Test;
 
 import home.model.building.ImmutableAgeBuilding;
+import home.model.image.Image;
 import home.model.status.StatusName;
 import home.model.utility.Pair;
 
@@ -24,6 +26,7 @@ public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
     private static final String BUILDING_TEST = "BUILDING_SITE";
+    private static final String BUILDING_NOT_ENABLE = "ACADEMY";
     private static final File FILE_NAME = new File("C:\\Users\\Gianluca\\prova.obj");
     /**
      * simple test for the interface Game.
@@ -53,7 +56,27 @@ public class GameTest {
             System.out.println(exc);
             fail();
         }
-        //FILE_NAME.delete();
+        FILE_NAME.delete();
+    }
+    /**
+     * check if the component of building remain the same.
+     */
+    @Test
+    public void testSaveAdvance() {
+        /*TODO ESEGUI MEGLIO QUESTO TEST*/
+        Game.getGame().newGame();
+        Kingdom kingdom = Game.getGame().getCurrentKingdom();
+        ImmutableAgeBuilding.Container building = kingdom.getComponents(ImmutableAgeBuilding.Container.class).stream()
+                                                                                                             .filter(x -> x.getX().getName().equals(BUILDING_NOT_ENABLE))
+                                                                                                             .map(x -> x.getX())
+                                                                                                             .findFirst().get();
+        System.out.println(building.getComponents(Image.class));
+        kingdom.addExperience(EXPERIENCE);
+        kingdom.nextAge();
+        System.out.println(building.getComponents(Image.class));
+        kingdom.addExperience(EXPERIENCE * EXPERIENCE);
+        kingdom.nextAge();
+        System.out.println(building.getComponents(Image.class));
     }
     /**
      * simple test for the kingdom.

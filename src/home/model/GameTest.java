@@ -63,20 +63,25 @@ public class GameTest {
      */
     @Test
     public void testSaveAdvance() {
-        /*TODO ESEGUI MEGLIO QUESTO TEST*/
         Game.getGame().newGame();
         Kingdom kingdom = Game.getGame().getCurrentKingdom();
-        ImmutableAgeBuilding.Container building = kingdom.getComponents(ImmutableAgeBuilding.Container.class).stream()
-                                                                                                             .filter(x -> x.getX().getName().equals(BUILDING_NOT_ENABLE))
-                                                                                                             .map(x -> x.getX())
-                                                                                                             .findFirst().get();
-        System.out.println(building.getComponents(Image.class));
+        ImmutableAgeBuilding.Container building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
         kingdom.addExperience(EXPERIENCE);
         kingdom.nextAge();
-        System.out.println(building.getComponents(Image.class));
+        //the building image doesn't change
+        Image im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
+        assertTrue(im.getPath().getName().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
+        Game.getGame().save(FILE_NAME);
         kingdom.nextAge();
-        System.out.println(building.getComponents(Image.class));
+        //now the image of building change
+        assertFalse(im.getPath().getName().contains("0"));
+        //check if the state of object remain consistent
+        Game.getGame().load(FILE_NAME);
+        kingdom = Game.getGame().getCurrentKingdom();
+        building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
+        im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
+        assertTrue(im.getPath().getName().contains("0"));
     }
     /**
      * simple test for the kingdom.
@@ -162,10 +167,10 @@ public class GameTest {
         return (int) building.stream().filter(x -> !x.getY())
                 .count();
     }
-    private Set<Pair<ImmutableAgeBuilding, Boolean>> getBuildings(final Kingdom king) {
+    private <E> Set<Pair<ImmutableAgeBuilding, Boolean>> getBuildings(final Kingdom king) {
         return king.getComponents(ImmutableAgeBuilding.class);
     }
-    private ImmutableAgeBuilding getBuildingWithName(final Set<Pair<ImmutableAgeBuilding, Boolean>> building, 
+    private <E extends ImmutableAgeBuilding> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
                                                         final String name) {
         return building.stream().filter(x -> x.getX().getName().equals(name))
         .map(x -> x.getX())

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import home.view.MainView;
 import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -28,10 +27,10 @@ public class GameMenu extends Parent {
     private static final int TITLE_SIZE = 45;
     private static final double OPACITY = 0.4;
     private final List<String> listName = MAIN_MENU.buttonsNameList();
-    private Set<MenuButton> setButton = new HashSet<>();
-    private Rectangle bg;
+    private final Set<MenuButton> setButton = new HashSet<>();
+    private final Rectangle bg;
 
-    public GameMenu(final MainView menu) {
+    public GameMenu() {
         VBox menuZero = new VBox(BOX);
         VBox menuOne = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
@@ -44,7 +43,7 @@ public class GameMenu extends Parent {
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
 
-        for (int i = 0; i < MAIN_MENU.buttonsNameList().size(); i++) {
+        for (int i = 0; i < MAIN_MENU.buttonsNameList().size() - 1 ; i++) {
             MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
             btn.setOnMouseClicked(e -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -56,14 +55,23 @@ public class GameMenu extends Parent {
             setButton.add(btn);
         }
 
-        MenuButton btnExit = new MenuButton(listName.get(listName.size() - 1), Color.RED);
+        final MenuButton btnExit = new MenuButton(listName.get(listName.size() - 1), Color.RED);
         btnExit.setOnMouseClicked(e -> {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Exit");
+            alert.setHeaderText("Are you sure do this?");
+
+            final Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                System.exit(0);
+            }
         });
 
         menuZero.getChildren().addAll(setButton);
         menuZero.getChildren().add(btnExit);
 
         bg = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT);
+       
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 

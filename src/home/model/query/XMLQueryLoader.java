@@ -16,7 +16,7 @@ import org.xml.sax.SAXException;
 
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
-import home.model.utility.Utility;
+import home.utility.Utility;
 
 /**
  *

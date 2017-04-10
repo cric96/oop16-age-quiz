@@ -1,4 +1,4 @@
-package home.model.utility;
+package home.utility;
 
 /**
  * some method that can be useful.

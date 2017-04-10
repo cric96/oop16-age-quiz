@@ -10,15 +10,15 @@ public enum Buttons {
     /**
      * load an old game.
      */
-    LOAD_GAME("Load Game"),
+    NEW_GAME("New Game"),
     /**
      * create a new game.
      */
-    NEW_GAME("New Game"),
+    LOAD_GAME("Load Game"),
     /**
      * close the application.
      */
-    EXIT("Esci");
+    EXIT("Exit");
 
     private final String text;
 

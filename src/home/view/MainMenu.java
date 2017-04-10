@@ -1,4 +1,4 @@
-package home.view.menu;
+package home.view;
 
 import java.util.List;
 import java.util.Optional;

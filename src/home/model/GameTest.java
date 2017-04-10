@@ -17,7 +17,7 @@ import org.junit.Test;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.Image;
 import home.model.status.StatusName;
-import home.model.utility.Pair;
+import home.utility.Pair;
 
 /**
  * some test in the game.

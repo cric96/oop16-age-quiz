@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import home.view.MainMenu;
+
 /**
  * implementation of MainMenu interface.
  *
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 public class MainMenuImpl implements MainMenu {
     private final List<Buttons> buttonsName = Arrays.asList(Buttons.values());
     private final String menuBackground = "res/images/backgroundMenu.jpg";
-    private final String title = "Age of Quitz";
+    private final String title = "Age of Quiz";
 
     @Override
     public List<String> buttonsNameList() {

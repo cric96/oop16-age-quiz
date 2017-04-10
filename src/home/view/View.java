@@ -1,5 +1,8 @@
 package home.view;
 
-public interface View {
+import home.controller.Controller;
 
+public interface View <E extends Controller>{
+    void attachOn(E controller);
+    //showMessage(Message error)
 }

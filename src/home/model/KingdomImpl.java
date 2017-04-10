@@ -12,7 +12,7 @@ import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.status.Status;
 import home.model.status.StatusName;
-import home.model.utility.Utility;
+import home.utility.Utility;
  
 //package protected 
 final class KingdomImpl extends AbstractComposite implements Kingdom {

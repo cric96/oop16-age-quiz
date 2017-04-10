@@ -48,8 +48,8 @@ public class MenuButton extends StackPane {
         });
 
         setOnMouseExited(e -> {
-            bg.setTranslateX(10);
-            text.setTranslateX(10);
+            bg.setTranslateX(0);
+            text.setTranslateX(0);
             bg.setFill(Color.BLACK);
             text.setFill(Color.WHITE);
         });

@@ -10,7 +10,7 @@ import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.query.Category;
 import home.model.quiz.QuizGame;
-import home.model.utility.Utility;
+import home.utility.Utility;
 //package-protected
 abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
     private static final long serialVersionUID = 1L;

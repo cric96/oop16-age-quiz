@@ -2,7 +2,7 @@ package home.model.composite;
 
 import java.util.Set;
 
-import home.model.utility.Pair;
+import home.utility.Pair;
 
 /**
  * a container of component objects.

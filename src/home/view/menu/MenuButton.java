@@ -33,6 +33,7 @@ public class MenuButton extends StackPane {
         text = new Text(name);
         text.getFont();
         text.setFont(Font.font(FONT));
+        text.setFill(Color.WHITE);
         Rectangle bg = new Rectangle(BOX_HEIGHT, BOX_WIDTH);
         bg.setOpacity(BOX_OPACITY);
         bg.setFill(Color.BLACK);

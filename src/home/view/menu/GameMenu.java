@@ -1,12 +1,16 @@
 package home.view.menu;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import javafx.animation.FadeTransition;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
+import javafx.stage.Screen;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
@@ -18,8 +22,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class GameMenu extends Parent {
-    private static final int WINDOW_HEIGHT = 600;
-    private static final int WINDOW_WIDTH = 800;
+    private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
     private static final int X_TRANSLATE = 100;
     private static final MainMenuImpl MAIN_MENU = new MainMenuImpl();
     private static final int Y_TRANSLATE = 200;
@@ -60,7 +63,6 @@ public class GameMenu extends Parent {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Exit");
             alert.setHeaderText("Are you sure do this?");
-
             final Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 System.exit(0);
@@ -70,8 +72,7 @@ public class GameMenu extends Parent {
         menuZero.getChildren().addAll(setButton);
         menuZero.getChildren().add(btnExit);
 
-        bg = new Rectangle(WINDOW_WIDTH, WINDOW_HEIGHT);
-       
+        bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 

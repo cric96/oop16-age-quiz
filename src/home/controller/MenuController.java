@@ -1,9 +1,14 @@
 package home.controller;
 
 public interface MenuController extends Controller {
-    //newGamePressed()
-    //createGame(String name, Profile profile)
-    //loadGamePressed()
-    //loadGame(Profile profile)
-    //exitPressed()
+    
+    void newGamePressed();
+    
+    void createGame(String name, Profile profile);
+    
+    void loadGamePressed();
+    
+    void loadGame(Profile profile);
+    
+    void exitPressed();
 }

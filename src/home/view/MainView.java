@@ -5,7 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import home.view.menu.GameMenu;
+import home.view.menu.MainMenu;
 import home.view.menu.MainMenuImpl;
+import home.view.menu.MenuViewImpl;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -42,13 +44,13 @@ public class MainView extends Application {
         imgView = new ImageView(img);
         imgView.setFitWidth(WINDOW_WIDTH);
         imgView.setFitHeight(WINDOW_HEIGHT);
-        final GameMenu gameMenu = new GameMenu();
-        final Scene scene = new Scene(root);
+        //final GameMenu gameMenu = new GameMenu();
+        //final Scene scene = new Scene(root);
 
-        root.getChildren().addAll(imgView, gameMenu);
+        //root.getChildren().addAll(imgView, gameMenu);
         primaryStage.setResizable(false);
         primaryStage.setFullScreen(true);
-        primaryStage.setScene(scene);
+        primaryStage.setScene(new MenuViewImpl());
         primaryStage.show();
         FXContainer.getContainer().setStage(primaryStage);
     }

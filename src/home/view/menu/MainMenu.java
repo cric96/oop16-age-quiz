@@ -1,7 +1,6 @@
-package home.view;
+package home.view.menu;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  *  a interface to define logic of a general main menu model. 

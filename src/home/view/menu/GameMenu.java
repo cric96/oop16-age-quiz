@@ -1,7 +1,9 @@
 package home.view.menu;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +16,8 @@ import javafx.stage.Screen;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,16 +28,15 @@ import javafx.util.Duration;
 public class GameMenu extends Parent {
     private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
     private static final int X_TRANSLATE = 100;
-    private static final MainMenuImpl MAIN_MENU = new MainMenuImpl();
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
     private static final int TITLE_SIZE = 45;
     private static final double OPACITY = 0.4;
-    private final List<String> listName = MAIN_MENU.buttonsNameList();
+    private final List<String> listName = MainMenuImpl.buttonsNameList();
     private final Set<MenuButton> setButton = new HashSet<>();
     private final Rectangle bg;
 
-    public GameMenu() {
+    public GameMenu() throws IOException {
         VBox menuZero = new VBox(BOX);
         VBox menuOne = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
@@ -42,11 +45,11 @@ public class GameMenu extends Parent {
         menuOne.setTranslateX(X_TRANSLATE);
         menuOne.setTranslateY(Y_TRANSLATE);
 
-        Text text = new Text(MAIN_MENU.getTitle());
+        Text text = new Text(MainMenuImpl.getTitle());
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
 
-        for (int i = 0; i < MAIN_MENU.buttonsNameList().size() - 1 ; i++) {
+        for (int i = 0; i < MainMenuImpl.buttonsNameList().size() - 1 ; i++) {
             MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
             btn.setOnMouseClicked(e -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -71,12 +74,17 @@ public class GameMenu extends Parent {
 
         menuZero.getChildren().addAll(setButton);
         menuZero.getChildren().add(btnExit);
-
-        bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+        final InputStream is = Files.newInputStream(Paths.get(MainMenuImpl.backgroundPath()));
+        final Image img = new Image(is);
+        is.close();
+        final ImageView imgView = new ImageView(img);
+        imgView.setFitWidth(primaryScreenBounds.getMaxX());
+        imgView.setFitHeight(primaryScreenBounds.getMaxY());
+        bg = new Rectangle(primaryScreenBounds.getMaxX(), primaryScreenBounds.getMaxY());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 
-        getChildren().addAll(bg, menuZero);
+        getChildren().addAll(imgView, bg, menuZero);
     }
 
 

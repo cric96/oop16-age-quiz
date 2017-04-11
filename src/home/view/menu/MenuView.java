@@ -3,6 +3,7 @@ package home.view.menu;
 import java.util.Set;
 
 import home.controller.MenuController;
+import home.view.MessageType;
 import home.view.View;
 import home.controller.Profile;
 

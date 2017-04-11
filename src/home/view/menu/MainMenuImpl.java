@@ -2,7 +2,6 @@ package home.view.menu;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -10,9 +9,9 @@ import java.util.stream.Collectors;
  *
  */
 public final class MainMenuImpl {
-    private static final List<Buttons> buttonsName = Arrays.asList(Buttons.values());
-    private static final String menuBackground = "res/images/backgroundMenu.jpg";
-    private static final String title = "Age of Quiz";
+    private static final List<Buttons> BUTTONS_NAME = Arrays.asList(Buttons.values());
+    private static final String MENU_BACKGROUND = "res/images/backgroundMenu.jpg";
+    private static final String TITLE = "Age of Quiz";
 
     private MainMenuImpl() { }
  
@@ -20,18 +19,21 @@ public final class MainMenuImpl {
      * @return the string of buttons in the menu.
      */
     public static List<String> buttonsNameList() {
-        return buttonsName.stream().map(a -> a.getText()).collect(Collectors.toList());
+        return BUTTONS_NAME.stream().map(a -> a.getText()).collect(Collectors.toList());
     }
 
     /**
      * @return the path of background image.
      */
     public static String backgroundPath() {
-        return menuBackground;
+        return MENU_BACKGROUND;
     }
 
+    /**
+     * @return the title of window.
+     */
     public static String getTitle() {
-        return title;
+        return TITLE;
     }
 
 }

@@ -14,6 +14,9 @@ import javafx.scene.Scene;
 public class MenuViewImpl extends Scene  implements MenuView {
     private MenuController controller;
 
+    /** 
+     * @throws IOException if background load gone wrong.
+     */
     public MenuViewImpl() throws IOException {
         super(new GameMenu());
     }
@@ -21,12 +24,6 @@ public class MenuViewImpl extends Scene  implements MenuView {
     @Override
     public void attachOn(final MenuController controller) {
         this.controller = controller;
-    }
-
-    @Override
-    public void showMessage(final String message, final MessageType type) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override

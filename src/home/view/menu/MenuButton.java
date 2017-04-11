@@ -1,7 +1,5 @@
 package home.view.menu;
 
-import javax.script.ScriptException;
-
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -11,7 +9,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 
 /**
  * 
@@ -24,8 +21,7 @@ public class MenuButton extends StackPane {
     private static final int DROP_SHADOW = 50;
     private static final int FONT = 20;
     private static final double BLUR = 0.4;
-
-    private Text text;
+    private final Text text;
 
     /**
      * 
@@ -58,7 +54,7 @@ public class MenuButton extends StackPane {
             text.setFill(Color.WHITE);
         });
 
-        DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
+        final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
         dropS.setInput(new Glow());
 
         setOnMousePressed(e -> setEffect(dropS));

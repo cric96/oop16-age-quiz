@@ -4,6 +4,7 @@ import home.view.menu.MainMenuImpl;
 import home.view.menu.MenuViewImpl;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 
@@ -23,6 +24,7 @@ public class MainView extends Application {
 
         primaryStage.setResizable(false);
         primaryStage.setFullScreen(true);
+        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.setScene(new MenuViewImpl());
         primaryStage.show();
         FXContainer.getContainer().setStage(primaryStage);

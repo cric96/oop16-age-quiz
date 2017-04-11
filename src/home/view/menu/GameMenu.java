@@ -6,16 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-
+import home.view.MessageType;
+import home.view.View;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.stage.Screen;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -25,6 +22,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * concrete realization of menu in javafx.
+ *
+ */
 public class GameMenu extends Parent {
     private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
     private static final int X_TRANSLATE = 100;
@@ -36,6 +37,9 @@ public class GameMenu extends Parent {
     private final Set<MenuButton> setButton = new HashSet<>();
     private final Rectangle bg;
 
+    /**
+     * @throws IOException if the background load gone wrong.
+     */
     public GameMenu() throws IOException {
         VBox menuZero = new VBox(BOX);
         VBox menuOne = new VBox(BOX);
@@ -49,7 +53,7 @@ public class GameMenu extends Parent {
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
 
-        for (int i = 0; i < MainMenuImpl.buttonsNameList().size() - 1 ; i++) {
+        for (int i = 0; i < MainMenuImpl.buttonsNameList().size() - 1; i++) {
             MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
             btn.setOnMouseClicked(e -> {
                 FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
@@ -63,13 +67,8 @@ public class GameMenu extends Parent {
 
         final MenuButton btnExit = new MenuButton(listName.get(listName.size() - 1), Color.RED);
         btnExit.setOnMouseClicked(e -> {
-            Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Exit");
-            alert.setHeaderText("Are you sure do this?");
-            final Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                System.exit(0);
-            }
+            System.exit(0);
+            //View.showMessage("Are you sure do this?", MessageType.EXIT);
         });
 
         menuZero.getChildren().addAll(setButton);
@@ -78,9 +77,9 @@ public class GameMenu extends Parent {
         final Image img = new Image(is);
         is.close();
         final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(primaryScreenBounds.getMaxX());
-        imgView.setFitHeight(primaryScreenBounds.getMaxY());
-        bg = new Rectangle(primaryScreenBounds.getMaxX(), primaryScreenBounds.getMaxY());
+        imgView.setFitWidth(primaryScreenBounds.getWidth());
+        imgView.setFitHeight(primaryScreenBounds.getHeight());
+        bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 

@@ -25,6 +25,6 @@ public class BuildingTest {
         } catch (IllegalStateException exc) { 
             assertNotNull(exc);
         }
-        assertEquals(building.getLevel().getIncrementalLevel(), 0);
+        assertEquals(building.getLevel().getIncrementalLevel(), 1);
     }
 }

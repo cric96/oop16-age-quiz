@@ -21,7 +21,7 @@ public class LevelTest {
         assertEquals(age.getExperienceAmount(), AgeEnum.ETA_DELLA_PIETRA.getExperience());
         assertFalse(age.nextLevel(1));
         assertTrue(age.nextLevel(AgeEnum.ETA_DELLA_PIETRA.getExperience() + 1));
-        level.setMaxiumLevel(1);
+        level.setMaxiumLevel(2);
         assertFalse(level.nextLevel(1));
         assertTrue(level.nextLevel(level.getExperienceAmount() + 1));
         try {

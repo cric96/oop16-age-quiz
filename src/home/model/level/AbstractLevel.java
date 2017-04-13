@@ -4,6 +4,9 @@ abstract class AbstractLevel implements Level {
     private static final long serialVersionUID = 1L;
     private int currentLevel;
     private int experienceAmount;
+    AbstractLevel() {
+        this.currentLevel = 1;
+    }
     @Override
     public boolean nextLevel(final int experienceAmount) {
         this.checkUpgradable();

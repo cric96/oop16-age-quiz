@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import home.controller.MenuController;
-import home.controller.Profile;
-import home.view.MessageType;
+import home.controller.profile.Profile;
 import javafx.scene.Scene;
 
 /**

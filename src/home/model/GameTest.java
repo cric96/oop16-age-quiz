@@ -50,7 +50,7 @@ public class GameTest {
         try {
             final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
             final ImmutableAgeBuilding building = this.getBuildingWithName(buildings, BUILDING_TEST);
-            assertSame(building.getLevel().getIncrementalLevel(), 1);
+            assertSame(building.getLevel().getIncrementalLevel(), 2);
             assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
             System.out.println(exc);
@@ -112,7 +112,7 @@ public class GameTest {
         assertSame(king.getExperienceAmount(), 0);
         //if i go in the next age the incremental value must be change
         assertNotSame(king.getAge().getIncrementalLevel(), 0);
-        assertSame(king.getAge().getIncrementalLevel(), 1);
+        assertSame(king.getAge().getIncrementalLevel(), 2);
         //at the beginning all stats are equal to zero
         king.getStatusStatistic().forEach((x, y) -> assertSame(y, 0));
         king.changeStatus(StatusName.HAPPINESS, MAX_STATUS);

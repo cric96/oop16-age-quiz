@@ -3,9 +3,9 @@ package home.view.menu;
 import java.util.Set;
 
 import home.controller.MenuController;
+import home.controller.profile.Profile;
 import home.view.MessageType;
 import home.view.View;
-import home.controller.Profile;
 
 /**
  * Specification of View used to implement a generic Menu.

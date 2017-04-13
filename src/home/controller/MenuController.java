@@ -1,5 +1,7 @@
 package home.controller;
 
+import home.controller.profile.Profile;
+
 public interface MenuController extends Controller {
     
     void newGamePressed();

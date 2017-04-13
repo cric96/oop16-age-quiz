@@ -5,7 +5,7 @@ import home.model.level.Level.Building;
 final class LevelBuildingImpl extends AbstractLevel implements Building {
     private static final long serialVersionUID = 1L;
     /*the initial max level of a building*/
-    private static final int INITIAL_MAX_LEVEL = 1;
+    private static final int INITIAL_MAX_LEVEL = 2;
     private static final int INITIAL_EXPERIENCE = 1000;
     private int maxLevel;
     //package-protected

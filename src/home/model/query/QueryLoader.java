@@ -1,6 +1,12 @@
 package home.model.query;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 import home.model.level.ImmutableLevel;
 
@@ -16,4 +22,16 @@ public interface QueryLoader {
  *      a List of specific queries.
  */
     List<Query> getQueries(Category cat, ImmutableLevel level);
+    /**
+     * 
+     * @return a QueryLoader
+     */
+    static QueryLoader getQueryLoader() {
+        final File file = new File(QueryLoader.class.getResource("/queries.xml").getFile());
+        try {
+            return new XMLQueryLoader(file);
+        } catch (SAXException | IOException | ParserConfigurationException e) {
+            throw new RuntimeException("Something goes wrong with resource loader");
+        }
+    }
 }

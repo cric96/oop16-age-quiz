@@ -8,7 +8,7 @@ import home.model.query.Query.Builder;
 //package-protected
 class QueryBuilder implements Builder {
     private String question;
-    private Set<String> answers = new HashSet<>();
+    private final Set<String> answers = new HashSet<>();
     private String correctAnswer;
     private Category category;
     private Integer difficulty;

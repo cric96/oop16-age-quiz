@@ -1,6 +1,7 @@
 package home.model.quiz;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -8,8 +9,10 @@ import java.util.Optional;
 
 import java.util.stream.Collectors;
 
+import home.model.level.ImmutableLevel;
 import home.model.query.Category;
 import home.model.query.Query;
+import home.model.query.QueryLoader;
 import home.model.status.StatusName;
 
 //package protected
@@ -18,7 +21,7 @@ class QuizGameImpl implements QuizGame {
     private static final int UPDATE_XP_BY_WRONG_ANSWER = +0;
     private static final int UPDATE_STATUS_BY_CORRECT_ANSWER = +1;
     private static final int UPDATE_STATUS_BY_WRONG_ANSWER = -1;
-    private final Quiz quizIterator;
+    private final Iterator<Query> quizIterator;
     private Query currentQuery;
     private Optional<String> currentAnswer;
     private int currentXP;
@@ -28,8 +31,8 @@ class QuizGameImpl implements QuizGame {
      * @param cat
      * @param level
      */
-    QuizGameImpl(final Category cat, final int level) {
-        this.quizIterator = new QuizImpl(cat, level);
+    QuizGameImpl(final Category cat, final ImmutableLevel level) {
+        this.quizIterator = QueryLoader.getQueryLoader().getQueries(cat, level).iterator();
         this.currentAnswer = Optional.empty();
         this.statusScore = cat.getStatusNames().stream().collect(Collectors.toMap(x -> x, x -> 0));
         this.currentQuery = this.quizIterator.next();

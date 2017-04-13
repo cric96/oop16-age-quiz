@@ -1,16 +1,12 @@
 package home.model.quiz;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 import home.model.query.Category;
 import home.model.query.Query;
-/**
- * 
- */
+
 //package-protected
 class QuizImpl implements Quiz {
     private final List<Query> quiz;

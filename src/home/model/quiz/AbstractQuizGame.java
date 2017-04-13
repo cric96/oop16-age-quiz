@@ -1,7 +1,7 @@
 package home.model.quiz;
 
 import java.util.Collections;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -14,28 +14,34 @@ import home.model.query.Category;
 import home.model.query.Query;
 import home.model.query.QueryLoader;
 import home.model.status.StatusName;
+import home.utility.CList;
 
 //package protected
-class QuizGameImpl implements QuizGame {
+abstract class AbstractQuizGame implements QuizGame {
     private static final int UPDATE_XP_BY_CORRECT_ANSWER = +1;
     private static final int UPDATE_XP_BY_WRONG_ANSWER = +0;
     private static final int UPDATE_STATUS_BY_CORRECT_ANSWER = +1;
-    private static final int UPDATE_STATUS_BY_WRONG_ANSWER = -1;
-    private final Iterator<Query> quizIterator;
+    private static final int UPDATE_STATUS_BY_WRONG_ANSWER = -1; 
+    private static final int START_POSITION = 0;
+    private final CList<Query> cQueries;
+    private int currentPos;
     private Query currentQuery;
     private Optional<String> currentAnswer;
     private int currentXP;
     private final Map<StatusName, Integer> statusScore;
+    private boolean stopQuiz;
     /**
      * 
      * @param cat
      * @param level
      */
-    QuizGameImpl(final Category cat, final ImmutableLevel level) {
-        this.quizIterator = QueryLoader.getQueryLoader().getQueries(cat, level).iterator();
+    AbstractQuizGame(final Category cat, final ImmutableLevel level) {
+        final List<Query> list = QueryLoader.getQueryLoader().getQueries(cat, level);
+        cQueries = new CListImpl<>(list, START_POSITION);
+        this.currentPos = START_POSITION;
         this.currentAnswer = Optional.empty();
         this.statusScore = cat.getStatusNames().stream().collect(Collectors.toMap(x -> x, x -> 0));
-        this.currentQuery = this.quizIterator.next();
+        this.currentQuery = this.cQueries.getElem(currentPos);
     }
 
     @Override
@@ -60,7 +66,7 @@ class QuizGameImpl implements QuizGame {
 
     @Override
     public boolean isFinished() {
-        return !this.quizIterator.hasNext();
+        return this.stopQuiz;
     }
 
     @Override
@@ -81,7 +87,12 @@ class QuizGameImpl implements QuizGame {
         if (this.isFinished()) {
             throw new NoSuchElementException();
         }
-        this.currentQuery = this.quizIterator.next();
+        this.currentPos++;
+        this.currentQuery = this.cQueries.getElem(currentPos);
+    }
+    @Override
+    public void setFinished() {
+        this.stopQuiz = false;
     }
     //da estrarre la strategia
     private void computeScore() {
@@ -93,5 +104,4 @@ class QuizGameImpl implements QuizGame {
             this.statusScore.keySet().forEach(k -> statusScore.put(k, statusScore.get(k) + UPDATE_STATUS_BY_WRONG_ANSWER));
         }
     }
-
 }

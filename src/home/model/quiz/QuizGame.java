@@ -50,4 +50,12 @@ public interface QuizGame {
      * @return a set of pair of StatusName and the score to add or to remove from it
      */
     Map<StatusName, Integer> getStatusScore(); //metodo che non c'è sull'UML
+    /**
+     * @return number of seconds quiz will last 
+     */
+    int getQuizDuration();
+    /**
+     *Time elapsed so the quiz is stopped.
+     */
+    void setFinished();
 }

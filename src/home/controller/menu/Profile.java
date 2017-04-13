@@ -1,4 +1,4 @@
-package home.controller.profile;
+package home.controller.menu;
 
 import java.io.File;
 import java.util.Optional;

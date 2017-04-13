@@ -1,6 +1,6 @@
-package home.controller;
+package home.controller.menu;
 
-import home.controller.profile.Profile;
+import home.controller.Controller;
 
 public interface MenuController extends Controller {
     

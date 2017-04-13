@@ -3,8 +3,8 @@ package home.view.menu;
 import java.io.IOException;
 import java.util.Set;
 
-import home.controller.MenuController;
-import home.controller.profile.Profile;
+import home.controller.menu.MenuController;
+import home.controller.menu.Profile;
 import javafx.scene.Scene;
 
 /**

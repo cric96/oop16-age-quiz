@@ -36,6 +36,7 @@ public class GameTest {
      */
     @Test
     public void testSave() {
+        System.out.println(getClass().getClassLoader().getResource("domandeOOP.xml"));
         Game.getGame().newGame();
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
         Game.getGame().getCurrentKingdom().nextAge();

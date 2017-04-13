@@ -1,27 +1,26 @@
-package home.controller.profile;
+package home.controller.menu;
 
 import java.io.File;
 import java.util.Objects;
 import java.util.Optional;
 
 class ProfileImpl implements Profile {
-    private Optional<String> name;
+    private String name;
     private boolean enabled;
     private final File file;
 
     ProfileImpl(final File fileName) {
-        this.name = Optional.empty();
         this.enabled = false;
         this.file = fileName;
     }
 
     public Optional<String> getName() {
-        return name;
+        return Optional.ofNullable(name);
     }
 
     public void setName(final String name) {
         Objects.requireNonNull(name);
-        this.name = Optional.of(name);
+        this.name = name;
     }
 
     public boolean isEnabled() {
@@ -36,5 +35,4 @@ class ProfileImpl implements Profile {
     public File getSaveGame() {
         return this.file;
     }
-    
 }

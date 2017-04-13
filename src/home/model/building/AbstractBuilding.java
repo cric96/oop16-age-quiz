@@ -5,7 +5,6 @@ import java.util.Optional;
 import home.model.Kingdom;
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
-import home.model.composite.EventType;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.query.Category;
@@ -80,7 +79,7 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     @Override
     public void update(final Event<?> event) {
         /*if the type is age change and */
-        if (event.getTypes().equals(EventType.AGE_CHANGE.name())) {
+        if (Event.Age.class.isAssignableFrom(event.getClass())) {
             //if you want you can check if the source is correct
             //i can do cast because i'm sure that the event is associated with age
             if (this.isEnable()) {

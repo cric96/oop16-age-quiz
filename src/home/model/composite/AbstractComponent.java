@@ -7,7 +7,7 @@ import java.util.Optional;
  * @param <E>
  *      the type of parent
  */
-public abstract class AbstractComponent<E extends Composite> implements Component<E>,Serializable {
+public abstract class AbstractComponent<E extends Composite> implements Component<E>, Serializable {
     /**
      * 
      */

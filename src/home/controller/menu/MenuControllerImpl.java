@@ -42,11 +42,6 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         }
     }
     @Override
-    public Set<View<? extends Controller>> getViews() {
-        return this.getInternalView().stream().map(x -> (View<?>) x)
-                                  .collect(Collectors.toSet());
-    }
-    @Override
     public void checkUpdate() {
 
     }
@@ -101,13 +96,15 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
                                      .collect(Collectors.toSet());
         }
         public void save() throws IOException {
-            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(this.saveFile));
+            final ObjectOutput out = new ObjectOutputStream(new FileOutputStream(this.saveFile));
             out.writeObject(profiles);
+            out.close();
         }
         @SuppressWarnings("unchecked")
         public void load() throws IOException, ClassNotFoundException {
-            ObjectInput in = new ObjectInputStream(new FileInputStream(this.saveFile));
+            final ObjectInput in = new ObjectInputStream(new FileInputStream(this.saveFile));
             this.profiles = (Set<Profile>) in.readObject();
+            in.close();
         }
         public Set<Profile> getProfile() {
             return Collections.unmodifiableSet(profiles);

@@ -3,7 +3,7 @@ package home.controller;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.stream.Collectors;
 
 import home.view.View;
 /**
@@ -18,9 +18,15 @@ public abstract class AbstractController <V extends View<?>> implements Controll
      * @param views
      *  the views that you want to attach on this controller 
      */
+    @SafeVarargs
     public AbstractController(final V ... views) {
         this.views = new HashSet<>(Arrays.asList(views));
         attachViews();
+    }
+    @Override
+    public Set<View<?>> getViews() {
+        return this.getInternalView().stream().map(x -> (View<?>) x)
+                                  .collect(Collectors.toSet());
     }
     /**
      * 

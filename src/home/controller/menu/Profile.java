@@ -1,11 +1,13 @@
 package home.controller.menu;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.Optional;
+
 /** 
   Define a profile of game.
 */
-public interface Profile {
+public interface Profile extends Serializable {
     /**
      * 
      * a simple factory to create a profile.

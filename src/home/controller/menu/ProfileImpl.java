@@ -5,6 +5,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 class ProfileImpl implements Profile {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private String name;
     private boolean enabled;
     private final File file;

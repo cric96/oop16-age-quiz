@@ -34,7 +34,7 @@ public interface QuizGame {
      */
     boolean isAnswerCorrect(); //questo metodo non c'è nell'UML
     /**
-     * It will be true only if the questions for this specific quiz have been ended.
+     * It will be true only if time for this specific quiz elapsed.
      * @return true if you have finished the questions for this game, false otherwise.
      */
     boolean isFinished();

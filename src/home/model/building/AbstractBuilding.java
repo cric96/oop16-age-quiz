@@ -34,11 +34,6 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     public final ImmutableLevel getLevel() {
         return this.level;
     }
-    /*TODO aspettare l'interfaccia di creazione*/
-    @Override
-    public QuizGame startQuiz() {
-        return null;
-    }
     @Override
     public final Category getInfluecedCategory() {
         return this.type.getCategory();

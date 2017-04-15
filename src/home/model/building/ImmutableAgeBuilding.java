@@ -16,6 +16,7 @@ public interface ImmutableAgeBuilding extends  Serializable {
      * @return
      *  the name of building
      */
+    //TODO PENSA SE USARE BUILDING TYPE
     String getName();
     /**
      * 
@@ -23,13 +24,6 @@ public interface ImmutableAgeBuilding extends  Serializable {
      *  an incremental value that define current level
      */
     ImmutableLevel getLevel();
-    /*TODO PENSA BENE A QUESTO METODO*/
-    /**
-     * create a new quiz.
-     * @return 
-     *  the quiz created
-     */
-    QuizGame startQuiz();
     /**
      * 
      * @return

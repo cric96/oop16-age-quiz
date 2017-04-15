@@ -24,6 +24,7 @@ import home.utility.LocalFolder;
 import home.utility.Utility;
 import home.view.Container;
 import home.view.View;
+import home.view.ViewType;
 import home.view.menu.MenuView;
 //package-protected
 class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
@@ -72,8 +73,13 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
             //TODO MANDA ERRORE SU TUTTI I MESSAGGI
         }
         Game.getGame().newGame();
-        Game.getGame().save(profile.getSaveGame());
-        //TODO METTI IL METODO PER CAMBIARE LA SCENA
+        try {
+            Game.getGame().save(profile.getSaveGame());
+        } catch (IOException e) {
+            // TODO METTI ERRORE NELLA VIEW
+            e.printStackTrace();
+        }
+        Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
     @Override
@@ -86,7 +92,13 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         if (!profile.isEnabled()) {
             throw new IllegalArgumentException("the profile must to be enable!");
         }
-        Game.getGame().load(profile.getSaveGame());
+        try {
+            Game.getGame().load(profile.getSaveGame());
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Container.getContainer().changeDisplay(ViewType.WORLD);
         //TODO METTI IL METODO PER CAMBIARE LA SCENA
     }
 

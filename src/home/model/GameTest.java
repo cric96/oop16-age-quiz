@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -43,9 +44,17 @@ public class GameTest {
         this.getBuildings(Game.getGame().getCurrentKingdom()).forEach(x -> x.getX().levelUp());
         Game.getGame().getCurrentKingdom().changeStatus(StatusName.HEALTH, MAX_STATUS);
         //check if the state of save object is legal or not
-        Game.getGame().save(FILE_NAME);
+        try {
+            Game.getGame().save(FILE_NAME);
+        } catch (IOException e) {
+            fail();
+        }
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
-        Game.getGame().load(FILE_NAME);
+        try {
+            Game.getGame().load(FILE_NAME);
+        } catch (IOException | ClassNotFoundException e) {
+            fail();
+        }
         assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), 0);
         try {
             final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
@@ -72,12 +81,20 @@ public class GameTest {
         Image im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
         assertTrue(im.getPath().getName().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
-        Game.getGame().save(FILE_NAME);
+        try {
+            Game.getGame().save(FILE_NAME);
+        } catch (IOException e) {
+            fail();
+        }
         kingdom.nextAge();
         //now the image of building change
         assertFalse(im.getPath().getName().contains("0"));
         //check if the state of object remain consistent
-        Game.getGame().load(FILE_NAME);
+        try {
+            Game.getGame().load(FILE_NAME);
+        } catch (ClassNotFoundException | IOException e) {
+            fail();
+        }
         kingdom = Game.getGame().getCurrentKingdom();
         building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
         im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();

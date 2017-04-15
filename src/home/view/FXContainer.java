@@ -23,4 +23,9 @@ class FXContainer implements Container {
     static FXContainer getContainer() {
         return FXContainer.SINGLETON;
     }
+
+    @Override
+    public void changeDisplay(ViewType type) {
+        
+    }
 }

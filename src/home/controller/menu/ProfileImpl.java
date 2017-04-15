@@ -39,4 +39,10 @@ class ProfileImpl implements Profile {
     public File getSaveGame() {
         return this.file;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileImpl [name=" + name + ", enabled=" + enabled + ", file=" + file + "]";
+    }
+    
 }

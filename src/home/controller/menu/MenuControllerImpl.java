@@ -31,13 +31,24 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
     private final BoxProfile profiles;
     MenuControllerImpl(final MenuView ... views) {
         super(views);
-        final File file = new File(LocalFolder.CONFIG_FOLDER + BOX_PROFILES);
+        final File file = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + BOX_PROFILES);
+        System.out.println(file);
+        //TODO PENSA SE FARE UN PICCOLO INSTALLER
         this.profiles = new BoxProfile(file);
         if (file.exists()) {
             try {
                 this.profiles.load();
             } catch (ClassNotFoundException | IOException e) {
                 //TODO metti errore nelle view
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                new File(LocalFolder.CONFIG_FOLDER.getInfo()).mkdir();
+                this.profiles.save();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }
@@ -61,6 +72,7 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
             //TODO MANDA ERRORE SU TUTTI I MESSAGGI
         }
         Game.getGame().newGame();
+        Game.getGame().save(profile.getSaveGame());
         //TODO METTI IL METODO PER CAMBIARE LA SCENA
     }
 
@@ -71,6 +83,9 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
 
     @Override
     public void loadGame(final Profile profile) {
+        if (!profile.isEnabled()) {
+            throw new IllegalArgumentException("the profile must to be enable!");
+        }
         Game.getGame().load(profile.getSaveGame());
         //TODO METTI IL METODO PER CAMBIARE LA SCENA
     }
@@ -85,6 +100,7 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         this.getInternalView().forEach(x -> x.attachOn((this)));
     }
     //a class that contain and restore a set of profile
+    //TODO VEDI SE FARLA ESTERNA
     private static class BoxProfile {
         private static final int NUM_PROFILES = 3;
         private Set<Profile> profiles;
@@ -92,7 +108,7 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         BoxProfile(final File file) {
             this.saveFile = file;
             this.profiles = IntStream.range(0, NUM_PROFILES)
-                                     .mapToObj(x -> Profile.createProfile(new File(LocalFolder.SAVE_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + x)))
+                                     .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + x)))
                                      .collect(Collectors.toSet());
         }
         public void save() throws IOException {

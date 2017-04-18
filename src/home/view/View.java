@@ -16,7 +16,7 @@ public interface View <E extends Controller> {
 
 
     /**
-     * display specific dialog with a message for the user 
+     * display specific dialog with a message for the user. 
      * @param message to show.
      * @param type is used to show different window message.
      */

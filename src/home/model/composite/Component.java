@@ -7,7 +7,6 @@ import java.util.Optional;
  * @param <E> the parent type of component
 */
 public interface Component <E> {
-    /*AGGIUNGI IL FATTO CHE UN COMPONENT POSSA ESSERE O NON ESSERE ABILITATO*/
     /**
      * @return
      *  the type of component or what the component wrap
@@ -38,5 +37,17 @@ public interface Component <E> {
      *  true if the component is enable false otherwise
      */
     boolean isEnable();
- 
+    /**
+     * the right way to attach component to a composite.
+     * @param composite
+     *  the composite where the component want to be attach on
+     * @param component
+     *  the component to attach
+     * @param <Y> 
+     *  the type of composite
+     */
+    static <Y extends Composite> void compositeAttach(Y composite, Component<Y> component) {
+        component.attachOn(composite);
+        composite.addComponent(component);
+    }
 }

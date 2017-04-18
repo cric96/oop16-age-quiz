@@ -14,5 +14,9 @@ public final class Main {
     public static void main(final String[] args) {
         // TODO Auto-generated method stub
     }
-
+    //install the main thing before launch the application 
+    //TODO PENSA SE FARLO O NO
+    private static class Installer {
+        
+    }
 }

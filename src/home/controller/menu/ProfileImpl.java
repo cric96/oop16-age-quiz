@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Objects;
 import java.util.Optional;
 
-class ProfileImpl implements Profile {
+final class ProfileImpl implements Profile {
     /**
      * 
      */
@@ -39,4 +39,10 @@ class ProfileImpl implements Profile {
     public File getSaveGame() {
         return this.file;
     }
+
+    @Override
+    public String toString() {
+        return "ProfileImpl [name=" + name + ", enabled=" + enabled + ", file=" + file + "]";
+    }
+    
 }

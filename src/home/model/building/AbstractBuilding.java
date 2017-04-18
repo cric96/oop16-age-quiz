@@ -8,7 +8,6 @@ import home.model.composite.Event;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.query.Category;
-import home.model.quiz.QuizGame;
 import home.utility.Utility;
 //package-protected
 abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
@@ -26,18 +25,13 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     }
 
     @Override
-    public final String getName() {
-        return this.type.name();
+    public final BuildingType getName() {
+        return this.type;
     }
 
     @Override
     public final ImmutableLevel getLevel() {
         return this.level;
-    }
-    /*TODO aspettare l'interfaccia di creazione*/
-    @Override
-    public QuizGame startQuiz() {
-        return null;
     }
     @Override
     public final Category getInfluecedCategory() {

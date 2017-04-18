@@ -9,11 +9,13 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Set;
 
 
 import org.junit.Test;
 
+import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.Image;
 import home.model.status.StatusName;
@@ -25,8 +27,8 @@ import home.utility.Pair;
 public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
-    private static final String BUILDING_TEST = "BUILDING_SITE";
-    private static final String BUILDING_NOT_ENABLE = "ACADEMY";
+    private static final BuildingType BUILDING_TEST = BuildingType.BUILDING_SITE;
+    private static final BuildingType BUILDING_NOT_ENABLE = BuildingType.ACADEMY;
     private static final File FILE_NAME = new File("C:\\Users\\Gianluca\\prova.obj");
     /**
      * simple test for the interface Game.
@@ -38,14 +40,26 @@ public class GameTest {
     public void testSave() {
         Game.getGame().newGame();
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
-        Game.getGame().getCurrentKingdom().nextAge();
+        System.out.println(Game.getGame().getCurrentKingdom().getComponents(Object.class));
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
-        this.getBuildings(Game.getGame().getCurrentKingdom()).forEach(x -> x.getX().levelUp());
+        //level up the building using to test this class
+        this.getBuildings(Game.getGame().getCurrentKingdom()).stream()
+                                                             .map(x -> x.getX())
+                                                             .filter(x -> x.getName() == BUILDING_TEST)
+                                                             .forEach(x -> x.levelUp());
         Game.getGame().getCurrentKingdom().changeStatus(StatusName.HEALTH, MAX_STATUS);
         //check if the state of save object is legal or not
-        Game.getGame().save(FILE_NAME);
+        try {
+            Game.getGame().save(FILE_NAME);
+        } catch (IOException e) {
+            fail();
+        }
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
-        Game.getGame().load(FILE_NAME);
+        try {
+            Game.getGame().load(FILE_NAME);
+        } catch (IOException | ClassNotFoundException e) {
+            fail();
+        }
         assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), 0);
         try {
             final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
@@ -72,12 +86,20 @@ public class GameTest {
         Image im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
         assertTrue(im.getPath().getName().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
-        Game.getGame().save(FILE_NAME);
+        try {
+            Game.getGame().save(FILE_NAME);
+        } catch (IOException e) {
+            fail();
+        }
         kingdom.nextAge();
         //now the image of building change
         assertFalse(im.getPath().getName().contains("0"));
         //check if the state of object remain consistent
-        Game.getGame().load(FILE_NAME);
+        try {
+            Game.getGame().load(FILE_NAME);
+        } catch (ClassNotFoundException | IOException e) {
+            fail();
+        }
         kingdom = Game.getGame().getCurrentKingdom();
         building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
         im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
@@ -171,7 +193,7 @@ public class GameTest {
         return king.getComponents(ImmutableAgeBuilding.class);
     }
     private <E extends ImmutableAgeBuilding> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
-                                                        final String name) {
+                                                        final BuildingType name) {
         return building.stream().filter(x -> x.getX().getName().equals(name))
         .map(x -> x.getX())
         .findFirst().get();

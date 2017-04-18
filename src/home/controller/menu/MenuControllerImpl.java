@@ -8,36 +8,41 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import home.controller.AbstractController;
-import home.controller.Controller;
 import home.model.Game;
-import home.model.Kingdom;
 import home.utility.LocalFolder;
-import home.utility.Utility;
 import home.view.Container;
-import home.view.View;
+import home.view.ViewType;
 import home.view.menu.MenuView;
 //package-protected
-class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
+final class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
     private static final String BOX_PROFILES = "profile-box.obj";
     private final BoxProfile profiles;
     MenuControllerImpl(final MenuView ... views) {
         super(views);
-        final File file = new File(LocalFolder.CONFIG_FOLDER + BOX_PROFILES);
+        final File file = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + BOX_PROFILES);
+        System.out.println(file);
+        //TODO PENSA SE FARE UN PICCOLO INSTALLER
         this.profiles = new BoxProfile(file);
         if (file.exists()) {
             try {
                 this.profiles.load();
             } catch (ClassNotFoundException | IOException e) {
                 //TODO metti errore nelle view
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                new File(LocalFolder.CONFIG_FOLDER.getInfo()).mkdir();
+                this.profiles.save();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }
@@ -59,9 +64,16 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
             this.profiles.save();
         } catch (IOException e) {
             //TODO MANDA ERRORE SU TUTTI I MESSAGGI
+            e.printStackTrace();
         }
         Game.getGame().newGame();
-        //TODO METTI IL METODO PER CAMBIARE LA SCENA
+        try {
+            Game.getGame().save(profile.getSaveGame());
+        } catch (IOException e) {
+            // TODO METTI ERRORE NELLA VIEW
+            e.printStackTrace();
+        }
+        Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
     @Override
@@ -71,8 +83,16 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
 
     @Override
     public void loadGame(final Profile profile) {
-        Game.getGame().load(profile.getSaveGame());
-        //TODO METTI IL METODO PER CAMBIARE LA SCENA
+        if (!profile.isEnabled()) {
+            throw new IllegalArgumentException("the profile must to be enable!");
+        }
+        try {
+            Game.getGame().load(profile.getSaveGame());
+        } catch (ClassNotFoundException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
     @Override
@@ -85,6 +105,7 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         this.getInternalView().forEach(x -> x.attachOn((this)));
     }
     //a class that contain and restore a set of profile
+    //TODO VEDI SE FARLA ESTERNA
     private static class BoxProfile {
         private static final int NUM_PROFILES = 3;
         private Set<Profile> profiles;
@@ -92,7 +113,7 @@ class MenuControllerImpl extends AbstractController<MenuView> implements MenuCon
         BoxProfile(final File file) {
             this.saveFile = file;
             this.profiles = IntStream.range(0, NUM_PROFILES)
-                                     .mapToObj(x -> Profile.createProfile(new File(LocalFolder.SAVE_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + x)))
+                                     .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + x)))
                                      .collect(Collectors.toSet());
         }
         public void save() throws IOException {

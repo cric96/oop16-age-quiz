@@ -72,5 +72,4 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
                                         Collectors.toMap(y -> y.getKey().name(), y -> y.getValue()))));
         }
     }
-
-    }
+}

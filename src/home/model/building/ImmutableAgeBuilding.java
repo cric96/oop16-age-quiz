@@ -1,8 +1,6 @@
 package home.model.building;
 import home.model.level.ImmutableLevel;
 import home.model.query.Category;
-import home.model.quiz.QuizGame;
-
 import java.io.Serializable;
 
 import home.model.composite.Composite;;
@@ -16,20 +14,14 @@ public interface ImmutableAgeBuilding extends  Serializable {
      * @return
      *  the name of building
      */
-    String getName();
+    //TODO PENSA SE USARE BUILDING TYPE
+    BuildingType getName();
     /**
      * 
      * @return
      *  an incremental value that define current level
      */
     ImmutableLevel getLevel();
-    /*TODO PENSA BENE A QUESTO METODO*/
-    /**
-     * create a new quiz.
-     * @return 
-     *  the quiz created
-     */
-    QuizGame startQuiz();
     /**
      * 
      * @return

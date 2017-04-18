@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import home.model.composite.Component;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 
@@ -12,7 +13,6 @@ import home.model.level.Level;
  */
 public final class BuildingFactory {
     private static final BuildingFactory SINGLETON = new BuildingFactory();
-    //TODO PENSACI SE METTERLA O MENO private static final int INITIAL_AGE = 0;
     private BuildingFactory() { }
     /**
      * @return the instance of factory
@@ -39,9 +39,9 @@ public final class BuildingFactory {
         return Arrays.stream(BuildingType.values())
                      .map(x -> this.createSimpleBuilding(x))
                      .peek(x -> {
-                         final ImageComponent image = ImageComponent.createComponent(x.getName());
-                         image.attachOn(x);
-                         x.addComponent(image);
+                         //creo un'immagine con il nome dell'edificio
+                         final ImageComponent image = ImageComponent.createComponent(x.getName().name());
+                         Component.compositeAttach(x, image);
                      })
                      .collect(Collectors.toSet());
     }

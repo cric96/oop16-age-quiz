@@ -10,15 +10,11 @@ public enum LocalFolder {
     /**
      * 
      */
-    SEPARATOR(System.getProperty("path.separator")),
+    SEPARATOR(System.getProperty("file.separator")),
     /**
      * 
      */
-    CONFIG_FOLDER(LOCAL.getInfo() + SEPARATOR.getInfo() + ".age-of-quiz-config"),
-    /**
-     * 
-     */
-    SAVE_FOLDER(CONFIG_FOLDER + "save");
+    CONFIG_FOLDER(LOCAL.getInfo() + SEPARATOR.getInfo() + ".age-of-quiz-config");
     private String value;
     LocalFolder(final String value) {
         this.value = value;

@@ -15,6 +15,8 @@ import java.util.Set;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
+import home.model.composite.Component;
+import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
@@ -22,6 +24,7 @@ import home.model.status.Status;
 import home.utility.Pair;
 
 final class GameImpl implements Game {
+    private static final String KINGDOM_NAME = "KINGDOM";
     private static final Game SINGLETON = new GameImpl();
     private Optional<Kingdom> currentKingdom;
     private Optional<QuizGame> currentQuiz;
@@ -56,9 +59,9 @@ final class GameImpl implements Game {
     public void newGame() {
         final Kingdom current = new KingdomImpl(Status.createStatuses(), Level.Age.createAgeLevel());
         BuildingFactory.get().createAllBuilding().forEach(x -> {
-            x.attachOn(current);
-            current.addComponent(x);
+            Component.compositeAttach(current, x);
         });
+        Component.compositeAttach(current, ImageComponent.createComponent(KINGDOM_NAME));
         this.currentKingdom = Optional.of(current);
     }
     @Override

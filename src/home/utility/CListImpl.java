@@ -1,15 +1,15 @@
-package home.model.quiz;
+package home.utility;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import home.utility.CList;
 /**
  *
  * @param <X>
  */
-public class CListImpl<X> implements CList<X> {
+//package-protected
+class CListImpl<X> implements CList<X> {
     private final List<X> elements;
     private final int pos;
     CListImpl(final List<X> elements, final int pos) {
@@ -58,5 +58,20 @@ public class CListImpl<X> implements CList<X> {
     @Override
     public String toString() {
         return "CListImpl [elements=" + elements + ", pos=" + pos + "]";
+    }
+    @Override
+    public Iterator<X> iterator() {
+        return new Iterator<X>() {
+            private int currentPos = 0;
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public X next() {
+                return CListImpl.this.getElem(currentPos++);
+            }
+        };
     }
 }

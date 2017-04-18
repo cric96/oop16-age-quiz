@@ -11,7 +11,8 @@ import home.view.QuizView;
 
 class QuizControllerImpl extends AbstractController<QuizView>implements QuizController {
     private QuizGame currentQuiz;
-    QuizControllerImpl() {
+    QuizControllerImpl(final QuizView...views) {
+        super(views);
         this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS,
                                             Level.Building.createBuildingLevel());
     }

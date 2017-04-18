@@ -34,6 +34,9 @@ final class QueryImpl implements Query {
     @Override
     public boolean isAnswerCorrect(final String answer) {
         Objects.requireNonNull(answer);
+        if (!this.answers.contains(answer)) {
+            throw new IllegalArgumentException("This answer is not among proposed answers");
+        }
         return this.correctAnswer.equalsIgnoreCase(answer); 
     }
 

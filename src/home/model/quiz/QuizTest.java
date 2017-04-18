@@ -13,13 +13,16 @@ public class QuizTest {
         final QuizGame quizGame = new QuizGameAdvanced(Category.LIBERAL_ARTS, Level.Building.createBuildingLevel());
         System.out.println(quizGame.showCurrentQuery());
         System.out.println(quizGame.getStatusScore());
+        System.out.println(quizGame.getXP());
         quizGame.hitAnswer("7");
         System.out.println(quizGame.getStatusScore());
+        System.out.println(quizGame.getXP());
         quizGame.next();
 
         System.out.println(quizGame.showCurrentQuery());
-        quizGame.hitAnswer("6");
+        quizGame.hitAnswer("broncopolmonite");
         System.out.println(quizGame.getStatusScore());
+        System.out.println(quizGame.getXP());
         quizGame.next();
         System.out.println(quizGame.showCurrentQuery());
     }

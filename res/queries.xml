@@ -3,11 +3,23 @@
 	<category name="SCIENCE">
 		<level number="1">
 			<query>
+				<text>In un triangolo rettangolo, se i due cateti misurano rispettivamente 3 e 4 cm, quanto misura l'ipotenusa?</text>
+				<answer>7 cm</answer>
+				<answer correct="true">0.5 dm</answer>
+				<answer>5 mm</answer>
+				<answer>12 cm</answer>
+			</query>
+			<query>
 				<text>Qual è la formula chimica del cloruro di sodio?</text>
 				<answer>Na2Cl3</answer>
 				<answer correct="true">NaCl</answer>
 				<answer>SoCl</answer>
 				<answer>ClSo</answer>
+			</query>
+			<query>
+				<text>La balenottera azzurra è un animale?</text>
+				<answer>oviparo</answer>
+				<answer correct="true">mammifero</answer>
 			</query>
 			<query>
 				<text>Il quadrato è anche un parallelogramma?</text>
@@ -17,11 +29,25 @@
 		</level>
 		<level number="2">
 			<query>
+				<text>Quando due placche oceaniche si scontrano, quale delle due scende in subduzione?</text>
+				<answer>la più recente</answer>
+				<answer>la meno recente</answer>
+				<answer correct="true">la più densa</answer>
+				<answer>la meno densa</answer>
+			</query>
+			<query>
 				<text>Qual è la derivata prima di sin(x)?</text>
 				<answer correct="true">cos(x)</answer>
 				<answer>-cos(x)</answer>
 				<answer>-sin(x)</answer>
 				<answer>tan(x)</answer>
+			</query>
+			<query>
+				<text>Cos'è la citosina?</text>
+				<answer>una proteina</answer>
+				<answer>un amminoacido</answer>
+				<answer correct="true">una base azotata</answer>
+				<answer>nessuna delle precedenti </answer>
 			</query>
 			<query>
 				<text>Il passaggio dell'acqua dallo stato solido a gassoso è detto?</text>
@@ -42,14 +68,42 @@
 				<answer>9</answer>
 			</query>
 			<query>
+				<text>A causa di quale malattia morì Freddie Mercury?</text>
+				<answer>raffreddore</answer>
+				<answer correct="true">broncopolmonite</answer>
+				<answer>pertosse</answer>
+				<answer>morbillo</answer>
+			</query>
+			<query>
 				<text>Qual è il nome del poeta ermetico Quasimodo?</text>
 				<answer>Gobbo</answer>
 				<answer>Fosco</answer>
 				<answer>Giuseppe</answer>
 				<answer correct="true">Salvatore</answer>
 			</query>
+			<query>
+				<text>Quale di questi artisti è considerato il padre dell'Impressionismo?</text>
+				<answer>Manet</answer>
+				<answer>Picasso</answer>
+				<answer correct="true">Monet</answer>
+				<answer>Giotto</answer>
+			</query>
 		</level>
 		<level number="2">
+			<query>
+				<text>Quale di questi è un'opera di René Magritte?</text>
+				<answer correct="true">La trahison des images(ceci n'est pas une pipe.)</answer>
+				<answer>La persistenza della memoria</answer>
+				<answer>La danse</answer>
+				<answer>Notte stellata</answer>
+			</query>
+			<query>
+				<text>Chi fu uno dei maggiori esponenti del Decadentismo italiano?</text>
+				<answer>Giacomo Leopardi</answer>
+				<answer correct="true">Luigi Pirandello</answer>
+				<answer>Ugo Foscolo</answer>
+				<answer>Giuseppe Parini</answer>
+			</query>
 			<query>
 				<text>Dove è morto il poeta italiano Dante Alighieri?</text>
 				<answer>Firenze</answer>

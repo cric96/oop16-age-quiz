@@ -1,5 +1,6 @@
 package home.utility;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -9,6 +10,20 @@ import java.util.List;
  * @param <X>
  */
 public interface CList<X> {
+    /**
+     * Simple factory to create a new CList.
+     * @param list
+     *  the list that will be "changed" in a cyclic list
+     * @param pos
+     *  starting position of the cyclic list
+     * @param <E>
+     *  generic method in <E>
+     * @return
+     *  a cyclic list with the same elements of the list passed
+     */
+    static <E> CList<E> createCList(final List<E> list, final int pos) {
+        return new CListImpl<E>(list, pos);
+    }
     /**
      * @return the number of elements in the cyclic list not considering the cycle
      */
@@ -44,4 +59,10 @@ public interface CList<X> {
      * @return the ordered list of elements in the cyclic list
      */
     List<X> toList();
+    /**
+     * 
+     * @return
+     *  an iterator for the cyclic list
+     */
+    Iterator<X> iterator();
 }

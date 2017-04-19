@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import home.controller.menu.MenuController;
+import home.controller.menu.Profile;
 import home.view.MessageType;
 import home.view.View;
 import javafx.animation.FadeTransition;
@@ -21,7 +24,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
 /**
  * concrete realization of menu in javafx.
  *
@@ -35,28 +37,23 @@ public class GameMenu extends Parent {
     private static final double OPACITY = 0.4;
     private final List<String> listName = MainMenuImpl.buttonsNameList();
     private final Set<MenuButton> setButton = new HashSet<>();
-    private final Rectangle bg;
 
     /**
      * @throws IOException if the background load gone wrong.
+     * @param controller 
      */
-    public GameMenu() throws IOException {
-        VBox menuZero = new VBox(BOX);
-        VBox menuOne = new VBox(BOX);
+    public GameMenu(final MenuController controller) {
+        final VBox menuZero = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);
 
-        menuOne.setTranslateX(X_TRANSLATE);
-        menuOne.setTranslateY(Y_TRANSLATE);
-
-        Text text = new Text(MainMenuImpl.getTitle());
+        final Text text = new Text(MainMenuImpl.getTitle());
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
-
         for (int i = 0; i < MainMenuImpl.buttonsNameList().size() - 1; i++) {
-            MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
+            final MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
             btn.setOnMouseClicked(e -> {
-                FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
+                final FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
                 ft.setFromValue(1);
                 ft.setToValue(0);
                 ft.setOnFinished(x -> this.setVisible(false));
@@ -64,27 +61,45 @@ public class GameMenu extends Parent {
             });
             setButton.add(btn);
         }
-
-        final MenuButton btnExit = new MenuButton(listName.get(listName.size() - 1), Color.RED);
-        btnExit.setOnMouseClicked(e -> {
-            System.exit(0);
-            //View.showMessage("Are you sure do this?", MessageType.EXIT);
+        final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
+        btnNewGame.setOnMouseClicked(e -> {
+            //controller.newGamePressed();
         });
 
-        menuZero.getChildren().addAll(setButton);
-        menuZero.getChildren().add(btnExit);
-        final InputStream is = Files.newInputStream(Paths.get(MainMenuImpl.backgroundPath()));
-        final Image img = new Image(is);
-        is.close();
-        final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(primaryScreenBounds.getWidth());
-        imgView.setFitHeight(primaryScreenBounds.getHeight());
-        bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+        final MenuButton btnLoadGame = new MenuButton(Buttons.LOAD_GAME.getText(), Color.BLACK);
+        btnLoadGame.setOnMouseClicked(e -> {
+//            Set<Boolean> set = new HashSet<>();
+//            set.add(false);
+//            set.add(false);
+//            set.add(false);
+//            MenuViewImpl.showSaved(set);
+            //controller.loadGamePressed();
+        });
+
+        final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
+        btnExit.setOnMouseClicked(e -> {
+            //controller.exitPressed();
+            View.showMessage("Are you sure do this?", MessageType.EXIT);
+        });
+
+        menuZero.getChildren().addAll(btnLoadGame, btnNewGame, btnExit);
+
+        InputStream is;
+        try {
+            is = Files.newInputStream(Paths.get(MainMenuImpl.backgroundPath()));
+            final Image img = new Image(is);
+            is.close();
+            final ImageView imgView = new ImageView(img);
+            imgView.setFitWidth(primaryScreenBounds.getWidth());
+            imgView.setFitHeight(primaryScreenBounds.getHeight());
+            getChildren().add(imgView);
+        } catch (IOException e1) {
+        }
+
+        final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 
-        getChildren().addAll(imgView, bg, menuZero);
+        getChildren().addAll(bg, menuZero);
     }
-
-
 }

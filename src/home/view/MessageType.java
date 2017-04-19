@@ -1,5 +1,7 @@
 package home.view;
 
+import javafx.scene.control.Alert.AlertType;
+
 /**
  * MessageType represent the possible message that the application can show.
  */
@@ -7,25 +9,27 @@ public enum MessageType {
     /**
      * alert message.
      */
-    ALERT("Alert"),
+    ALERT("Alert", AlertType.WARNING),
 
     /**
      * error message.
      */
-    ERROR("Error"),
+    ERROR("Error", AlertType.ERROR),
 
     /**
      * exit message.
      */
-    EXIT("Exit");
+    EXIT("Exit", AlertType.CONFIRMATION);
 
     private String messageTitle;
-
+    private AlertType alert;
+    
     /**
      * @param title of message
      */
-    MessageType(final String title) {
+    MessageType(final String title, final AlertType alert) {
         this.messageTitle = title;
+        this.alert = alert;
     }
 
     /**
@@ -33,5 +37,9 @@ public enum MessageType {
      */
     public String getMessageTitle() {
         return this.messageTitle;
+    }
+    
+    public AlertType getAlertType(){
+        return this.alert;
     }
 }

@@ -1,6 +1,10 @@
 package home.view;
 
+import java.util.Optional;
+
 import home.controller.Controller;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * Generic View Interface.
@@ -20,7 +24,14 @@ public interface View <E extends Controller> {
      * @param message to show.
      * @param type is used to show different window message.
      */
-    static void showMessage(String message, MessageType type) {
+    static void showMessage(String message, MessageType type){
+        Alert alert = new Alert(type.getAlertType());
+        alert.setTitle(type.getMessageTitle());
+        alert.setHeaderText(message);
 
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK && type.equals(MessageType.EXIT)){
+            System.exit(0);
+        }
     }
 }

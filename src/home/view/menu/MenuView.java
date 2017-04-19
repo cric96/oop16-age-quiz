@@ -4,7 +4,6 @@ import java.util.Set;
 
 import home.controller.menu.MenuController;
 import home.controller.menu.Profile;
-import home.view.MessageType;
 import home.view.View;
 
 /**

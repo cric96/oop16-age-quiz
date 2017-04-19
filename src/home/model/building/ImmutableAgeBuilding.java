@@ -14,7 +14,6 @@ public interface ImmutableAgeBuilding extends  Serializable {
      * @return
      *  the name of building
      */
-    //TODO PENSA SE USARE BUILDING TYPE
     BuildingType getName();
     /**
      * 

@@ -1,10 +1,17 @@
 package home.view.world;
 
+import java.util.Map;
+import java.util.Set;
+
+import home.model.building.BuildingType;
+import home.model.image.Image;
+import home.utility.Pair;
+
 public interface World {
-    //updateEra(Map<BuildingType,Pair<Image,Boolean> building,Image kingdom)
-    //changeEra(String era)
-    //changeExp(int exp)
-    //changeStatus(Set<Pair<String,Integer>>)
-    //showBuildingDialog(BuildingType, Dialog dialog)
-    //showKingdomDialog(Dialog dialog)
+    void updateEra(Map<BuildingType,Pair<Image,Boolean>> building,Image kingdom);
+    void changeEra(String era);
+    void changeExp(int exp);
+    void changeStatus(Set<Pair<String,Integer>> statusScose);
+    void showBuildingDialog(BuildingType building/*, Dialog dialog*/);
+    void showKingdomDialog(/*Dialog dialog*/);
 }

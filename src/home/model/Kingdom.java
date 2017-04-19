@@ -59,7 +59,6 @@ public interface Kingdom extends Composite, Serializable {
      *  throws an IllegalArgumentException if something goes wrong
      */
     boolean changeStatus(StatusName name, int amount);
-    /*TODO RIGUARDA! SEPARARE DUE METODI O MENO*/
     /**
      * go on the next age.
      * update all component attach on kingdom

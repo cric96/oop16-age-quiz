@@ -24,7 +24,7 @@ public interface View <E extends Controller> {
      * @param message to show.
      * @param type is used to show different window message.
      */
-    static void showMessage(String message, MessageType type){
+    static void showMessage(String message, MessageType type) {
         Alert alert = new Alert(type.getAlertType());
         alert.setTitle(type.getMessageTitle());
         alert.setHeaderText(message);

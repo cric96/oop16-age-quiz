@@ -41,7 +41,6 @@ public class GameTest {
         Game.getGame().newGame();
         Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
         System.out.println(Game.getGame().getCurrentKingdom().getComponents(Object.class));
-        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
         //level up the building using to test this class
         this.getBuildings(Game.getGame().getCurrentKingdom()).stream()
                                                              .map(x -> x.getX())
@@ -115,7 +114,13 @@ public class GameTest {
         //at the beginning the experience amount is equals to 0
         assertEquals(king.getExperienceAmount(), 0);
         //i can't go on the next level without experience
-        assertFalse(king.nextAge());
+        assertFalse(king.canUpgradeAge());
+        try {
+            king.nextAge();
+            fail("Can't go on next age");
+        } catch (IllegalStateException exc) {
+            assertNotNull(exc);
+        }
         try {
             king.decExperiene(-EXPERIENCE);
             fail("can't use negative value");
@@ -130,7 +135,8 @@ public class GameTest {
         }
         king.addExperience(EXPERIENCE);
         //now i can go on the next age
-        assertTrue(king.nextAge());
+        assertTrue(king.canUpgradeAge());
+        king.nextAge();
         assertSame(king.getExperienceAmount(), 0);
         //if i go in the next age the incremental value must be change
         assertNotSame(king.getAge().getIncrementalLevel(), 0);
@@ -148,7 +154,8 @@ public class GameTest {
         king.addExperience(EXPERIENCE * EXPERIENCE);
         //try if there are some bugs in age
         while (king.getAge().isUpgradable()) {
-            assertTrue(king.nextAge());
+            assertTrue(king.canUpgradeAge());
+            king.nextAge();
         }
         try {
             king.nextAge();
@@ -170,7 +177,8 @@ public class GameTest {
         final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
         try {
             //try to level up a reign 
-            assertTrue(site.levelUp());
+            assertTrue(site.canLevelUp());
+            site.levelUp();
             assertFalse(site.getLevel().isUpgradable());
             assertSame(king.getExperienceAmount(), 0);
         } catch (Exception exc) {

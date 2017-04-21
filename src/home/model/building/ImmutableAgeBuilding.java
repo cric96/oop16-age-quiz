@@ -30,10 +30,14 @@ public interface ImmutableAgeBuilding extends  Serializable {
     /**
      * go to the next level.
      * @throws IllegalStateException if it is call when the object can't level up
-     * @return
-     *  return true if building level up false otherwise
      */
-    boolean levelUp();
+    void levelUp();
+    /**
+     * 
+     * @return
+     *  true if the building can level up false otherwise
+     */
+    boolean canLevelUp();
     /**
      * a non modified building composed with some AgeComponent.
      */

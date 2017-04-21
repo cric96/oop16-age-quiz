@@ -37,17 +37,21 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     public final Category getInfluecedCategory() {
         return this.type.getCategory();
     }
-
     @Override
-    public boolean levelUp() {
+    public boolean canLevelUp() {
+        final int expKingdom = this.getParent().orElseThrow(() -> new IllegalStateException()).getExperienceAmount();
+        return this.level.getExperienceAmount() >= expKingdom && this.level.isUpgradable();
+    }
+    @Override
+    public void levelUp() {
         /*if i don't add a kingdom i can't level up!*/
         this.getParent().orElseThrow(() -> new IllegalStateException());
         final int amount = this.level.getExperienceAmount();
         if (this.level.nextLevel(this.parent.getExperienceAmount())) {
             this.parent.decExperiene(amount);
-            return true;
+        } else {
+            throw new IllegalStateException();
         }
-        return false;
     }
     public final int getExperienceNecesary() {
         return this.level.getExperienceAmount();

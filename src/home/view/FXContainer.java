@@ -1,5 +1,7 @@
 package home.view;
 import java.util.HashMap;
+
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -14,10 +16,12 @@ final class FXContainer implements Container {
     private static final FXContainer SINGLETON = new FXContainer();
     private Optional<Stage> stage;
     private final Map<ViewType, Controller> controllers;
+
     private FXContainer() {
         this.stage = Optional.empty();
         this.controllers = new HashMap<>();
     }
+
     public void setStage(final Stage stage) {
         this.stage = Optional.of(stage);
     }
@@ -25,6 +29,7 @@ final class FXContainer implements Container {
     public static FXContainer getContainer() {
         return FXContainer.SINGLETON;
     }
+
     public void addController(final Pair<ViewType, Controller> controller) {
         this.controllers.put(controller.getX(), controller.getY());
     }
@@ -33,6 +38,11 @@ final class FXContainer implements Container {
     public void changeDisplay(final ViewType type) {
         final Controller changeController = Optional.ofNullable(this.controllers.get(type)).orElseThrow(() -> new IllegalArgumentException());
         changeController.checkUpdate();
-        //TODO CREARE UN INTERFACCIA FXVIEW PER PERMETTERE DI PRENDERE UNA SCENA
+        changeController.getViews().forEach(e -> {
+            if (e instanceof FXView) {
+                this.stage.get().setScene(((FXViewImpl) e).getScene());
+            }
+        });
     }
+    
 }

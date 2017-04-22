@@ -42,5 +42,4 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
     public String toString() {
         return "ImageComponentImpl [name=" + name + ", currentImage=" + currentImage + "]";
     }
-    
 }

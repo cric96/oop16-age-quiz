@@ -23,7 +23,7 @@ public enum MessageType {
 
     private String messageTitle;
     private AlertType alert;
-    
+
     /**
      * @param title of message
      */
@@ -38,8 +38,13 @@ public enum MessageType {
     public String getMessageTitle() {
         return this.messageTitle;
     }
-    
-    public AlertType getAlertType(){
+
+    /**
+     * 
+     * @return AllertType.
+     */
+
+    public AlertType getAlertType() {
         return this.alert;
     }
 }

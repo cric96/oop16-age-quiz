@@ -15,8 +15,8 @@ import javafx.scene.text.Text;
  * a sub class used to represent a general button in the menu.
  */
 public class MenuButton extends StackPane {
-    private static final int BOX_WIDTH = 30;
-    private static final int BOX_HEIGHT = 250;
+    private static final int BOX_WIDTH = 35;
+    private static final int BOX_HEIGHT = 300;
     private static final double BOX_OPACITY = 0.6;
     private static final int DROP_SHADOW = 50;
     private static final int FONT = 20;

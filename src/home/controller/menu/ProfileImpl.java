@@ -44,5 +44,4 @@ final class ProfileImpl implements Profile {
     public String toString() {
         return "ProfileImpl [name=" + name + ", enabled=" + enabled + ", file=" + file + "]";
     }
-    
 }

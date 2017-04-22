@@ -20,10 +20,10 @@ import home.view.Container;
 import home.view.ViewType;
 import home.view.menu.MenuView;
 //package-protected
-final class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
+public final class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
     private static final String BOX_PROFILES = "profile-box.obj";
     private final BoxProfile profiles;
-    MenuControllerImpl(final MenuView ... views) {
+    public MenuControllerImpl(final MenuView ... views) {
         super(views);
         final File file = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + BOX_PROFILES);
         System.out.println(file);

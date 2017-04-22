@@ -18,20 +18,4 @@ public interface View <E extends Controller> {
      */
     void attachOn(E controller);
 
-
-    /**
-     * display specific dialog with a message for the user. 
-     * @param message to show.
-     * @param type is used to show different window message.
-     */
-    static void showMessage(String message, MessageType type) {
-        Alert alert = new Alert(type.getAlertType());
-        alert.setTitle(type.getMessageTitle());
-        alert.setHeaderText(message);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK && type.equals(MessageType.EXIT)){
-            System.exit(0);
-        }
-    }
 }

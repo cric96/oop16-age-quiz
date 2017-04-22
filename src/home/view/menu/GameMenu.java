@@ -1,5 +1,6 @@
 package home.view.menu;
 
+import home.view.FXView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -10,6 +11,8 @@ import java.util.Set;
 
 import home.controller.menu.MenuController;
 import home.controller.menu.Profile;
+import home.view.FXViewImpl;
+import home.view.MainView;
 import home.view.MessageType;
 import home.view.View;
 import javafx.animation.FadeTransition;
@@ -33,7 +36,7 @@ public class GameMenu extends Parent {
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
-    private static final int TITLE_SIZE = 45;
+    private static final int TITLE_SIZE = 75;
     private static final double OPACITY = 0.4;
     private final List<String> listName = MainMenuImpl.buttonsNameList();
     private final Set<MenuButton> setButton = new HashSet<>();
@@ -63,23 +66,18 @@ public class GameMenu extends Parent {
         }
         final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
         btnNewGame.setOnMouseClicked(e -> {
-            //controller.newGamePressed();
+            controller.newGamePressed();
         });
 
         final MenuButton btnLoadGame = new MenuButton(Buttons.LOAD_GAME.getText(), Color.BLACK);
         btnLoadGame.setOnMouseClicked(e -> {
-//            Set<Boolean> set = new HashSet<>();
-//            set.add(false);
-//            set.add(false);
-//            set.add(false);
-//            MenuViewImpl.showSaved(set);
-            //controller.loadGamePressed();
+            controller.loadGamePressed();
         });
 
         final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
         btnExit.setOnMouseClicked(e -> {
-            //controller.exitPressed();
-            View.showMessage("Are you sure do this?", MessageType.EXIT);
+            controller.exitPressed();
+            MainView.showMessage("Are you sure do this?", MessageType.EXIT);
         });
 
         menuZero.getChildren().addAll(btnLoadGame, btnNewGame, btnExit);
@@ -94,6 +92,7 @@ public class GameMenu extends Parent {
             imgView.setFitHeight(primaryScreenBounds.getHeight());
             getChildren().add(imgView);
         } catch (IOException e1) {
+            e1.printStackTrace();
         }
 
         final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());

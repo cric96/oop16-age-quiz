@@ -62,8 +62,13 @@ public interface Kingdom extends Composite, Serializable {
     /**
      * go on the next age.
      * update all component attach on kingdom
-     * @return
-     *  true if the experience is enough false otherwhise
+     * @throws IllegalStateException if you can't go on next age
      */
-    boolean nextAge();
+    void nextAge();
+    /**
+     * tell if the kingdom can go on next age.
+     * @return
+     *  true if it can false otherwise 
+     */
+    boolean canUpgradeAge();
 }

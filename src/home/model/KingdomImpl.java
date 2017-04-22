@@ -28,22 +28,18 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         this.statuses = statuses;
         this.age = age;
     }
-
     @Override
     public String getAgeName() {
         return this.age.getLevelName();
     }
-
     @Override
     public ImmutableLevel getAge() {
         return this.age;
     }
-
     @Override
     public int getExperienceAmount() {
         return this.experience;
     }
-
     @Override
     public void addExperience(final int amount) {
         if (this.isExperienceInvalid(amount)) {
@@ -51,7 +47,6 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         }
         this.experience += amount;
     }
-
     @Override
     public void decExperiene(final int amount) {
         if (isExperienceInvalid(amount) || this.experience - amount < 0) {
@@ -64,7 +59,6 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
         return this.statuses.stream()
                             .collect(Collectors.toMap(x -> x.getName(), x -> x.getValue()));
     }
-
     @Override
     public boolean changeStatus(final StatusName name, final int amount) {
         final Optional<Status> status = this.statuses.stream().filter(x -> x.getName() == name)
@@ -80,22 +74,26 @@ final class KingdomImpl extends AbstractComposite implements Kingdom {
          }
          return false;
     }
-
     @Override
-    public boolean nextAge() {
+    public void nextAge() {
         final int currentAmount = this.age.getExperienceAmount();
         if (this.age.nextLevel(this.experience)) {
             this.decExperiene(currentAmount);
             this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeEnum.valueOf(this.age.getLevelName()))));
-            return true;
+        } else {
+            throw new IllegalStateException();
         }
-        return false;
     }
-    private boolean isExperienceInvalid(final int value) {
-        return value < 0;
+    @Override
+    public boolean canUpgradeAge() {
+        return this.experience >= this.age.getExperienceAmount() && this.age.isUpgradable();
     }
     @Override
     public String toString() {
         return "KingdomImpl [statuses=" + statuses + ", age=" + age + ", experience=" + experience + "]";
     }
+    private boolean isExperienceInvalid(final int value) {
+        return value < 0;
+    }
+
 }

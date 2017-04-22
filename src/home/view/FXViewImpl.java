@@ -7,10 +7,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 public class FXViewImpl implements FXView {
-    private Scene scene;
+    private Optional<Scene> scene;
 
+    public FXViewImpl() {
+        this.scene = Optional.empty();
+    }
     @Override
     public Scene getScene() {
-        return this.scene;
+        return scene.get();
+    }
+    
+   protected void setScene(Scene scene){
+        this.scene = Optional.ofNullable(scene);
     }
 }

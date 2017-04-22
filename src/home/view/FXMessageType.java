@@ -5,7 +5,7 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * MessageType represent the possible message that the application can show.
  */
-public enum MessageType {
+public enum FXMessageType {
     /**
      * alert message.
      */
@@ -27,7 +27,7 @@ public enum MessageType {
     /**
      * @param title of message
      */
-    MessageType(final String title, final AlertType alert) {
+    FXMessageType(final String title, final AlertType alert) {
         this.messageTitle = title;
         this.alert = alert;
     }

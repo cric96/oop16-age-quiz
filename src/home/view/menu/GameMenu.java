@@ -13,7 +13,7 @@ import home.controller.menu.MenuController;
 import home.controller.menu.Profile;
 import home.view.FXViewImpl;
 import home.view.MainView;
-import home.view.MessageType;
+import home.view.FXMessageType;
 import home.view.View;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Rectangle2D;
@@ -53,17 +53,7 @@ public class GameMenu extends Parent {
         final Text text = new Text(MainMenuImpl.getTitle());
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
-        for (int i = 0; i < MainMenuImpl.buttonsNameList().size() - 1; i++) {
-            final MenuButton btn = new MenuButton(listName.get(i), Color.WHITE);
-            btn.setOnMouseClicked(e -> {
-                final FadeTransition ft = new FadeTransition(Duration.seconds(0.5), this);
-                ft.setFromValue(1);
-                ft.setToValue(0);
-                ft.setOnFinished(x -> this.setVisible(false));
-                ft.play();
-            });
-            setButton.add(btn);
-        }
+        
         final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
         btnNewGame.setOnMouseClicked(e -> {
             controller.newGamePressed();
@@ -77,10 +67,10 @@ public class GameMenu extends Parent {
         final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
         btnExit.setOnMouseClicked(e -> {
             controller.exitPressed();
-            MainView.showMessage("Are you sure do this?", MessageType.EXIT);
+            FXView.showMessage("Are you sure do this?", FXMessageType.EXIT);
         });
 
-        menuZero.getChildren().addAll(btnLoadGame, btnNewGame, btnExit);
+        menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);
 
         InputStream is;
         try {

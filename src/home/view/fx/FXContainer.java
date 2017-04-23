@@ -1,4 +1,4 @@
-package home.view;
+package home.view.fx;
 import java.util.HashMap;
 
 
@@ -7,10 +7,15 @@ import java.util.Optional;
 
 import home.controller.Controller;
 import home.utility.Pair;
+import home.view.Container;
+import home.view.ViewType;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-//package-protected
-final class FXContainer implements Container {
+
+/**
+ * implementation ad-hoc for a FXView Container.
+ */
+public final class FXContainer implements Container {
     private static final FXContainer SINGLETON = new FXContainer();
     private Optional<Stage> stage;
     private final Map<ViewType, Controller> controllers;
@@ -20,14 +25,26 @@ final class FXContainer implements Container {
         this.controllers = new HashMap<>();
     }
 
+    /**
+     * set the stage of application to FXContainer.
+     * @param stage javafx.
+     */
     public void setStage(final Stage stage) {
         this.stage = Optional.of(stage);
     }
 
+    /**
+     * 
+     * @return the instance of FXContainer.
+     */
     public static FXContainer getContainer() {
         return FXContainer.SINGLETON;
     }
 
+    /**
+     * add a (Controller -> View) to FXContainer.
+     * @param controller controller of View.
+     */
     public void addController(final Pair<ViewType, Controller> controller) {
         this.controllers.put(controller.getX(), controller.getY());
     }
@@ -43,7 +60,12 @@ final class FXContainer implements Container {
         });
     }
 
-    public void showDialog(final Alert createProfileStage) {
-        createProfileStage.initOwner(this.stage.get());
+    /**
+     * attach a dialog in the actual scene.
+     * @param profileStage the alert to show.
+     */
+    //mi serve perchè lo uso solo dentro AbstractView e da lì non posso risalire alla finestra.
+    public void showDialog(final Alert profileStage) {
+        profileStage.initOwner(this.stage.get());
     }
 }

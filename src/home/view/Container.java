@@ -1,5 +1,7 @@
 package home.view;
 
+import home.view.fx.FXContainer;
+
 /**
  * the container of the different controller with its view.
  *

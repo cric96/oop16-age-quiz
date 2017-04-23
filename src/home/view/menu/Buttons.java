@@ -22,7 +22,10 @@ public enum Buttons {
 
     private final String text;
 
-    String getText() {
+    /**
+     * @return the name of button.
+     */
+    public String getText() {
         return this.text;
     }
 

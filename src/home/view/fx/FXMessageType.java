@@ -1,4 +1,4 @@
-package home.view;
+package home.view.fx;
 
 import javafx.scene.control.Alert.AlertType;
 

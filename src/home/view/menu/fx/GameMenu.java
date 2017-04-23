@@ -1,21 +1,14 @@
-package home.view.menu;
+package home.view.menu.fx;
 
-import home.view.FXView;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import home.controller.menu.MenuController;
-import home.controller.menu.Profile;
-import home.view.FXViewImpl;
-import home.view.MainView;
-import home.view.FXMessageType;
-import home.view.View;
-import javafx.animation.FadeTransition;
+import home.view.fx.AbstractFXView;
+import home.view.fx.FXMessageType;
+import home.view.menu.Buttons;
+import home.view.menu.MainMenuImpl;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.stage.Screen;
@@ -26,7 +19,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
+
 /**
  * concrete realization of menu in javafx.
  *
@@ -38,8 +31,6 @@ public class GameMenu extends Parent {
     private static final int BOX = 15;
     private static final int TITLE_SIZE = 75;
     private static final double OPACITY = 0.4;
-    private final List<String> listName = MainMenuImpl.buttonsNameList();
-    private final Set<MenuButton> setButton = new HashSet<>();
 
     /**
      * @throws IOException if the background load gone wrong.
@@ -66,7 +57,7 @@ public class GameMenu extends Parent {
         final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
         btnExit.setOnMouseClicked(e -> {
             controller.exitPressed();
-            FXView.showMessage("Are you sure do this?", FXMessageType.EXIT);
+            AbstractFXView.showMessage("Are you sure do this?", FXMessageType.EXIT);
         });
 
         menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);

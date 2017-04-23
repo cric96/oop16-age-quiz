@@ -1,10 +1,6 @@
 package home.view;
 
-import java.util.Optional;
-
 import home.controller.Controller;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 /**
  * Generic View Interface.

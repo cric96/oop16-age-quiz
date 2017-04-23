@@ -1,10 +1,9 @@
-package home.view.menu;
+package home.view.menu.fx;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import home.controller.menu.Profile;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -12,15 +11,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
-import javafx.scene.shape.Circle;
 
-
-public class ProfileDialogImg extends Button{
+/** 
+ *      Create a custom button used in Load/New Game dialog.
+ */
+public class ProfileButton extends Button {
     private static final int BOX_DIMENSION = 30;
     private static final int BOX_DROP_SHADOW = 10;
 
-
-    public ProfileDialogImg(Profile profile) throws IOException {
+    /**
+     * @param profile the profile represented by the button
+     * @throws IOException if loading of button icon gone wrong.
+     */
+    public ProfileButton(final Profile profile) throws IOException {
         super();
         InputStream is;
         if (profile.isEnabled()) {
@@ -42,7 +45,7 @@ public class ProfileDialogImg extends Button{
         dropS.setInput(new Glow());
 
         setOnMouseEntered(e -> {
-            if(profile.isEnabled()){
+            if (profile.isEnabled()) {
                 setEffect(dropS);
             }
         });

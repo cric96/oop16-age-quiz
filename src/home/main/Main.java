@@ -1,5 +1,8 @@
 package home.main;
 
+import home.view.ViewType;
+import home.view.fx.FXContainer;
+
 /**
  * This class is used to start the videogame
  * and to set some values.

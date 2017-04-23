@@ -62,7 +62,7 @@ class CListImpl<X> implements CList<X> {
     @Override
     public Iterator<X> iterator() {
         return new Iterator<X>() {
-            private int currentPos = 0;
+            private int currentPos;
             @Override
             public boolean hasNext() {
                 return true;

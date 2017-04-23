@@ -12,21 +12,16 @@ import javafx.stage.Stage;
 
 /**
  * 
- * View implementation of MainView.
+ * AppTest.
  *
  */
 public class App extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setFullScreen(true);
-        primaryStage.setResizable(false);
-        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        primaryStage.setTitle(MainMenuImpl.getTitle());
-        FXContainer.getContainer().setStage(primaryStage);
         final FXMenuViewImpl menu = new FXMenuViewImpl(); // MenuView
         final MenuController cont = new MenuControllerImpl(menu); //MenuController
-        //final Pair<ViewType, Controller> menuController = Pair.createPair(ViewType.MENU, cont);
+        FXContainer.getContainer().setStage(primaryStage);
         FXContainer.getContainer().addController(Pair.createPair(ViewType.MENU, cont)); //add a controller 
         FXContainer.getContainer().changeDisplay(ViewType.MENU); //show Menu
         primaryStage.show();

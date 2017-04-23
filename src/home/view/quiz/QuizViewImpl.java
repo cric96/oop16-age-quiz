@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import home.controller.QuizController;
-import home.view.QuizView;
 /**
  *
  */

@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
  * concrete realization of menu in javafx.
  *
  */
-public class GameMenu extends Parent {
+public class ParentMenu extends Parent {
     private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
@@ -36,7 +36,7 @@ public class GameMenu extends Parent {
      * @throws IOException if the background load gone wrong.
      * @param controller 
      */
-    public GameMenu(final MenuController controller) {
+    public ParentMenu(final MenuController controller) {
         final VBox menuZero = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);

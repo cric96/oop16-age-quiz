@@ -7,7 +7,7 @@ import home.model.level.Level;
 import home.model.query.Category;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
-import home.view.QuizView;
+import home.view.quiz.QuizView;
 
 class QuizControllerImpl extends AbstractController<QuizView>implements QuizController {
     private QuizGame currentQuiz;

@@ -53,6 +53,7 @@ public final class MenuControllerImpl extends AbstractController<MenuView> imple
 
     @Override
     public void newGamePressed() {
+        System.out.println(this.profiles.getProfile());
         this.getInternalView().forEach(x -> x.showNewGame(this.profiles.getProfile()));
     }
 

@@ -53,7 +53,6 @@ public class GameMenu extends Parent {
         final Text text = new Text(MainMenuImpl.getTitle());
         text.setFont(new Font(TITLE_SIZE));
         menuZero.getChildren().add(text);
-        
         final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
         btnNewGame.setOnMouseClicked(e -> {
             controller.newGamePressed();

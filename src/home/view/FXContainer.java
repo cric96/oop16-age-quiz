@@ -9,11 +9,8 @@ import home.controller.Controller;
 import home.utility.Pair;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-
-/**
- *  View container realized in javafx.
- */
-public final class FXContainer implements Container {
+//package-protected
+final class FXContainer implements Container {
     private static final FXContainer SINGLETON = new FXContainer();
     private Optional<Stage> stage;
     private final Map<ViewType, Controller> controllers;
@@ -46,8 +43,7 @@ public final class FXContainer implements Container {
         });
     }
 
-    
-    public void showDialog(final Alert createProfileStage){
+    public void showDialog(final Alert createProfileStage) {
         createProfileStage.initOwner(this.stage.get());
     }
 }

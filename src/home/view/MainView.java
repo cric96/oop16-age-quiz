@@ -37,7 +37,6 @@ public class MainView extends Application {
         FXContainer.getContainer().setStage(MainView.stage);
         MenuViewImpl menu = new MenuViewImpl();
         MenuController cont = new MenuControllerImpl(menu);
-        menu.attachOn(cont);
         //MainView.getStage().setScene(menu.getScene());
         Pair<ViewType, Controller> menuController = Pair.createPair(ViewType.MENU, cont);
         FXContainer.getContainer().addController(menuController);

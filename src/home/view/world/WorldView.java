@@ -13,7 +13,7 @@ import home.view.View;
 /**
  * Specification of View used to implement a generic WordView.
  */
-public interface WorldWiew extends View<WorldController> {
+public interface WorldView extends View<WorldController> {
 
     /**
      * update the actual Era.

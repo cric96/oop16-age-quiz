@@ -21,29 +21,28 @@ import home.view.MessageType;
 import home.view.ViewType;
 import home.view.menu.MenuView;
 //package-protected
-public final class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
+final class MenuControllerImpl extends AbstractController<MenuView> implements MenuController {
     private static final String BOX_PROFILES = "profile-box.obj";
+    private static final String EXIT_MESSAGE = "Are you sure to do this?";
+    private static final String FILE_ERROR = "there was ar error caused by loading file!";
     private final BoxProfile profiles;
-    public MenuControllerImpl(final MenuView ... views) {
+    MenuControllerImpl(final MenuView ... views) {
         super(views);
         final File file = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + BOX_PROFILES);
-        System.out.println(file);
         //TODO PENSA SE FARE UN PICCOLO INSTALLER
         this.profiles = new BoxProfile(file);
         if (file.exists()) {
             try {
                 this.profiles.load();
             } catch (ClassNotFoundException | IOException e) {
-                //TODO metti errore nelle view
-                e.printStackTrace();
+                this.fileLoadError();
             }
         } else {
             try {
                 new File(LocalFolder.CONFIG_FOLDER.getInfo()).mkdir();
                 this.profiles.save();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                this.fileLoadError();
             }
         }
     }
@@ -54,7 +53,6 @@ public final class MenuControllerImpl extends AbstractController<MenuView> imple
 
     @Override
     public void newGamePressed() {
-        System.out.println(this.profiles.getProfile());
         this.getInternalView().forEach(x -> x.showNewGame(this.profiles.getProfile()));
     }
 
@@ -65,15 +63,13 @@ public final class MenuControllerImpl extends AbstractController<MenuView> imple
         try {
             this.profiles.save();
         } catch (IOException e) {
-            //TODO MANDA ERRORE SU TUTTI I MESSAGGI
-            e.printStackTrace();
+            this.fileLoadError();
         }
         Game.getGame().newGame();
         try {
             Game.getGame().save(profile.getSaveGame());
         } catch (IOException e) {
-            // TODO METTI ERRORE NELLA VIEW
-            e.printStackTrace();
+            this.fileLoadError();
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
@@ -91,17 +87,19 @@ public final class MenuControllerImpl extends AbstractController<MenuView> imple
         try {
             Game.getGame().load(profile.getSaveGame());
         } catch (ClassNotFoundException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            this.fileLoadError();
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
     @Override
     public void exitPressed() {
-        this.getInternalView().forEach(x -> x.showMessage("Are you sure do this?", MessageType.EXIT));
+        this.getInternalView().forEach(x -> x.showMessage(EXIT_MESSAGE, MessageType.EXIT));
     }
 
+    private void fileLoadError() {
+        this.getInternalView().forEach(x -> x.showMessage(FILE_ERROR, MessageType.ERROR));
+    }
     @Override
     protected void attachViews() {
         this.getInternalView().forEach(x -> x.attachOn((this)));

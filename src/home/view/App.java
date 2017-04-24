@@ -1,7 +1,7 @@
 package home.view;
 
+import home.controller.ControllerFactory;
 import home.controller.MenuController;
-import home.controller.MenuControllerImpl;
 import home.utility.Pair;
 import home.view.menu.fx.FXMenuViewImpl;
 import javafx.application.Application;
@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(final Stage primaryStage) {
         final FXMenuViewImpl menu = new FXMenuViewImpl(); // MenuView
-        final MenuController cont = new MenuControllerImpl(menu); //MenuController
+        final MenuController cont = ControllerFactory.create().createMenuController(menu); //MenuController
         FXContainer.getContainer().setStage(primaryStage);
         FXContainer.getContainer().addController(Pair.createPair(ViewType.MENU, cont)); //add a controller 
         FXContainer.getContainer().changeDisplay(ViewType.MENU); //show Menu

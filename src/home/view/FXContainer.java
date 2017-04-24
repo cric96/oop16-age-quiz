@@ -16,6 +16,7 @@ import javafx.scene.input.KeyCombination;
 /**
  * implementation ad-hoc for a FXView Container.
  */
+//package-protected
 final class FXContainer implements Container {
     private static final FXContainer SINGLETON = new FXContainer();
     private Optional<Stage> stage;

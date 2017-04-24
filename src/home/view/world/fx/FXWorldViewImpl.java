@@ -11,14 +11,14 @@ import home.model.image.Image;
 import home.utility.Pair;
 import home.view.fx.AbstractFXView;
 
-import home.view.world.WorldWiew;
+import home.view.world.WorldView;
 import javafx.scene.Scene;
 
 
 /**
  * Implementation of World view in javafx.
  */
-public class FXWorldViewImpl extends AbstractFXView implements WorldWiew {
+public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
 
     /**

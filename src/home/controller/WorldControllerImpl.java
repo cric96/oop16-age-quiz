@@ -13,11 +13,13 @@ import home.model.image.Image;
 import home.utility.Pair;
 import home.view.Container;
 import home.view.ViewType;
-import home.view.world.WorldWiew;
+import home.view.world.WorldView;
 
-class WorldControllerImpl extends AbstractController<WorldWiew> implements WorldController {
+class WorldControllerImpl extends AbstractController<WorldView> implements WorldController {
     private static final String CASTLE_NAME = "CASTLE";
-
+    WorldControllerImpl(final WorldView ... views) {
+        super(views);
+    }
     @Override
     public void checkUpdate() {
         final Kingdom current = Game.getGame().getCurrentKingdom();

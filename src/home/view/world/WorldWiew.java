@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import home.controller.WorldController;
+import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.Image;
 import home.utility.Pair;
@@ -41,17 +42,20 @@ public interface WorldWiew extends View<WorldController> {
      * 
      * @param statusScose set of name and value of status.
      */
-    void changeStatus(Set<Pair<String, Integer>> statusScose);
+    void changeStatus(Map<String, Integer> statusScose);
 
     /**
      * show dialog from building to start a quiz.
      * 
      * @param building type.
+     * @param dialog
      */
-    void showBuildingDialog(BuildingType building/* , Dialog dialog */);
+    void showBuildingDialog(BuildingType building, Dialog dialog);
 
     /**
-     * show dialo from the castle.
+     * show dialog from the castle.
+     * @param dialog
+     *  the dialog of the castle
      */
-    void showKingdomDialog(/* Dialog dialog */);
+    void showKingdomDialog(Dialog dialog );
 }

@@ -1,4 +1,4 @@
-package home.controller.menu;
+package home.controller.profile;
 
 import java.io.File;
 import java.io.Serializable;

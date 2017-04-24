@@ -1,4 +1,4 @@
-package home.controller.menu;
+package home.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import home.controller.AbstractController;
+import home.controller.profile.Profile;
 import home.model.Game;
 import home.utility.LocalFolder;
 import home.view.Container;

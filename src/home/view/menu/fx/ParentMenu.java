@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import home.controller.menu.MenuController;
+
+import home.controller.MenuController;
 import home.view.fx.AbstractFXView;
 import home.view.fx.FXMessageType;
 import home.view.menu.Buttons;

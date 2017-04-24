@@ -1,6 +1,6 @@
-package home.controller.menu;
+package home.controller;
 
-import home.controller.Controller;
+import home.controller.profile.Profile;
 /**
   a controller used to control a menu.
 */

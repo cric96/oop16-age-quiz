@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import home.controller.WorldController;
+import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.Image;
 import home.utility.Pair;
@@ -53,21 +54,21 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldWiew {
     }
 
     @Override
-    public void changeStatus(final Set<Pair<String, Integer>> statusScose) {
+    public void changeStatus(Map<String, Integer> statusScose) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public void showBuildingDialog(final BuildingType building) {
+    public void showBuildingDialog(BuildingType building, Dialog dialog) {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
-    public void showKingdomDialog() {
+    public void showKingdomDialog(Dialog dialog) {
         // TODO Auto-generated method stub
-
+        
     }
 
 }

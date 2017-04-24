@@ -8,8 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import home.controller.menu.MenuController;
-import home.controller.menu.Profile;
+
+import home.controller.MenuController;
+import home.controller.profile.Profile;
 import home.utility.Pair;
 import home.view.fx.AbstractFXView;
 import home.view.fx.FXMessageType;

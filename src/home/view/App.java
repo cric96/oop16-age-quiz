@@ -1,7 +1,7 @@
 package home.view;
 
-import home.controller.menu.MenuController;
-import home.controller.menu.MenuControllerImpl;
+import home.controller.MenuController;
+import home.controller.MenuControllerImpl;
 import home.utility.Pair;
 import home.view.fx.FXContainer;
 import home.view.menu.MainMenuImpl;

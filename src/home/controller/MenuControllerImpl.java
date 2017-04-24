@@ -17,6 +17,7 @@ import home.controller.profile.Profile;
 import home.model.Game;
 import home.utility.LocalFolder;
 import home.view.Container;
+import home.view.MessageType;
 import home.view.ViewType;
 import home.view.menu.MenuView;
 //package-protected
@@ -98,7 +99,7 @@ public final class MenuControllerImpl extends AbstractController<MenuView> imple
 
     @Override
     public void exitPressed() {
-        System.out.println("EXIT PRESSED");
+        this.getInternalView().forEach(x -> x.showMessage("Are you sure do this?", MessageType.EXIT));
     }
 
     @Override

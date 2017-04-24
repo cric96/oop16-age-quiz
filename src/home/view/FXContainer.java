@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view;
 import java.util.HashMap;
 
 
@@ -7,8 +7,7 @@ import java.util.Optional;
 
 import home.controller.Controller;
 import home.utility.Pair;
-import home.view.Container;
-import home.view.ViewType;
+import home.view.fx.FXView;
 import home.view.menu.MainMenuImpl;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -17,7 +16,7 @@ import javafx.scene.input.KeyCombination;
 /**
  * implementation ad-hoc for a FXView Container.
  */
-public final class FXContainer implements Container {
+final class FXContainer implements Container {
     private static final FXContainer SINGLETON = new FXContainer();
     private Optional<Stage> stage;
     private final Map<ViewType, Controller> controllers;

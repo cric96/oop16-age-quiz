@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import home.controller.QuizController;
+import home.view.MessageType;
 /**
  *
  */
@@ -41,6 +42,12 @@ public class QuizViewImpl implements QuizView {
 
     @Override
     public void isCorrect(final boolean isAnswerCorrect) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void showMessage(final String message, final MessageType messageType) {
         // TODO Auto-generated method stub
 
     }

@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+<<<<<<< HEAD
 
 import home.controller.MenuController;
 import home.view.fx.AbstractFXView;
 import home.view.fx.FXMessageType;
+=======
+import home.controller.menu.MenuController;
+>>>>>>> 2f7077490a8cdc333ce80b038443b2d6ee76bdd3
 import home.view.menu.Buttons;
 import home.view.menu.MainMenuImpl;
 import javafx.geometry.Rectangle2D;
@@ -58,7 +62,6 @@ public class ParentMenu extends Parent {
         final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
         btnExit.setOnMouseClicked(e -> {
             controller.exitPressed();
-            AbstractFXView.showMessage("Are you sure do this?", FXMessageType.EXIT);
         });
 
         menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);

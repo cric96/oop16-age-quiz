@@ -12,8 +12,8 @@ import java.util.Set;
 import home.controller.MenuController;
 import home.controller.profile.Profile;
 import home.utility.Pair;
+import home.view.MessageType;
 import home.view.fx.AbstractFXView;
-import home.view.fx.FXMessageType;
 import home.view.menu.Buttons;
 import home.view.menu.MenuView;
 import javafx.scene.control.Alert;
@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     private Optional<MenuController> controller;
     private Optional<Profile> selProfile;
+
     /**
      * create new MenuImpl.
      */
@@ -118,7 +119,7 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
                 });
                 container.getChildren().add(box);
             } catch (IOException x) {
-                AbstractFXView.showMessage(x.getMessage(), FXMessageType.ERROR);
+                showMessage(x.getMessage(), MessageType.ERROR);
             }
         });
 

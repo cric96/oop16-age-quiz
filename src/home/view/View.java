@@ -2,6 +2,7 @@ package home.view;
 
 import home.controller.Controller;
 
+
 /**
  * Generic View Interface.
  *
@@ -14,4 +15,10 @@ public interface View <E extends Controller> {
      */
     void attachOn(E controller);
 
+      /**
+      * show a message for the user. 
+      * @param message to show.
+      * @param messageType (messageTitle, AlertType used in javafxApplication) is used to show different message.
+      */
+       void showMessage(String message, MessageType messageType);
 }

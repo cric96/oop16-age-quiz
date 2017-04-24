@@ -1,7 +1,6 @@
 package home.main;
 
 import home.view.ViewType;
-import home.view.fx.FXContainer;
 
 /**
  * This class is used to start the videogame
@@ -20,6 +19,6 @@ public final class Main {
     //install the main thing before launch the application 
     //TODO PENSA SE FARLO O NO
     private static class Installer {
-        
+
     }
 }

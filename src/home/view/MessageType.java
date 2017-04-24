@@ -1,11 +1,11 @@
-package home.view.fx;
+package home.view;
 
 import javafx.scene.control.Alert.AlertType;
 
 /**
  * MessageType represent the possible message that the application can show.
  */
-public enum FXMessageType {
+public enum MessageType {
     /**
      * alert message.
      */
@@ -22,14 +22,13 @@ public enum FXMessageType {
     EXIT("Exit", AlertType.CONFIRMATION);
 
     private String messageTitle;
-    private AlertType alert;
-
+    private AlertType alertType;
     /**
      * @param title of message
      */
-    FXMessageType(final String title, final AlertType alert) {
+    MessageType(final String title, final AlertType alert) {
         this.messageTitle = title;
-        this.alert = alert;
+        this.alertType = alert;
     }
 
     /**
@@ -40,11 +39,9 @@ public enum FXMessageType {
     }
 
     /**
-     * 
-     * @return AllertType.
+     * @return message title.
      */
-
     public AlertType getAlertType() {
-        return this.alert;
+        return this.alertType;
     }
 }

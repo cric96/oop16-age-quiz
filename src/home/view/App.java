@@ -3,11 +3,8 @@ package home.view;
 import home.controller.menu.MenuController;
 import home.controller.menu.MenuControllerImpl;
 import home.utility.Pair;
-import home.view.fx.FXContainer;
-import home.view.menu.MainMenuImpl;
 import home.view.menu.fx.FXMenuViewImpl;
 import javafx.application.Application;
-import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**
@@ -18,7 +15,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) {
         final FXMenuViewImpl menu = new FXMenuViewImpl(); // MenuView
         final MenuController cont = new MenuControllerImpl(menu); //MenuController
         FXContainer.getContainer().setStage(primaryStage);

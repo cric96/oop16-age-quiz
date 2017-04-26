@@ -1,9 +1,11 @@
 package home.view.menu.fx;
 
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -59,62 +61,84 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
         final int boxPadding = 10;
         final int buttonWidth = 200;
         final int yLayoutBox = 10;
-        final Map<ProfileButton, Pair<TextField, Profile>> map = new HashMap<>();
-        final VBox root = new VBox();
-        final HBox container = new HBox(boxPadding);
+        final Map<ProfileButton, Pair<Profile, Pair<TextField, Text>>> map = new HashMap<>();
         final Text deleteDataMessage = new Text("Warning! all saved data will be deleted.\nContine?");
-        final ButtonType selectButton = new ButtonType(m.equals(Buttons.LOAD_GAME) ? "Select" : "Create");
-        final Alert dialog = new Alert(AlertType.NONE);
-
-        container.layoutYProperty().set(yLayoutBox);
         deleteDataMessage.setVisible(false);
+
+        final HBox container = new HBox(boxPadding);
+        container.layoutYProperty().set(yLayoutBox);
+
+        final VBox root = new VBox();
+        root.getChildren().addAll(container);
+
+        final ButtonType selectButton = new ButtonType("Select");
+        final ButtonType createButton = new ButtonType("Create");
+        final Alert dialog = new Alert(AlertType.NONE);
         dialog.setTitle(m.getText());
+        dialog.getButtonTypes().setAll(ButtonType.CLOSE);
         dialog.getDialogPane().setContent(root);
-        if (m.equals(Buttons.NEW_GAME)) {
-            dialog.getButtonTypes().setAll(selectButton);
-        }
         dialog.initOwner(this.getScene().getWindow());
 
-        root.getChildren().add(container);
+        if (m.equals(Buttons.NEW_GAME)) {
+            root.getChildren().add(deleteDataMessage); 
+        } 
 
         profiles.forEach(e -> {
             try {
-                final ProfileButton buttonP = new ProfileButton(e);
-                this.selProfile = Optional.of(e);
-                buttonP.requestFocus();
-                if (m.equals(Buttons.LOAD_GAME) && !e.isEnabled()) {
-                    buttonP.setDisable(true);
-                }
-                buttonP.setPrefWidth(buttonWidth);
                 final VBox box = new VBox(20);
+                final ProfileButton buttonP = new ProfileButton(e);
+                buttonP.setPrefWidth(buttonWidth);
+
                 final TextField name = new TextField();
                 name.setVisible(false);
+
+                final Text date = new Text(e.getSaveDate());
+                date.setVisible(false);
+
                 box.getChildren().add(buttonP);
-                if (m.equals(Buttons.NEW_GAME)) {
+
+                if (m.equals(Buttons.LOAD_GAME)) {
+                    box.getChildren().add(date);
+                    if (!e.isEnabled()) {
+                        buttonP.setDisable(true);
+                    }
+                } else if (m.equals(Buttons.NEW_GAME)) {
                     box.getChildren().add(name);
                 }
-                map.put(buttonP, Pair.createPair(name, e));
 
+                map.put(buttonP, Pair.createPair(e, Pair.createPair(name, date)));
+
+                /*ON MOUSE CLICKED*/
                 buttonP.setOnMouseClicked(x -> {
-                    map.get(buttonP).getX().setVisible(true);
-                    map.values()
-                       .stream()
-                       .filter(y -> !y.equals(map.get(buttonP)))
-                       .forEach(a -> {
-                           a.getX().setVisible(false); 
-                           a.getX().setText("");
-                       });
-
                     if (m.equals(Buttons.NEW_GAME)) {
+                        dialog.getButtonTypes().setAll(createButton);
+                        map.get(buttonP).getY().getX().setVisible(true);
+                        map.values()
+                           .stream()
+                           .filter(y -> !y.equals(map.get(buttonP)))
+                           .forEach(a -> {
+                               a.getY().getX().setVisible(false);
+                               a.getY().getX().setText("");
+                           });
+
                         if (e.getName().isPresent()) {
                             deleteDataMessage.setVisible(true);
                         } else {
                             deleteDataMessage.setVisible(false);
                         }
+
                     } else if (m.equals((Buttons.LOAD_GAME))) {
+                        dialog.getButtonTypes().setAll(selectButton);
+                        map.get(buttonP).getY().getY().setVisible(true);
+                        map.values()
+                           .stream()
+                           .filter(y -> !y.equals(map.get(buttonP)))
+                           .forEach(a -> {
+                               a.getY().getY().setVisible(false);
+                               a.getY().getY().setText(e.getSaveDate());
+                           });
                         this.selProfile = Optional.of(e);
                         dialog.getButtonTypes().setAll(selectButton);
-                        dialog.setHeight(140);
                     }
                 });
                 container.getChildren().add(box);
@@ -123,30 +147,18 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
             }
         });
 
-        /*
-         * se la modalità è New Game aggiungo la Label per avvertire la cancellazione dei dati
-         */
-        if (m.equals(Buttons.NEW_GAME)) {
-            root.getChildren().add(deleteDataMessage); 
-        }
+
 
         final Optional<ButtonType> result = dialog.showAndWait();
-        if ((result.get() == selectButton)) {
-            if (m.equals(Buttons.NEW_GAME)) {
-                final String s = map.entrySet().stream()
-                                               .map(b -> b.getValue())
-                                               .filter(t -> !t.getX().getText().equals(""))
-                                               .findFirst()
-                                               .get().getX().getText();
-
-                this.controller.get().createGame(s, map.values().stream()
-                                                                .filter(a -> a.getX().getText().equals(s))
-                                                                .findFirst()
-                                                                .get().getY());
-
-           } else if (m.equals((Buttons.LOAD_GAME))) {
-               this.controller.get().loadGame(this.selProfile.get());
-           }
+        if (result.get().equals(createButton)) {
+                this.controller.get().createGame(map.entrySet().stream()
+                                                               .map(b -> b.getValue())
+                                                               .filter(t -> !t.getY().getX().getText().equals(""))
+                                                               .findFirst()
+                                                               .get().getY().getX().getText(), this.selProfile.orElseThrow(() -> new IllegalStateException()));
+        } else if (result.get() .equals(selectButton)) {
+            this.controller.get().loadGame(this.selProfile.get());
         }
+
     }
 }

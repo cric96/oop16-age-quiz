@@ -1,6 +1,7 @@
 package home.controller.profile;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -43,5 +44,11 @@ final class ProfileImpl implements Profile {
     @Override
     public String toString() {
         return "ProfileImpl [name=" + name + ", enabled=" + enabled + ", file=" + file + "]";
+    }
+
+    @Override
+    public String getSaveDate() {
+        final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        return sdf.format(file.lastModified());
     }
 }

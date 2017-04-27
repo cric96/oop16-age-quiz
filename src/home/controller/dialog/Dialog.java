@@ -89,6 +89,6 @@ public interface Dialog {
          * @return
          *      the dialog created
          */
-        public Dialog build();
+        Dialog build();
     }
 }

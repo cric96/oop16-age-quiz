@@ -2,6 +2,7 @@ package home.controller.profile;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -48,7 +49,7 @@ final class ProfileImpl implements Profile {
 
     @Override
     public String getSaveDate() {
-        final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss", Locale.getDefault());
         return sdf.format(file.lastModified());
     }
 }

@@ -1,11 +1,9 @@
 package home.view.menu.fx;
 
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -37,6 +35,7 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     public FXMenuViewImpl() {
         super();
         this.controller = Optional.empty();
+        this.selProfile = Optional.empty();
     }
 
     @Override
@@ -82,7 +81,6 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
         if (m.equals(Buttons.NEW_GAME)) {
             root.getChildren().add(deleteDataMessage); 
         } 
-
         profiles.forEach(e -> {
             try {
                 final VBox box = new VBox(20);
@@ -126,7 +124,7 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
                         } else {
                             deleteDataMessage.setVisible(false);
                         }
-
+                        this.selProfile = Optional.of(e);
                     } else if (m.equals((Buttons.LOAD_GAME))) {
                         dialog.getButtonTypes().setAll(selectButton);
                         map.get(buttonP).getY().getY().setVisible(true);
@@ -146,7 +144,6 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
                 showMessage(x.getMessage(), MessageType.ERROR);
             }
         });
-
 
 
         final Optional<ButtonType> result = dialog.showAndWait();

@@ -1,16 +1,20 @@
 package home.controller;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import home.model.level.Level;
 import home.model.query.Category;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
+import home.view.Container;
+import home.view.ViewType;
 import home.view.quiz.QuizView;
 
 class QuizControllerImpl extends AbstractController<QuizView>implements QuizController {
     private QuizGame currentQuiz;
+    private static final String FINISH_ERROR = "The game is finished";
     QuizControllerImpl(final QuizView...views) {
         super(views);
         this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS,
@@ -36,11 +40,15 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
 
     @Override
     public void quizFinished() {
-        //TODO chiamare metodo changeDisplay su Container
+        Container.getContainer().changeDisplay(ViewType.WORLD);
     }
     @Override
     public void next() {
-        this.currentQuiz.next();
+        try {
+            this.currentQuiz.next();
+        } catch (NoSuchElementException exc) {
+            super.showErrors(FINISH_ERROR);
+        }
         this.updateQuery();
     }
 
@@ -51,6 +59,7 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
 
     private class QuizTimer extends Thread {
         private static final int SECOND = 1000;
+        private static final String ERROR = "an error on thread occured";
         private int time;
         QuizTimer(final int time) {
             this.time = time;
@@ -62,7 +71,7 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
                 try {
                     sleep(SECOND);
                 } catch (Exception e) {
-                    //TODO informare tutte le view
+                    QuizControllerImpl.this.showErrors(ERROR);
                 }
             }
             final QuizGame quiz = QuizControllerImpl.this.currentQuiz;

@@ -25,6 +25,7 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
     private static final String BOX_PROFILES = "profile-box.obj";
     private static final String EXIT_MESSAGE = "Are you sure to do this?";
     private static final String FILE_ERROR = "there was ar error caused by loading file!";
+    private static final String PROFILE_ERROR = "error to try to load a profile";
     private final BoxProfile profiles;
     MenuControllerImpl(final MenuView ... views) {
         super(views);
@@ -35,14 +36,14 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
             try {
                 this.profiles.load();
             } catch (ClassNotFoundException | IOException e) {
-                this.fileLoadError();
+                super.showErrors(FILE_ERROR);
             }
         } else {
             try {
                 new File(LocalFolder.CONFIG_FOLDER.getInfo()).mkdir();
                 this.profiles.save();
             } catch (IOException e) {
-                this.fileLoadError();
+                super.showErrors(FILE_ERROR);
             }
         }
     }
@@ -63,13 +64,13 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
         try {
             this.profiles.save();
         } catch (IOException e) {
-            this.fileLoadError();
+            super.showErrors(FILE_ERROR);
         }
         Game.getGame().newGame();
         try {
             Game.getGame().save(profile.getSaveGame());
         } catch (IOException e) {
-            this.fileLoadError();
+            super.showErrors(FILE_ERROR);
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
@@ -82,12 +83,12 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
     @Override
     public void loadGame(final Profile profile) {
         if (!profile.isEnabled()) {
-            throw new IllegalArgumentException("the profile must to be enable!");
+            super.showErrors(PROFILE_ERROR);
         }
         try {
             Game.getGame().load(profile.getSaveGame());
         } catch (ClassNotFoundException | IOException e) {
-            this.fileLoadError();
+            super.showErrors(FILE_ERROR);
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
@@ -96,9 +97,8 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
     public void exitPressed() {
         this.getInternalView().forEach(x -> x.showMessage(EXIT_MESSAGE, MessageType.EXIT));
     }
-
-    private void fileLoadError() {
-        this.getInternalView().forEach(x -> x.showMessage(FILE_ERROR, MessageType.ERROR));
+    public void exitConfirmed() {
+        System.exit(0);
     }
     @Override
     protected void attachViews() {

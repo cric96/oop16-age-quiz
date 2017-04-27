@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import home.view.MessageType;
 import home.view.View;
 /**
  * a skeleton of a controller with associated with a specific view.
@@ -40,4 +41,12 @@ public abstract class AbstractController <V extends View<?>> implements Controll
      * how a controller attach his views.
      */
     protected abstract void attachViews();
+    /**
+     * tells to each view that some thing is happened.
+     * @param message
+     *  the message to send
+     */
+    protected void showErrors(final String message) {
+        this.getInternalView().forEach(x -> x.showMessage(message, MessageType.ERROR));
+    }
 }

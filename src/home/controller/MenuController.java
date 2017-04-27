@@ -30,7 +30,11 @@ public interface MenuController extends Controller {
      */
     void loadGame(Profile profile);
     /**
-     * the controller exit and close the application.
+     * tells that someone click on exit.
      */
     void exitPressed();
+    /**
+     * exit to the application.
+     */
+    void exitConfirmed();
 }

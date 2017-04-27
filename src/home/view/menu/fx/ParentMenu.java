@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import home.controller.MenuController;
+import home.utility.ResourceManager;
 import home.view.menu.Buttons;
 import home.view.menu.MainMenuImpl;
 import javafx.geometry.Rectangle2D;
@@ -58,19 +59,14 @@ public class ParentMenu extends Parent {
         });
 
         menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);
-
-        InputStream is;
-        try {
-            is = Files.newInputStream(Paths.get(MainMenuImpl.backgroundPath()));
-            final Image img = new Image(is);
-            is.close();
-            final ImageView imgView = new ImageView(img);
-            imgView.setFitWidth(primaryScreenBounds.getWidth());
-            imgView.setFitHeight(primaryScreenBounds.getHeight());
-            getChildren().add(imgView);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+        //GUARDA PARENT MENU!
+        String fileName;
+        fileName = ResourceManager.load(MainMenuImpl.backgroundPath()).toExternalForm();
+        final Image img = new Image(fileName);
+        final ImageView imgView = new ImageView(img);
+        imgView.setFitWidth(primaryScreenBounds.getWidth());
+        imgView.setFitHeight(primaryScreenBounds.getHeight());
+        getChildren().add(imgView);
 
         final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
         bg.setFill(Color.GREY);

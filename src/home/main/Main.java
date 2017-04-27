@@ -1,6 +1,5 @@
 package home.main;
 
-import home.view.ViewType;
 
 /**
  * This class is used to start the videogame

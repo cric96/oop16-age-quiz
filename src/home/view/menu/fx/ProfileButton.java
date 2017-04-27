@@ -1,11 +1,8 @@
 package home.view.menu.fx;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 import home.controller.profile.Profile;
+import home.utility.ResourceManager;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -26,14 +23,18 @@ public class ProfileButton extends Button {
      */
     public ProfileButton(final Profile profile) throws IOException {
         super();
-        InputStream is;
+        //NOTA BENE -> richi quando carichi file devi utilizzare ResourceManager
+        //InputStream is;
+        String fileName;
         if (profile.isEnabled()) {
-             is = Files.newInputStream(Paths.get("res/images/unlockedProfile.png"));
+            fileName = ResourceManager.load("/images/unlockedProfile.png").toExternalForm();
+            //is = Files.newInputStream(Paths.get("res/images/unlockedProfile.png"));
         } else {
-            is = Files.newInputStream(Paths.get("res/images/emptyProfile.png"));
+            fileName = ResourceManager.load("/images/emptyProfile.png").toExternalForm();
+            //is = Files.newInputStream(Paths.get("res/images/emptyProfile.png"));
         }
-        final Image img = new Image(is);
-        is.close();
+        final Image img = new Image(fileName);
+        //is.close();
         //this.setShape(new Circle(4));
 
         final ImageView profileImage = new ImageView(img);

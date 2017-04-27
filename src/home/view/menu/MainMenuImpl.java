@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 public final class MainMenuImpl {
     private static final List<Buttons> BUTTONS_NAME = Arrays.asList(Buttons.values());
-    private static final String MENU_BACKGROUND = "res/images/backgroundMenu.jpg";
+    private static final String MENU_BACKGROUND = "/images/backgroundMenu.jpg";
     private static final String TITLE = "Age of Quiz";
 
     private MainMenuImpl() { }

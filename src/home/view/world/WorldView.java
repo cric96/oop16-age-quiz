@@ -1,7 +1,6 @@
 package home.view.world;
 
 import java.util.Map;
-import java.util.Set;
 
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
@@ -24,21 +23,21 @@ public interface WorldView extends View<WorldController> {
     void updateEra(Map<BuildingType, Pair<Image, Boolean>> buildings, Image kingdom);
 
     /**
-     * change the grafic Era of the word.
+     * change the graphics Era of the word.
      * 
      * @param era era.
      */
     void changeEra(String era);
 
     /**
-     * change the expirience.
+     * change the experience.
      * 
-     * @param exp expirience
+     * @param exp experience
      */
     void changeExp(int exp);
 
     /**
-     * change the value of rappresentation of status.
+     * change the value of representation of status.
      * 
      * @param statusScose set of name and value of status.
      */
@@ -49,6 +48,7 @@ public interface WorldView extends View<WorldController> {
      * 
      * @param building type.
      * @param dialog
+     *  the dialog of building selected
      */
     void showBuildingDialog(BuildingType building, Dialog dialog);
 
@@ -57,5 +57,5 @@ public interface WorldView extends View<WorldController> {
      * @param dialog
      *  the dialog of the castle
      */
-    void showKingdomDialog(Dialog dialog );
+    void showKingdomDialog(Dialog dialog);
 }

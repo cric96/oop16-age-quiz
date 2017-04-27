@@ -50,10 +50,8 @@ public interface Profile extends Serializable {
      *  the file associated with this profile
      */
     File getSaveGame();
-    
     /**
      * @return the date of the file
      */
     String getSaveDate();
-    
 }

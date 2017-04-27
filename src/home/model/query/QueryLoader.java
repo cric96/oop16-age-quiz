@@ -9,6 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import home.model.level.ImmutableLevel;
+import home.utility.ResourceManager;
 
 /**
  *
@@ -27,7 +28,7 @@ public interface QueryLoader {
      * @return a QueryLoader
      */
     static QueryLoader getQueryLoader() {
-        final File file = new File(QueryLoader.class.getResource("/queries.xml").getFile());
+        final File file = new File(ResourceManager.load("/queries.xml").getFile());
         try {
             return new XMLQueryLoader(file);
         } catch (SAXException | IOException | ParserConfigurationException e) {

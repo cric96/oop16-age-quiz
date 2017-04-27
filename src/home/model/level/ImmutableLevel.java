@@ -1,11 +1,10 @@
 package home.model.level;
 
-import java.io.Serializable;
 
 /**
  * a level that can't be upgrade.
  */
-public interface ImmutableLevel extends  Serializable {
+public interface ImmutableLevel {
     /**
      * tell if a level is upgradable.
      * @return

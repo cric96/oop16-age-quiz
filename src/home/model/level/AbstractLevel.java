@@ -1,6 +1,9 @@
 package home.model.level;
+
+import java.io.Serializable;
+
 //package-protected
-abstract class AbstractLevel implements Level {
+abstract class AbstractLevel implements Level, Serializable {
     private static final long serialVersionUID = 1L;
     private int currentLevel;
     private int experienceAmount;

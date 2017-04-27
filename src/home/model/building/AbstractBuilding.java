@@ -1,5 +1,6 @@
 package home.model.building;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 import home.model.Kingdom;
@@ -10,7 +11,7 @@ import home.model.level.Level;
 import home.model.query.Category;
 import home.utility.Utility;
 //package-protected
-abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite {
+abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite, Serializable {
     private static final long serialVersionUID = 1L;
     private final BuildingType type;
     private final Level.Building level;

@@ -1,14 +1,13 @@
 package home.model.building;
 import home.model.level.ImmutableLevel;
 import home.model.query.Category;
-import java.io.Serializable;
 
 import home.model.composite.Composite;;
 
 /**
  * a building that where you can't modify internal age.
  */
-public interface ImmutableAgeBuilding extends  Serializable {
+public interface ImmutableAgeBuilding {
     /**
      * 
      * @return

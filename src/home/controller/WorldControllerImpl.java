@@ -9,7 +9,7 @@ import home.model.Game;
 import home.model.Kingdom;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
-import home.model.image.Image;
+import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.Container;
 import home.view.ViewType;
@@ -30,6 +30,7 @@ class WorldControllerImpl extends AbstractController<WorldView> implements World
             this.onAgeChange();
 
         });
+        super.checkUpdate();
     }
 
     @Override
@@ -98,8 +99,8 @@ class WorldControllerImpl extends AbstractController<WorldView> implements World
     /*what to do when the age change*/
     private void onAgeChange() {
         final Kingdom current = Game.getGame().getCurrentKingdom();
-        final Map<BuildingType, Pair<Image, Boolean>> buildings = createMap(current.getComponents(ImmutableAgeBuilding.Container.class));
-        final Image kingdomImage = current.getComponents(Image.class).stream().findFirst().get().getX();
+        final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings = createMap(current.getComponents(ImmutableAgeBuilding.Container.class));
+        final ImageInfo kingdomImage = current.getComponents(ImageInfo.class).stream().findFirst().get().getX();
         this.getInternalView().stream().forEach(x -> {
             x.updateEra(buildings, kingdomImage);
             x.changeEra(current.getAgeName());
@@ -107,10 +108,10 @@ class WorldControllerImpl extends AbstractController<WorldView> implements World
         });
     }
     /*Create a map to give a view by the internal state on kingdom*/
-    private Map<BuildingType, Pair<Image, Boolean>> createMap(final Set<Pair<ImmutableAgeBuilding.Container, Boolean>> buildings) {
-        final Map<BuildingType, Pair<Image, Boolean>> returnBuilding = new HashMap<>();
+    private Map<BuildingType, Pair<ImageInfo, Boolean>> createMap(final Set<Pair<ImmutableAgeBuilding.Container, Boolean>> buildings) {
+        final Map<BuildingType, Pair<ImageInfo, Boolean>> returnBuilding = new HashMap<>();
         for (final Pair<ImmutableAgeBuilding.Container, Boolean> building : buildings) {
-            final Image image = building.getX().getComponents(Image.class).stream().findFirst().get().getX();
+            final ImageInfo image = building.getX().getComponents(ImageInfo.class).stream().findFirst().get().getX();
             returnBuilding.put(building.getX().getName(), Pair.createPair(image, building.getY()));
         }
         return returnBuilding;

@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
-import home.model.image.Image;
+import home.model.image.ImageInfo;
 import home.model.status.StatusName;
 import home.utility.Pair;
 
@@ -82,7 +82,7 @@ public class GameTest {
         kingdom.addExperience(EXPERIENCE);
         kingdom.nextAge();
         //the building image doesn't change
-        Image im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
+        ImageInfo im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
         assertTrue(im.getPath().getName().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
         try {
@@ -101,7 +101,7 @@ public class GameTest {
         }
         kingdom = Game.getGame().getCurrentKingdom();
         building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
-        im = building.getComponents(Image.class).stream().map(x -> x.getX()).findFirst().get();
+        im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
         assertTrue(im.getPath().getName().contains("0"));
     }
     /**

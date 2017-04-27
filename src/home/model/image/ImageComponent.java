@@ -4,7 +4,7 @@ import home.model.composite.Composite;
 /**
  * a component that define has an image.
  */
-public interface ImageComponent extends Image, Component<Composite> {
+public interface ImageComponent extends ImageInfo, Component<Composite> {
     /**
      * create a simple ImageComponent.
      * @param name

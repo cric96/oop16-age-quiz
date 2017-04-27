@@ -29,6 +29,10 @@ public abstract class AbstractController <V extends View<?>> implements Controll
         return this.getInternalView().stream().map(x -> (View<?>) x)
                                   .collect(Collectors.toSet());
     }
+    @Override
+    public void checkUpdate() {
+        this.views.forEach(x -> x.show());
+    }
     /**
      * 
      * @return

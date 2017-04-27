@@ -5,7 +5,6 @@ import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
 import home.model.status.StatusName;
 
-//TODO CONCLUDI TUTTA QUESTA INTERFACCIA
 /**
  * define the interface of a kingdom.
  */

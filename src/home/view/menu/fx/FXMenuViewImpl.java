@@ -158,4 +158,9 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
         }
 
     }
+    //RICHI GUARDA SE TI PUò FARE COMODO! VIENE CHIAMATA OGNI VOLTA CHE LA VIEW DEVE ESSERE MOSTRATA
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+    }
 }

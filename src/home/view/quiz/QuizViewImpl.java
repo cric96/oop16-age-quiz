@@ -51,4 +51,10 @@ public class QuizViewImpl implements QuizView {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void show() {
+        // TODO Auto-generated method stub
+        
+    }
 }

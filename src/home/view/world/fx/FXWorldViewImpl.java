@@ -7,7 +7,7 @@ import java.util.Set;
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
-import home.model.image.Image;
+import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.fx.AbstractFXView;
 
@@ -36,7 +36,7 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     }
 
     @Override
-    public void updateEra(final Map<BuildingType, Pair<Image, Boolean>> buildings, final Image kingdom) {
+    public void updateEra(final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, final ImageInfo kingdom) {
         // TODO Auto-generated method stub
 
     }
@@ -67,6 +67,12 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void showKingdomDialog(Dialog dialog) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void show() {
         // TODO Auto-generated method stub
         
     }

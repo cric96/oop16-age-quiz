@@ -5,7 +5,7 @@ import java.util.Map;
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
-import home.model.image.Image;
+import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.View;
 
@@ -20,7 +20,7 @@ public interface WorldView extends View<WorldController> {
      * @param buildings Images. 
      * @param kingdom Image.
      */
-    void updateEra(Map<BuildingType, Pair<Image, Boolean>> buildings, Image kingdom);
+    void updateEra(Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, ImageInfo kingdom);
 
     /**
      * change the graphics Era of the word.

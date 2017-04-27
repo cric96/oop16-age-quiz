@@ -38,10 +38,6 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
             }
         }
     }
-    @Override
-    public void checkUpdate() {
-
-    }
 
     @Override
     public void newGamePressed() {
@@ -53,7 +49,6 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
         profile.setEnabled(true);
         profile.setName(name);
         this.profiles.select(profile);
-        System.out.println("ENT");
         try {
             this.profiles.save();
         } catch (IOException e) {

@@ -5,7 +5,6 @@ import java.util.Optional;
 import home.view.MessageType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 
 
 /**
@@ -44,9 +43,6 @@ public abstract class AbstractFXView implements FXView {
         alert.initOwner(this.getScene().getWindow());
         alert.setTitle(messageType.getMessageTitle());
         alert.setHeaderText(message);
-        final Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK && messageType.equals(MessageType.EXIT)) {
-            System.exit(0);
-        }
+        alert.showAndWait();
     }
 }

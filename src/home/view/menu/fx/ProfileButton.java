@@ -1,6 +1,5 @@
 package home.view.menu.fx;
 
-import java.io.IOException;
 import home.controller.profile.Profile;
 import home.utility.ResourceManager;
 import home.view.fx.Images;
@@ -22,10 +21,9 @@ public class ProfileButton extends Button {
     /**
      * @param profile the profile represented by the button.
      * @param mode to select a different locked image.
-     * @throws IOException if loading of button icon gone wrong.
      */
-    public ProfileButton(final Profile profile, final Buttons mode) throws IOException {
-        super();
+    public ProfileButton(final Profile profile, final Buttons mode) {
+        super(profile.getName().orElse("Empty slot"));
          String fileName;
         if (profile.isEnabled()) {
             fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();
@@ -38,7 +36,6 @@ public class ProfileButton extends Button {
         }
         final Image img = new Image(fileName);
         final ImageView profileImage = new ImageView(img);
-        this.setText(profile.getName().orElse("Empty slot"));
         profileImage.setFitWidth(BOX_DIMENSION);
         profileImage.setFitHeight(BOX_DIMENSION);
         this.setGraphic(profileImage);

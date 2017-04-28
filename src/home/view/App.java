@@ -2,11 +2,13 @@ package home.view;
 
 import home.controller.ControllerFactory;
 import home.controller.MenuController;
+import home.controller.QuizController;
 import home.controller.WorldController;
 import home.utility.Pair;
 import home.view.debug.ConsoleViewFactory;
 import home.view.menu.MenuView;
 import home.view.menu.fx.FXMenuViewImpl;
+import home.view.quiz.QuizView;
 import home.view.world.WorldView;
 import home.view.world.fx.FXWorldViewImpl;
 import javafx.application.Application;
@@ -27,9 +29,12 @@ public class App extends Application {
         final WorldView world = new FXWorldViewImpl();
         final WorldView worldConsole = ConsoleViewFactory.createWolrdView();
         final WorldController worldController = ControllerFactory.create().createWorldController(/*world ,*/worldConsole);
+        final QuizView quizConsole = ConsoleViewFactory.createQuizView();
+        final QuizController quizController = ControllerFactory.create().createQuizController(quizConsole);
         FXContainer.getContainer().setStage(primaryStage);
         FXContainer.getContainer().addController(Pair.createPair(ViewType.MENU, cont)); //add a controller 
         FXContainer.getContainer().addController(Pair.createPair(ViewType.WORLD, worldController));
+        FXContainer.getContainer().addController(Pair.createPair(ViewType.QUIZ, quizController));
         FXContainer.getContainer().changeDisplay(ViewType.MENU); //show Menu
         primaryStage.show();
     }

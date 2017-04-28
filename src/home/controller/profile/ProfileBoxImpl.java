@@ -59,6 +59,7 @@ final class ProfileBoxImpl implements ProfileBox {
         if (!this.profiles.contains(profile)) {
             throw new IllegalArgumentException();
         }
+        this.selected = profile;
     }
     @Override
     public Optional<Profile> getSelected() {

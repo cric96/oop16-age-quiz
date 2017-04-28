@@ -60,6 +60,7 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
         } catch (IOException e) {
             super.showErrors(FILE_ERROR);
         }
+        ProfileBox.getProfileBox().select(profile);
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
@@ -78,6 +79,8 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
         } catch (ClassNotFoundException | IOException e) {
             super.showErrors(FILE_ERROR);
         }
+        ProfileBox.getProfileBox().select(profile);
+        System.out.println(ProfileBox.getProfileBox().getSelected());
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 

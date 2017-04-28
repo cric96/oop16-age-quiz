@@ -1,6 +1,7 @@
 package home.view.debug;
 
 import home.view.menu.MenuView;
+import home.view.quiz.QuizView;
 import home.view.world.WorldView;
 
 /**
@@ -9,7 +10,7 @@ import home.view.world.WorldView;
 public interface ConsoleViewFactory {
     /**
      * @return
-     *  a Console meu view used to debug
+     *  a Console menu view used to debug
      */
     static MenuView createMenuView() {
         return new ConsoleMenuViewImpl();
@@ -20,5 +21,12 @@ public interface ConsoleViewFactory {
      */
     static WorldView createWolrdView() {
         return new ConsoleWolrdViewImpl();
+    }
+    /**
+     * @return 
+     *  a Console world view used to debug
+     */
+    static QuizView createQuizView() {
+        return new ConsoleQuizViewImpl();
     }
 }

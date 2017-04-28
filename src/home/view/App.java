@@ -23,7 +23,7 @@ public class App extends Application {
     public void start(final Stage primaryStage) {
         final MenuView menu = new FXMenuViewImpl(); // MenuView
         final MenuView menuConsole = ConsoleViewFactory.createMenuView();
-        final MenuController cont = ControllerFactory.create().createMenuController(/*menu,*/ menuConsole); //MenuController
+        final MenuController cont = ControllerFactory.create().createMenuController(/*menu,*/ menu); //MenuController
         final WorldView world = new FXWorldViewImpl();
         final WorldView worldConsole = ConsoleViewFactory.createWolrdView();
         final WorldController worldController = ControllerFactory.create().createWorldController(/*world ,*/worldConsole);

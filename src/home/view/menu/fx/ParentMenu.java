@@ -1,11 +1,9 @@
 package home.view.menu.fx;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import home.controller.MenuController;
 import home.utility.ResourceManager;
+import home.view.fx.Images;
 import home.view.menu.Buttons;
 import home.view.menu.MainMenuImpl;
 import javafx.geometry.Rectangle2D;
@@ -59,9 +57,8 @@ public class ParentMenu extends Parent {
         });
 
         menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);
-        //GUARDA PARENT MENU!
         String fileName;
-        fileName = ResourceManager.load(MainMenuImpl.backgroundPath()).toExternalForm();
+        fileName = ResourceManager.load(Images.MENU_BACKGROUND.getPath()).toExternalForm();
         final Image img = new Image(fileName);
         final ImageView imgView = new ImageView(img);
         imgView.setFitWidth(primaryScreenBounds.getWidth());

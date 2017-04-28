@@ -3,6 +3,8 @@ package home.view.menu.fx;
 import java.io.IOException;
 import home.controller.profile.Profile;
 import home.utility.ResourceManager;
+import home.view.fx.Images;
+import home.view.menu.Buttons;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -18,25 +20,23 @@ public class ProfileButton extends Button {
     private static final int BOX_DROP_SHADOW = 10;
 
     /**
-     * @param profile the profile represented by the button
+     * @param profile the profile represented by the button.
+     * @param mode to select a different locked image.
      * @throws IOException if loading of button icon gone wrong.
      */
-    public ProfileButton(final Profile profile) throws IOException {
+    public ProfileButton(final Profile profile, final Buttons mode) throws IOException {
         super();
-        //NOTA BENE -> richi quando carichi file devi utilizzare ResourceManager
-        //InputStream is;
-        String fileName;
+         String fileName;
         if (profile.isEnabled()) {
-            fileName = ResourceManager.load("/images/unlockedProfile.png").toExternalForm();
-            //is = Files.newInputStream(Paths.get("res/images/unlockedProfile.png"));
+            fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();
         } else {
-            fileName = ResourceManager.load("/images/emptyProfile.png").toExternalForm();
-            //is = Files.newInputStream(Paths.get("res/images/emptyProfile.png"));
+            if (mode.equals(Buttons.LOAD_GAME)) {
+                fileName = ResourceManager.load(Images.PROFILE_IMAGE_LOCK.getPath()).toExternalForm();
+            } else {
+                fileName = ResourceManager.load(Images.PROFILE_IMAGE_EMPTY.getPath()).toExternalForm();
+            }
         }
         final Image img = new Image(fileName);
-        //is.close();
-        //this.setShape(new Circle(4));
-
         final ImageView profileImage = new ImageView(img);
         this.setText(profile.getName().orElse("Empty slot"));
         profileImage.setFitWidth(BOX_DIMENSION);

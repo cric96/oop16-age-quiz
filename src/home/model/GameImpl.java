@@ -72,7 +72,7 @@ final class GameImpl implements Game {
     public void createQuiz(final BuildingType building) {
         final Kingdom current = this.getCurrentKingdom();
         final Set<Pair<ImmutableAgeBuilding.Container, Boolean>> buildings = current.getComponents(ImmutableAgeBuilding.Container.class);
-        final ImmutableAgeBuilding selectedBuilding = buildings.stream().filter(x -> x.getX().getName().equals(building.name()))
+        final ImmutableAgeBuilding selectedBuilding = buildings.stream().filter(x -> x.getX().getName() == building)
                                                                         .filter(x -> x.getY())
                                                                         .findFirst().orElseThrow(() -> new IllegalStateException())
                                                                         .getX();

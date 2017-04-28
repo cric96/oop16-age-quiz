@@ -23,7 +23,6 @@ abstract class AbstractLevel implements Level, Serializable {
     }
     @Override
     public int getExperienceAmount() {
-        this.checkUpgradable();
         return this.experienceAmount;
     }
     /*Set the experience amount for the next level*/

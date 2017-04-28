@@ -87,7 +87,7 @@ abstract class AbstractQuizGame implements QuizGame {
     }
     @Override
     public void setFinished() {
-        this.stopQuiz = false;
+        this.stopQuiz = true;
     }
     private void computeScore() {
         if (this.isAnswerCorrect()) {

@@ -12,7 +12,7 @@ import home.model.status.StatusName;
  */
 //package-protected
 class BasicCalculator implements Calculator {
-    private static final int UPDATE_XP_BY_CORRECT_ANSWER = +1;
+    private static final int UPDATE_XP_BY_CORRECT_ANSWER = +10;
     private static final int UPDATE_XP_BY_WRONG_ANSWER = +0;
     private static final int UPDATE_STATUS_BY_CORRECT_ANSWER = +1;
     private static final int UPDATE_STATUS_BY_WRONG_ANSWER = -1; 

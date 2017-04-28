@@ -1,9 +1,13 @@
 package home.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+import home.controller.profile.Profile;
+import home.controller.profile.ProfileBox;
+import home.model.Game;
 import home.model.level.Level;
 import home.model.query.Category;
 import home.model.quiz.QuizGame;
@@ -15,6 +19,7 @@ import home.view.quiz.QuizView;
 class QuizControllerImpl extends AbstractController<QuizView>implements QuizController {
     private QuizGame currentQuiz;
     private static final String FINISH_ERROR = "The game is finished";
+    private static final String IO_ERROR = "SOME ERROR DUE TO SAVE FILE";
     QuizControllerImpl(final QuizView...views) {
         super(views);
         this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS,
@@ -26,10 +31,11 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
     }
     @Override
     public void checkUpdate() {
-        this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.SCIENCE, Level.Building.createBuildingLevel());
+        this.currentQuiz = Game.getGame().getCurrentQuiz().orElseThrow(() -> new IllegalStateException());
         this.updateQuery();
         final QuizTimer qTimer = new QuizTimer(this.currentQuiz.getQuizDuration());
         qTimer.start();
+        super.checkUpdate();
     }
 
     @Override
@@ -40,6 +46,13 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
 
     @Override
     public void quizFinished() {
+        Game.getGame().endCurrentQuiz();
+        final Profile selected = ProfileBox.getProfileBox().getSelected().orElseThrow(() -> new IllegalStateException());
+        try {
+            Game.getGame().save(selected.getSaveGame());
+        } catch (IOException e) {
+            super.showErrors(IO_ERROR);
+        }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
     @Override

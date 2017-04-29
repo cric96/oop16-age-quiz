@@ -17,6 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+
 /**
  * concrete realization of menu in javafx.
  *
@@ -61,8 +62,8 @@ public class ParentMenu extends Parent {
         fileName = ResourceManager.load(Images.MENU_BACKGROUND.getPath()).toExternalForm();
         final Image img = new Image(fileName);
         final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(primaryScreenBounds.getWidth());
-        imgView.setFitHeight(primaryScreenBounds.getHeight());
+        imgView.setFitWidth(primaryScreenBounds.getMaxX());
+        imgView.setFitHeight(primaryScreenBounds.getMaxY());
         getChildren().add(imgView);
 
         final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());

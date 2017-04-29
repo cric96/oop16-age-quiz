@@ -10,8 +10,6 @@ import home.utility.Pair;
 import home.view.fx.FXView;
 import home.view.menu.MainMenuImpl;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.input.KeyCombination;
 
 /**
  * implementation ad-hoc for a FXView Container.
@@ -34,7 +32,7 @@ final class FXContainer implements Container {
     public void setStage(final Stage stage) {
         this.stage = Optional.of(stage);
         if (!this.stage.get().equals(Optional.empty())) {
-            //this.stage.get().setFullScreen(true);
+            this.stage.get().setFullScreen(true);
             this.stage.get().setResizable(false);
             //this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             this.stage.get().setTitle(MainMenuImpl.getTitle());
@@ -66,14 +64,5 @@ final class FXContainer implements Container {
                 this.stage.get().setScene(((FXView) e).getScene());
             }
         });
-    }
-
-    /**
-     * attach a dialog in the actual scene.
-     * @param profileStage the alert to show.
-     */
-    //mi serve perchè lo uso solo dentro AbstractView e da lì non posso risalire alla finestra.
-    public void showDialog(final Alert profileStage) {
-        profileStage.initOwner(this.stage.get());
     }
 }

@@ -1,51 +1,50 @@
 package home.view;
 
 import home.controller.ControllerFactory;
-import home.controller.MenuController;
-import home.controller.QuizController;
-import home.controller.WorldController;
+import home.main.Main;
 import home.utility.Pair;
 import home.view.debug.ConsoleViewFactory;
-import home.view.menu.Buttons;
 import home.view.menu.MenuView;
 import home.view.menu.fx.FXMenuViewImpl;
 import home.view.quiz.QuizView;
+import home.view.quiz.QuizViewImpl;
 import home.view.world.WorldView;
 import home.view.world.fx.FXWorldViewImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * 
- * AppTest.
- *
+ * what to launch to create the application.
  */
 public class App extends Application {
-
+    private static final boolean DEBUG = true;
     @Override
     public void start(final Stage primaryStage) {
-        final MenuView menu = new FXMenuViewImpl(); // MenuView
-        final MenuView menuConsole = ConsoleViewFactory.createMenuView();
-        final MenuController cont = ControllerFactory.create().createMenuController(/*menuConsole,*/ menu); //MenuController
-        final WorldView world = new FXWorldViewImpl();
-        final WorldView worldConsole = ConsoleViewFactory.createWolrdView();
-        final WorldController worldController = ControllerFactory.create().createWorldController(world /*,worldConsole*/);
-        final QuizView quizConsole = ConsoleViewFactory.createQuizView();
-        final QuizController quizController = ControllerFactory.create().createQuizController(quizConsole);
         FXContainer.getContainer().setStage(primaryStage);
-        FXContainer.getContainer().addController(Pair.createPair(ViewType.MENU, cont)); //add a controller 
-        FXContainer.getContainer().addController(Pair.createPair(ViewType.WORLD, worldController));
-        FXContainer.getContainer().addController(Pair.createPair(ViewType.QUIZ, quizController));
-        FXContainer.getContainer().changeDisplay(ViewType.MENU); //show Menu
+        if (DEBUG) {
+            createConsole();
+        } else {
+            createVisual();
+        }
+        FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
     }
- 
-    /**
-     * main.
-     * @param args args.
-     */
-    public static void main(final String[] args) {
-        launch(args);
+    private static void createVisual() {
+        attachOnController(new FXMenuViewImpl(),
+                           new FXWorldViewImpl(),
+                           new QuizViewImpl());
+    }
+    private static void createConsole() {
+        attachOnController(ConsoleViewFactory.createMenuView(),
+                           ConsoleViewFactory.createWolrdView(),
+                           ConsoleViewFactory.createQuizView());
+    }
+    private static void attachOnController(final MenuView menu, final WorldView world, final QuizView quiz) {
+        final Container container = Container.getContainer();
+        final ControllerFactory factory = ControllerFactory.create();
+        container.addController(Pair.createPair(ViewType.MENU, factory.createMenuController(menu)));
+        container.addController(Pair.createPair(ViewType.WORLD, factory.createWorldController(world)));
+        container.addController(Pair.createPair(ViewType.QUIZ, factory.createQuizController(quiz)));
     }
  }
 

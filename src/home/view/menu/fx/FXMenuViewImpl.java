@@ -1,7 +1,6 @@
 package home.view.menu.fx;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import java.util.Set;
@@ -46,27 +45,16 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
         dialog.show(profiles, controller, Buttons.NEW_GAME, Optional.of(this));
     }
 
-    /*
-     * Qui segue la reimplementazione di show message perchè se utilizzassi il metodo di default non saprei come chiamare il metodo
-     * controller.get().exitConfirmed();
-     * Idee? 
-     */
-
-    @Override
-    public void showMessage(final String message, final MessageType messageType) {
-        final Alert alert = new Alert(messageType.getAlertType());
-        alert.initOwner(this.getScene().getWindow());
-        alert.setTitle(messageType.getMessageTitle());
-        alert.setHeaderText(message);
-        final Optional<ButtonType> result = alert.showAndWait();
-        if (messageType.equals(MessageType.EXIT) && result.equals(Optional.of(ButtonType.OK))) {
-            this.controller.get().exitConfirmed();
-        }
-    }
-
     //RICHI GUARDA SE TI PUò FARE COMODO! VIENE CHIAMATA OGNI VOLTA CHE LA VIEW DEVE ESSERE MOSTRATA
     @Override
     public void show() {
         // TODO Auto-generated method stub
+    }
+
+    @Override
+    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) {
+        if (type.equals(MessageType.EXIT) && button.equals(Optional.of(ButtonType.OK))) {
+            this.controller.get().exitConfirmed();
+        }
     }
 }

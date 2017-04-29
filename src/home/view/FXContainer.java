@@ -34,7 +34,7 @@ final class FXContainer implements Container {
     public void setStage(final Stage stage) {
         this.stage = Optional.of(stage);
         if (!this.stage.get().equals(Optional.empty())) {
-            this.stage.get().setFullScreen(true);
+            //this.stage.get().setFullScreen(true);
             this.stage.get().setResizable(false);
             //this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             this.stage.get().setTitle(MainMenuImpl.getTitle());

@@ -9,10 +9,12 @@ import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
+import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 
 import home.view.world.WorldView;
 import javafx.scene.Scene;
+import javafx.scene.control.ButtonType;
 
 
 /**
@@ -73,6 +75,12 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void show() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void onClickMessage(MessageType type, Optional<ButtonType> button) {
         // TODO Auto-generated method stub
         
     }

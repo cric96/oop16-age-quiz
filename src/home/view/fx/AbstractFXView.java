@@ -5,6 +5,7 @@ import java.util.Optional;
 import home.view.MessageType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 
 /**
@@ -32,7 +33,7 @@ public abstract class AbstractFXView implements FXView {
     protected void setScene(final Scene scene) {
         this.scene = Optional.ofNullable(scene);
     }
-
+    //TEMPLATE-METHOD
     /**
      * show a message dialog for the user.
      * @param message to show.
@@ -43,6 +44,14 @@ public abstract class AbstractFXView implements FXView {
         alert.initOwner(this.getScene().getWindow());
         alert.setTitle(messageType.getMessageTitle());
         alert.setHeaderText(message);
-        alert.showAndWait();
+        this.onClickMessage(messageType, alert.showAndWait());
     }
+    /**
+     * what to do when the user click on alert.
+     * @param type
+     *  the type of message
+     * @param button
+     *  the button clicked
+     */
+    protected abstract void onClickMessage(MessageType type, Optional<ButtonType> button);
 }

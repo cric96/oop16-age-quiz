@@ -28,7 +28,7 @@ public class App extends Application {
         final MenuController cont = ControllerFactory.create().createMenuController(/*menu,*/ menu); //MenuController
         final WorldView world = new FXWorldViewImpl();
         final WorldView worldConsole = ConsoleViewFactory.createWolrdView();
-        final WorldController worldController = ControllerFactory.create().createWorldController(/*world ,*/worldConsole);
+        final WorldController worldController = ControllerFactory.create().createWorldController(world /*,worldConsole*/);
         final QuizView quizConsole = ConsoleViewFactory.createQuizView();
         final QuizController quizController = ControllerFactory.create().createQuizController(quizConsole);
         FXContainer.getContainer().setStage(primaryStage);

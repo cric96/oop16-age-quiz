@@ -16,9 +16,6 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
     private List<String> answers;
     private BufferedReader scan;
     private boolean finish;
-    ConsoleQuizViewImpl() {
-    }
-
     @Override
     public void show() {
 

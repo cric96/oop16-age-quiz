@@ -29,7 +29,7 @@ public class MenuButton extends StackPane {
      */
     public MenuButton(final String name, final Color color) {
         final Text text = new Text(name);
-        final int size = 20;
+        final int size = 30;
         text.setTranslateX(FONT);
         text.getFont();
         text.setFont(Utility.getGeneralFont(size));

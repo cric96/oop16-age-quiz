@@ -1,6 +1,9 @@
 package home.view.menu.fx;
 
 import java.util.HashMap;
+import javafx.stage.Modality;
+import javafx.stage.StageStyle;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -63,6 +66,7 @@ public class MenuDialog {
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
         dialog.initOwner(fxMenuViewImpl.get().getScene().getWindow());
+        dialog.initStyle(StageStyle.DECORATED);
 
         if (mode.equals(Buttons.NEW_GAME)) {
             root.getChildren().add(deleteDataMessage); 

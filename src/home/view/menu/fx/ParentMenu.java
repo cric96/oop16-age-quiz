@@ -3,6 +3,7 @@ package home.view.menu.fx;
 import home.controller.MenuController;
 import home.utility.ResourceManager;
 import home.utility.Utility;
+import home.view.Fonts;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
 import javafx.geometry.Rectangle2D;
@@ -37,7 +38,7 @@ public class ParentMenu extends Parent {
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);
         final Text text = new Text(Utility.getTitle());
-        final String font = ResourceManager.load("/fonts/Faith_Collapsing.ttf").toExternalForm();
+        final String font = ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm();
         text.setFont(Font.loadFont(font, TITLE_SIZE));
         menuZero.getChildren().add(text);
         final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);

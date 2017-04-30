@@ -1,5 +1,6 @@
 package home.utility;
 
+import home.view.Fonts;
 import javafx.scene.text.Font;
 
 /**
@@ -29,7 +30,7 @@ public final class Utility {
      * @return the general Font
      */
     public static Font getGeneralFont(final int dimension) {
-        return Font.font("Courier New", dimension);
+        return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), dimension);
     }
 
     /**
@@ -37,7 +38,8 @@ public final class Utility {
      * @return the general Font
      */
     public static Font getGeneralFont() {
-        return Font.font("Courier New");
+        final int defalutSize = 15;
+        return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), defalutSize);
     }
 
     /**

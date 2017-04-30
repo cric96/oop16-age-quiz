@@ -1,11 +1,10 @@
 package home.view.menu.fx;
 
-import java.io.IOException;
 import home.controller.MenuController;
 import home.utility.ResourceManager;
+import home.utility.Utility;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
-import home.view.menu.MainMenuImpl;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.stage.Screen;
@@ -17,17 +16,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-
 /**
  * concrete realization of menu in javafx.
  *
  */
 public class ParentMenu extends Parent {
-    private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+    private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
-    private static final int TITLE_SIZE = 75;
+    private static final int TITLE_SIZE = 90;
     private static final double OPACITY = 0.4;
 
     /**
@@ -38,9 +36,9 @@ public class ParentMenu extends Parent {
         final VBox menuZero = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);
-
-        final Text text = new Text(MainMenuImpl.getTitle());
-        text.setFont(new Font(TITLE_SIZE));
+        final Text text = new Text(Utility.getTitle());
+        final String font = ResourceManager.load("/fonts/Faith_Collapsing.ttf").toExternalForm();
+        text.setFont(Font.loadFont(font, TITLE_SIZE));
         menuZero.getChildren().add(text);
         final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
         btnNewGame.setOnMouseClicked(e -> {
@@ -62,8 +60,8 @@ public class ParentMenu extends Parent {
         fileName = ResourceManager.load(Images.MENU_BACKGROUND.getPath()).toExternalForm();
         final Image img = new Image(fileName);
         final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(primaryScreenBounds.getMaxX());
-        imgView.setFitHeight(primaryScreenBounds.getMaxY());
+        imgView.setFitWidth(primaryScreenBounds.getWidth());
+        imgView.setFitHeight(primaryScreenBounds.getHeight());
         getChildren().add(imgView);
 
         final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());

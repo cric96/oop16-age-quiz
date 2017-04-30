@@ -1,14 +1,13 @@
 package home.view;
+
 import java.util.HashMap;
-
-
 import java.util.Map;
 import java.util.Optional;
-
 import home.controller.Controller;
 import home.utility.Pair;
+import home.utility.Utility;
 import home.view.fx.FXView;
-import home.view.menu.MainMenuImpl;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**
@@ -34,8 +33,8 @@ final class FXContainer implements Container {
         if (!this.stage.get().equals(Optional.empty())) {
             this.stage.get().setFullScreen(true);
             this.stage.get().setResizable(false);
-            //this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-            this.stage.get().setTitle(MainMenuImpl.getTitle());
+            this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            this.stage.get().setTitle(Utility.getTitle());
         }
     }
 

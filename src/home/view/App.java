@@ -1,7 +1,6 @@
 package home.view;
 
 import home.controller.ControllerFactory;
-import home.main.Main;
 import home.utility.Pair;
 import home.view.debug.ConsoleViewFactory;
 import home.view.menu.MenuView;
@@ -17,7 +16,7 @@ import javafx.stage.Stage;
  * what to launch to create the application.
  */
 public class App extends Application {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     @Override
     public void start(final Stage primaryStage) {
         FXContainer.getContainer().setStage(primaryStage);

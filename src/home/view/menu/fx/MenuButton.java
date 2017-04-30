@@ -1,5 +1,6 @@
 package home.view.menu.fx;
 
+import home.utility.Utility;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -7,7 +8,6 @@ import javafx.scene.effect.Glow;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -29,8 +29,10 @@ public class MenuButton extends StackPane {
      */
     public MenuButton(final String name, final Color color) {
         final Text text = new Text(name);
+        final int size = 20;
+        text.setTranslateX(FONT);
         text.getFont();
-        text.setFont(Font.font(FONT));
+        text.setFont(Utility.getGeneralFont(size));
         text.setFill(Color.WHITE);
         final Rectangle bg = new Rectangle(BOX_HEIGHT, BOX_WIDTH);
         bg.setOpacity(BOX_OPACITY);
@@ -41,14 +43,14 @@ public class MenuButton extends StackPane {
 
         setOnMouseEntered(e -> {
             bg.setTranslateX(10);
-            text.setTranslateX(10);
+            text.setTranslateX(FONT + 10);
             bg.setFill(color);
             text.setFill(Color.BLACK);
         });
 
         setOnMouseExited(e -> {
             bg.setTranslateX(0);
-            text.setTranslateX(0);
+            text.setTranslateX(FONT);
             bg.setFill(Color.BLACK);
             text.setFill(Color.WHITE);
         });

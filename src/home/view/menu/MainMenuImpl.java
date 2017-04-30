@@ -10,8 +10,6 @@ import java.util.stream.Collectors;
  */
 public final class MainMenuImpl {
     private static final List<Buttons> BUTTONS_NAME = Arrays.asList(Buttons.values());
-    private static final String MENU_BACKGROUND = "/images/backgroundMenu.jpg";
-    private static final String TITLE = "Age of Quiz";
 
     private MainMenuImpl() { }
  
@@ -21,19 +19,4 @@ public final class MainMenuImpl {
     public static List<String> buttonsNameList() {
         return BUTTONS_NAME.stream().map(a -> a.getText()).collect(Collectors.toList());
     }
-
-    /**
-     * @return the path of background image.
-     */
-    public static String backgroundPath() {
-        return MENU_BACKGROUND;
-    }
-
-    /**
-     * @return the title of window.
-     */
-    public static String getTitle() {
-        return TITLE;
-    }
-
 }

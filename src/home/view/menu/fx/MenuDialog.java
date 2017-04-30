@@ -7,6 +7,7 @@ import java.util.Set;
 import home.controller.MenuController;
 import home.controller.profile.Profile;
 import home.utility.Pair;
+import home.utility.Utility;
 import home.view.menu.Buttons;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 
@@ -47,6 +49,8 @@ public class MenuDialog {
         final Map<ProfileButton, Pair<Profile, Pair<TextField, Text>>> map = new HashMap<>();
         final Text deleteDataMessage = new Text("Warning! all saved data will be deleted.\nContine?");
         deleteDataMessage.setVisible(false);
+        final Font font = Utility.getGeneralFont();
+        deleteDataMessage.setFont(font);
 
         final HBox container = new HBox(boxPadding);
         container.layoutYProperty().set(yLayoutBox);
@@ -56,7 +60,7 @@ public class MenuDialog {
 
         final Alert dialog = new Alert(AlertType.NONE);
         dialog.setTitle(mode.getText());
-        dialog.getButtonTypes().setAll(new ButtonType("Cancel"));
+        dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
         dialog.initOwner(fxMenuViewImpl.get().getScene().getWindow());
 
@@ -73,6 +77,7 @@ public class MenuDialog {
                 name.setVisible(false);
 
                 final Text date = new Text(profile.getSaveDate());
+                date.setFont(font);
                 date.setVisible(false);
 
                 box.getChildren().add(buttonP);

@@ -2,6 +2,7 @@ package home.view.menu.fx;
 
 import home.controller.profile.Profile;
 import home.utility.ResourceManager;
+import home.utility.Utility;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
 import javafx.scene.effect.DropShadow;
@@ -24,6 +25,7 @@ public class ProfileButton extends Button {
      */
     public ProfileButton(final Profile profile, final Buttons mode) {
         super(profile.getName().orElse("Empty slot"));
+        this.setFont(Utility.getGeneralFont());
          String fileName;
         if (profile.isEnabled()) {
             fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();

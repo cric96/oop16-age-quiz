@@ -2,8 +2,6 @@ package home.view.world.fx;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
-
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
@@ -11,7 +9,6 @@ import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
-
 import home.view.world.WorldView;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
@@ -38,6 +35,12 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     }
 
     @Override
+    public void show() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public void updateEra(final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, final ImageInfo kingdom) {
         // TODO Auto-generated method stub
 
@@ -56,33 +59,26 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     }
 
     @Override
-    public void changeStatus(Map<String, Integer> statusScose) {
+    public void changeStatus(final Map<String, Integer> statusScose) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void showBuildingDialog(BuildingType building, Dialog dialog) {
+    public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void showKingdomDialog(Dialog dialog) {
+    public void showKingdomDialog(final Dialog dialog) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void show() {
+    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) {
         // TODO Auto-generated method stub
-        
-    }
 
-    @Override
-    protected void onClickMessage(MessageType type, Optional<ButtonType> button) {
-        // TODO Auto-generated method stub
-        
     }
-
 }

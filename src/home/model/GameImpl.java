@@ -57,7 +57,7 @@ final class GameImpl implements Game {
 
     @Override
     public void newGame() {
-        final Kingdom current = new KingdomImpl(Status.createStatuses(), Level.Age.createAgeLevel());
+        final Kingdom current = new KingdomImpl(Status.createStatuses(), Level.Age.createAgeLevel(), AgeUpStrategy.createSimple());
         BuildingFactory.get().createAllBuilding().forEach(x -> {
             Component.compositeAttach(current, x);
         });

@@ -41,7 +41,7 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
     @Override
     public boolean canLevelUp() {
         final int expKingdom = this.getParent().orElseThrow(() -> new IllegalStateException()).getExperienceAmount();
-        return this.level.getExperienceAmount() < expKingdom && this.level.isUpgradable();
+        return this.level.getExperienceAmount() <= expKingdom && this.level.isUpgradable();
     }
     @Override
     public void levelUp() {

@@ -10,7 +10,7 @@ final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     }
     @Override
     public boolean isUpgradable() {
-        return (this.getCurrentLevel()) < AgeEnum.values().length ;
+        return (this.getCurrentLevel()) < AgeEnum.values().length;
     }
 
     @Override

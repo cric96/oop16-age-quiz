@@ -1,5 +1,7 @@
 package home.view;
 
+import java.io.IOException;
+
 import home.controller.ControllerFactory;
 import home.utility.Pair;
 import home.view.debug.ConsoleViewFactory;
@@ -23,12 +25,17 @@ public class App extends Application {
         if (DEBUG) {
             createConsole();
         } else {
-            createVisual();
+            try {
+                createVisual();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
     }
-    private static void createVisual() {
+    private static void createVisual() throws IOException {
         attachOnController(new FXMenuViewImpl(),
                            new FXWorldViewImpl(),
                            new QuizViewImpl());

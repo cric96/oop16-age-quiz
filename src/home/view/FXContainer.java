@@ -61,6 +61,7 @@ final class FXContainer implements Container {
         changeController.getViews().forEach(e -> {
             if (e instanceof FXView) {
                 this.stage.get().setScene(((FXView) e).getScene());
+                
             }
         });
     }

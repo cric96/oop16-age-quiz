@@ -78,7 +78,7 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
             this.time = time;
         }
         public void run() {
-            while (this.time > 0) {
+            while (this.time >= 0) {
                 QuizControllerImpl.this.getInternalView().forEach(x -> x.showTime(time));
                 this.time--;
                 try {

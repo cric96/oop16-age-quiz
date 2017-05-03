@@ -169,7 +169,6 @@ public class GameTest {
      */
     @Test
     public void testKingdomComponent() {
-        //FINISCI QUA CHE HAI QUASI FATTO CRETINO!
         Game.getGame().newGame();
         final Kingdom king = Game.getGame().getCurrentKingdom();
         king.addExperience(EXPERIENCE);
@@ -177,6 +176,7 @@ public class GameTest {
         final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
         try {
             //try to level up a reign 
+            System.out.println(site.getLevel().getExperienceAmount());
             assertTrue(site.canLevelUp());
             site.levelUp();
             assertFalse(site.getLevel().isUpgradable());

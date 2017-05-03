@@ -39,7 +39,7 @@ public final class BuildingFactory {
         return Arrays.stream(BuildingType.values())
                      .map(x -> this.createSimpleBuilding(x))
                      .peek(x -> {
-                         //creo un'immagine con il nome dell'edificio
+                         //create an image with the name of building
                          final ImageComponent image = ImageComponent.createComponent(x.getName().name());
                          Component.compositeAttach(x, image);
                      })

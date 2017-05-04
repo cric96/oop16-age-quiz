@@ -3,11 +3,11 @@ package home.model.building;
 import home.model.composite.Event;
 import home.model.level.AgeEnum;
 import home.model.level.Level;
-final class CompositeBuildingiImpl extends AbstractBuilding implements BuildingComposite {
+final class SimpleCompositeBuildingiImpl extends AbstractBuilding implements BuildingComposite {
     private static final long serialVersionUID = -8506796377291602901L;
     private static final AgeEnum INITIAL_AGE = AgeEnum.values()[0];
     private boolean enable;
-    CompositeBuildingiImpl(final Level.Building level, final BuildingType type) {
+    SimpleCompositeBuildingiImpl(final Level.Building level, final BuildingType type) {
         super(level, type);
         this.enable = type.getAgeEnable() == INITIAL_AGE;
     }

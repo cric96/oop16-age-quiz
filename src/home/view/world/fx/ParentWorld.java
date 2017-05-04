@@ -8,7 +8,6 @@ import home.view.fx.Images;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -22,13 +21,13 @@ import javafx.scene.shape.Rectangle;
 public class ParentWorld extends Parent {
     private FXMLControllerWorld c;
     private static final double OPACITY = 0.6;
-
+    
     /**
      * @throws IOException if the background load gone wrong.
      * @param controller 
      * @param primaryScene 
      */
-    public ParentWorld(final WorldController controller, final Stage primaryScene) {
+    public ParentWorld(final WorldController controller) {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("base.fxml"));
         final VBox pane = new VBox();
         pane.setPrefSize(Utility.getScreenWidth(), Utility.getScreenHeight());

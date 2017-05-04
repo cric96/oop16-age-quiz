@@ -13,7 +13,6 @@ import javafx.stage.Stage;
  */
 public abstract class AbstractFXView implements FXView {
     private Optional<Parent> scene;
-    private Stage principalStage;
 
     /**
      * create a abstractFxView with a Optiona.empty scene.
@@ -35,22 +34,6 @@ public abstract class AbstractFXView implements FXView {
         this.scene = Optional.ofNullable(parent);
     }
 
-    /**
-     * used in application to set a owner for dialog.
-     * @return the principalStage
-     */
-    protected Stage getStage() {
-        return this.principalStage;
-    }
-
-    /**
-     * used in class who extends {@link AbstractFXView} .
-     * @param stage stage
-     */
-    protected void setStage(final Stage stage) {
-        this.principalStage = stage;
-    }
-
     //TEMPLATE-METHOD
     /**
      * show a message dialog for the user.
@@ -59,7 +42,7 @@ public abstract class AbstractFXView implements FXView {
      */
     public void showMessage(final String message, final MessageType messageType) {
         final Alert alert = new Alert(messageType.getAlertType());
-        alert.initOwner(this.getStage());
+        alert.initOwner(this.getParent().getScene().getWindow());
         alert.setTitle(messageType.getMessageTitle());
         alert.setHeaderText(message);
         this.onClickMessage(messageType, alert.showAndWait());

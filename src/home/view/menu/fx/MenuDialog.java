@@ -2,6 +2,7 @@ package home.view.menu.fx;
 
 import java.util.HashMap;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.util.Map;
 import java.util.Optional;
@@ -31,13 +32,13 @@ public class MenuDialog {
      * @param profiles to show.
      * @param controller the controller of menu. to call method.
      * @param mode modality: LOAD_GAME, NEW_GAME
-     * @param principalStage owner of this dialog.
+     * @param window owner of this dialog.
      * @throws IllegalArgumentException if fxMenuVewImpl or controller are Optional.empty()
      */
     public void show(final Set<Profile> profiles, 
                      final Optional<MenuController> controller,
                      final Buttons mode, 
-                     final Stage principalStage) {
+                     final Window window) {
 
         if (!controller.isPresent()) {
             throw new IllegalArgumentException();
@@ -63,7 +64,7 @@ public class MenuDialog {
         dialog.setTitle(mode.getText());
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
-        dialog.initOwner(principalStage);
+        dialog.initOwner(window);
         dialog.initStyle(StageStyle.DECORATED);
 
         if (mode.equals(Buttons.NEW_GAME)) {

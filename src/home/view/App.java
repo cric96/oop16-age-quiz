@@ -37,8 +37,8 @@ public class App extends Application {
     }
 
     private static void createVisual() throws IOException {
-        attachOnController(new FXMenuViewImpl(FXContainer.getContainer().getPrincipalStage()),
-                           new FXWorldViewImpl(FXContainer.getContainer().getPrincipalStage()),
+        attachOnController(new FXMenuViewImpl(),
+                           new FXWorldViewImpl(),
                            new QuizViewImpl());
     }
     private static void createConsole() {

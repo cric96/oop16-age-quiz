@@ -19,9 +19,8 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
      * create new MenuImpl.
      * @param principalStage stage 
      */
-    public FXMenuViewImpl(final Stage principalStage) {
+    public FXMenuViewImpl() {
         super();
-        this.setStage(principalStage);
         this.controller = Optional.empty();
     }
 
@@ -35,13 +34,13 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     @Override
     public void showSavedGames(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
-        dialog.show(profiles, controller, Buttons.LOAD_GAME, this.getStage());
+        dialog.show(profiles, controller, Buttons.LOAD_GAME, this.getParent().getScene().getWindow());
     }
 
     @Override
     public void showNewGame(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
-        dialog.show(profiles, controller, Buttons.NEW_GAME, this.getStage());
+        dialog.show(profiles, controller, Buttons.NEW_GAME, this.getParent().getScene().getWindow());
     }
 
     //RICHI GUARDA SE TI PUò FARE COMODO! VIENE CHIAMATA OGNI VOLTA CHE LA VIEW DEVE ESSERE MOSTRATA

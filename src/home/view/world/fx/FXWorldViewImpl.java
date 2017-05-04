@@ -25,7 +25,6 @@ import javafx.scene.layout.GridPane;
  */
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
-    private Stage principalStage;
     private FXMLControllerWorld fxmlController;
     private int i = 0;
 
@@ -33,16 +32,15 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
      * create new FXWorldView.
      * @param principalStage 
      */
-    public FXWorldViewImpl(final Stage principalStage) {
+    public FXWorldViewImpl() {
         super();
-        this.principalStage = principalStage;
         this.controller = Optional.empty();
     }
 
     @Override
     public void attachOn(final WorldController controller) {
         this.controller = Optional.of(controller);
-        final ParentWorld parent = new ParentWorld(controller, this.principalStage);
+        final ParentWorld parent = new ParentWorld(controller);
         this.setParent(parent);
         fxmlController = parent.getFxmlControllerWorld();
     }

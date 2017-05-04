@@ -24,6 +24,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 //package-protected
 public class QuizViewImpl extends AbstractFXView implements QuizView {
     private static final String FXMLFile = "FXMLquizView.fxml";
@@ -34,7 +35,7 @@ public class QuizViewImpl extends AbstractFXView implements QuizView {
         loader.setLocation(QuizViewImpl.class.getResource(FXMLFile));
         final Parent parent = loader.load();
         this.fxController =  loader.getController();
-        this.setScene(new Scene(parent));
+        this.setParent(parent);
     }
     @Override
     public void showQuestion(final String question) {
@@ -62,7 +63,7 @@ public class QuizViewImpl extends AbstractFXView implements QuizView {
     public void showFinalScore(final int exp, final Map<String, Integer> score) {
         Platform.runLater(() -> {
             final Alert alert = new Alert(AlertType.INFORMATION);
-            alert.initOwner(this.getScene().getWindow());
+            alert.initOwner(this.getParent().getScene().getWindow());
             alert.setTitle("");
             String results = "";
             for (final Map.Entry<String, Integer> value : score.entrySet()) {

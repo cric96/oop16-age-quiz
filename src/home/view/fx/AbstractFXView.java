@@ -3,16 +3,16 @@ package home.view.fx;
 import java.util.Optional;
 
 import home.view.MessageType;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
+import javafx.stage.Stage;
 
 /**
  * a skeleton of a FXView.
  */
 public abstract class AbstractFXView implements FXView {
-    private Optional<Scene> scene;
+    private Optional<Parent> scene;
 
     /**
      * create a abstractFxView with a Optiona.empty scene.
@@ -22,17 +22,18 @@ public abstract class AbstractFXView implements FXView {
     }
 
     @Override
-    public Scene getScene() {
+    public Parent getParent() {
         return scene.get();
     }
 
     /**
      * to set the scene of this view.
-     * @param scene fxscene.
+     * @param parent fxparent.
      */
-    protected void setScene(final Scene scene) {
-        this.scene = Optional.ofNullable(scene);
+    protected void setParent(final Parent parent) {
+        this.scene = Optional.ofNullable(parent);
     }
+
     //TEMPLATE-METHOD
     /**
      * show a message dialog for the user.
@@ -41,7 +42,7 @@ public abstract class AbstractFXView implements FXView {
      */
     public void showMessage(final String message, final MessageType messageType) {
         final Alert alert = new Alert(messageType.getAlertType());
-        alert.initOwner(this.getScene().getWindow());
+        alert.initOwner(this.getParent().getScene().getWindow());
         alert.setTitle(messageType.getMessageTitle());
         alert.setHeaderText(message);
         this.onClickMessage(messageType, alert.showAndWait());

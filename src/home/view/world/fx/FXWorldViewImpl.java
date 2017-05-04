@@ -1,7 +1,11 @@
 package home.view.world.fx;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.swing.plaf.ProgressBarUI;
+
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
@@ -10,18 +14,23 @@ import home.utility.Pair;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
-
+import javafx.stage.Stage;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.GridPane;
 
 /**
  * Implementation of World view in javafx.
  */
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
+    private FXMLControllerWorld fxmlController;
+    private int i = 0;
 
     /**
      * create new FXWorldView.
+     * @param principalStage 
      */
     public FXWorldViewImpl() {
         super();
@@ -31,7 +40,9 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     @Override
     public void attachOn(final WorldController controller) {
         this.controller = Optional.of(controller);
-        this.setScene(new Scene(new ParentWorld(controller)));
+        final ParentWorld parent = new ParentWorld(controller);
+        this.setParent(parent);
+        fxmlController = parent.getFxmlControllerWorld();
     }
 
     @Override
@@ -60,8 +71,8 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void changeStatus(final Map<String, Integer> statusScose) {
-        // TODO Auto-generated method stub
-
+        
+        this.fxmlController.setStatsPane(statusScose);
     }
 
     @Override

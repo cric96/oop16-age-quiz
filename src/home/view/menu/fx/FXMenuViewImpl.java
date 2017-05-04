@@ -1,6 +1,5 @@
 package home.view.menu.fx;
 
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import java.util.Set;
@@ -10,15 +9,15 @@ import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.menu.Buttons;
 import home.view.menu.MenuView;
-
+import javafx.stage.Stage;
 /**
  * Implementation of Menu view in javafx.
  */
 public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     private Optional<MenuController> controller;
-
     /**
      * create new MenuImpl.
+     * @param principalStage stage 
      */
     public FXMenuViewImpl() {
         super();
@@ -28,21 +27,20 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     @Override
     public void attachOn(final MenuController controller) {
         this.controller = Optional.of(controller);
-        final ParentMenu pm = new ParentMenu(controller);
-        final Scene scene = new Scene(pm);
-        this.setScene(scene);
+        this.setParent(new ParentMenu(controller));
     }
+
 
     @Override
     public void showSavedGames(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
-        dialog.show(profiles, controller, Buttons.LOAD_GAME, Optional.of(this));
+        dialog.show(profiles, controller, Buttons.LOAD_GAME, this.getParent().getScene().getWindow());
     }
 
     @Override
     public void showNewGame(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
-        dialog.show(profiles, controller, Buttons.NEW_GAME, Optional.of(this));
+        dialog.show(profiles, controller, Buttons.NEW_GAME, this.getParent().getScene().getWindow());
     }
 
     //RICHI GUARDA SE TI PUò FARE COMODO! VIENE CHIAMATA OGNI VOLTA CHE LA VIEW DEVE ESSERE MOSTRATA

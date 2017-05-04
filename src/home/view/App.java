@@ -35,6 +35,7 @@ public class App extends Application {
         FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
     }
+
     private static void createVisual() throws IOException {
         attachOnController(new FXMenuViewImpl(),
                            new FXWorldViewImpl(),

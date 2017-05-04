@@ -20,14 +20,16 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     private static final long serialVersionUID = 1L;
     private final Set<Status> statuses; //the status of this kingdom
     private final Level.Age age;
+    private final AgeUpStrategy strategy;
     private int experience;
     //package protected
-    KingdomImpl(final Set<Status> statuses, final Level.Age age) {
-        if (Utility.checkNullOb(age, statuses)) {
+    KingdomImpl(final Set<Status> statuses, final Level.Age age, final AgeUpStrategy strategy) {
+        if (Utility.checkNullOb(age, statuses, strategy)) {
             throw new IllegalArgumentException();
         }
         this.statuses = statuses;
         this.age = age;
+        this.strategy = strategy;
     }
     @Override
     public String getAgeName() {
@@ -78,7 +80,8 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     @Override
     public void nextAge() {
         final int currentAmount = this.age.getExperienceAmount();
-        if (this.age.nextLevel(this.experience)) {
+        if (this.canUpgradeAge()) {
+            this.age.nextLevel(this.experience);
             this.decExperiene(currentAmount);
             this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeEnum.valueOf(this.age.getLevelName()))));
         } else {
@@ -87,7 +90,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     }
     @Override
     public boolean canUpgradeAge() {
-        return this.experience >= this.age.getExperienceAmount() && this.age.isUpgradable();
+        return this.experience >= this.age.getExperienceAmount() && this.age.isUpgradable() && this.strategy.getAsBoolean();
     }
     @Override
     public String toString() {

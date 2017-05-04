@@ -71,6 +71,7 @@ final class FXContainer implements Container {
                 } else {
                     this.stage.get().getScene().setRoot(((FXView) e).getParent());
                 }
+                this.stage.get().getScene().setRoot(((FXView) e).getParent()); 
             }
         });
     }

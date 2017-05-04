@@ -1,7 +1,6 @@
 package home.view.menu.fx;
 
 import java.util.HashMap;
-import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 
 import java.util.Map;

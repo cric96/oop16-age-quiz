@@ -29,8 +29,8 @@ public class App extends Application {
         primaryStage.show();
     }
     private static void createVisual() {
-        attachOnController(new FXMenuViewImpl(),
-                           new FXWorldViewImpl(),
+        attachOnController(new FXMenuViewImpl(FXContainer.getContainer().getPrincipalStage()),
+                           new FXWorldViewImpl(FXContainer.getContainer().getPrincipalStage()),
                            new QuizViewImpl());
     }
     private static void createConsole() {

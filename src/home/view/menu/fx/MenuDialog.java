@@ -20,8 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
-
+import javafx.stage.Stage;
 /**
  * a class to create a show/load dialog in javafx.
  */
@@ -33,15 +32,15 @@ public class MenuDialog {
      * @param profiles to show.
      * @param controller the controller of menu. to call method.
      * @param mode modality: LOAD_GAME, NEW_GAME
-     * @param fxMenuViewImpl owner of this dialog.
+     * @param principalStage owner of this dialog.
      * @throws IllegalArgumentException if fxMenuVewImpl or controller are Optional.empty()
      */
     public void show(final Set<Profile> profiles, 
                      final Optional<MenuController> controller,
                      final Buttons mode, 
-                     final Optional<FXMenuViewImpl> fxMenuViewImpl) {
+                     final Stage principalStage) {
 
-        if (!controller.isPresent() || !fxMenuViewImpl.isPresent()) {
+        if (!controller.isPresent()) {
             throw new IllegalArgumentException();
         }
         final int boxPadding = 10;
@@ -65,7 +64,7 @@ public class MenuDialog {
         dialog.setTitle(mode.getText());
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
-        dialog.initOwner(fxMenuViewImpl.get().getScene().getWindow());
+        dialog.initOwner(principalStage);
         dialog.initStyle(StageStyle.DECORATED);
 
         if (mode.equals(Buttons.NEW_GAME)) {

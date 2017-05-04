@@ -28,8 +28,5 @@ public final class Main {
      */
     public static void main(final String[] args) {
         Application.launch(App.class);
-
-        Container.getContainer().changeDisplay(ViewType.MENU);
     }
-    
 }

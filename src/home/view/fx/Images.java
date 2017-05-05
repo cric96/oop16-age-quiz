@@ -37,7 +37,12 @@ public enum Images {
     /**
      * world background image.
      */
-    WORLD_BACKGROUND("/images/worldBackground.jpg");
+    WORLD_BACKGROUND("/images/worldBackground.jpg"),
+
+    /**
+     * X exit.
+     */
+    X_CROSS("/images/cros.pngs");
 
     private String path;
 

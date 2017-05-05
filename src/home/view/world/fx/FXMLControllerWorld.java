@@ -1,7 +1,13 @@
 package home.view.world.fx;
 
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.awt.event.MouseAdapter;
 import java.util.Map;
 import home.controller.WorldController;
+import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
@@ -12,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -32,6 +39,7 @@ public class FXMLControllerWorld {
     private static final int STATS_BOX = 40;
     private static final int DROP_SHADOW = 10;
     private static final int TITLE_FONT = 20;
+    private Stage stageBuilding = new Stage();
     private ImageView statsView;
 
     @FXML
@@ -69,7 +77,10 @@ public class FXMLControllerWorld {
         kingView.setFitWidth(buildingSize);
         kingButton.setAlignment(Pos.CENTER);
         kingButton.setGraphic(kingView);
-        kingButton.setOnMouseEntered(e -> {
+//        kingButton.setOnMouseExited(e -> {
+//            this.stageBuilding.close();
+//        });
+        kingButton.setOnMouseClicked(e -> {
             this.controller.pressOnKingdom();
         });
         kingButton.setBackground(null);
@@ -81,7 +92,7 @@ public class FXMLControllerWorld {
             final Image buildImg = new Image(
                     ResourceManager.load("/images/" + building.getValue().getX().getPath().getName()).toExternalForm());
             final ImageView buildView = new ImageView(buildImg);
-            buildButton.setOnMouseEntered(e -> {
+            buildButton.setOnMouseClicked(e -> {
                 this.controller.pressOnBuilding(building.getKey());
             });
             System.out.println(building.getKey().toString());
@@ -89,6 +100,9 @@ public class FXMLControllerWorld {
             buildView.setFitWidth(buildingSize);
             buildButton.setAlignment(Pos.CENTER);
             buildButton.setGraphic(buildView);
+//            buildButton.setOnMouseExited(e -> {
+//                this.stageBuilding.close();
+//            });
             buildButton.setBackground(null);
             buildButton.setDisable(building.getValue().getY());
             this.buildingPane.getColumnConstraints().get(actualCol).setHalignment(HPos.CENTER);
@@ -170,6 +184,7 @@ public class FXMLControllerWorld {
         this.statsImg.setBackground(null);
         this.statsImg.setGraphic(statsView);
         this.statsPane.setVgap(1);
+        stageBuilding = new Stage();
     }
 
     /**
@@ -221,4 +236,30 @@ public class FXMLControllerWorld {
         this.statsView.setEffect(dropS);
     }
 
+    /**
+     * 
+     * @param building 
+     * @param dialog 
+     */
+    public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
+        stageBuilding = new Stage();
+        this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
+        stageBuilding.setResizable(false);
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, building, dialog, stageBuilding)));
+        stageBuilding.showAndWait();
+    }
+
+    /**
+     * 
+     * @param dialog 
+     */
+    public void showBuildingDialog(final Dialog dialog) {
+        stageBuilding = new Stage();
+        stageBuilding.setOpacity(0.9);
+        this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
+        stageBuilding.setResizable(false);
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, dialog, stageBuilding)));
+        stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
+        stageBuilding.showAndWait();
+    }
 }

@@ -46,7 +46,7 @@ public final class Utility {
      * the font on title.
      * @param size 
      * @return font 
-     */    
+     */
     public static Font titleFont(final int size) {
         return Font.loadFont(ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm(), size);
     }

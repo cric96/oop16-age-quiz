@@ -10,7 +10,9 @@ import home.utility.Pair;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
+import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
 
 
 /**
@@ -19,6 +21,7 @@ import javafx.scene.control.ButtonType;
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
     private FXMLControllerWorld fxmlController;
+    private Stage dialogStage = new Stage();
 
     /**
      * create new FXWorldView.
@@ -64,12 +67,12 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-       System.out.println("building Over");
+        this.fxmlController.showBuildingDialog(building, dialog);
     }
 
     @Override
     public void showKingdomDialog(final Dialog dialog) {
-        System.out.println("kingdom Over");
+       this.fxmlController.showBuildingDialog(dialog);
     }
 
     @Override

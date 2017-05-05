@@ -32,8 +32,8 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
         }
     }
     @Override
-    public File getPath() {
-        return new File(RES_SEPARATOR + FOLDER + RES_SEPARATOR + this.name + this.currentImage + EXTENSION);
+    public String getPath() {
+        return new String(RES_SEPARATOR + FOLDER + RES_SEPARATOR + this.name + (this.currentImage == 0 ? "" : this.currentImage) + EXTENSION);
     }
     @Override
     public String getExtension() {

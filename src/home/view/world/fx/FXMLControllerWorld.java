@@ -63,7 +63,7 @@ public class FXMLControllerWorld {
         int actualCol = 0;
 
         final Button kingButton = new Button();
-        final Image img = new Image(ResourceManager.load("/images/" + kingdom.getPath().getName()).toExternalForm());
+        final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
         final ImageView kingView = new ImageView(img);
         kingView.setFitHeight(buildingSize);
         kingView.setFitWidth(buildingSize);
@@ -79,7 +79,7 @@ public class FXMLControllerWorld {
         for (final Map.Entry<BuildingType, Pair<ImageInfo, Boolean>> building : buildings.entrySet()) {
             final Button buildButton = new Button();
             final Image buildImg = new Image(
-                    ResourceManager.load("/images/" + building.getValue().getX().getPath().getName()).toExternalForm());
+                    ResourceManager.load(building.getValue().getX().getPath()).toExternalForm());
             final ImageView buildView = new ImageView(buildImg);
             buildButton.setOnMouseEntered(e -> {
                 this.controller.pressOnBuilding(building.getKey());
@@ -90,7 +90,7 @@ public class FXMLControllerWorld {
             buildButton.setAlignment(Pos.CENTER);
             buildButton.setGraphic(buildView);
             buildButton.setBackground(null);
-            buildButton.setDisable(building.getValue().getY());
+            buildButton.setDisable(!building.getValue().getY());
             this.buildingPane.getColumnConstraints().get(actualCol).setHalignment(HPos.CENTER);
             this.buildingPane.add(buildButton, actualCol, actualRow);
             if (actualCol == maxCol) {

@@ -64,12 +64,12 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-       System.out.println("building Over");
+       System.out.println(dialog);
     }
 
     @Override
     public void showKingdomDialog(final Dialog dialog) {
-        System.out.println("kingdom Over");
+        System.out.println(dialog);
     }
 
     @Override

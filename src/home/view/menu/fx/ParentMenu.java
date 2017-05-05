@@ -3,6 +3,7 @@ package home.view.menu.fx;
 import home.controller.MenuController;
 import home.utility.ResourceManager;
 import home.utility.Utility;
+import home.utility.UtilityScreen;
 import home.view.Fonts;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
@@ -57,10 +58,10 @@ public class ParentMenu extends Parent {
         fileName = ResourceManager.load(Images.MENU_BACKGROUND.getPath()).toExternalForm();
         final Image img = new Image(fileName);
         final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(Utility.getScreenWidth());
-        imgView.setFitHeight(Utility.getScreenHeight());
+        imgView.setFitWidth(UtilityScreen.getScreenWidth());
+        imgView.setFitHeight(UtilityScreen.getScreenHeight());
         getChildren().add(imgView);
-        final Rectangle bg = new Rectangle(Utility.getScreenWidth(), Utility.getScreenHeight());
+        final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 

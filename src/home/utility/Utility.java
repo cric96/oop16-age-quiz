@@ -2,14 +2,11 @@ package home.utility;
 
 import home.view.Fonts;
 import javafx.scene.text.Font;
-import javafx.stage.Screen;
 
 /**
  * some method that can be useful.
  */
 public final class Utility {
-    private static final double SCREEN_WIDTH = Screen.getPrimary().getBounds().getWidth();
-    private static final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
 
     private Utility() { }
     /**
@@ -46,7 +43,12 @@ public final class Utility {
         return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), defalutSize);
     }
 
-    public static Font titleFont(int size){
+    /**
+     * the font on title.
+     * @param size 
+     * @return font 
+     */
+    public static Font titleFont(final int size) {
         return Font.loadFont(ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm(), size);
     }
 
@@ -57,19 +59,5 @@ public final class Utility {
     public static String getTitle() {
         return "Age of Quiz";
 
-    }
-
-    /**
-     * @return the screenWidth
-     */
-    public static double getScreenWidth() {
-        return SCREEN_WIDTH;
-    }
-
-    /**
-     * @return the screenHeight
-     */
-    public static double getScreenHeight() {
-        return SCREEN_HEIGHT;
     }
 }

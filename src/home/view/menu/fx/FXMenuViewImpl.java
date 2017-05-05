@@ -9,7 +9,7 @@ import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.menu.Buttons;
 import home.view.menu.MenuView;
-import javafx.stage.Stage;
+
 /**
  * Implementation of Menu view in javafx.
  */
@@ -17,7 +17,6 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
     private Optional<MenuController> controller;
     /**
      * create new MenuImpl.
-     * @param principalStage stage 
      */
     public FXMenuViewImpl() {
         super();

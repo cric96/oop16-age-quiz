@@ -1,12 +1,16 @@
 package home.view.world.fx;
 
 import java.util.Map;
-
 import home.controller.WorldController;
+import home.model.building.BuildingType;
+import home.model.image.ImageInfo;
+import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +22,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-
+/**
+ * controller for base.fxml file.
+ */
 public class FXMLControllerWorld {
     private WorldController controller;
     private static final int BACK_WIDTH = 40;
@@ -29,6 +35,10 @@ public class FXMLControllerWorld {
     private ImageView statsView;
 
     @FXML
+    private Label experienceLabel;
+    @FXML
+    private Label eraLabel;
+    @FXML
     private Button backMenuButton;
     @FXML
     private Text titleText;
@@ -38,22 +48,97 @@ public class FXMLControllerWorld {
     private GridPane statsPane;
     @FXML
     private Label profileName;
+    @FXML
+    private GridPane buildingPane;
 
     /**
-     * @param profileName the profileName to set
+     * @param buildings 
+     * @param kingdom 
+     */
+    public void setBuildingPane(final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, final ImageInfo kingdom) {
+        int actualRow = 0;
+        final int maxCol = 2;
+        int maxRow = 1;
+        final int buildingSize = 160;
+        int actualCol = 0;
+
+        final Button kingButton = new Button();
+        final Image img = new Image(ResourceManager.load("/images/" + kingdom.getPath().getName()).toExternalForm());
+        final ImageView kingView = new ImageView(img);
+        kingView.setFitHeight(buildingSize);
+        kingView.setFitWidth(buildingSize);
+        kingButton.setAlignment(Pos.CENTER);
+        kingButton.setGraphic(kingView);
+        kingButton.setOnMouseEntered(e -> {
+            this.controller.pressOnKingdom();
+        });
+        kingButton.setBackground(null);
+        this.buildingPane.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
+        this.buildingPane.add(kingButton, actualCol, actualRow);
+        actualCol++;
+        for (final Map.Entry<BuildingType, Pair<ImageInfo, Boolean>> building : buildings.entrySet()) {
+            final Button buildButton = new Button();
+            final Image buildImg = new Image(
+                    ResourceManager.load("/images/" + building.getValue().getX().getPath().getName()).toExternalForm());
+            final ImageView buildView = new ImageView(buildImg);
+            buildButton.setOnMouseEntered(e -> {
+                this.controller.pressOnBuilding(building.getKey());
+            });
+            System.out.println(building.getKey().toString());
+            buildView.setFitHeight(buildingSize);
+            buildView.setFitWidth(buildingSize);
+            buildButton.setAlignment(Pos.CENTER);
+            buildButton.setGraphic(buildView);
+            buildButton.setBackground(null);
+
+            buildButton.setDisable(building.getValue().getY());
+            this.buildingPane.getColumnConstraints().get(actualCol).setHalignment(HPos.CENTER);
+            this.buildingPane.add(buildButton, actualCol, actualRow);
+            if (actualCol == maxCol) {
+                if (maxRow == actualRow) {
+                    this.buildingPane.addRow(++maxRow);
+                }
+                actualCol = 0;
+                actualRow++;
+            } else {
+                actualCol++;
+            }
+        }
+    }
+
+    /**
+     * @param profileName
+     *            the profileName to set
      */
     public void setProfileName(final String profileName) {
         this.profileName.setText(profileName);
     }
 
     /**
-     * @param statusScose Map of status
+     * @param experienceLabel
+     *            the experienceLabel to set
+     */
+    public void setExperienceLabel(final int experienceLabel) {
+        this.experienceLabel.setText(String.valueOf(experienceLabel));
+    }
+
+    /**
+     * @param eraLabel
+     *            the eraLabel to set
+     */
+    public void setEraLabel(final String eraLabel) {
+        this.eraLabel.setText(eraLabel);
+    }
+
+    /**
+     * @param statusScose
+     *            Map of status
      */
     public void setStatsPane(final Map<String, Integer> statusScose) {
         final int maxValue = 100;
         int actualRow = 0;
         final int labelCol = 0;
-        final int barCol = 1; 
+        final int barCol = 1;
         final int valCol = 2;
 
         this.statsPane.getChildren().clear();
@@ -61,11 +146,9 @@ public class FXMLControllerWorld {
             this.statsPane.add(new Label(status.getKey()), labelCol, actualRow);
             this.statsPane.add(new Label(status.getValue() + "/" + maxValue), valCol, actualRow);
             final Number f = (status.getValue() / Double.valueOf(maxValue));
-            final ProgressBar bar = new ProgressBar(f.doubleValue());
-            this.statsPane.add(bar, barCol, actualRow);
+            this.statsPane.add(new ProgressBar(f.doubleValue()), barCol, actualRow);
             actualRow++;
         }
-        this.statsPane.autosize();
     }
 
     @FXML
@@ -79,7 +162,6 @@ public class FXMLControllerWorld {
         profileImage.setFitHeight(BACK_HEIGHT);
         this.backMenuButton.setBackground(null);
         this.backMenuButton.setGraphic(profileImage);
-
         fileName = ResourceManager.load(Images.STATS_ICON.getPath()).toExternalForm();
         final Image imgStats = new Image(fileName);
         statsView = new ImageView(imgStats);
@@ -88,6 +170,7 @@ public class FXMLControllerWorld {
         statsView.setFitHeight(STATS_BOX);
         this.statsImg.setBackground(null);
         this.statsImg.setGraphic(statsView);
+        this.statsPane.setVgap(1);
     }
 
     /**
@@ -107,7 +190,7 @@ public class FXMLControllerWorld {
 
     /**
      * 
-     * @param controller 
+     * @param controller
      */
     public void setController(final WorldController controller) {
         this.controller = controller;

@@ -6,7 +6,6 @@ import home.view.MessageType;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
 
 /**
  * a skeleton of a FXView.

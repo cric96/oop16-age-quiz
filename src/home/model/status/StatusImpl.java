@@ -1,5 +1,5 @@
 package home.model.status;
-
+//package-protected
 final class StatusImpl implements Status {
 
     private static final long serialVersionUID = 1L;

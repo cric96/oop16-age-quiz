@@ -6,6 +6,7 @@ import java.util.function.BooleanSupplier;
 
 import home.model.building.BuildingComposite;
 /* a strategy to define if the kingdom can age up or not */
+//package-protected
 interface AgeUpStrategy extends BooleanSupplier {
     /*create a simple strategy, return always true */
     static AgeUpStrategy createSimple() {

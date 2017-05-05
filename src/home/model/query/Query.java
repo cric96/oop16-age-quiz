@@ -2,7 +2,7 @@ package home.model.query;
 
 import java.util.Set;
 /**
- * Query represents the core of this videogame, it contains the questions and their own answers.
+ * Query represents the core of this video game, it contains the questions and their own answers.
  *
  */
 public interface Query {

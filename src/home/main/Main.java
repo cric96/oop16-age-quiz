@@ -1,8 +1,6 @@
 package home.main;
 
 import home.view.App;
-import home.view.Container;
-import home.view.ViewType;
 import javafx.application.Application;
 
 /**

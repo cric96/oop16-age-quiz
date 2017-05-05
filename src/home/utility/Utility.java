@@ -7,7 +7,6 @@ import javafx.scene.text.Font;
  * some method that can be useful.
  */
 public final class Utility {
-
     private Utility() { }
     /**
      * check if some object in input is null.
@@ -47,7 +46,7 @@ public final class Utility {
      * the font on title.
      * @param size 
      * @return font 
-     */
+     */    
     public static Font titleFont(final int size) {
         return Font.loadFont(ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm(), size);
     }
@@ -60,4 +59,5 @@ public final class Utility {
         return "Age of Quiz";
 
     }
+
 }

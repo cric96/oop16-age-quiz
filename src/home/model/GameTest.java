@@ -19,17 +19,19 @@ import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.ImageInfo;
 import home.model.status.StatusName;
+import home.utility.LocalFolder;
 import home.utility.Pair;
 
 /**
  * some test in the game.
  */
+
 public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
     private static final BuildingType BUILDING_TEST = BuildingType.BUILDING_SITE;
     private static final BuildingType BUILDING_NOT_ENABLE = BuildingType.ACADEMY;
-    private static final File FILE_NAME = new File("C:\\Users\\Gianluca\\prova.obj");
+    private static final File FILE_NAME = new File(LocalFolder.LOCAL.getInfo() + "\\prova.obj");
     /**
      * simple test for the interface Game.
      */
@@ -66,7 +68,6 @@ public class GameTest {
             assertSame(building.getLevel().getIncrementalLevel(), 2);
             assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
-            System.out.println(exc);
             fail();
         }
         FILE_NAME.delete();

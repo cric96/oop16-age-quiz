@@ -27,9 +27,9 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     public boolean isUpgradable() {
         return this.maxLevel > this.getCurrentLevel();
     }
-    /* TODO implementa una versione più carina */
+    /* TODO try to find another solution */
     @Override
     protected void goOnNextLevel() {
-        this.setExperienceAmount(this.getCurrentLevel() * INITIAL_EXPERIENCE);
+        this.setExperienceAmount(this.getCurrentLevel() * (INITIAL_EXPERIENCE));
     }
 }

@@ -90,7 +90,6 @@ public class FXMLControllerWorld {
             buildButton.setAlignment(Pos.CENTER);
             buildButton.setGraphic(buildView);
             buildButton.setBackground(null);
-
             buildButton.setDisable(building.getValue().getY());
             this.buildingPane.getColumnConstraints().get(actualCol).setHalignment(HPos.CENTER);
             this.buildingPane.add(buildButton, actualCol, actualRow);

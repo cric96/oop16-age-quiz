@@ -8,7 +8,7 @@ import java.util.Set;
 import home.model.status.StatusName;
 
 /**
- * Models what Category means in a videogame and what status it influences.
+ * Models what Category means in a video game and what status it influences.
  */
 public enum Category {
     /**

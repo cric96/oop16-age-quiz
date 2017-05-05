@@ -24,7 +24,7 @@ class XMLQueryLoader implements QueryLoader {
     private static final String CAT_ATTRIBUTE = "name";
     private static final String LEVEL_ATTRIBUTE = "number";
     private final Document doc;
-    XMLQueryLoader(final File fileName) throws SAXException, IOException, ParserConfigurationException {
+    XMLQueryLoader(final String fileName) throws SAXException, IOException, ParserConfigurationException {
         Objects.requireNonNull(fileName);
         doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fileName);
         doc.getDocumentElement().normalize();

@@ -1,6 +1,6 @@
 package home.model.level;
 /**
- * the possible age in this contest
+ * the possible age in this contest.
  */
 public enum AgeEnum {
     /**
@@ -17,7 +17,7 @@ public enum AgeEnum {
     RINASCIMENTO(3000);
     private final int experienceAmount;
     //package-protected
-    /*it's enable only in this package because other object only want to know the name of age*/
+    /*it's enable only in this package because other object only want to know the experience associated with ad age*/
     int getExperience() {
         return this.experienceAmount;
     }

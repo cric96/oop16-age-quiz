@@ -28,7 +28,6 @@ public class App extends Application {
             try {
                 createVisual();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

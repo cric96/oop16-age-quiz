@@ -24,7 +24,6 @@ public class LevelTest {
         level.setMaxiumLevel(2);
         assertFalse(level.nextLevel(1));
         assertTrue(level.nextLevel(level.getExperienceAmount() + 1));
-        
         try {
             level.nextLevel(1);
             fail();

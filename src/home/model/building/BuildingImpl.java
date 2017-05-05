@@ -6,36 +6,42 @@ import java.util.Optional;
 import home.model.Kingdom;
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
+import home.model.level.AgeEnum;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;
 import home.model.query.Category;
 import home.utility.Utility;
 //package-protected
-abstract class AbstractBuilding extends AbstractComposite implements BuildingComposite, Serializable {
+final class BuildingImpl extends AbstractComposite implements BuildingComposite, Serializable {
     private static final long serialVersionUID = 1L;
+    private static final int FIRST_AGE = 0;
     private final BuildingType type;
     private final Level.Building level;
+    private final AgeChangeStrategy strategy;
     //i can't use Optional<Kingdom> because it can't be saved
     private Kingdom parent;
-    AbstractBuilding(final Level.Building level, final BuildingType type) {
+    private boolean enable;
+    BuildingImpl(final Level.Building level, final BuildingType type) {
         if (Utility.checkNullOb(level, type)) {
             throw new IllegalArgumentException();
         }
         this.type = type;
         this.level = level;
+        this.enable = type.getAgeEnable() == AgeEnum.values()[FIRST_AGE];
+        this.strategy = AgeChangeStrategy.createSimpleLevel(this.level);
     }
 
     @Override
-    public final BuildingType getName() {
+    public BuildingType getName() {
         return this.type;
     }
 
     @Override
-    public final ImmutableLevel getLevel() {
+    public ImmutableLevel getLevel() {
         return this.level;
     }
     @Override
-    public final Category getInfluecedCategory() {
+    public Category getInfluecedCategory() {
         return this.type.getCategory();
     }
     @Override
@@ -54,11 +60,11 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
             throw new IllegalStateException();
         }
     }
-    public final int getExperienceNecesary() {
+    public int getExperienceNecesary() {
         return this.level.getExperienceAmount();
     }
     @Override
-    public final Class<?> getType() {
+    public Class<?> getType() {
         return ImmutableAgeBuilding.Container.class;
     }
     @Override
@@ -74,7 +80,6 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
        this.parent = parent;
        parent.addComponent(this);
     }
-    //TEMPLATE METHOD
     @Override
     public void update(final Event<?> event) {
         /*if the type is age change and */
@@ -84,18 +89,14 @@ abstract class AbstractBuilding extends AbstractComposite implements BuildingCom
             if (this.isEnable()) {
                 this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
             }
-            onAgeChange((Event.Age<?>) event);
+            enable = this.strategy.onAgeChange(Event.Age.class.cast(event), this.type.getAgeEnable());
         }
+    }
+    public boolean isEnable() {
+        return enable;
     }
     @Override
     public String toString() {
-        return "AbstractBuilding [name=" + type.name() + ", level=" + level + ", category=" + type.getCategory() + "]";
-    }
-    protected abstract void onAgeChange(Event.Age<?> event);
-    protected BuildingType getBuildingType() {
-        return this.type;
-    }
-    protected Level.Building getBuildingLevel() {
-        return this.level;
+        return "BuildingImpl [name=" + type.name() + ", level=" + level + ", category=" + type.getCategory() + "]";
     }
 }

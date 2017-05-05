@@ -10,7 +10,7 @@ import javafx.stage.Screen;
 public final class Utility {
     private static final double SCREEN_WIDTH = Screen.getPrimary().getBounds().getWidth();
     private static final double SCREEN_HEIGHT = Screen.getPrimary().getBounds().getHeight();
-
+    
     private Utility() { }
     /**
      * check if some object in input is null.
@@ -45,7 +45,7 @@ public final class Utility {
         final int defalutSize = 15;
         return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), defalutSize);
     }
-
+    
     public static Font titleFont(int size){
         return Font.loadFont(ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm(), size);
     }
@@ -65,7 +65,6 @@ public final class Utility {
     public static double getScreenWidth() {
         return SCREEN_WIDTH;
     }
-
     /**
      * @return the screenHeight
      */

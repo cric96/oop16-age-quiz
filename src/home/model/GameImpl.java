@@ -22,7 +22,7 @@ import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
 import home.model.status.Status;
 import home.utility.Pair;
-
+//package-protected
 final class GameImpl implements Game {
     private static final String KINGDOM_NAME = "KINGDOM";
     private static final Game SINGLETON = new GameImpl();

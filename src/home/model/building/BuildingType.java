@@ -36,7 +36,7 @@ public enum BuildingType {
         return this.influezed;
     }
     //package-protected
-    AgeEnum getAgeEnable(){
+    AgeEnum getAgeEnable() {
         return this.ageEnable;
     }
 }

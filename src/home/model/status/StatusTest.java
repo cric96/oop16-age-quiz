@@ -1,9 +1,8 @@
 package home.model.status;
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import java.util.Set;
-
-import org.junit.*;
+import org.junit.Test;
 /* Some test on status */
 /**
  *

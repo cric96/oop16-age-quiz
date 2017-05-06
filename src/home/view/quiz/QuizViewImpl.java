@@ -21,7 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-<<<<<<< HEAD
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -29,12 +30,8 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-=======
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
->>>>>>> bd1f0d2d2c715302dae07c42d4f74ac5c5f1033a
 //package-protected
 public class QuizViewImpl extends AbstractFXView implements QuizView {
     private static final String FXMLFile = "FXMLquizView.fxml";
@@ -109,9 +106,8 @@ public class QuizViewImpl extends AbstractFXView implements QuizView {
         final Image img = new Image(image.toExternalForm());
         final BackgroundImage background = new BackgroundImage(img, 
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, 
+                BackgroundPosition.CENTER, 
                 new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
-        
         this.parent.setBackground(new Background(background));
     }
 }

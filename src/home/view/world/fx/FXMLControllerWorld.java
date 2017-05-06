@@ -75,6 +75,7 @@ public class FXMLControllerWorld {
         final Button kingButton = new Button();
         final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
         final ImageView kingView = new ImageView(img);
+        this.buildingPane.getChildren().clear();
         kingView.setFitHeight(buildingSize);
         kingView.setFitWidth(buildingSize);
         kingButton.setAlignment(Pos.CENTER);

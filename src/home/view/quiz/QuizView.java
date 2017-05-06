@@ -1,5 +1,6 @@
 package home.view.quiz;
 
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -41,4 +42,10 @@ public interface QuizView extends View<QuizController> {
      *          true if the answer given was correct
      */
     void isCorrect(boolean isAnswerCorrect);
+    /**
+     * 
+     * @param image
+     *      background image to be set.
+     */
+    void showBackground(URL image);
 }

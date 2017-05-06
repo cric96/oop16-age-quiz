@@ -3,6 +3,7 @@ package home.model.quiz;
 
 import java.util.Map;
 
+import home.model.query.Category;
 import home.model.query.Query;
 import home.model.status.StatusName;
 
@@ -58,4 +59,8 @@ public interface QuizGame {
      *Time elapsed so the quiz is stopped.
      */
     void setFinished();
+    /**
+     * @return the Category of the quiz
+     */
+    Category getCategory();
 }

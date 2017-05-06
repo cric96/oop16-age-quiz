@@ -5,6 +5,7 @@ import java.io.IOException;
 import home.controller.profile.Profile;
 import home.controller.profile.ProfileBox;
 import home.model.Game;
+import home.model.building.BuildingType;
 import home.utility.LocalFolder;
 import home.view.Container;
 import home.view.MessageType;

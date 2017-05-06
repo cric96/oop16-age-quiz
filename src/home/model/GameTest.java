@@ -29,7 +29,8 @@ public class GameTest {
     private static final int MAX_STATUS = 100;
     private static final BuildingType BUILDING_TEST = BuildingType.BUILDING_SITE;
     private static final BuildingType BUILDING_NOT_ENABLE = BuildingType.ACADEMY;
-    private static final File FILE_NAME = new File("C:\\Users\\Gianluca\\prova.obj");
+    //TOOD GIANLUCA MODIFICA LA COSA
+    private static final File FILE_NAME = new File("C:\\Users\\+\\prova.obj");
     /**
      * simple test for the interface Game.
      */
@@ -83,16 +84,17 @@ public class GameTest {
         kingdom.nextAge();
         //the building image doesn't change
         ImageInfo im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
-        assertTrue(im.getPath().getName().contains("0"));
+        assertFalse(im.getPath().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
         try {
             Game.getGame().save(FILE_NAME);
         } catch (IOException e) {
+            e.printStackTrace();
             fail();
         }
         kingdom.nextAge();
         //now the image of building change
-        assertFalse(im.getPath().getName().contains("0"));
+        assertTrue(im.getPath().contains("1"));
         //check if the state of object remain consistent
         try {
             Game.getGame().load(FILE_NAME);
@@ -102,7 +104,7 @@ public class GameTest {
         kingdom = Game.getGame().getCurrentKingdom();
         building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
         im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
-        assertTrue(im.getPath().getName().contains("0"));
+        assertTrue(im.getPath().contains("0"));
     }
     /**
      * simple test for the kingdom.

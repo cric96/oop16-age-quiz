@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
-//package-protected
 public class FXQuizController {
     private static final int TIME_TO_CHANGE = 500;
     private int startTime;

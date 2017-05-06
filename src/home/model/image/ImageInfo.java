@@ -9,7 +9,7 @@ public interface ImageInfo {
      * @return
      *  where the image is located
      */
-    File getPath();
+    String getPath();
     /**
      * 
      * @return

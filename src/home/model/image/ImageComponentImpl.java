@@ -14,6 +14,7 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
     private static final long serialVersionUID = 1L;
     private static final String EXTENSION = ".png";
     private static final String RES_SEPARATOR = "/";
+    private static final String FOLDER = "images";
     private final String name;
     private int currentImage;
     ImageComponentImpl(final String name) {
@@ -31,8 +32,8 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
         }
     }
     @Override
-    public File getPath() {
-        return new File(RES_SEPARATOR + this.name + this.currentImage + EXTENSION);
+    public String getPath() {
+        return RES_SEPARATOR + FOLDER + RES_SEPARATOR + this.name + (this.currentImage == 0 ? "" : this.currentImage) + EXTENSION;
     }
     @Override
     public String getExtension() {

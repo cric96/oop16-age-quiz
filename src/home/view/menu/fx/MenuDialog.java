@@ -1,8 +1,6 @@
 package home.view.menu.fx;
 
 import java.util.HashMap;
-import javafx.stage.StageStyle;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -19,11 +17,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 /**
- * a class to create a show/load dialog in javafx.
- */
+* a class to create a show/load dialog in javafx.
+*/
 public class MenuDialog {
     private Optional<Profile> selProfile = Optional.empty();
 
@@ -32,15 +31,15 @@ public class MenuDialog {
      * @param profiles to show.
      * @param controller the controller of menu. to call method.
      * @param mode modality: LOAD_GAME, NEW_GAME
-     * @param fxMenuViewImpl owner of this dialog.
+     * @param window owner of this dialog.
      * @throws IllegalArgumentException if fxMenuVewImpl or controller are Optional.empty()
      */
     public void show(final Set<Profile> profiles, 
                      final Optional<MenuController> controller,
                      final Buttons mode, 
-                     final Optional<FXMenuViewImpl> fxMenuViewImpl) {
+                     final Window window) {
 
-        if (!controller.isPresent() || !fxMenuViewImpl.isPresent()) {
+        if (!controller.isPresent()) {
             throw new IllegalArgumentException();
         }
         final int boxPadding = 10;
@@ -64,73 +63,73 @@ public class MenuDialog {
         dialog.setTitle(mode.getText());
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
-        dialog.initOwner(fxMenuViewImpl.get().getScene().getWindow());
+        dialog.initOwner(window);
         dialog.initStyle(StageStyle.DECORATED);
 
         if (mode.equals(Buttons.NEW_GAME)) {
             root.getChildren().add(deleteDataMessage); 
         }
 
-        profiles.forEach(profile -> {
-                final VBox box = new VBox(20);
-                final ProfileButton buttonP = new ProfileButton(profile, mode);
-                buttonP.setPrefWidth(buttonWidth);
+        for (final Profile profile: profiles) {
+            final VBox box = new VBox(20);
+            final ProfileButton buttonP = new ProfileButton(profile, mode);
+            buttonP.setPrefWidth(buttonWidth);
 
-                final TextField name = new TextField();
-                name.setVisible(false);
+            final TextField name = new TextField();
+            name.setVisible(false);
 
-                final Text date = new Text(profile.getSaveDate());
-                date.setFont(font);
-                date.setVisible(false);
+            final Text date = new Text(profile.getSaveDate());
+            date.setFont(font);
+            date.setVisible(false);
 
-                box.getChildren().add(buttonP);
+            box.getChildren().add(buttonP);
 
-                if (mode.equals(Buttons.LOAD_GAME)) {
-                    box.getChildren().add(date);
-                    if (!profile.isEnabled()) {
-                        buttonP.setDisable(true);
-                    }
-                } else if (mode.equals(Buttons.NEW_GAME)) {
-                    box.getChildren().add(name);
+            if (mode.equals(Buttons.LOAD_GAME)) {
+                box.getChildren().add(date);
+                if (!profile.isEnabled()) {
+                    buttonP.setDisable(true);
                 }
+            } else if (mode.equals(Buttons.NEW_GAME)) {
+                box.getChildren().add(name);
+            }
 
-                map.put(buttonP, Pair.createPair(profile, Pair.createPair(name, date)));
+            map.put(buttonP, Pair.createPair(profile, Pair.createPair(name, date)));
 
-                /*ON MOUSE CLICKED*/
-                buttonP.setOnMouseClicked(button -> {
-                    selProfile = Optional.of(profile);
+            /*ON MOUSE CLICKED*/
+            buttonP.setOnMouseClicked(button -> {
+                setSelProfile(Optional.of(profile));
 
-                    if (mode.equals(Buttons.NEW_GAME)) {
-                        dialog.getButtonTypes().setAll(createButton);
-                        map.get(buttonP).getY().getX().setVisible(true);
-                        map.values()
-                           .stream()
-                           .filter(y -> !y.equals(map.get(buttonP)))
-                           .forEach(a -> {
-                               a.getY().getX().setVisible(false);
-                               a.getY().getX().setText("");
-                           });
+                if (mode.equals(Buttons.NEW_GAME)) {
+                    dialog.getButtonTypes().setAll(createButton);
+                    map.get(buttonP).getY().getX().setVisible(true);
+                    map.values()
+                       .stream()
+                       .filter(y -> !y.equals(map.get(buttonP)))
+                       .forEach(a -> {
+                           a.getY().getX().setVisible(false);
+                           a.getY().getX().setText("");
+                       });
 
-                        if (profile.getName().isPresent()) {
-                            deleteDataMessage.setVisible(true);
-                        } else {
-                            deleteDataMessage.setVisible(false);
-                        }
-                    } else if (mode.equals((Buttons.LOAD_GAME))) {
-                        dialog.getButtonTypes().setAll(selectButton);
-                        map.get(buttonP).getY().getY().setVisible(true);
-                        map.values()
-                           .stream()
-                           .filter(y -> !y.equals(map.get(buttonP)))
-                           .forEach(a -> {
-                               a.getY().getY().setVisible(false);
-                               a.getY().getY().setText(profile.getSaveDate());
-                           });
-                        dialog.getButtonTypes().setAll(selectButton);
+                    if (profile.getName().isPresent()) {
+                        deleteDataMessage.setVisible(true);
+                    } else {
+                        deleteDataMessage.setVisible(false);
                     }
-                });
-                container.getChildren().add(box);
-        });
+                } else if (mode.equals((Buttons.LOAD_GAME))) {
+                    dialog.getButtonTypes().setAll(selectButton);
+                    map.get(buttonP).getY().getY().setVisible(true);
+                    map.values()
+                       .stream()
+                       .filter(y -> !y.equals(map.get(buttonP)))
+                       .forEach(a -> {
+                           a.getY().getY().setVisible(false);
+                           a.getY().getY().setText(profile.getSaveDate());
+                       });
+                    dialog.getButtonTypes().setAll(selectButton);
+                }
+            });
+            container.getChildren().add(box);
+        }
 
         final Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent()) {
@@ -145,5 +144,9 @@ public class MenuDialog {
                 controller.get().loadGame(selProfile.get());
             }
         }
+    }
+
+    private void setSelProfile(final Optional<Profile> profile) {
+        this.selProfile = profile;
     }
 }

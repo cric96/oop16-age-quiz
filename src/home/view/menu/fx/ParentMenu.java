@@ -3,12 +3,11 @@ package home.view.menu.fx;
 import home.controller.MenuController;
 import home.utility.ResourceManager;
 import home.utility.Utility;
+import home.utility.UtilityScreen;
 import home.view.Fonts;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.stage.Screen;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -22,7 +21,6 @@ import javafx.scene.text.Text;
  *
  */
 public class ParentMenu extends Parent {
-    private final Rectangle2D primaryScreenBounds = Screen.getPrimary().getBounds();
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
@@ -55,17 +53,15 @@ public class ParentMenu extends Parent {
         btnExit.setOnMouseClicked(e -> {
             controller.exitPressed();
         });
-
         menuZero.getChildren().addAll(btnNewGame, btnLoadGame, btnExit);
         String fileName;
         fileName = ResourceManager.load(Images.MENU_BACKGROUND.getPath()).toExternalForm();
         final Image img = new Image(fileName);
         final ImageView imgView = new ImageView(img);
-        imgView.setFitWidth(primaryScreenBounds.getWidth());
-        imgView.setFitHeight(primaryScreenBounds.getHeight());
+        imgView.setFitWidth(UtilityScreen.getScreenWidth());
+        imgView.setFitHeight(UtilityScreen.getScreenHeight());
         getChildren().add(imgView);
-
-        final Rectangle bg = new Rectangle(primaryScreenBounds.getWidth(), primaryScreenBounds.getHeight());
+        final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 

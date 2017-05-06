@@ -19,18 +19,24 @@ import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.ImageInfo;
 import home.model.status.StatusName;
+import home.utility.LocalFolder;
 import home.utility.Pair;
 
 /**
  * some test in the game.
  */
+
 public class GameTest {
     private static final int EXPERIENCE = 1000;
     private static final int MAX_STATUS = 100;
     private static final BuildingType BUILDING_TEST = BuildingType.BUILDING_SITE;
     private static final BuildingType BUILDING_NOT_ENABLE = BuildingType.ACADEMY;
+<<<<<<< HEAD
     //TOOD GIANLUCA MODIFICA LA COSA
     private static final File FILE_NAME = new File("C:\\Users\\+\\prova.obj");
+=======
+    private static final File FILE_NAME = new File(LocalFolder.LOCAL.getInfo() + "\\prova.obj");
+>>>>>>> bd1f0d2d2c715302dae07c42d4f74ac5c5f1033a
     /**
      * simple test for the interface Game.
      */
@@ -67,7 +73,6 @@ public class GameTest {
             assertSame(building.getLevel().getIncrementalLevel(), 2);
             assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
-            System.out.println(exc);
             fail();
         }
         FILE_NAME.delete();
@@ -84,7 +89,11 @@ public class GameTest {
         kingdom.nextAge();
         //the building image doesn't change
         ImageInfo im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
+<<<<<<< HEAD
         assertFalse(im.getPath().contains("0"));
+=======
+        assertTrue(im.getPath().contains("0"));
+>>>>>>> bd1f0d2d2c715302dae07c42d4f74ac5c5f1033a
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
         try {
             Game.getGame().save(FILE_NAME);
@@ -94,7 +103,11 @@ public class GameTest {
         }
         kingdom.nextAge();
         //now the image of building change
+<<<<<<< HEAD
         assertTrue(im.getPath().contains("1"));
+=======
+        assertFalse(im.getPath().contains("0"));
+>>>>>>> bd1f0d2d2c715302dae07c42d4f74ac5c5f1033a
         //check if the state of object remain consistent
         try {
             Game.getGame().load(FILE_NAME);

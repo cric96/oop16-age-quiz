@@ -22,7 +22,27 @@ public enum Images {
     /**
      * profile empty image path.
      */
-    PROFILE_IMAGE_EMPTY("/images/emptyProfile.png");
+    PROFILE_IMAGE_EMPTY("/images/emptyProfile.png"),
+
+    /**
+     * home button image path.
+     */
+    BACK_HOME_PICTURE("/images/backHomeButton.png"),
+
+    /**
+     * stats icon.
+     */
+    STATS_ICON("/images/statsIcon.png"),
+
+    /**
+     * world background image.
+     */
+    WORLD_BACKGROUND("/images/worldBackground.jpg"),
+
+    /**
+     * X exit.
+     */
+    X_CROSS("/images/cros.pngs");
 
     private String path;
 

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 /**
  * Models the different status of the kingdom.
  */
-public interface Status extends Serializable{
+public interface Status extends Serializable {
     /**
      * 
      * create a simple status.

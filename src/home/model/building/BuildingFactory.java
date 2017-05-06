@@ -28,7 +28,7 @@ public final class BuildingFactory {
      *  the building created
      */
     public BuildingComposite createSimpleBuilding(final BuildingType name) {
-        return new CompositeBuildingiImpl(Level.Building.createBuildingLevel(), name);
+        return new BuildingImpl(Level.Building.createBuildingLevel(), name);
     }
     /**
      * create all type of building.

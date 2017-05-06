@@ -28,13 +28,13 @@ public class App extends Application {
             try {
                 createVisual();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
         FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
     }
+
     private static void createVisual() throws IOException {
         attachOnController(new FXMenuViewImpl(),
                            new FXWorldViewImpl(),

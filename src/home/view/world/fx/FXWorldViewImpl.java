@@ -7,11 +7,13 @@ import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
+import home.utility.UtilityScreen;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
+import javafx.scene.shape.Rectangle;
+
 
 
 /**
@@ -19,6 +21,7 @@ import javafx.scene.control.ButtonType;
  */
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
+    private FXMLControllerWorld fxmlController;
 
     /**
      * create new FXWorldView.
@@ -28,52 +31,47 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
         this.controller = Optional.empty();
     }
 
+
     @Override
     public void attachOn(final WorldController controller) {
         this.controller = Optional.of(controller);
-        this.setScene(new Scene(new ParentWorld(controller)));
+        final ParentWorld parent = new ParentWorld(controller);
+        this.setParent(parent);
+        fxmlController = parent.getFxmlControllerWorld();
     }
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public void updateEra(final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, final ImageInfo kingdom) {
-        // TODO Auto-generated method stub
-
+        this.fxmlController.setBuildingPane(buildings, kingdom);
     }
 
     @Override
     public void changeEra(final String era) {
-        // TODO Auto-generated method stub
-
+        this.fxmlController.setEraLabel(era);
     }
 
     @Override
     public void changeExp(final int exp) {
-        // TODO Auto-generated method stub
-
+        this.fxmlController.setExperienceLabel(exp);
     }
 
     @Override
     public void changeStatus(final Map<String, Integer> statusScose) {
-        // TODO Auto-generated method stub
-
+        this.fxmlController.setStatsPane(statusScose);
     }
 
     @Override
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        // TODO Auto-generated method stub
-
+        this.fxmlController.showBuildingDialog(building, dialog);
     }
 
     @Override
     public void showKingdomDialog(final Dialog dialog) {
-        // TODO Auto-generated method stub
-
+       this.fxmlController.showBuildingDialog(dialog);
     }
 
     @Override

@@ -20,7 +20,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class ParentWorld extends Parent {
     private FXMLControllerWorld c;
-    private static final double OPACITY = 0.6;
+    private static final double OPACITY = 0.4;
 
     /**
      * @throws IOException if the background load gone wrong.
@@ -44,7 +44,7 @@ public class ParentWorld extends Parent {
         background.setFitWidth(UtilityScreen.getScreenWidth());
         background.setFitHeight(UtilityScreen.getScreenHeight());
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
-        bg.setFill(Color.GREY);
+        bg.setFill(Color.BLACK);
         bg.setOpacity(OPACITY);
         this.getChildren().addAll(background, bg, pane);
     }

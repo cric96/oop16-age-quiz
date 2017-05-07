@@ -18,18 +18,13 @@ import javafx.stage.Stage;
  * what to launch to create the application.
  */
 public class App extends Application {
-    private static final boolean DEBUG = false;
     @Override
     public void start(final Stage primaryStage) {
         FXContainer.getContainer().setStage(primaryStage);
-        if (DEBUG) {
-            createConsole();
-        } else {
-            try {
-                createVisual();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            createVisual();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
@@ -39,11 +34,6 @@ public class App extends Application {
         attachOnController(new FXMenuViewImpl(),
                            new FXWorldViewImpl(),
                            new QuizViewImpl());
-    }
-    private static void createConsole() {
-        attachOnController(ConsoleViewFactory.createMenuView(),
-                           ConsoleViewFactory.createWolrdView(),
-                           ConsoleViewFactory.createQuizView());
     }
     private static void attachOnController(final MenuView menu, final WorldView world, final QuizView quiz) {
         final Container container = Container.getContainer();

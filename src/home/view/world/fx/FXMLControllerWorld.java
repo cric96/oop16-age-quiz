@@ -71,7 +71,7 @@ public class FXMLControllerWorld {
         int maxRow = 1;
         final int buildingSize = 160;
         int actualCol = 0;
-
+        this.buildingPane.getChildren().clear();
         final Button kingButton = new Button();
         final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
         final ImageView kingView = new ImageView(img);

@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import home.view.MessageType;
 import home.view.View;
+import home.view.menu.MenuView;
+import home.view.quiz.QuizView;
+import home.view.world.WorldView;
 /**
  * a skeleton of a controller with associated with a specific view.
  * @param <V>

@@ -14,7 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+<<<<<<< HEAD
+public final class FXQuizController {
+=======
 public class FXQuizController {
+>>>>>>> 668debf306ef4b0a491b034e00bee00123686239
     private static final int TIME_TO_CHANGE = 500;
     private int startTime;
     private QuizController qController;
@@ -56,9 +60,9 @@ public class FXQuizController {
         Platform.runLater(() -> {
             this.question.setStyle("-fx-background-color: " + (answer ? "green" : "red"));
         });
-        final Task<Void> sleeper = new Task<Void> (){
+        final Task<Void> sleeper = new Task<Void>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() throws InterruptedException {
                 Thread.sleep(TIME_TO_CHANGE);
                 return null;
             }

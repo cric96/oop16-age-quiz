@@ -1,6 +1,7 @@
 package home.main;
 
 import home.view.App;
+import home.view.debug.DebugApplication;
 import javafx.application.Application;
 
 /**
@@ -9,12 +10,17 @@ import javafx.application.Application;
  * 
  */
 public final class Main {
+    private static final boolean DEBUG = false;
     private Main() { }
     /** 
      * @param args
      *          not used in this contest 
      */
     public static void main(final String[] args) {
-        Application.launch(App.class);
+        if (DEBUG) {
+            DebugApplication.launch();
+        } else {
+            Application.launch(App.class);
+        }
     }
 }

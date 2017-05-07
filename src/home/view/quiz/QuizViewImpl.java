@@ -30,8 +30,9 @@ public class QuizViewImpl extends AbstractFXView implements QuizView {
     public QuizViewImpl() throws IOException {
         final FXMLLoader loader = new FXMLLoader();
         loader.setLocation(QuizViewImpl.class.getResource(FXML_FILE));
+        this.fxController = new FXQuizController();
+        loader.setController(this.fxController);
         this.parent = loader.load();
-        this.fxController =  loader.getController();
         this.setParent(parent);
     }
     @Override

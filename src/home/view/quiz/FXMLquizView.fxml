@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.view.quiz.FXQuizController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <StackPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="TOP_CENTER">
                <children>
-                  <ProgressBar fx:id="time" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="602.0" progress="0.0" StackPane.alignment="TOP_CENTER">
+                  <ProgressBar fx:id="time" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="570.0" progress="0.0" StackPane.alignment="TOP_CENTER">
                      <StackPane.margin>
                         <Insets left="15.0" right="15.0" top="10.0" />
                      </StackPane.margin>
@@ -30,7 +30,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Label fx:id="question" ellipsisString="" maxWidth="1.7976931348623157E308" text="question" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="question" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" maxWidth="1.7976931348623157E308" text="question" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets left="15.0" right="15.0" />
                      </BorderPane.margin>
@@ -44,8 +44,11 @@
                      <children>
                         <VBox fx:id="answers" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
                            <StackPane.margin>
-                              <Insets left="75.0" right="75.0" />
+                              <Insets />
                            </StackPane.margin>
+                           <padding>
+                              <Insets left="150.0" right="150.0" />
+                           </padding>
                         </VBox>
                      </children>
                   </StackPane>

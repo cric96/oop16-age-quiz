@@ -7,12 +7,10 @@ import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
-import home.utility.UtilityScreen;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
 import javafx.scene.control.ButtonType;
-import javafx.scene.shape.Rectangle;
 
 
 
@@ -20,7 +18,6 @@ import javafx.scene.shape.Rectangle;
  * Implementation of World view in javafx.
  */
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
-    private Optional<WorldController> controller;
     private FXMLControllerWorld fxmlController;
 
     /**
@@ -28,13 +25,11 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
      */
     public FXWorldViewImpl() {
         super();
-        this.controller = Optional.empty();
     }
 
 
     @Override
     public void attachOn(final WorldController controller) {
-        this.controller = Optional.of(controller);
         final ParentWorld parent = new ParentWorld(controller);
         this.setParent(parent);
         fxmlController = parent.getFxmlControllerWorld();

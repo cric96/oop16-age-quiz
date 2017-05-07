@@ -2,9 +2,6 @@ package home.view.world.fx;
 
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.awt.event.MouseAdapter;
 import java.util.Map;
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
@@ -16,7 +13,6 @@ import home.utility.Utility;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,7 +36,7 @@ public class FXMLControllerWorld {
     private static final int DROP_SHADOW = 10;
     private static final int TITLE_FONT = 20;
     private Pair<Double, Double> mousePosition;
-    private final double dialogOpacity = 0.8;
+    private static final double DIALOG_OPACITY = 0.9;
     private Stage stageBuilding = new Stage();
     private ImageView statsView;
 
@@ -71,42 +67,49 @@ public class FXMLControllerWorld {
         int maxRow = 1;
         final int buildingSize = 160;
         int actualCol = 0;
-        this.buildingPane.getChildren().clear();
-        final Button kingButton = new Button();
+
         final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
-        final ImageView kingView = new ImageView(img);
+        final ImageView kingButton = new ImageView(img);
+        kingButton.setFitHeight(buildingSize);
+        kingButton.setFitWidth(buildingSize);
+        kingButton.setOnMouseExited(e -> {
+            kingButton.setEffect(null);
+        });
+        kingButton.setOnMouseEntered(e -> {
+            final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
+            dropS.setInput(new Glow());
+            kingButton.setEffect(dropS);
+        });
+
         this.buildingPane.getChildren().clear();
-        kingView.setFitHeight(buildingSize);
-        kingView.setFitWidth(buildingSize);
-        kingButton.setAlignment(Pos.CENTER);
-        kingButton.setGraphic(kingView);
-//        kingButton.setOnMouseExited(e -> {
-//            this.stageBuilding.close();
-//        });
+
         kingButton.setOnMouseClicked(e -> {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();
         });
-        kingButton.setBackground(null);
         this.buildingPane.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
         this.buildingPane.add(kingButton, actualCol, actualRow);
         actualCol++;
         for (final Map.Entry<BuildingType, Pair<ImageInfo, Boolean>> building : buildings.entrySet()) {
-            final Button buildButton = new Button();
             final Image buildImg = new Image(ResourceManager.load(building.getValue().getX().getPath()).toExternalForm());
-            final ImageView buildView = new ImageView(buildImg);
+            final ImageView buildButton = new ImageView(buildImg);
             buildButton.setOnMouseClicked(e -> {
                 this.mousePosition = Pair.createPair(buildButton.getLayoutX(), buildButton.getLayoutY());
                 this.controller.pressOnBuilding(building.getKey());
             });
-            buildView.setFitHeight(buildingSize);
-            buildView.setFitWidth(buildingSize);
-            buildButton.setAlignment(Pos.CENTER);
-            buildButton.setGraphic(buildView);
-//            buildButton.setOnMouseExited(e -> {
-//                this.stageBuilding.close();
-//            });
-            buildButton.setBackground(null);
+            buildButton.setFitHeight(buildingSize);
+            buildButton.setFitWidth(buildingSize);
+            buildButton.setOnMouseExited(e -> {
+                buildButton.setEffect(null);
+            });
+            buildButton.setOnMouseEntered(e -> {
+                final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
+                dropS.setInput(new Glow());
+                buildButton.setEffect(dropS);
+            });
+            if (!building.getValue().getY()) {
+                buildButton.setOpacity(0.5);
+            }
             buildButton.setDisable(!building.getValue().getY());
             this.buildingPane.getColumnConstraints().get(actualCol).setHalignment(HPos.CENTER);
             this.buildingPane.add(buildButton, actualCol, actualRow);
@@ -207,7 +210,7 @@ public class FXMLControllerWorld {
 
     /**
      * 
-     * @param controller
+     * @param controller 
      */
     public void setController(final WorldController controller) {
         this.controller = controller;
@@ -226,7 +229,7 @@ public class FXMLControllerWorld {
     }
 
     @FXML
-    private void overInStats() {
+    void overInStats() {
         final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
         dropS.setInput(new Glow());
         this.statsView.setEffect(dropS);
@@ -238,7 +241,6 @@ public class FXMLControllerWorld {
         dropS.setInput(new Glow());
         this.statsView.setEffect(dropS);
     }
-
     /**
      * 
      * @param building 
@@ -246,12 +248,12 @@ public class FXMLControllerWorld {
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
         stageBuilding = new Stage();
+        stageBuilding.setOpacity(DIALOG_OPACITY);
         stageBuilding.setX(mousePosition.getX());
         stageBuilding.setY(mousePosition.getY());
-        stageBuilding.setOpacity(dialogOpacity);
         this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
         stageBuilding.setResizable(false);
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, building, dialog, stageBuilding)));
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, building, dialog)));
         stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
         stageBuilding.showAndWait();
     }
@@ -262,12 +264,11 @@ public class FXMLControllerWorld {
      */
     public void showBuildingDialog(final Dialog dialog) {
         stageBuilding = new Stage();
-        stageBuilding.setX(mousePosition.getX());
+        stageBuilding.setOpacity(DIALOG_OPACITY);
         stageBuilding.setY(mousePosition.getY());
-        stageBuilding.setOpacity(dialogOpacity);
         this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
         stageBuilding.setResizable(false);
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, dialog, stageBuilding)));
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, dialog)));
         stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
         stageBuilding.showAndWait();
     }

@@ -1,7 +1,5 @@
 package home.model.image;
 
-import java.io.File;
-
 import home.model.composite.AbstractComponent;
 import home.model.composite.Composite;
 import home.model.composite.Event;

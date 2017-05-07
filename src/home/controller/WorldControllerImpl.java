@@ -76,7 +76,8 @@ class WorldControllerImpl extends AbstractController<WorldView> implements World
     //create a dialog by a kingdom status
     private Dialog createKingdomDialog() {
         final Kingdom current = Game.getGame().getCurrentKingdom();
-        return Dialog.Builder.createBuilder().setName(CASTLE_NAME).setExperience(current.getExperienceAmount())
+        return Dialog.Builder.createBuilder().setName(CASTLE_NAME)
+                                             .setExperience(current.getAge().getExperienceAmount())
                                              .setLevel(current.getAge().getIncrementalLevel())
                                              .setLevelBlocked(current.getAge().isUpgradable())
                                              .setLevelEnable(current.canUpgradeAge()).build();

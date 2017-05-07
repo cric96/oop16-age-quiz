@@ -98,8 +98,5 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
     }
 
     @Override
-    public void showBackground(URL image) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void showBackground(final URL image) { }
 }

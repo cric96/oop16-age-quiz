@@ -19,6 +19,12 @@ public interface Composite {
      */
     <Y> Set<Pair<Y, Boolean>> getComponents(Class<Y> type);
     /**
+     * get all component attach on this composite.
+     * @return
+     *  the set of component
+     */
+    Set<Component<?>> getComponents();
+    /**
      * add a component in the kingdom.
      * @param component
      *  the component that i want to add

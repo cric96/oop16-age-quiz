@@ -5,8 +5,8 @@ package home.model.level;
 final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     private static final long serialVersionUID = 1L;
     //package protected
-    LevelAgeImpl() {
-        super();
+    LevelAgeImpl(final int currentLevel) {
+        super(currentLevel);
         this.setAmountWithEnum(AgeEnum.ETA_DELLA_PIETRA);
     }
     @Override

@@ -5,12 +5,12 @@ import home.view.debug.DebugApplication;
 import javafx.application.Application;
 
 /**
- * This class is used to start the videogame
+ * This class is used to start the video game
  * and to set some values.
  * 
  */
 public final class Main {
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private Main() { }
     /** 
      * @param args

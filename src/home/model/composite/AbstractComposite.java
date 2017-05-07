@@ -41,7 +41,7 @@ public abstract class AbstractComposite implements Composite, Serializable {
      * @return
      *  the set of component
      */
-    protected final Set<Component<?>> getComponents() {
+    public final Set<Component<?>> getComponents() {
         return this.components;
     }
 

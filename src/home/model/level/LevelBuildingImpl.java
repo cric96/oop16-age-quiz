@@ -4,15 +4,14 @@ import home.model.level.Level.Building;
 //package-protected
 final class LevelBuildingImpl extends AbstractLevel implements Building {
     private static final long serialVersionUID = 1L;
-    /*the initial max level of a building*/
-    private static final int INITIAL_MAX_LEVEL = 2;
-    private static final int INITIAL_EXPERIENCE = 1000;
+    private final int experienceAdvance;
     private int maxLevel;
     //package-protected
-    LevelBuildingImpl() {
-        super();
-        this.setMaxiumLevel(INITIAL_MAX_LEVEL);
-        this.setExperienceAmount(INITIAL_EXPERIENCE);
+    LevelBuildingImpl(final int currentLevel, final int initialMaxLevel, final int experieceAmount, final int experienceAdvance) {
+        super(currentLevel);
+        this.setMaxiumLevel(initialMaxLevel);
+        this.setExperienceAmount(experieceAmount);
+        this.experienceAdvance = experienceAdvance;
     }
 
     @Override
@@ -30,6 +29,6 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     /* TODO try to find another solution */
     @Override
     protected void goOnNextLevel() {
-        this.setExperienceAmount(this.getCurrentLevel() * (INITIAL_EXPERIENCE));
+        this.setExperienceAmount(this.getCurrentLevel() * (this.experienceAdvance));
     }
 }

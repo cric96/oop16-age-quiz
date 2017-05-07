@@ -7,8 +7,11 @@ abstract class AbstractLevel implements Level, Serializable {
     private static final long serialVersionUID = 1L;
     private int currentLevel;
     private int experienceAmount;
-    AbstractLevel() {
-        this.currentLevel = 1;
+    AbstractLevel(final int currentLevel) {
+        if (currentLevel < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.currentLevel = currentLevel;
     }
     @Override
     public boolean nextLevel(final int experienceAmount) {
@@ -27,6 +30,9 @@ abstract class AbstractLevel implements Level, Serializable {
     }
     /*Set the experience amount for the next level*/
     protected void setExperienceAmount(final int experienceAmount) {
+        if (experienceAmount < 0) {
+            throw new IllegalArgumentException();
+        }
         this.experienceAmount = experienceAmount;
     }
     protected int getCurrentLevel() {

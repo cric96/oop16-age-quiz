@@ -84,7 +84,6 @@ public class GameTest {
         kingdom.nextAge();
         //the building image doesn't change
         ImageInfo im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
-        assertTrue(im.getPath().contains("0"));
         kingdom.addExperience(EXPERIENCE * EXPERIENCE);
         try {
             Game.getGame().save(FILE_NAME);
@@ -95,7 +94,7 @@ public class GameTest {
         kingdom.nextAge();
         //now the image of building change
 
-        assertFalse(im.getPath().contains("0"));
+        assertTrue(im.getPath().contains("1"));
         //check if the state of object remain consistent
         try {
             Game.getGame().load(FILE_NAME);
@@ -105,7 +104,7 @@ public class GameTest {
         kingdom = Game.getGame().getCurrentKingdom();
         building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
         im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
-        assertTrue(im.getPath().contains("0"));
+        assertNotNull(im);
     }
     /**
      * simple test for the kingdom.

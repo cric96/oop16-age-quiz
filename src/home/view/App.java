@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import home.controller.ControllerFactory;
 import home.utility.Pair;
-import home.view.debug.ConsoleViewFactory;
 import home.view.menu.MenuView;
 import home.view.menu.fx.FXMenuViewImpl;
 import home.view.quiz.QuizView;

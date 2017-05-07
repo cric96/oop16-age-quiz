@@ -10,7 +10,7 @@ import javafx.application.Application;
  * 
  */
 public final class Main {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private Main() { }
     /** 
      * @param args

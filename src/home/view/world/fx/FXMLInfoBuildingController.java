@@ -83,7 +83,7 @@ public class FXMLInfoBuildingController extends Parent {
         this.controller = controller;
         this.building = building;
         this.upgrade.setOnMouseClicked(e -> {
-            this.controller.createQuiz(building);
+            this.controller.nextLevel(building);
             this.upgrade.getScene().getWindow().hide();
         });
     }

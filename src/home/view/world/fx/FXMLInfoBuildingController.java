@@ -1,21 +1,12 @@
 package home.view.world.fx;
 
-import java.io.IOException;
-
 import home.controller.WorldController;
-import home.controller.dialog.Dialog;
-import home.model.Game;
 import home.model.building.BuildingType;
-import home.utility.ResourceManager;
 import home.utility.Utility;
-import home.view.fx.Images;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 /**
@@ -24,6 +15,7 @@ import javafx.scene.text.Text;
 public class FXMLInfoBuildingController extends Parent {
     private WorldController controller;
     private BuildingType building;
+    private static final int TITLE_FONT = 15;
 
     @FXML
     private Text name;
@@ -51,7 +43,9 @@ public class FXMLInfoBuildingController extends Parent {
     }
 
     @FXML
-    private void initialize() {
+    void initialize() {
+        this.experience.setFont(Utility.getGeneralFont());
+        this.level.setFont(Utility.getGeneralFont());
         this.start.setOnMouseClicked(e -> {
             this.controller.createQuiz(building);
             this.start.getScene().getWindow().hide();
@@ -63,7 +57,7 @@ public class FXMLInfoBuildingController extends Parent {
      */
     public void setName(final String name) {
         this.name.setText(name);
-        this.name.setFont(Utility.getGeneralFont(15));
+        this.name.setFont(Utility.getGeneralFont(TITLE_FONT));
     }
 
     /**
@@ -77,7 +71,7 @@ public class FXMLInfoBuildingController extends Parent {
      * @param experience the experience to set
      */
     public void setExperience(final int experience) {
-        this.experience.setText("Experience to upgrade: " + Integer.valueOf(experience));
+        this.experience.setText("Experience: " + Integer.valueOf(experience));
     }
 
     /**

@@ -89,10 +89,12 @@ public class GameTest {
         try {
             Game.getGame().save(FILE_NAME);
         } catch (IOException e) {
+            e.printStackTrace();
             fail();
         }
         kingdom.nextAge();
         //now the image of building change
+
         assertFalse(im.getPath().contains("0"));
         //check if the state of object remain consistent
         try {

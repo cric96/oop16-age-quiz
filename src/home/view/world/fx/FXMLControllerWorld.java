@@ -80,6 +80,9 @@ public class FXMLControllerWorld {
             dropS.setInput(new Glow());
             kingButton.setEffect(dropS);
         });
+
+        this.buildingPane.getChildren().clear();
+
         kingButton.setOnMouseClicked(e -> {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();

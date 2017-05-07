@@ -32,7 +32,6 @@ public enum Category {
      */
     SPORT(StatusName.HAPPINESS, StatusName.HEALTH);
     private final Set<StatusName> influencingStatus;
-
     Category(final StatusName ...statusName) {
         this.influencingStatus = new HashSet<>(Arrays.asList(statusName));
     }

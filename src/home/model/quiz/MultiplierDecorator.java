@@ -7,6 +7,8 @@ import home.model.status.StatusName;
 
 class MultiplierDecorator extends CalcDecorator {
     private static final int START_MULTIPLIER = 0;
+    private static final int DIVISOR = 10;
+    private static final int ADDER = 1;
     private int correctCount; 
     MultiplierDecorator(final Calculator calc) {
         super(calc);
@@ -39,6 +41,7 @@ class MultiplierDecorator extends CalcDecorator {
        if (this.isCountTooLow()) {
            return super.getStatusScore();
        }
-       return super.getStatusScore().entrySet().stream().collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue() * this.correctCount));
+       return super.getStatusScore().entrySet().stream().collect(
+               Collectors.toMap(x -> x.getKey(), x -> x.getValue() * (this.correctCount / DIVISOR) + ADDER));
     }
 }

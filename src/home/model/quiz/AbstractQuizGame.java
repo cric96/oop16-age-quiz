@@ -25,6 +25,7 @@ abstract class AbstractQuizGame implements QuizGame {
     private Optional<String> currentAnswer;
     private int currentXP;
     private final Map<StatusName, Integer> statusScore;
+    private final Category cat;
     private boolean stopQuiz;
     /**
      * 
@@ -38,6 +39,7 @@ abstract class AbstractQuizGame implements QuizGame {
         this.statusScore = cat.getStatusNames().stream().collect(Collectors.toMap(x -> x, x -> 0));
         this.currentQuery = this.cQueries.next();
         this.calculator = new MultiplierDecorator(new BasicCalculator(cat.getStatusNames()));
+        this.cat = cat;
     }
 
     @Override
@@ -97,5 +99,9 @@ abstract class AbstractQuizGame implements QuizGame {
         }
         this.currentXP += this.calculator.getXP();
         this.calculator.getStatusScore().forEach((x, y) -> this.statusScore.put(x, this.statusScore.get(x) + y));
+    }
+    @Override
+    public Category getCategory() {
+        return this.cat;
     }
 }

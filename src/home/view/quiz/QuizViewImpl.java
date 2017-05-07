@@ -6,23 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import com.sun.glass.ui.PlatformFactory;
-
 import home.controller.QuizController;
-import home.utility.ResourceManager;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -30,17 +21,15 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 //package-protected
 public class QuizViewImpl extends AbstractFXView implements QuizView {
-    private static final String FXMLFile = "FXMLquizView.fxml";
+    private static final String FXML_FILE = "FXMLquizView.fxml";
     private QuizController qController;
     private final FXQuizController fxController;
     private final AnchorPane parent;
     public QuizViewImpl() throws IOException {
         final FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(QuizViewImpl.class.getResource(FXMLFile));
+        loader.setLocation(QuizViewImpl.class.getResource(FXML_FILE));
         this.parent = loader.load();
         this.fxController =  loader.getController();
         this.setParent(parent);
@@ -89,13 +78,9 @@ public class QuizViewImpl extends AbstractFXView implements QuizView {
     }
 
     @Override
-    public void show() {
-        // TODO Auto-generated method stub
-    }
+    public void show() { }
     @Override
-    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) {
-        // TODO Auto-generated method stub
-    }
+    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) { }
     @Override
     public void attachOn(final QuizController controller) {
         this.qController = controller;

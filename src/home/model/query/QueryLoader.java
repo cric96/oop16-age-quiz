@@ -27,9 +27,8 @@ public interface QueryLoader {
      * @return a QueryLoader
      */
     static QueryLoader getQueryLoader() {
-        //final File file = new File(.getFile());
         try {
-            return new XMLQueryLoader(ResourceManager.load("/queries.xml").toExternalForm());
+            return new ShuffleQueryLoader(new XMLQueryLoader(ResourceManager.load(QueryFile.getPath()).toExternalForm()));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             throw new RuntimeException("Something goes wrong with resource loader");
         }

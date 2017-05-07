@@ -7,12 +7,13 @@ import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
+import home.utility.UtilityScreen;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
-import javafx.scene.Scene;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
+
 
 
 /**
@@ -21,7 +22,6 @@ import javafx.stage.Stage;
 public class FXWorldViewImpl extends AbstractFXView implements WorldView {
     private Optional<WorldController> controller;
     private FXMLControllerWorld fxmlController;
-    private Stage dialogStage = new Stage();
 
     /**
      * create new FXWorldView.
@@ -42,7 +42,6 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void show() {
-        // TODO Auto-generated method stub
     }
 
     @Override

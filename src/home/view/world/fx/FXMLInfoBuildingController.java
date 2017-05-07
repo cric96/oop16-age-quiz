@@ -54,6 +54,7 @@ public class FXMLInfoBuildingController extends Parent {
     private void initialize() {
         this.start.setOnMouseClicked(e -> {
             this.controller.createQuiz(building);
+            this.start.getScene().getWindow().hide();
         });
     }
 
@@ -62,7 +63,7 @@ public class FXMLInfoBuildingController extends Parent {
      */
     public void setName(final String name) {
         this.name.setText(name);
-        this.name.setFont(Utility.titleFont(12));
+        this.name.setFont(Utility.getGeneralFont(15));
     }
 
     /**

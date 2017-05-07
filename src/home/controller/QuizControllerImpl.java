@@ -8,10 +8,13 @@ import java.util.stream.Collectors;
 import home.controller.profile.Profile;
 import home.controller.profile.ProfileBox;
 import home.model.Game;
+import home.model.image.ImageComponent;
+import home.model.image.ImageInfo;
 import home.model.level.Level;
 import home.model.query.Category;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
+import home.utility.ResourceManager;
 import home.view.Container;
 import home.view.ViewType;
 import home.view.quiz.QuizView;
@@ -32,6 +35,8 @@ class QuizControllerImpl extends AbstractController<QuizView>implements QuizCont
     @Override
     public void checkUpdate() {
         this.currentQuiz = Game.getGame().getCurrentQuiz().orElseThrow(() -> new IllegalStateException());
+        final ImageInfo img = ImageComponent.createComponent(this.currentQuiz.getCategory().name());
+        this.getInternalView().forEach(x -> x.showBackground(ResourceManager.load(img.getPath())));
         this.updateQuery();
         final QuizTimer qTimer = new QuizTimer(this.currentQuiz.getQuizDuration());
         qTimer.start();

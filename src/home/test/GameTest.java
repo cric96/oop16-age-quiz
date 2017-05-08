@@ -1,4 +1,4 @@
-package home.model;
+package home.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -15,6 +15,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import home.model.Game;
+import home.model.Kingdom;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.ImageInfo;

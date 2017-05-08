@@ -1,9 +1,11 @@
-package home.controller.dialog;
+package home.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+
+import home.controller.dialog.Dialog;
 /**
  * some test about dialog.
  */

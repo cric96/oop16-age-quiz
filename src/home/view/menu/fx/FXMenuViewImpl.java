@@ -13,8 +13,9 @@ import home.view.menu.MenuView;
 /**
  * Implementation of Menu view in javafx.
  */
-public class FXMenuViewImpl extends AbstractFXView implements MenuView {
+public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuView {
     private Optional<MenuController> controller;
+
     /**
      * create new MenuImpl.
      */
@@ -29,22 +30,33 @@ public class FXMenuViewImpl extends AbstractFXView implements MenuView {
         this.setParent(new ParentMenu(controller));
     }
 
+    @Override
+    public void show() {
+        super.show();
+        this.getParent().addFocus();
+    }
 
     @Override
     public void showSavedGames(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
+        this.getParent().removeFocus();
         dialog.show(profiles, controller, Buttons.LOAD_GAME, this.getParent().getScene().getWindow());
+        this.getParent().addFocus();
     }
 
     @Override
     public void showNewGame(final Set<Profile> profiles) {
         final MenuDialog dialog = new MenuDialog();
+        this.getParent().removeFocus();
         dialog.show(profiles, controller, Buttons.NEW_GAME, this.getParent().getScene().getWindow());
+        this.getParent().addFocus();
     }
 
     @Override
-    public void show() {
-        // TODO Auto-generated method stub
+    public void showMessage(final String message, final MessageType messageType) {
+        this.getParent().removeFocus();
+        super.showMessage(message, messageType);
+        this.getParent().removeFocus();
     }
 
     @Override

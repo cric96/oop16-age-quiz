@@ -68,10 +68,8 @@ final class FXContainer implements Container {
                     this.stage.get().setScene(principalScene);
                     this.stage.get().setFullScreen(true);
                     this.firstView = false;
-                } else {
-                    this.stage.get().getScene().setRoot(((FXView) e).getParent());
                 }
-                this.stage.get().getScene().setRoot(((FXView) e).getParent()); 
+                this.stage.get().getScene().setRoot(((FXView) e).getParent());
             }
         });
     }

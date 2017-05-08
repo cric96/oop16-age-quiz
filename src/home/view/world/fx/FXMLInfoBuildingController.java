@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
  * 
  */
 public class FXMLInfoBuildingController extends Parent {
-    private WorldController controller;
     private static final int TITLE_FONT = 15;
 
     @FXML
@@ -43,6 +42,9 @@ public class FXMLInfoBuildingController extends Parent {
         this.upgrade.setDisable(disabled);
     }
 
+    /**
+     * 
+     */
     @FXML
     void initialize() {
         this.experience.setFont(Utility.getGeneralFont());
@@ -77,18 +79,17 @@ public class FXMLInfoBuildingController extends Parent {
      * @param building 
      */
     public void setBuildingController(final WorldController controller, final Optional<BuildingType> building) {
-        this.controller = controller;
         this.upgrade.setOnMouseClicked(e -> {
             if (building.equals(Optional.empty())) {
-                this.controller.nextEra();
+                controller.nextEra();
                 this.upgrade.getScene().getWindow().hide();
             } else {
-                this.controller.nextLevel(building.get());
+                controller.nextLevel(building.get());
                 this.upgrade.getScene().getWindow().hide();
             }
         });
         this.start.setOnMouseClicked(e -> {
-            this.controller.createQuiz(building.get());
+            controller.createQuiz(building.get());
             this.start.getScene().getWindow().hide();
         });
     }

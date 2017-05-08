@@ -20,6 +20,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class ParentWorld extends Parent {
     private FXMLControllerWorld c;
+    private final Rectangle focus = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
+
     private static final double OPACITY = 0.4;
 
     /**
@@ -47,6 +49,23 @@ public class ParentWorld extends Parent {
         bg.setFill(Color.BLACK);
         bg.setOpacity(OPACITY);
         this.getChildren().addAll(background, bg, pane);
+        focus.setFill(Color.BLACK);
+        focus.setOpacity(0.5);
+        this.getChildren().add(focus);
+    }
+
+    /**
+     * 
+     */
+    public void removeFocus() {
+        focus.setVisible(true);
+    }
+
+    /**
+     * 
+     */
+    public void addFocus() {
+        focus.setVisible(false);
     }
 
     /**

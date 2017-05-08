@@ -57,6 +57,14 @@
 				<answer>condensazione</answer>
 			</query>
 		</level>
+		<level number="3">
+			<query>
+				<text>La sostanza acquosa/gelatinosa che riempie l'interno della cellula si chiama?</text>
+				<answer>vacuolo</answer>
+				<answer correct="true">citoplasma</answer>
+				<answer>endoplasma</answer>
+			</query>
+		</level>
 	</category>
 	<category name="LIBERAL_ARTS">
 		<level number="1">
@@ -119,6 +127,15 @@
 				<answer>Francesco Petrarca</answer>
 			</query>
 		</level>
+		<level number="3">
+			<query>
+				<text>Il Ciclo Carolingio è incentrato sulla figura di?</text>
+				<answer correct="true">Carlo Magno</answer>
+				<answer>Carlo Martello</answer>
+				<answer>Carlomanno</answer>
+				<answer>Carlo III</answer>
+			</query>
+		</level>
 	</category>
 	<category name="MANUFACTURING">
 		<level number="1">
@@ -130,11 +147,22 @@
 				<answer>è una materia prima</answer>
 			</query>
 			<query>
+				<text>Da cosa si ricava la carta?</text>
+				<answer correct="true">dalla cellulosa degli alberi</answer>
+				<answer>dalla corteccia degli alberi</answer>
+				<answer>da materiale derivato dal petrolio</answer>
+			</query>
+			<query>
 				<text>Il cotone è di origine?</text>
 				<answer>extraterrestre</answer>
 				<answer correct="true">vegetale</answer>
 				<answer>animale</answer>
 				<answer>umana</answer>
+			</query>
+			<query>
+				<text>La tecnologia è l’insieme  delle capacità umane, dei mezzi e dei materiali per la costruzione degli artefatti?</text>
+				<answer correct="true">vero</answer>
+				<answer>falso</answer>
 			</query>
 		</level>
 		<level number="2">
@@ -146,11 +174,33 @@
 				<answer>prodotto agricolo</answer>
 			</query>
 			<query>
+				<text>Grazie a quale proprietà del rame si riescono a produrre fili elettrici molto sottili?</text>
+				<answer>malleabilità</answer>
+				<answer>inossidabilità</answer>
+				<answer correct="true">duttilità</answer>
+				<answer>leggerezza</answer>
+			</query>
+			<query>
+				<text>Quando avviene, preferibilmente, l’abbattimento degli alberi?</text>
+				<answer>in estate</answer>
+				<answer correct="true">in inverno</answer>
+				<answer>nelle stagioni intermedie</answer>
+			</query>
+			<query>
 				<text>Cosa specifica, per un materiale, la duttilità?</text>
 				<answer>l'essere economico</answer>
 				<answer>la resistenza alla flessione</answer>
 				<answer>il lasciarsi deformare a freddo o a caldo</answer>
 				<answer correct="true">il lasciarsi ridurre in fili sottili</answer>
+			</query>
+		</level>
+		<level number="3">
+			<query>
+				<text>Nel passato, da cosa si ricavava la cellulosa che serviva a fabbricare la carta?</text>
+				<answer>lino</answer>
+				<answer>canapa</answer>
+				<answer>cotone</answer>
+				<answer correct="true">tutte le precedenti</answer>
 			</query>
 		</level>
 	</category>
@@ -164,12 +214,26 @@
 				<answer>Pneumococco</answer>
 			</query>
 			<query>
+				<text>Cos'è un vaccino?</text>
+				<answer>il cucciolo della mucca</answer>
+				<answer correct="true">virus tendenzialmente apatogeni</answer>
+				<answer>batteri che provocano gastrite</answer>
+				<answer>cellule epiteliali morte</answer>
+			</query>
+			<query>
+				<text>Quali sono i sintomi caratteristici della varicella?</text>
+				<answer>tosse e diarrea</answer>
+				<answer>rash cutaneo</answer>
+				<answer correct="true">rash cutaneo e febbre</answer>
+				<answer>febbre</answer>
+			</query>
+			<query>
 				<text>Qual è il principio attivo della Tachipirina?</text>
 				<answer>Betametasone</answer>
 				<answer>Tachipirolo</answer>
 				<answer correct="true">Paracetamolo</answer>
 				<answer>Ketoprofene</answer>
-			</query>
+			</query>			
 		</level>
 		<level number="2">
 			<query>
@@ -180,11 +244,31 @@
 				<answer>testicoli</answer>
 			</query>
 			<query>
-				<text>Cos'è un vaccino?</text>
-				<answer>il cucciolo della mucca</answer>
-				<answer correct="true">virus tendenzialmente apatogeni</answer>
-				<answer>batteri che provocano gastrite</answer>
-				<answer>cellule epiteliali morte</answer>
+				<text>La febbre gialla è una malattia?</text>
+				<answer>batterica</answer>
+				<answer correct="true">virale acuta</answer>
+				<answer>inventata dagli storici cinesi</answer>
+			</query>
+			<query>
+				<text>Con quale nome è più conosciuta la malattia di Hansen?</text>
+				<answer>dissenteria</answer>
+				<answer>raffreddore</answer>
+				<answer correct="true">lebbra</answer>
+			</query>
+			<query>
+				<text>Cos'è la pompa sodio-potassio?</text>
+				<answer>zucchero semplice</answer>
+				<answer>proteina</answer>
+				<answer correct="true">enzima</answer>
+				<answer>molecola gassosa</answer>
+			</query>
+		</level>
+		<level number="3">
+			<query>
+				<text>Cos'è un ictus ischemico?</text>
+				<answer>emorragia intracerebrale</answer>
+				<answer>eccesso di flusso sanguigno al cervello</answer>
+				<answer correct="true">mancanza di flusso sanguigno al cervello</answer>
 			</query>
 		</level>
 	</category>
@@ -202,6 +286,20 @@
 				<answer>no</answer>				
 				<answer correct="true">sì</answer>
 			</query>
+			<query>
+				<text>Quante volte può essere ripetuta la battuta nel tennis?</text>
+				<answer>non può essere ripetuta</answer>				
+				<answer correct="true">una volta</answer>
+				<answer>due volte</answer>
+				<answer>finchè la palla non è valida</answer>
+			</query>
+			<query>
+				<text>Qual è la massima categoria di moto da corsa su circuito?</text>
+				<answer correct="true">MotoGP</answer>				
+				<answer>Motocross</answer>
+				<answer>Formula1</answer>
+				<answer>Formula2</answer>
+			</query>
 		</level>
 		<level number="2">
 			<query>
@@ -217,6 +315,28 @@
 				<answer>sabbia</answer>
 				<answer>cotone</answer>
 				<answer correct="true">tutte le precedenti</answer>
+			</query>
+			<query>
+				<text>In quale categoria ippica rientra l'Handicap?</text>
+				<answer>corsa al trotto</answer>
+				<answer correct="true">corsa al galoppo</answer>
+			</query>
+			<query>
+				<text>Cos'è il Jeet Kune Do?</text>
+				<answer>lo sport nazionale cinese</answer>
+				<answer correct="true">l'arte marziale ideata da Bruce Lee</answer>
+				<answer>l'arte marziale di origine russa</answer>
+				<answer>un particolare tipo di danza caraibica</answer>
+				<answer>uno sport olimpico di dubbia provenienza</answer>
+			</query>
+		</level>
+		<level number="3">
+			<query>
+				<text>Qual è l'attuale record mondiale per i 100 m piani maschile?</text>
+				<answer>10"49</answer>
+				<answer>8"78</answer>
+				<answer correct="true">9"58</answer>
+				<answer>9"03</answer>
 			</query>
 		</level>
 	</category>

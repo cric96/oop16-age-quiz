@@ -9,14 +9,20 @@ import home.controller.profile.Profile;
 import home.utility.Pair;
 import home.utility.Utility;
 import home.view.menu.Buttons;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.stage.Window;
 
@@ -57,6 +63,7 @@ public class MenuDialog {
         container.layoutYProperty().set(yLayoutBox);
 
         final VBox root = new VBox();
+
         root.getChildren().addAll(container);
 
         final Alert dialog = new Alert(AlertType.NONE);
@@ -64,8 +71,9 @@ public class MenuDialog {
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
         dialog.initOwner(window);
+        dialog.setResizable(false);
         dialog.initStyle(StageStyle.DECORATED);
-
+        dialog.initModality(Modality.APPLICATION_MODAL);
         if (mode.equals(Buttons.NEW_GAME)) {
             root.getChildren().add(deleteDataMessage); 
         }

@@ -26,7 +26,7 @@
         </rowConstraints>
          <children>
             <Label text="Experience:" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
-            <Button fx:id="backMenuButton" mnemonicParsing="false" onMouseClicked="#backHomePressed" onMouseEntered="#overInBackButton" onMouseExited="#exitFromBackButton" textOverrun="WORD_ELLIPSIS" GridPane.halignment="CENTER">
+            <Button fx:id="backMenuButton" mnemonicParsing="false" onMouseClicked="#backHomePressed" textOverrun="WORD_ELLIPSIS" GridPane.halignment="CENTER">
                <tooltip>
                   <Tooltip text="Back to home menu" />
                </tooltip></Button>
@@ -38,7 +38,7 @@
       </GridPane>
       <AnchorPane prefWidth="547.0">
          <children>
-            <Button fx:id="statsImg" layoutX="517.0" layoutY="8.0" mnemonicParsing="false" onMouseEntered="#overInStats" onMouseExited="#exitFromStats" prefHeight="40.0" prefWidth="40.0" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
+            <Button fx:id="statsImg" layoutX="517.0" layoutY="8.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
                <tooltip>
                   <Tooltip>
                      <graphic>

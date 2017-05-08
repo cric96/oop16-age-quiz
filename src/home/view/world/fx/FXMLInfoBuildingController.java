@@ -1,5 +1,7 @@
 package home.view.world.fx;
 
+import java.util.Optional;
+
 import home.controller.WorldController;
 import home.model.building.BuildingType;
 import home.utility.Utility;
@@ -14,7 +16,6 @@ import javafx.scene.text.Text;
  */
 public class FXMLInfoBuildingController extends Parent {
     private WorldController controller;
-    private BuildingType building;
     private static final int TITLE_FONT = 15;
 
     @FXML
@@ -46,10 +47,6 @@ public class FXMLInfoBuildingController extends Parent {
     void initialize() {
         this.experience.setFont(Utility.getGeneralFont());
         this.level.setFont(Utility.getGeneralFont());
-        this.start.setOnMouseClicked(e -> {
-            this.controller.createQuiz(building);
-            this.start.getScene().getWindow().hide();
-        });
     }
 
     /**
@@ -79,24 +76,20 @@ public class FXMLInfoBuildingController extends Parent {
      * @param controller 
      * @param building 
      */
-    public void setBuildingController(final WorldController controller, final BuildingType building) {
+    public void setBuildingController(final WorldController controller, final Optional<BuildingType> building) {
         this.controller = controller;
-        this.building = building;
         this.upgrade.setOnMouseClicked(e -> {
-            this.controller.nextLevel(building);
-            this.upgrade.getScene().getWindow().hide();
+            if (building.equals(Optional.empty())) {
+                this.controller.nextEra();
+                this.upgrade.getScene().getWindow().hide();
+            } else {
+                this.controller.nextLevel(building.get());
+                this.upgrade.getScene().getWindow().hide();
+            }
         });
-    }
-
-    /**
-     * set controller world.
-     * @param controller 
-     */
-    public void setBuildingController(final WorldController controller) {
-        this.controller = controller;
-        this.upgrade.setOnMouseClicked(e -> {
-           this.controller.nextEra();
-           this.upgrade.getScene().getWindow().hide();
+        this.start.setOnMouseClicked(e -> {
+            this.controller.createQuiz(building.get());
+            this.start.getScene().getWindow().hide();
         });
     }
 }

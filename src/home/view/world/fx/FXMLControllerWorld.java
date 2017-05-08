@@ -3,6 +3,8 @@ package home.view.world.fx;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.util.Map;
+import java.util.Optional;
+
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
@@ -14,6 +16,7 @@ import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,7 +40,6 @@ public class FXMLControllerWorld {
     private static final int TITLE_FONT = 20;
     private Pair<Double, Double> mousePosition;
     private static final double DIALOG_OPACITY = 0.9;
-    private Stage stageBuilding = new Stage();
     private ImageView statsView;
 
     @FXML
@@ -67,45 +69,41 @@ public class FXMLControllerWorld {
         int maxRow = 1;
         final int buildingSize = 160;
         int actualCol = 0;
-
+        this.buildingPane.getChildren().clear();
         final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
         final ImageView kingButton = new ImageView(img);
         kingButton.setFitHeight(buildingSize);
         kingButton.setFitWidth(buildingSize);
+
         kingButton.setOnMouseExited(e -> {
-            kingButton.setEffect(null);
+           onMouseExited(kingButton, Optional.empty());
         });
         kingButton.setOnMouseEntered(e -> {
-            final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
-            dropS.setInput(new Glow());
-            kingButton.setEffect(dropS);
+            onMouseEntered(kingButton, Optional.of(Color.WHITE));
         });
-
-        this.buildingPane.getChildren().clear();
 
         kingButton.setOnMouseClicked(e -> {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();
         });
+        
         this.buildingPane.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
         this.buildingPane.add(kingButton, actualCol, actualRow);
         actualCol++;
         for (final Map.Entry<BuildingType, Pair<ImageInfo, Boolean>> building : buildings.entrySet()) {
             final Image buildImg = new Image(ResourceManager.load(building.getValue().getX().getPath()).toExternalForm());
             final ImageView buildButton = new ImageView(buildImg);
+            buildButton.setFitHeight(buildingSize);
+            buildButton.setFitWidth(buildingSize);
+            buildButton.setOnMouseEntered(e -> {
+                onMouseEntered(buildButton, Optional.of(Color.WHITE));
+             });
+            buildButton.setOnMouseExited(e -> {
+                onMouseExited(buildButton, Optional.empty());
+            });
             buildButton.setOnMouseClicked(e -> {
                 this.mousePosition = Pair.createPair(buildButton.getLayoutX(), buildButton.getLayoutY());
                 this.controller.pressOnBuilding(building.getKey());
-            });
-            buildButton.setFitHeight(buildingSize);
-            buildButton.setFitWidth(buildingSize);
-            buildButton.setOnMouseExited(e -> {
-                buildButton.setEffect(null);
-            });
-            buildButton.setOnMouseEntered(e -> {
-                final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
-                dropS.setInput(new Glow());
-                buildButton.setEffect(dropS);
             });
             if (!building.getValue().getY()) {
                 buildButton.setOpacity(0.5);
@@ -172,6 +170,18 @@ public class FXMLControllerWorld {
 
     @FXML
     private void initialize() {
+        this.backMenuButton.setOnMouseEntered(e -> {
+            onMouseEntered(this.backMenuButton, Optional.of(Color.WHITE));
+        });
+        this.backMenuButton.setOnMouseExited(e -> {
+            onMouseExited(this.backMenuButton, Optional.empty());
+        });
+        this.statsImg.setOnMouseEntered(e -> {
+            onMouseEntered(this.statsImg, Optional.of(Color.WHITE));
+        });
+        this.statsImg.setOnMouseExited(e -> {
+            onMouseExited(this.statsImg, Optional.of(Color.BLACK));
+        });
         titleText.setText(Utility.getTitle());
         titleText.setFont(Utility.titleFont(TITLE_FONT));
         String fileName = ResourceManager.load(Images.BACK_HOME_PICTURE.getPath()).toExternalForm();
@@ -184,13 +194,12 @@ public class FXMLControllerWorld {
         fileName = ResourceManager.load(Images.STATS_ICON.getPath()).toExternalForm();
         final Image imgStats = new Image(fileName);
         statsView = new ImageView(imgStats);
-        exitFromStats();
+        onMouseExited(this.statsImg, Optional.of(Color.BLACK));
         statsView.setFitWidth(STATS_BOX);
         statsView.setFitHeight(STATS_BOX);
         this.statsImg.setBackground(null);
         this.statsImg.setGraphic(statsView);
         this.statsPane.setVgap(1);
-        stageBuilding = new Stage();
     }
 
     /**
@@ -216,45 +225,25 @@ public class FXMLControllerWorld {
         this.controller = controller;
     }
 
-    @FXML
-    private void overInBackButton() {
-        final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
-        dropS.setInput(new Glow());
-        this.backMenuButton.setEffect(dropS);
+    private Stage initBuildingStage() {
+        Stage stageBuilding = new Stage();
+        stageBuilding.setOpacity(DIALOG_OPACITY);
+        stageBuilding.setX(mousePosition.getX());
+        stageBuilding.setY(mousePosition.getY());
+        stageBuilding.initModality(Modality.APPLICATION_MODAL);
+        stageBuilding.setResizable(false);
+        stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
+        return stageBuilding;
     }
 
-    @FXML
-    private void exitFromBackButton() {
-        this.backMenuButton.setEffect(null);
-    }
-
-    @FXML
-    void overInStats() {
-        final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.WHITE);
-        dropS.setInput(new Glow());
-        this.statsView.setEffect(dropS);
-    }
-
-    @FXML
-    private void exitFromStats() {
-        final DropShadow dropS = new DropShadow(DROP_SHADOW, Color.BLACK);
-        dropS.setInput(new Glow());
-        this.statsView.setEffect(dropS);
-    }
     /**
      * 
      * @param building 
      * @param dialog 
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        stageBuilding = new Stage();
-        stageBuilding.setOpacity(DIALOG_OPACITY);
-        stageBuilding.setX(mousePosition.getX());
-        stageBuilding.setY(mousePosition.getY());
-        this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
-        stageBuilding.setResizable(false);
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, building, dialog)));
-        stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
+        Stage stageBuilding = initBuildingStage();
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.of(building), dialog)));
         stageBuilding.showAndWait();
     }
 
@@ -263,13 +252,23 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final Dialog dialog) {
-        stageBuilding = new Stage();
-        stageBuilding.setOpacity(DIALOG_OPACITY);
-        stageBuilding.setY(mousePosition.getY());
-        this.stageBuilding.initModality(Modality.APPLICATION_MODAL);
-        stageBuilding.setResizable(false);
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, dialog)));
-        stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
+        Stage stageBuilding = initBuildingStage();
+        stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.empty(), dialog)));
         stageBuilding.showAndWait();
+    }
+
+    private void onMouseExited(final Node n, final Optional<Color> c) {
+        if (c.isPresent()) {
+            final DropShadow dropS = new DropShadow(DROP_SHADOW, c.get());
+            dropS.setInput(new Glow());
+            n.setEffect(dropS);
+        } else {
+            n.setEffect(null);
+        }
+    }
+    private void onMouseEntered(final Node n, final Optional<Color> c) {
+        final DropShadow dropS = new DropShadow(DROP_SHADOW, c.get());
+        dropS.setInput(new Glow());
+        n.setEffect(dropS);
     }
 }

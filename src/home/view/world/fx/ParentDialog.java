@@ -1,6 +1,7 @@
 package home.view.world.fx;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
@@ -20,7 +21,7 @@ public class ParentDialog extends Parent {
      * @param building 
      * @param dialog 
      */
-    public ParentDialog(final WorldController controller, final BuildingType building, final Dialog dialog) {
+    public ParentDialog(final WorldController controller, final Optional<BuildingType> building, final Dialog dialog) {
         super();
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("buildingInfoDialog.fxml"));
         try {
@@ -31,29 +32,11 @@ public class ParentDialog extends Parent {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        c.setStart(true);
-        c.setUpgrade(!dialog.levelUpEnabled());
-        c.setExperience(dialog.getExperience());
-        c.setLevel(dialog.getLevel());
-        c.setName(building.toString());
-    }
-
-    /**
-     * create a parent for kingdom dialog.
-     * @param controller 
-     * @param dialog 
-     */
-    public ParentDialog(final WorldController controller, final Dialog dialog) {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("buildingInfoDialog.fxml"));
-        try {
-            final Parent p = fxmlLoader.load();
-            this.getChildren().add(p);
-            c = fxmlLoader.<FXMLInfoBuildingController>getController();
-            c.setBuildingController(controller);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (building.isPresent()) {
+            c.setStart(true);
+        } else {
+            c.setStart(false);
         }
-        c.setStart(false);
         c.setUpgrade(!dialog.levelUpEnabled());
         c.setExperience(dialog.getExperience());
         c.setLevel(dialog.getLevel());

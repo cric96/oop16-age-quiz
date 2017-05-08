@@ -33,7 +33,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     }
     @Override
     public String getAgeName() {
-        return this.age.getLevelName();
+        return AgeEnum.values()[age.getIncrementalLevel() - 1].toString();
     }
     @Override
     public ImmutableLevel getAge() {

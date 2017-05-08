@@ -2,6 +2,7 @@ package home.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 import home.controller.dialog.Dialog;
@@ -10,6 +11,7 @@ import home.model.Kingdom;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.ImageInfo;
+import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.view.Container;
 import home.view.ViewType;
@@ -75,8 +77,9 @@ class WorldControllerImpl extends AbstractController<WorldView> implements World
     }
     //create a dialog by a kingdom status
     private Dialog createKingdomDialog() {
+        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("BuildingBundle");
         final Kingdom current = Game.getGame().getCurrentKingdom();
-        return Dialog.Builder.createBuilder().setName(CASTLE_NAME)
+        return Dialog.Builder.createBuilder().setName(bundle.getString(CASTLE_NAME))
                                              .setExperience(current.getAge().getExperienceAmount())
                                              .setLevel(current.getAge().getIncrementalLevel())
                                              .setLevelBlocked(current.getAge().isUpgradable())

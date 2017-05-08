@@ -1,7 +1,5 @@
 package home.model.status;
 
-import java.util.ResourceBundle;
-
 import home.utility.BundleLanguageManager;
 
 /**

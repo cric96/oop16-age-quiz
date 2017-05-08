@@ -41,5 +41,4 @@ public enum Category {
     public Set<StatusName> getStatusNames() {
         return Collections.unmodifiableSet(this.influencingStatus);
     }
-
 }

@@ -1,4 +1,7 @@
 package home.model.level;
+
+import home.utility.BundleLanguageManager;
+
 /**
  * the possible age in this contest.
  */
@@ -6,15 +9,15 @@ public enum AgeEnum {
     /**
      * 
      */
-    ETA_DELLA_PIETRA(1000),
+    STONEAGE(1000),
     /**
      * 
      */
-    MEDIOEVO(2000),
+    MIDDLEAGES(2000),
     /**
      * 
      */
-    RINASCIMENTO(3000);
+    RENAISSANCE(3000);
     private final int experienceAmount;
     //package-protected
     /*it's enable only in this package because other object only want to know the experience associated with ad age*/
@@ -23,5 +26,10 @@ public enum AgeEnum {
     }
     AgeEnum(final int experienceAmount) {
         this.experienceAmount = experienceAmount;
+    }
+
+    @Override
+    public String toString() {
+        return BundleLanguageManager.get().getBundle("AgeBundle").getString(this.name());
     }
 }

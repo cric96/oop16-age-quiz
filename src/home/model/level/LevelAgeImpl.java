@@ -7,7 +7,7 @@ final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     //package protected
     LevelAgeImpl(final int currentLevel) {
         super(currentLevel);
-        this.setAmountWithEnum(AgeEnum.ETA_DELLA_PIETRA);
+        this.setAmountWithEnum(AgeEnum.values()[0]);
     }
     @Override
     public boolean isUpgradable() {

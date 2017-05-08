@@ -21,6 +21,7 @@ import javafx.scene.text.Text;
  *
  */
 public class ParentMenu extends Parent {
+    private final Rectangle focus = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
@@ -65,6 +66,24 @@ public class ParentMenu extends Parent {
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
 
-        getChildren().addAll(bg, menuZero);
+        focus.setFill(Color.BLACK);
+        focus.setOpacity(0.5);
+
+        getChildren().addAll(bg, menuZero, focus);
     }
+
+    /**
+     * 
+     */
+    public void removeFocus() {
+        focus.setVisible(true);
+    }
+
+    /**
+     * 
+     */
+    public void addFocus() {
+        focus.setVisible(false);
+    }
+
 }

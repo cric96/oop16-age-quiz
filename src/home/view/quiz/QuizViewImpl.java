@@ -11,6 +11,7 @@ import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -22,7 +23,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 //package-protected
-public class QuizViewImpl extends AbstractFXView implements QuizView {
+public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     private static final String FXML_FILE = "FXMLquizView.fxml";
     private QuizController qController;
     private final FXQuizController fxController;

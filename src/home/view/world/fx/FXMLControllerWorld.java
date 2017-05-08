@@ -40,7 +40,6 @@ public class FXMLControllerWorld {
     private static final int TITLE_FONT = 20;
     private Pair<Double, Double> mousePosition;
     private static final double DIALOG_OPACITY = 0.9;
-    private ImageView statsView;
 
     @FXML
     private Label experienceLabel;
@@ -67,17 +66,17 @@ public class FXMLControllerWorld {
         int actualRow = 0;
         final int maxCol = 2;
         int maxRow = 1;
-        final int buildingSize = 160;
+        final int buildingSize = 200;
         int actualCol = 0;
         this.buildingPane.getChildren().clear();
         final Image img = new Image(ResourceManager.load(kingdom.getPath()).toExternalForm());
         final ImageView kingButton = new ImageView(img);
         kingButton.setFitHeight(buildingSize);
         kingButton.setFitWidth(buildingSize);
-
         kingButton.setOnMouseExited(e -> {
            onMouseExited(kingButton, Optional.empty());
         });
+
         kingButton.setOnMouseEntered(e -> {
             onMouseEntered(kingButton, Optional.of(Color.WHITE));
         });
@@ -86,7 +85,7 @@ public class FXMLControllerWorld {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();
         });
-        
+
         this.buildingPane.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
         this.buildingPane.add(kingButton, actualCol, actualRow);
         actualCol++;
@@ -169,7 +168,7 @@ public class FXMLControllerWorld {
     }
 
     @FXML
-    private void initialize() {
+    void initialize() {
         this.backMenuButton.setOnMouseEntered(e -> {
             onMouseEntered(this.backMenuButton, Optional.of(Color.WHITE));
         });
@@ -185,15 +184,15 @@ public class FXMLControllerWorld {
         titleText.setText(Utility.getTitle());
         titleText.setFont(Utility.titleFont(TITLE_FONT));
         String fileName = ResourceManager.load(Images.BACK_HOME_PICTURE.getPath()).toExternalForm();
-        final Image img = new Image(fileName);
-        final ImageView profileImage = new ImageView(img);
-        profileImage.setFitWidth(BACK_WIDTH);
-        profileImage.setFitHeight(BACK_HEIGHT);
+        final Image backImg = new Image(fileName);
+        final ImageView backButton = new ImageView(backImg);
+        backButton.setFitWidth(BACK_WIDTH);
+        backButton.setFitHeight(BACK_HEIGHT);
         this.backMenuButton.setBackground(null);
-        this.backMenuButton.setGraphic(profileImage);
+        this.backMenuButton.setGraphic(backButton);
         fileName = ResourceManager.load(Images.STATS_ICON.getPath()).toExternalForm();
         final Image imgStats = new Image(fileName);
-        statsView = new ImageView(imgStats);
+        final ImageView statsView = new ImageView(imgStats);
         onMouseExited(this.statsImg, Optional.of(Color.BLACK));
         statsView.setFitWidth(STATS_BOX);
         statsView.setFitHeight(STATS_BOX);
@@ -242,8 +241,9 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        Stage stageBuilding = initBuildingStage();
+        final Stage stageBuilding = initBuildingStage();
         stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.of(building), dialog)));
+        stageBuilding.requestFocus();
         stageBuilding.showAndWait();
     }
 
@@ -252,8 +252,9 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final Dialog dialog) {
-        Stage stageBuilding = initBuildingStage();
+        final Stage stageBuilding = initBuildingStage();
         stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.empty(), dialog)));
+        stageBuilding.requestFocus();
         stageBuilding.showAndWait();
     }
 

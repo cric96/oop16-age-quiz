@@ -17,7 +17,7 @@ import javafx.scene.control.ButtonType;
 /**
  * Implementation of World view in javafx.
  */
-public class FXWorldViewImpl extends AbstractFXView implements WorldView {
+public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements WorldView {
     private FXMLControllerWorld fxmlController;
 
     /**
@@ -30,13 +30,14 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void attachOn(final WorldController controller) {
-        final ParentWorld parent = new ParentWorld(controller);
-        this.setParent(parent);
-        fxmlController = parent.getFxmlControllerWorld();
+        this.setParent(new ParentWorld(controller));
+        fxmlController = this.getParent().getFxmlControllerWorld();
     }
 
     @Override
     public void show() {
+        super.show();
+        this.getParent().addFocus();
     }
 
     @Override
@@ -61,12 +62,16 @@ public class FXWorldViewImpl extends AbstractFXView implements WorldView {
 
     @Override
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
+        this.getParent().removeFocus();
         this.fxmlController.showBuildingDialog(building, dialog);
+        this.getParent().addFocus();
     }
 
     @Override
     public void showKingdomDialog(final Dialog dialog) {
+       this.getParent().removeFocus();
        this.fxmlController.showBuildingDialog(dialog);
+       this.getParent().addFocus();
     }
 
     @Override

@@ -2,16 +2,23 @@ package home.view.fx;
 
 import java.util.Optional;
 
+import home.utility.UtilityScreen;
 import home.view.MessageType;
+import javafx.animation.FadeTransition;
+import javafx.animation.FillTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 /**
- * a skeleton of a FXView.
+ * a skeleton of world fx view.
+ * @param <P> 
  */
-public abstract class AbstractFXView implements FXView {
-    private Optional<Parent> scene;
+public abstract class AbstractFXView<P extends Parent> implements FXView {
+    private Optional<P> scene;
 
     /**
      * create a abstractFxView with a Optiona.empty scene.
@@ -21,15 +28,26 @@ public abstract class AbstractFXView implements FXView {
     }
 
     @Override
-    public Parent getParent() {
+    public P getParent() {
         return scene.get();
+    }
+
+    /**
+     * 
+     */
+    public void show() {
+        final double duration = 0.4;
+        final FadeTransition ft = new FadeTransition(Duration.seconds(duration), this.getParent());
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
     }
 
     /**
      * to set the scene of this view.
      * @param parent fxparent.
      */
-    protected void setParent(final Parent parent) {
+    protected void setParent(final P parent) {
         this.scene = Optional.ofNullable(parent);
     }
 

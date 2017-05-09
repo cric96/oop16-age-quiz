@@ -1,8 +1,18 @@
 .my-progressBar > .bar {
 	-fx-background-radius: 30;
-	-fx-background-color: linear-gradient(to top left, #ff7f50, #48d1cc);
+	-fx-background-color: linear-gradient(to top left, #48d1cc, #191970);
 	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);	
 }
 .my-progressBar > .track {
 	-fx-background-color: transparent;
+}
+.my-progressBar-warning > .bar {
+	-fx-background-radius: 30;
+ 	-fx-background-color: linear-gradient(to top left, #ffdab9, #df0000); 
+ 	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);	
+}
+.my-progressBar-intermittence > .bar {
+	-fx-background-radius: 30;
+	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);
+	-fx-background-color: linear-gradient(to top left, transparent, transparent);
 }

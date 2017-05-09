@@ -18,6 +18,7 @@ import javafx.util.Duration;
 //package-protected
 final class FXQuizController {
     private static final int TIME_TO_CHANGE = 500;
+    private static final double WARNING_PERCENTAGE = 0.2; 
     private int startTime;
     private QuizController qController;
     @FXML
@@ -58,8 +59,22 @@ final class FXQuizController {
             timeline.getKeyFrames().add(keyFrame);
             timeline.play();
         }
+        if (time <= this.startTime * WARNING_PERCENTAGE) {
+            this.setIntermittence(time);
+        }
         if (time == 0) {
             this.startTime = 0;
+            this.time.getStyleClass().clear();
+            this.time.getStyleClass().add("my-progressBar");
+        }
+    }
+    private void setIntermittence(final int time) {
+        if (time % 2 == 1) {
+            this.time.getStyleClass().clear();
+            this.time.getStyleClass().add("my-progressBar-intermittence");
+        } else {
+            this.time.getStyleClass().clear();
+            this.time.getStyleClass().add("my-progressBar-warning");
         }
     }
     /**

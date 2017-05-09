@@ -17,6 +17,6 @@ public final class MainMenuImpl {
      * @return the string of buttons in the menu.
      */
     public static List<String> buttonsNameList() {
-        return BUTTONS_NAME.stream().map(a -> a.getText()).collect(Collectors.toList());
+        return BUTTONS_NAME.stream().map(a -> a.toString()).collect(Collectors.toList());
     }
 }

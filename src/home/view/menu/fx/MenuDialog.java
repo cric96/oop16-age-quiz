@@ -67,7 +67,7 @@ public class MenuDialog {
         root.getChildren().addAll(container);
 
         final Alert dialog = new Alert(AlertType.NONE);
-        dialog.setTitle(mode.getText());
+        dialog.setTitle(mode.toString());
         dialog.getButtonTypes().setAll(ButtonType.CANCEL);
         dialog.getDialogPane().setContent(root);
         dialog.initOwner(window);

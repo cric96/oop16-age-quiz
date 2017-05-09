@@ -40,17 +40,17 @@ public class ParentMenu extends Parent {
         final String font = ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm();
         text.setFont(Font.loadFont(font, TITLE_SIZE));
         menuZero.getChildren().add(text);
-        final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.getText(), Color.BLACK);
+        final MenuButton btnNewGame = new MenuButton(Buttons.NEW_GAME.toString(), Color.BLACK);
         btnNewGame.setOnMouseClicked(e -> {
             controller.newGamePressed();
         });
 
-        final MenuButton btnLoadGame = new MenuButton(Buttons.LOAD_GAME.getText(), Color.BLACK);
+        final MenuButton btnLoadGame = new MenuButton(Buttons.LOAD_GAME.toString(), Color.BLACK);
         btnLoadGame.setOnMouseClicked(e -> {
             controller.loadGamePressed();
         });
 
-        final MenuButton btnExit = new MenuButton(Buttons.EXIT.getText(), Color.RED);
+        final MenuButton btnExit = new MenuButton(Buttons.EXIT.toString(), Color.RED);
         btnExit.setOnMouseClicked(e -> {
             controller.exitPressed();
         });

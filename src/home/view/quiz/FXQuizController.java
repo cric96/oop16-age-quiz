@@ -36,7 +36,7 @@ final class FXQuizController {
         Platform.runLater(() -> this.question.setText(question));
     }
     @FXML
-    private void initialize() {
+    public void initialize() {
         this.answers.getStylesheets().add(ResourceManager.load("/style/answers.css").toExternalForm());
         this.question.getStylesheets().add(ResourceManager.load("/style/question.css").toExternalForm());
         this.question.getStyleClass().add("my-label-default");

@@ -1,9 +1,11 @@
 package home.view.world.fx;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import home.controller.WorldController;
 import home.model.building.BuildingType;
+import home.utility.BundleLanguageManager;
 import home.utility.Utility;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -47,6 +49,9 @@ public class FXMLInfoBuildingController extends Parent {
      */
     @FXML
     void initialize() {
+        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("LabelBundle");
+        this.start.setText(bundle.getString("STRQUIZ"));
+        this.upgrade.setText(bundle.getString("UPGRADE"));
         this.experience.setFont(Utility.getGeneralFont());
         this.level.setFont(Utility.getGeneralFont());
     }

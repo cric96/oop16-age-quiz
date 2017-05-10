@@ -14,7 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -67,7 +66,7 @@ public class MenuDialog {
 
         final Alert dialog = new Alert(AlertType.NONE);
         dialog.setTitle(mode.toString());
-        dialog.getButtonTypes().setAll(ButtonType.CANCEL);
+        dialog.getButtonTypes().setAll(new ButtonType(buttonText.getString("CANCEL")));
         dialog.getDialogPane().setContent(root);
         dialog.initOwner(window);
         dialog.setResizable(false);
@@ -138,6 +137,7 @@ public class MenuDialog {
             container.getChildren().add(box);
         }
 
+        //show
         final Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent()) {
             if (result.get().equals(createButton)) {
@@ -151,6 +151,7 @@ public class MenuDialog {
                 controller.get().loadGame(selProfile.get());
             }
         }
+        
     }
 
     private void setSelProfile(final Optional<Profile> profile) {

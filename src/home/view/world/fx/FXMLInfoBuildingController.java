@@ -59,7 +59,7 @@ public class FXMLInfoBuildingController extends Parent {
      * 
      */
     @FXML
-    void initialize() {
+    public void initialize() {
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
         final double dropShadow = 0.4;
         this.closeButton.setBackground(null);
@@ -101,7 +101,9 @@ public class FXMLInfoBuildingController extends Parent {
      * @param experience the experience to set
      */
     public void setExperience(final int experience) {
-        this.experience.setText("Experience: " + Integer.valueOf(experience));
+        this.experience.setText(BundleLanguageManager.get()
+                                                     .getBundle("LabelBundle")
+                                                     .getString("EXP") +  " : " + Integer.valueOf(experience));
     }
 
     /**

@@ -1,11 +1,13 @@
 package home.view.world.fx;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import home.controller.WorldController;
 import home.model.building.BuildingType;
 import home.utility.Pair;
 import home.utility.ResourceManager;
+import home.utility.BundleLanguageManager;
 import home.utility.Utility;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
@@ -73,6 +75,9 @@ public class FXMLInfoBuildingController extends Parent {
         exitImg.setFitHeight(closeButtonDimension.getX());
         exitImg.setFitWidth(closeButtonDimension.getY());
         this.closeButton.setGraphic(exitImg);
+        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("LabelBundle");
+        this.start.setText(bundle.getString("STRQUIZ"));
+        this.upgrade.setText(bundle.getString("UPGRADE"));
         this.experience.setFont(Utility.getGeneralFont());
         this.level.setFont(Utility.getGeneralFont());
     }

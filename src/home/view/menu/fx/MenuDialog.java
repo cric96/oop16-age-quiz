@@ -1,18 +1,20 @@
 package home.view.menu.fx;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.Set;
 import home.controller.MenuController;
 import home.controller.profile.Profile;
+import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.utility.Utility;
 import home.view.menu.Buttons;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -26,7 +28,6 @@ import javafx.stage.Window;
 */
 public class MenuDialog {
     private Optional<Profile> selProfile = Optional.empty();
-
     /**
      * 
      * @param profiles to show.
@@ -43,13 +44,16 @@ public class MenuDialog {
         if (!controller.isPresent()) {
             throw new IllegalArgumentException();
         }
+        final ResourceBundle buttonText = BundleLanguageManager.get().getBundle("ButtonBundle");
+        final ResourceBundle labelTest = BundleLanguageManager.get().getBundle("LabelBundle");
         final int boxPadding = 10;
         final int buttonWidth = 200;
         final int yLayoutBox = 10;
-        final ButtonType createButton = new ButtonType("Create");
-        final ButtonType selectButton = new ButtonType("Load");
+        final ButtonType createButton = new ButtonType(buttonText.getString("CREATE"));
+        final ButtonType selectButton = new ButtonType(buttonText.getString("LOAD"));
         final Map<ProfileButton, Pair<Profile, Pair<TextField, Text>>> map = new HashMap<>();
-        final Text deleteDataMessage = new Text("Warning! all saved data will be deleted.\nContinue?");
+
+        final Text deleteDataMessage = new Text(labelTest.getString("WARNING"));
         deleteDataMessage.setVisible(false);
         final Font font = Utility.getGeneralFont();
         deleteDataMessage.setFont(font);

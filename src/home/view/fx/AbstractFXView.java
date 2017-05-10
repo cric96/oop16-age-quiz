@@ -2,15 +2,11 @@ package home.view.fx;
 
 import java.util.Optional;
 
-import home.utility.UtilityScreen;
 import home.view.MessageType;
 import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 /**

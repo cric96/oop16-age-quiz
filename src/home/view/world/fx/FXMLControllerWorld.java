@@ -1,10 +1,8 @@
 package home.view.world.fx;
 
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.stage.Popup;
 import java.util.Map;
 import java.util.Optional;
-
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
@@ -17,7 +15,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -33,13 +31,14 @@ import javafx.scene.text.Text;
  */
 public class FXMLControllerWorld {
     private WorldController controller;
-    private static final int BACK_WIDTH = 40;
-    private static final int BACK_HEIGHT = 30;
+    private final Popup pop = new Popup();
+    private static final int BACK_WIDTH = 60;
+    private static final int BACK_HEIGHT = 50;
     private static final int STATS_BOX = 40;
     private static final int DROP_SHADOW = 10;
-    private static final int TITLE_FONT = 20;
+    private static final int TITLE_FONT = 25;
     private Pair<Double, Double> mousePosition;
-    private static final double DIALOG_OPACITY = 0.9;
+//    private static final double DIALOG_OPACITY = 0.9;
 
     @FXML
     private Label experienceLabel;
@@ -213,6 +212,7 @@ public class FXMLControllerWorld {
      */
     @FXML
     public void backHomePressed() {
+        this.pop.hide();
         this.controller.goOnMenu();
     }
 
@@ -224,15 +224,10 @@ public class FXMLControllerWorld {
         this.controller = controller;
     }
 
-    private Stage initBuildingStage() {
-        Stage stageBuilding = new Stage();
-        stageBuilding.setOpacity(DIALOG_OPACITY);
-        stageBuilding.setX(mousePosition.getX());
-        stageBuilding.setY(mousePosition.getY());
-        stageBuilding.initModality(Modality.APPLICATION_MODAL);
-        stageBuilding.setResizable(false);
-        stageBuilding.initOwner(this.buildingPane.getScene().getWindow());
-        return stageBuilding;
+    private void initBuildingStage() {
+        this.pop.hide();
+        this.pop.setAnchorX(this.mousePosition.getX());
+        this.pop.setAnchorY(this.mousePosition.getY());
     }
 
     /**
@@ -241,10 +236,12 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        final Stage stageBuilding = initBuildingStage();
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.of(building), dialog)));
-        stageBuilding.requestFocus();
-        stageBuilding.showAndWait();
+        if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
+            initBuildingStage();
+            final Parent p = new ParentDialog(controller, Optional.of(building), dialog, this.pop);
+            this.pop.getContent().addAll(p);
+            this.pop.show(this.buildingPane.getScene().getWindow());
+        }
     }
 
     /**
@@ -252,10 +249,10 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final Dialog dialog) {
-        final Stage stageBuilding = initBuildingStage();
-        stageBuilding.setScene(new Scene(new ParentDialog(controller, Optional.empty(), dialog)));
-        stageBuilding.requestFocus();
-        stageBuilding.showAndWait();
+          initBuildingStage();
+          final Parent p = new ParentDialog(controller, Optional.empty(), dialog, pop);
+          this.pop.getContent().add(p);
+          this.pop.show(this.buildingPane.getScene().getWindow());
     }
 
     private void onMouseExited(final Node n, final Optional<Color> c) {
@@ -267,6 +264,7 @@ public class FXMLControllerWorld {
             n.setEffect(null);
         }
     }
+
     private void onMouseEntered(final Node n, final Optional<Color> c) {
         final DropShadow dropS = new DropShadow(DROP_SHADOW, c.get());
         dropS.setInput(new Glow());

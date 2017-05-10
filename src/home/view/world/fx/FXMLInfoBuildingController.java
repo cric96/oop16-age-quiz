@@ -4,12 +4,21 @@ import java.util.Optional;
 
 import home.controller.WorldController;
 import home.model.building.BuildingType;
+import home.utility.Pair;
+import home.utility.ResourceManager;
 import home.utility.Utility;
+import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 /**
  * 
@@ -27,6 +36,8 @@ public class FXMLInfoBuildingController extends Parent {
     private Button start;
     @FXML
     private Button upgrade;
+    @FXML
+    private Button closeButton;
 
     /**
      * @param visible the start to set
@@ -47,6 +58,21 @@ public class FXMLInfoBuildingController extends Parent {
      */
     @FXML
     void initialize() {
+        final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
+        final double dropShadow = 0.4;
+        this.closeButton.setBackground(null);
+        final DropShadow dropS = new DropShadow(dropShadow, Color.WHITE);
+        dropS.setInput(new Glow());
+        this.closeButton.setOnMouseEntered(e -> {
+            this.closeButton.setEffect(dropS);
+        });
+        this.closeButton.setOnMouseExited(e -> {
+            this.closeButton.setEffect(null);
+        });
+        final ImageView exitImg = new ImageView(new Image(ResourceManager.load(Images.X_CROSS.getPath()).toExternalForm()));
+        exitImg.setFitHeight(closeButtonDimension.getX());
+        exitImg.setFitWidth(closeButtonDimension.getY());
+        this.closeButton.setGraphic(exitImg);
         this.experience.setFont(Utility.getGeneralFont());
         this.level.setFont(Utility.getGeneralFont());
     }
@@ -91,6 +117,18 @@ public class FXMLInfoBuildingController extends Parent {
         this.start.setOnMouseClicked(e -> {
             controller.createQuiz(building.get());
             this.start.getScene().getWindow().hide();
+        });
+    }
+
+
+    //TO-DO pensa a come migliorare senza passare pop
+    /**
+     * set Popup to hide.
+     * @param pop 
+     */
+    public void setPop(final Popup pop) {
+        this.closeButton.setOnMouseClicked(e -> {
+               pop.hide();
         });
     }
 }

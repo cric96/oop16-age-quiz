@@ -56,7 +56,7 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
     public void showMessage(final String message, final MessageType messageType) {
         this.getParent().removeFocus();
         super.showMessage(message, messageType);
-        this.getParent().removeFocus();
+        this.getParent().addFocus();
     }
 
     @Override

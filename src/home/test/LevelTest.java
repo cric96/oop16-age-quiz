@@ -25,7 +25,7 @@ public class LevelTest {
         assertFalse(age.nextLevel(1));
         checkNegativeExperience(age);
         assertTrue(age.nextLevel(EXPERIENCE + 1));
-        level.setMaxiumLevel(2);
+        level.setMaximumLevel(2);
         assertFalse(level.nextLevel(1));
         checkNegativeExperience(level);
         assertTrue(level.nextLevel(level.getExperienceAmount() + 1));

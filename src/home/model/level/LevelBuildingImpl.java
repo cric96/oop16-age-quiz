@@ -9,13 +9,13 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     //package-protected
     LevelBuildingImpl(final int currentLevel, final int initialMaxLevel, final int experieceAmount, final int experienceAdvance) {
         super(currentLevel);
-        this.setMaxiumLevel(initialMaxLevel);
+        this.setMaximumLevel(initialMaxLevel);
         this.setExperienceAmount(experieceAmount);
         this.experienceAdvance = experienceAdvance;
     }
 
     @Override
-    public void setMaxiumLevel(final int level) {
+    public void setMaximumLevel(final int level) {
         if (this.getCurrentLevel() > level) {
             throw new IllegalArgumentException();
         }
@@ -31,4 +31,10 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     protected void goOnNextLevel() {
         this.setExperienceAmount(this.getCurrentLevel() * (this.experienceAdvance));
     }
+
+    @Override
+    public int getMaximumLevel() {
+        return this.maxLevel;
+    }
+
 }

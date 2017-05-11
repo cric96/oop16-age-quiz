@@ -24,4 +24,10 @@ public interface ImmutableLevel {
      *  throws illegalStateException if is not upgradable
      */
     int getExperienceAmount();
+    /**
+     * 
+     * @return
+     *  the maxium incremental value of this level
+     */
+    int getMaximumLevel();
 }

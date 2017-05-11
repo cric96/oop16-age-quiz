@@ -7,11 +7,11 @@ final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     //package protected
     LevelAgeImpl(final int currentLevel) {
         super(currentLevel);
-        this.setAmountWithEnum(AgeEnum.values()[0]);
+        this.setAmountWithEnum(AgeEnum.values()[currentLevel - 1]);
     }
     @Override
     public boolean isUpgradable() {
-        return (this.getCurrentLevel()) < AgeEnum.values().length;
+        return (this.getCurrentLevel()) < this.getMaximumLevel();
     }
 
     @Override
@@ -24,6 +24,10 @@ final class LevelAgeImpl extends AbstractLevel implements Level.Age {
     @Override
     public String getLevelName() {
         return AgeEnum.values()[this.getCurrentLevel() - 1].name();
+    }
+    @Override
+    public int getMaximumLevel() {
+        return AgeEnum.values().length;
     }
 
 }

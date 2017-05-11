@@ -67,10 +67,7 @@ public interface Level extends ImmutableLevel {
          *      the new value, if is less then 0 throw new IllegalArgumentException
          *      if is less then the current level throw new IllegalArgumentException
          */
-        void setMaxiumLevel(int level);
-        /**
-         * the type of seed to define a different type of level.
-         */
+        void setMaximumLevel(int level);
     }
     /**
      * a specific level that define an age with the name of age.

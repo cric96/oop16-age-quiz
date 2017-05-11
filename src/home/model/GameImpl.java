@@ -15,6 +15,7 @@ import home.model.composite.Composite;
 import home.model.image.ImageComponent;
 import home.model.kingdom.Kingdom;
 import home.model.kingdom.KingdomBuilder;
+import home.model.kingdom.KingdomSerializator;
 import home.model.level.Level;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
@@ -37,12 +38,14 @@ final class GameImpl implements Game {
     }
     @Override
     public void save(final File save) throws FileNotFoundException, IOException {
-        Serializator.createSimple(save).save(this.getCurrentKingdom());
+        //Serializator.createSimple(save).save(this.getCurrentKingdom());
+        new KingdomSerializator(save).save(this.getCurrentKingdom());
     }
 
     @Override
     public void load(final File load) throws FileNotFoundException, IOException, ClassNotFoundException {
-        this.currentKingdom = Optional.of(Serializator.<Kingdom>createSimple(load).load());
+        //this.currentKingdom = Optional.of(Serializator.<Kingdom>createSimple(load).load());
+        this.currentKingdom = Optional.of(new KingdomSerializator(load).load());
     }
 
     @Override
@@ -86,5 +89,4 @@ final class GameImpl implements Game {
         this.getCurrentKingdom().addExperience(quiz.getXP());
         quiz.getStatusScore().forEach((x, y) -> this.getCurrentKingdom().changeStatus(x, y));
     }
-
 }

@@ -69,7 +69,7 @@ public class BuildingTest {
     @Test
     public void testAdvanceBuilding() {
         final ImmutableAgeBuilding.Container building = BuildingFactory.get().createSimpleBuilding(BuildingType.ACADEMY);
-        final ImageComponent image = ImageComponent.createComponent(BuildingType.ACADEMY.toString());
+        final ImageComponent image = ImageComponent.createComponent(BuildingType.ACADEMY.name());
         Component.compositeAttach(building, image);
         assertFalse(building.getComponents(ImageInfo.class).isEmpty());
         assertTrue(building.getComponents(ImageComponent.class).isEmpty());

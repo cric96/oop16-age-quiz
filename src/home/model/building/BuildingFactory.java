@@ -1,12 +1,10 @@
 package home.model.building;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import home.model.composite.Component;
-import home.model.composite.Composite;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 
@@ -39,8 +37,7 @@ public final class BuildingFactory {
      */
     public Set<BuildingComposite> createAllBuilding() {
         return Arrays.stream(BuildingType.values())
-                     .<BuildingComposite>map(x -> this.createAdvanceBuilding(x, Level.Building.createBuildingLevel(), 
-                             new HashSet<Component<Composite>>(Arrays.asList(ImageComponent.createComponent(x.name())))))
+                     .<BuildingComposite>map(x -> this.createAdvanceBuilding(x, Level.Building.createBuildingLevel()))
                      .collect(Collectors.toSet());
     }
     /**
@@ -49,14 +46,12 @@ public final class BuildingFactory {
      *  the name of building
      * @param level
      *  the level of building
-     * @param components
-     *  the components that you want to attach on the building
      * @return
      *  the building created
      */
-    public BuildingComposite createAdvanceBuilding(final BuildingType name, final Level.Building level, final Set<Component<Composite>>  components) {
+    public BuildingComposite createAdvanceBuilding(final BuildingType name, final Level.Building level) {
         final BuildingComposite building = new BuildingImpl(level, name);
-        components.forEach(x -> Component.compositeAttach(building, x));
+        Component.compositeAttach(building, ImageComponent.createComponent(name.name()));
         return building;
     }
 }

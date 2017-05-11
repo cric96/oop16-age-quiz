@@ -3,8 +3,8 @@ package home.model.image;
 import org.junit.Test;
 
 import home.model.building.BuildingType;
+import home.model.kingdom.Kingdom;
 import home.model.Game;
-import home.model.Kingdom;
 /**
  * some simple test on image.
  */

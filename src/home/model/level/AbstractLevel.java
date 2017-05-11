@@ -15,6 +15,9 @@ abstract class AbstractLevel implements Level, Serializable {
     }
     @Override
     public boolean nextLevel(final int experienceAmount) {
+        if (experienceAmount < 0) {
+            throw new IllegalArgumentException();
+        }
         this.checkUpgradable();
         if (checkAmout(experienceAmount)) {
             this.currentLevel++;

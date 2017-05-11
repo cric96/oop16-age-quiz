@@ -3,9 +3,9 @@ package home.model.building;
 import java.io.Serializable;
 import java.util.Optional;
 
-import home.model.Kingdom;
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
+import home.model.kingdom.Kingdom;
 import home.model.level.AgeEnum;
 import home.model.level.ImmutableLevel;
 import home.model.level.Level;

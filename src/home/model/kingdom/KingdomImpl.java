@@ -1,4 +1,4 @@
-package home.model;
+package home.model.kingdom;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -33,7 +33,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     }
     @Override
     public String getAgeName() {
-        return AgeEnum.values()[age.getIncrementalLevel() - 1].toString();
+        return AgeEnum.values()[age.getIncrementalLevel() - 1].name();
     }
     @Override
     public ImmutableLevel getAge() {

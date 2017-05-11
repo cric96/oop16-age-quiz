@@ -16,10 +16,10 @@ import java.util.Set;
 import org.junit.Test;
 
 import home.model.Game;
-import home.model.Kingdom;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
 import home.model.image.ImageInfo;
+import home.model.kingdom.Kingdom;
 import home.model.status.StatusName;
 import home.utility.LocalFolder;
 import home.utility.Pair;

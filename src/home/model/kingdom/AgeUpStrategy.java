@@ -1,4 +1,4 @@
-package home.model;
+package home.model.kingdom;
 
 import java.io.Serializable;
 import java.util.Set;

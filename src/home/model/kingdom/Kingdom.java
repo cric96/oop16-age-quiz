@@ -1,4 +1,4 @@
-package home.model;
+package home.model.kingdom;
 import java.util.Map;
 
 import home.model.composite.Composite;

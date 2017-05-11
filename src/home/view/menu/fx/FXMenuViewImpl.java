@@ -1,15 +1,12 @@
 package home.view.menu.fx;
 
 import javafx.scene.control.ButtonType;
-import javafx.scene.effect.BoxBlur;
-
 import java.util.Optional;
 import java.util.Set;
 import home.controller.MenuController;
 import home.controller.profile.Profile;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
-import home.view.menu.Buttons;
 import home.view.menu.MenuView;
 
 /**
@@ -40,18 +37,17 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
 
     @Override
     public void showSavedGames(final Set<Profile> profiles) {
-        final MenuDialog dialog = new MenuDialog();
-        //this.getParent().removeFocus();
-        this.getParent().setEffect(new BoxBlur());
-        dialog.show(profiles, controller, Buttons.LOAD_GAME, this.getParent().getScene().getWindow());
-        //this.getParent().addFocus();
+        this.getParent().removeFocus();
+        final MenuDialogLoadGame dialog = new MenuDialogLoadGame(profiles, this.getParent().getScene().getWindow(), controller.get());
+        dialog.show();
+        this.getParent().addFocus();
     }
 
     @Override
     public void showNewGame(final Set<Profile> profiles) {
-        final MenuDialog dialog = new MenuDialog();
         this.getParent().removeFocus();
-        dialog.show(profiles, controller, Buttons.NEW_GAME, this.getParent().getScene().getWindow());
+        final MenuDialogNewGame dialog = new MenuDialogNewGame(profiles, this.getParent().getScene().getWindow(), controller.get());
+        dialog.show();
         this.getParent().addFocus();
     }
 

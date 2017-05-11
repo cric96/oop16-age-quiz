@@ -248,10 +248,12 @@ public class FXMLControllerWorld {
      * @param dialog 
      */
     public void showBuildingDialog(final Dialog dialog) {
+        if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
           initBuildingStage();
           final Parent p = new ParentDialog(controller, Optional.empty(), dialog, pop);
           this.pop.getContent().add(p);
           this.pop.show(this.buildingPane.getScene().getWindow());
+        }
     }
 
     private void onMouseExited(final Node n, final Optional<Color> c) {

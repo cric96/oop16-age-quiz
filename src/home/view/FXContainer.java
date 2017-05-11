@@ -8,7 +8,6 @@ import home.utility.Pair;
 import home.utility.Utility;
 import home.view.fx.FXView;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**

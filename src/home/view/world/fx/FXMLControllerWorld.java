@@ -1,8 +1,8 @@
 package home.view.world.fx;
 
-import javafx.stage.Popup;
 import java.util.Map;
 import java.util.Optional;
+
 import home.controller.WorldController;
 import home.controller.dialog.Dialog;
 import home.model.building.BuildingType;
@@ -13,7 +13,6 @@ import home.utility.Utility;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
-import javafx.scene.layout.GridPane;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -23,8 +22,10 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 /**
  * controller for base.fxml file.
@@ -78,9 +79,6 @@ public class FXMLControllerWorld {
 
         kingButton.setOnMouseEntered(e -> {
             onMouseEntered(kingButton, Optional.of(Color.WHITE));
-        });
-
-        kingButton.setOnMouseClicked(e -> {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();
         });
@@ -95,14 +93,13 @@ public class FXMLControllerWorld {
             buildButton.setFitWidth(buildingSize);
             buildButton.setOnMouseEntered(e -> {
                 onMouseEntered(buildButton, Optional.of(Color.WHITE));
+                this.mousePosition = Pair.createPair(buildButton.getLayoutX(), buildButton.getLayoutY());
+                this.controller.pressOnBuilding(building.getKey());
              });
             buildButton.setOnMouseExited(e -> {
                 onMouseExited(buildButton, Optional.empty());
             });
-            buildButton.setOnMouseClicked(e -> {
-                this.mousePosition = Pair.createPair(buildButton.getLayoutX(), buildButton.getLayoutY());
-                this.controller.pressOnBuilding(building.getKey());
-            });
+
             if (!building.getValue().getY()) {
                 buildButton.setOpacity(0.5);
             }
@@ -165,9 +162,11 @@ public class FXMLControllerWorld {
             actualRow++;
         }
     }
-
+    /**
+     * 
+     */
     @FXML
-    void initialize() {
+    public void initialize() {
         this.backMenuButton.setOnMouseEntered(e -> {
             onMouseEntered(this.backMenuButton, Optional.of(Color.WHITE));
         });

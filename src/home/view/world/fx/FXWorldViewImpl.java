@@ -20,14 +20,6 @@ import javafx.scene.control.ButtonType;
 public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements WorldView {
     private FXMLControllerWorld fxmlController;
 
-    /**
-     * create new FXWorldView.
-     */
-    public FXWorldViewImpl() {
-        super();
-    }
-
-
     @Override
     public void attachOn(final WorldController controller) {
         this.setParent(new ParentWorld(controller));

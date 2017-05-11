@@ -1,13 +1,15 @@
 package home.view.menu.fx;
 
+import java.io.IOException;
+
 import home.controller.MenuController;
 import home.utility.ResourceManager;
 import home.utility.Utility;
 import home.utility.UtilityScreen;
 import home.view.Fonts;
+import home.view.fx.CustomParent;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
-import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -20,8 +22,7 @@ import javafx.scene.text.Text;
  * concrete realization of menu in javafx.
  *
  */
-public class ParentMenu extends Parent {
-    private final Rectangle focus = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
+public class ParentMenu extends CustomParent {
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
@@ -65,25 +66,6 @@ public class ParentMenu extends Parent {
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
-
-        focus.setFill(Color.BLACK);
-        focus.setOpacity(0.5);
-
-        getChildren().addAll(bg, menuZero, focus);
+        getChildren().addAll(bg, menuZero);
     }
-
-    /**
-     * 
-     */
-    public void removeFocus() {
-        focus.setVisible(true);
-    }
-
-    /**
-     * 
-     */
-    public void addFocus() {
-        focus.setVisible(false);
-    }
-
 }

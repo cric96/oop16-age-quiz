@@ -1,14 +1,15 @@
 package home.view.world.fx;
 
 import java.io.IOException;
+
 import home.controller.WorldController;
 import home.utility.ResourceManager;
 import home.utility.UtilityScreen;
+import home.view.fx.CustomParent;
 import home.view.fx.Images;
-import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -18,9 +19,8 @@ import javafx.scene.shape.Rectangle;
  * concrete realization of world in javafx.
  *
  */
-public class ParentWorld extends Parent {
+public class ParentWorld extends CustomParent {
     private FXMLControllerWorld c;
-    private final Rectangle focus = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
 
     private static final double OPACITY = 0.4;
 
@@ -49,23 +49,6 @@ public class ParentWorld extends Parent {
         bg.setFill(Color.BLACK);
         bg.setOpacity(OPACITY);
         this.getChildren().addAll(background, bg, pane);
-        focus.setFill(Color.BLACK);
-        focus.setOpacity(0.5);
-        this.getChildren().add(focus);
-    }
-
-    /**
-     * 
-     */
-    public void removeFocus() {
-        focus.setVisible(true);
-    }
-
-    /**
-     * 
-     */
-    public void addFocus() {
-        focus.setVisible(false);
     }
 
     /**

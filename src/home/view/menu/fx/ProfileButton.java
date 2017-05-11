@@ -1,13 +1,9 @@
 package home.view.menu.fx;
 
 import home.controller.profile.Profile;
-import home.utility.ResourceManager;
 import home.utility.Utility;
-import home.view.fx.Images;
-import home.view.menu.Buttons;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Button;
@@ -21,30 +17,12 @@ public class ProfileButton extends Button {
 
     /**
      * @param profile the profile represented by the button.
-     * @param mode to select a different locked image.
      */
-    public ProfileButton(final Profile profile, final Buttons mode) {
+    public ProfileButton(final Profile profile) {
         super(profile.getName().orElse("Empty slot"));
-        this.setFont(Utility.getGeneralFont());
-         String fileName;
-        if (profile.isEnabled()) {
-            fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();
-        } else {
-            if (mode.equals(Buttons.LOAD_GAME)) {
-                fileName = ResourceManager.load(Images.PROFILE_IMAGE_LOCK.getPath()).toExternalForm();
-            } else {
-                fileName = ResourceManager.load(Images.PROFILE_IMAGE_EMPTY.getPath()).toExternalForm();
-            }
-        }
-        final Image img = new Image(fileName);
-        final ImageView profileImage = new ImageView(img);
-        profileImage.setFitWidth(BOX_DIMENSION);
-        profileImage.setFitHeight(BOX_DIMENSION);
-        this.setGraphic(profileImage);
-
         final DropShadow dropS = new DropShadow(BOX_DROP_SHADOW, Color.WHITE);
         dropS.setInput(new Glow());
-
+        this.setFont(Utility.getGeneralFont());
         setOnMouseEntered(e -> {
             if (profile.isEnabled()) {
                 setEffect(dropS);
@@ -55,5 +33,15 @@ public class ProfileButton extends Button {
            setEffect(null);
         });
 
+    }
+
+    /**
+     * used by class who extends this to set the graphic image.
+     * @param img the image icon of button.
+     */
+    protected void setGraphic(final ImageView img) {
+        img.setFitHeight(BOX_DIMENSION);
+        img.setFitWidth(BOX_DIMENSION);
+        super.setGraphic(img);
     }
 }

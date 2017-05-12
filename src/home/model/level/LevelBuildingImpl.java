@@ -16,7 +16,7 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
 
     @Override
     public void setMaximumLevel(final int level) {
-        if (this.getCurrentLevel() > level) {
+        if (this.getMaximumLevel() > level) {
             throw new IllegalArgumentException();
         }
         this.maxLevel = level;

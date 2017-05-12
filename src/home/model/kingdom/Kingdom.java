@@ -1,8 +1,10 @@
 package home.model.kingdom;
+import java.io.File;
 import java.util.Map;
 
 import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
+import home.model.serializator.Serializator;
 import home.model.status.StatusName;
 
 /**
@@ -10,6 +12,16 @@ import home.model.status.StatusName;
  */
 
 public interface Kingdom extends Composite {
+    /**
+     * create a serializator used to save and restore the current kingdom.
+     * @param file
+     *  the file where the kingdom is located
+     * @return
+     *  the serializator
+     */
+    static Serializator<Kingdom> createSerializator(final File file) {
+        return new KingdomSerializator(file);
+    }
     /**
      * 
      * @return

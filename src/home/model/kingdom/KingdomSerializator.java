@@ -8,6 +8,8 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,8 +33,8 @@ import home.model.status.StatusName;
 import home.utility.LocalFolder;
 import home.utility.Pair;
 import netscape.javascript.JSObject;
-
-public class KingdomSerializator implements Serializator<Kingdom>{
+//package-protected
+class KingdomSerializator implements Serializator<Kingdom> {
     private static final String AGE = "age";
     private static final String EXP = "exp";
     private static final String BUILDINGS = "buildings";
@@ -44,8 +46,8 @@ public class KingdomSerializator implements Serializator<Kingdom>{
     private static final String EXP_AMOUNT = "exp-amount";
     private static final String KINGDOM = "KINGDOM";
     private final File file;
-    
-    public KingdomSerializator(final File file) {
+  //package-protected
+    KingdomSerializator(final File file) {
         this.file = file;
     }
     @Override
@@ -60,12 +62,12 @@ public class KingdomSerializator implements Serializator<Kingdom>{
             status.addProperty(VALUE, y);
             arrayStatus.add(status);
         });
+        //create an array of building
         final JsonArray arrayBuilding = new JsonArray();
         buildings.forEach(x -> {
             final JsonObject building = new JsonObject();
             building.addProperty(NAME, x.getX().getName().name());
             building.addProperty(LV, x.getX().getLevel().getIncrementalLevel());
-            building.addProperty(MAX_LV, x.getX().getLevel().getMaximumLevel());
             building.addProperty(EXP_AMOUNT, x.getX().getLevel().getExperienceAmount());
             arrayBuilding.add(building);
         });
@@ -77,24 +79,25 @@ public class KingdomSerializator implements Serializator<Kingdom>{
         final String out = new Gson().toJson(serializer);
         final PrintStream print = new PrintStream(new FileOutputStream(this.file));
         print.print(out);
+        print.close();
     }
 
     @Override
     public Kingdom load() throws FileNotFoundException, IOException, ClassNotFoundException {
         final String in = Files.readAllLines(Paths.get(this.file.toURI())).get(0);
-        System.out.println(in);
         final JsonObject inObj = new JsonStreamParser(in).next().getAsJsonObject();
         final JsonArray buildingsJson = inObj.getAsJsonArray(BUILDINGS);
+        //Create the building used to add on kingdom
         final Set<BuildingComposite> buildings = new HashSet<>();
         buildingsJson.forEach(x -> {
             final JsonObject building = x.getAsJsonObject();
             final BuildingType name = BuildingType.valueOf(building.get(NAME).getAsString());
             final int expAmount = building.get(EXP_AMOUNT).getAsInt();
-            final int maxLv = building.get(MAX_LV).getAsInt();
             final int currentLv = building.get(LV).getAsInt();
-            final Level.Building level = Level.Building.restoreBuildingLevel(currentLv, maxLv, expAmount, Level.Building.LEVEL_ADVANCE);
+            final Level.Building level = Level.Building.restoreBuildingLevel(currentLv, Level.Building.INITIAL_MAX_LEVEL, expAmount, Level.Building.LEVEL_ADVANCE);
             buildings.add(BuildingFactory.get().createAdvanceBuilding(name, level));
         });
+        //create the set of status used to add on kingdom
         final JsonArray statusesJson = inObj.getAsJsonArray(STATUS);
         final Set<Status> statuses = new HashSet<>();
         statusesJson.forEach(x -> {
@@ -103,7 +106,7 @@ public class KingdomSerializator implements Serializator<Kingdom>{
             final int value = status.get(VALUE).getAsInt();
             statuses.add(Status.createStatusWithValue(name, value));
         });
-        
+        //build the kingdom
         final KingdomBuilder builder = KingdomBuilder.createBuilder();
         buildings.forEach(x -> builder.addComponent(x));
         statuses.forEach(x -> builder.addStatus(x));
@@ -111,20 +114,5 @@ public class KingdomSerializator implements Serializator<Kingdom>{
         builder.setExperience(inObj.get(EXP).getAsInt());
         builder.addComponent(ImageComponent.createComponent(KINGDOM));
         return builder.build();
-    }
-    
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        final Set<BuildingComposite> buildings = BuildingFactory.get().createAllBuilding();
-        final Set<Status> statuses = Status.createStatuses();
-        final Component<Composite> image = ImageComponent.createComponent("KINGDOM");
-        final KingdomBuilder builder = KingdomBuilder.createBuilder();
-        statuses.forEach(x -> builder.addStatus(x));
-        buildings.forEach(x -> builder.addComponent(x));
-        builder.addComponent(image);
-        builder.setExperience(0);
-        builder.setAge(Level.Age.createAgeLevel());
-        Kingdom king = builder.build();
-        KingdomSerializator kin = new KingdomSerializator(new File(LocalFolder.LOCAL.getInfo() + "\\json-test.json"));
-        kin.save(king);
     }
 }

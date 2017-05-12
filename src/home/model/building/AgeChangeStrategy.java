@@ -16,7 +16,7 @@ interface AgeChangeStrategy {
         return (AgeChangeStrategy & Serializable) (e, a) -> {
             final boolean checkAge = AgeChangeStrategy.createBasic().onAgeChange(e, a);
             if (checkAge) {
-                level.setMaximumLevel(level.getIncrementalLevel() + 1);
+                level.setMaximumLevel(level.getMaximumLevel() + 1);
             }
             return checkAge;
         };

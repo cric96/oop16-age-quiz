@@ -26,6 +26,12 @@ public class LevelTest {
         checkNegativeExperience(age);
         assertTrue(age.nextLevel(EXPERIENCE + 1));
         level.setMaximumLevel(2);
+        try {
+            level.setMaximumLevel(1);
+            fail();
+        } catch (IllegalArgumentException exv) {
+            assertNotNull(exv);
+        }
         assertFalse(level.nextLevel(1));
         checkNegativeExperience(level);
         assertTrue(level.nextLevel(level.getExperienceAmount() + 1));

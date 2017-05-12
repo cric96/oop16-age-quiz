@@ -8,14 +8,10 @@ import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonStreamParser;
 
@@ -23,16 +19,12 @@ import home.model.building.BuildingComposite;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
 import home.model.building.ImmutableAgeBuilding;
-import home.model.composite.Component;
-import home.model.composite.Composite;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.serializator.Serializator;
 import home.model.status.Status;
 import home.model.status.StatusName;
-import home.utility.LocalFolder;
 import home.utility.Pair;
-import netscape.javascript.JSObject;
 //package-protected
 class KingdomSerializator implements Serializator<Kingdom> {
     private static final String AGE = "age";
@@ -42,7 +34,6 @@ class KingdomSerializator implements Serializator<Kingdom> {
     private static final String STATUS = "statues";
     private static final String NAME = "name";
     private static final String VALUE = "value";
-    private static final String MAX_LV = "maxLv";
     private static final String EXP_AMOUNT = "exp-amount";
     private static final String KINGDOM = "KINGDOM";
     private final File file;

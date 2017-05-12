@@ -61,7 +61,6 @@ final class MenuControllerImpl extends AbstractController<MenuView> implements M
             super.showErrors(FILE_ERROR);
         }
         ProfileBox.getProfileBox().select(profile);
-        System.out.println(ProfileBox.getProfileBox().getSelected());
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 

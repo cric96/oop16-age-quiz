@@ -2,6 +2,8 @@ package home.model.kingdom;
 import java.io.File;
 import java.util.Map;
 
+import com.google.gson.reflect.TypeToken;
+
 import home.model.composite.Composite;
 import home.model.level.ImmutableLevel;
 import home.model.serializator.Serializator;
@@ -20,7 +22,7 @@ public interface Kingdom extends Composite {
      *  the serializator
      */
     static Serializator<Kingdom> createSerializator(final File file) {
-        return new KingdomSerializator(file);
+        return Serializator.createJsonSerializator(file, new TypeToken<Kingdom>() { }.getType(), new KingdomAdapter());
     }
     /**
      * 

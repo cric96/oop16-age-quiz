@@ -10,7 +10,7 @@ public interface Controller {
      * @return
      *  the views.
      */
-    Set<View<?>> getViews();
+    Set<? extends View<?>> getViews();
     /**
      * when the controller is switched check if the model
      * is changed and notify to his own views.

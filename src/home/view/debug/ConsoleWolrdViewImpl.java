@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.world.WorldView;
 
-class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implements WorldView {
+class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements WorldView {
     private static final String LEVELUP = "LVUP";
     private static final String START = "START";
     private static final String ERROR = "ERROR DURING THE READING, NOW THE APPLICATION IS CLOSING...";
@@ -133,7 +133,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implemen
         System.out.println(ERROR);
         System.exit(0);
     }
-    private WorldController getCurrentController() {
+    private WorldObserver getCurrentController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());
     }
 

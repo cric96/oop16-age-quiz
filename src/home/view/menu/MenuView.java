@@ -2,14 +2,14 @@ package home.view.menu;
 
 import java.util.Set;
 
-import home.controller.MenuController;
+import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.view.View;
 
 /**
  * Specification of View used to implement a generic Menu.
  */
-public interface MenuView extends View<MenuController> {
+public interface MenuView extends View<MenuObserver> {
     /**
      * method called to show the dialog to select a saved profile.
      * @param profiles the set of saved profile.

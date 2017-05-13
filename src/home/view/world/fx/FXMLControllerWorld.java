@@ -3,8 +3,8 @@ package home.view.world.fx;
 import java.util.Map;
 import java.util.Optional;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
@@ -31,7 +31,7 @@ import javafx.stage.Popup;
  * controller for base.fxml file.
  */
 public class FXMLControllerWorld {
-    private WorldController controller;
+    private WorldObserver controller;
     private final Popup pop = new Popup();
     private static final int BACK_WIDTH = 60;
     private static final int BACK_HEIGHT = 50;
@@ -219,7 +219,7 @@ public class FXMLControllerWorld {
      * 
      * @param controller 
      */
-    public void setController(final WorldController controller) {
+    public void setController(final WorldObserver controller) {
         this.controller = controller;
     }
 

@@ -2,7 +2,7 @@ package home.view.menu.fx;
 
 import java.io.IOException;
 
-import home.controller.MenuController;
+import home.controller.observer.MenuObserver;
 import home.utility.ResourceManager;
 import home.utility.Utility;
 import home.utility.UtilityScreen;
@@ -33,7 +33,7 @@ public class ParentMenu extends CustomParent {
      * @throws IOException if the background load gone wrong.
      * @param controller 
      */
-    public ParentMenu(final MenuController controller) {
+    public ParentMenu(final MenuObserver controller) {
         final VBox menuZero = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);

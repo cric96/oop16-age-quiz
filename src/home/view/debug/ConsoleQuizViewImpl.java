@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import home.controller.QuizController;
+import home.controller.observer.QuizObserver;
 import home.view.quiz.QuizView;
 
-class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements QuizView {
+class ConsoleQuizViewImpl extends AbstractConsoleView<QuizObserver> implements QuizView {
     private String question;
     private List<String> answers;
     private BufferedReader scan;
@@ -93,7 +93,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
         }
     }
 
-    private QuizController getInternalController() {
+    private QuizObserver getInternalController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());
     }
 

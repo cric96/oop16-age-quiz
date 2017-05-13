@@ -26,6 +26,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     private final Set<WorldView> views;
     WorldObserverImpl(final Set<WorldView>  views) {
         this.views = views;
+        this.views.forEach(x -> x.attachOn(this));
     }
     @Override
     public void nextEra() {

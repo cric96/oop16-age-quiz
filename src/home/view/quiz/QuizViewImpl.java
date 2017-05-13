@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import home.controller.QuizController;
+import home.controller.observer.QuizObserver;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import javafx.application.Platform;
@@ -25,7 +25,7 @@ import javafx.scene.layout.BackgroundSize;
 //package-protected
 public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     private static final String FXML_FILE = "FXMLquizView.fxml";
-    private QuizController qController;
+    private QuizObserver qController;
     private final FXQuizController fxController;
     private final AnchorPane parent;
     public QuizViewImpl() throws IOException {
@@ -84,7 +84,7 @@ public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     @Override
     protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) { }
     @Override
-    public void attachOn(final QuizController controller) {
+    public void attachOn(final QuizObserver controller) {
         this.qController = controller;
         this.fxController.setController(controller);
     }

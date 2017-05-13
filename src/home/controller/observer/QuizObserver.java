@@ -1,6 +1,8 @@
 package home.controller.observer;
-
-public interface QuizObserver extends Observer{
+/**
+ * the observer of the quiz.
+ */
+public interface QuizObserver extends Observer {
     /**
      * The QuizView calls this method and it has to verify if the answer is correct, go on with the quiz
      * and let the model calculate the score.

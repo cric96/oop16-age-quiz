@@ -2,7 +2,7 @@ package home.view.quiz;
 
 import java.util.List;
 import java.util.Optional;
-import home.controller.QuizController;
+import home.controller.observer.QuizObserver;
 import home.utility.ResourceManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -20,7 +20,7 @@ final class FXQuizController {
     private static final int TIME_TO_CHANGE = 500;
     private static final double WARNING_PERCENTAGE = 0.2; 
     private int startTime;
-    private QuizController qController;
+    private QuizObserver qController;
     @FXML
     private Label question;
     @FXML
@@ -101,7 +101,7 @@ final class FXQuizController {
      * @param qController
      *      the controller to be linked.
      */
-    public void setController(final QuizController qController) {
+    public void setController(final QuizObserver qController) {
         this.qController = qController;
     }
     /**

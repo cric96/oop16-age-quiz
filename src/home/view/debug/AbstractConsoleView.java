@@ -3,11 +3,11 @@ package home.view.debug;
 import java.util.Objects;
 import java.util.Optional;
 
-import home.controller.Controller;
+import home.controller.observer.Observer;
 import home.view.MessageType;
 import home.view.View;
 
-abstract class AbstractConsoleView<E extends Controller> implements View<E> {
+abstract class AbstractConsoleView<E extends Observer> implements View<E> {
     private E controller;
     @Override
     public final void attachOn(final E controller) {

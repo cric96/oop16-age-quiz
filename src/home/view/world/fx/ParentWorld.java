@@ -2,7 +2,7 @@ package home.view.world.fx;
 
 import java.io.IOException;
 
-import home.controller.WorldController;
+import home.controller.observer.WorldObserver;
 import home.utility.ResourceManager;
 import home.utility.UtilityScreen;
 import home.view.fx.CustomParent;
@@ -28,7 +28,7 @@ public class ParentWorld extends CustomParent {
      * @throws IOException if the background load gone wrong.
      * @param controller 
      */
-    public ParentWorld(final WorldController controller) {
+    public ParentWorld(final WorldObserver controller) {
         final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("base.fxml"));
         final VBox pane = new VBox();
         pane.setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());

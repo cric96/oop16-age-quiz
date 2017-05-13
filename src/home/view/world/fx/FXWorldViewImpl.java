@@ -2,8 +2,8 @@ package home.view.world.fx;
 
 import java.util.Map;
 import java.util.Optional;
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
@@ -21,7 +21,7 @@ public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements Worl
     private FXMLControllerWorld fxmlController;
 
     @Override
-    public void attachOn(final WorldController controller) {
+    public void attachOn(final WorldObserver controller) {
         this.setParent(new ParentWorld(controller));
         fxmlController = this.getParent().getFxmlControllerWorld();
     }

@@ -21,6 +21,7 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
     private final Set<MenuView> views;
     MenuObserverImpl(final Set<MenuView> views) {
         this.views = views;
+        this.views.forEach(x -> x.attachOn(this));
         this.profiles = ProfileBox.getProfileBox();
         //foreach
     }

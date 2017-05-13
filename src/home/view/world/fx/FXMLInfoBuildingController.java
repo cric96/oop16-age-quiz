@@ -3,7 +3,7 @@ package home.view.world.fx;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import home.controller.WorldController;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.utility.Pair;
 import home.utility.ResourceManager;
@@ -111,7 +111,7 @@ public class FXMLInfoBuildingController extends Parent {
      * @param controller 
      * @param building 
      */
-    public void setBuildingController(final WorldController controller, final Optional<BuildingType> building) {
+    public void setBuildingController(final WorldObserver controller, final Optional<BuildingType> building) {
         this.upgrade.setOnMouseClicked(e -> {
             if (building.equals(Optional.empty())) {
                 controller.nextEra();

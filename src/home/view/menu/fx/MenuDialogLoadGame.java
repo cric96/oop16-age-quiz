@@ -3,7 +3,7 @@ package home.view.menu.fx;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import home.controller.MenuController;
+import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.Utility;
 import javafx.scene.control.ButtonType;
@@ -15,14 +15,14 @@ import javafx.stage.Window;
  */
 public class MenuDialogLoadGame extends AbstractMenuDialog {
     private final Set<ProfileButton> buttonSet = new HashSet<>();
-    private final MenuController controller;
+    private final MenuObserver controller;
     private final Label date = new Label();
     /**
      * @param profiles 
      * @param window 
      * @param controller 
      */
-    public MenuDialogLoadGame(final Set<Profile> profiles, final Window window, final MenuController controller) {
+    public MenuDialogLoadGame(final Set<Profile> profiles, final Window window, final MenuObserver controller) {
         super(window);
         this.date.setFont(Utility.getGeneralFont());
         this.controller = controller;

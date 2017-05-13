@@ -1,6 +1,6 @@
 package home.view;
 
-import home.controller.Controller;
+import home.controller.observer.Observer;
 
 
 /**
@@ -8,7 +8,7 @@ import home.controller.Controller;
  *
  * @param <E>
  */
-public interface View <E extends Controller> {
+public interface View <E extends Observer> {
     /**
      * method used to attach a view to a specific controller.
      * 

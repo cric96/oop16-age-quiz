@@ -3,7 +3,7 @@ package home.view.menu.fx;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
 import java.util.Set;
-import home.controller.MenuController;
+import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
@@ -13,7 +13,7 @@ import home.view.menu.MenuView;
  * Implementation of Menu view in javafx.
  */
 public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuView {
-    private Optional<MenuController> controller;
+    private Optional<MenuObserver> controller;
 
     /**
      * create new MenuImpl.
@@ -24,7 +24,7 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
     }
 
     @Override
-    public void attachOn(final MenuController controller) {
+    public void attachOn(final MenuObserver controller) {
         this.controller = Optional.of(controller);
         this.setParent(new ParentMenu(controller));
     }

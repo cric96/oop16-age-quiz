@@ -9,11 +9,11 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.IntStream;
 
-import home.controller.MenuController;
+import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.view.menu.MenuView;
 
-class ConsoleMenuViewImpl extends AbstractConsoleView<MenuController> implements MenuView {
+class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements MenuView {
 
     private final BufferedReader read;
     ConsoleMenuViewImpl() {
@@ -71,7 +71,7 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuController> implements
         }
         return Optional.empty();
     }
-    private MenuController getCurrentController() {
+    private MenuObserver getCurrentController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());
     }
 }

@@ -3,8 +3,8 @@ package home.view.world.fx;
 import java.io.IOException;
 import java.util.Optional;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.utility.ResourceManager;
 import home.view.fx.Images;
@@ -26,7 +26,7 @@ public class ParentDialog extends Parent {
      * @param dialog 
      * @param pop 
      */
-    public ParentDialog(final WorldController controller, final Optional<BuildingType> building, final Dialog dialog, final Popup pop) {
+    public ParentDialog(final WorldObserver controller, final Optional<BuildingType> building, final Dialog dialog, final Popup pop) {
         super();
         final double cloudWidthProp = 1.3;
         final double cloudHeightProp = 1.7;

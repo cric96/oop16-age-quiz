@@ -1,10 +1,12 @@
 package home.controller.observer;
 
 import home.controller.profile.Profile;
-
-public interface MenuObserver extends Observer{
+/**
+ * the observer of the menu. 
+*/
+public interface MenuObserver extends Observer {
     /**
-     * notify at the controller that is pressed newGame.
+     * notify at the observer that is pressed newGame.
      * the controller check its internal state and check what it can to do
      */
     void newGamePressed();
@@ -17,7 +19,7 @@ public interface MenuObserver extends Observer{
      */
     void createGame(String name, Profile profile);
     /**
-     * notify at the controller that is pressed load game.
+     * notify at the observer that is pressed load game.
      * the controller check its internal state and check what it can to do
      */
     void loadGamePressed();

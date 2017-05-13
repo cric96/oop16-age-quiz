@@ -1,15 +1,17 @@
 package home.controller.observer;
 
 import home.model.building.BuildingType;
-
-public interface WorldObserver extends Observer{
+/**
+ * the observer of the world.
+ */
+public interface WorldObserver extends Observer {
     /**
-     * tell to the controller to go on the next era.
+     * tell to the observer to go on the next era.
      *  @throws IllegalStateExcption if is called with less experience required
      */
     void nextEra();
     /**
-     * tell to the controller to increase a level of a specific building.
+     * tell to the observer to increase a level of a specific building.
      * @param building
      *  the building selected
      * @throws IllegalStateExcption if is called with less experience required
@@ -27,13 +29,13 @@ public interface WorldObserver extends Observer{
      */
     void goOnMenu();
     /**
-     * tell to the controller that someone want information of specific building.
+     * tell to the observer that someone want information of specific building.
      * @param building
      *  the building selected
      */
     void pressOnBuilding(BuildingType building);
     /**
-     * tell to the controller that someone want information of Kingdom.
+     * tell to the observer that someone want information of Kingdom.
      */
     void pressOnKingdom();
 }

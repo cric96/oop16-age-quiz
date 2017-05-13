@@ -4,12 +4,12 @@ import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
-import home.controller.QuizController;
+import home.controller.observer.QuizObserver;
 import home.view.View;
 /**
  *
  */
-public interface QuizView extends View<QuizController> {
+public interface QuizView extends View<QuizObserver> {
     /**
      * this method shows the question of the current quiz.
      * @param question

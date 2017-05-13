@@ -2,8 +2,8 @@ package home.view.world;
 
 import java.util.Map;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
@@ -12,7 +12,7 @@ import home.view.View;
 /**
  * Specification of View used to implement a generic WordView.
  */
-public interface WorldView extends View<WorldController> {
+public interface WorldView extends View<WorldObserver> {
 
     /**
      * update the actual Era.

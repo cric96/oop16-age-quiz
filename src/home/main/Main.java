@@ -26,9 +26,11 @@ public final class Main {
     private Main() { }
     /** 
      * @param args
-     *          not used in this contest 
+     *  not used in this contest 
      * @throws IOException 
-     * @throws ClassNotFoundException 
+     *  the error due to load a file
+     * @throws ClassNotFoundException
+     *  the error due to load a file 
      */
     public static void main(final String[] args) throws IOException, ClassNotFoundException {
         if (!new File(LocalFolder.CONFIG_FOLDER.getInfo()).exists()) {

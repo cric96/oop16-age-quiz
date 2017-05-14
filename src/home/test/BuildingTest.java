@@ -11,10 +11,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import home.model.building.BuildingComposite;
+import home.model.building.BuildingOfKingdom;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
+import home.model.building.Building;
 import home.model.composite.Component;
 import home.model.image.ImageComponent;
 import home.model.image.ImageInfo;
@@ -29,7 +29,7 @@ public class BuildingTest {
      */
     @Test
     public void testSimpleBuilding() {
-        final ImmutableAgeBuilding building = BuildingFactory.get().createSimpleBuilding(BuildingType.ACADEMY);
+        final Building building = BuildingFactory.get().createSimpleBuilding(BuildingType.ACADEMY);
         assertEquals(building.getInfluecedCategory(), Category.LIBERAL_ARTS);
         try {
             building.levelUp();
@@ -50,9 +50,9 @@ public class BuildingTest {
      */
     @Test
     public void testSetBuilding() {
-        final Set<BuildingComposite> buildings = BuildingFactory.get().createAllBuilding();
+        final Set<BuildingOfKingdom> buildings = BuildingFactory.get().createAllBuilding();
         assertSame(buildings.size(), BuildingType.values().length);
-        BuildingComposite building;
+        BuildingOfKingdom building;
         try {
             building = buildings.stream().findFirst().get();
             building.addComponent(BuildingFactory.get().createSimpleBuilding(BuildingType.HOSPITAL));
@@ -68,7 +68,7 @@ public class BuildingTest {
      */
     @Test
     public void testAdvanceBuilding() {
-        final ImmutableAgeBuilding.Container building = BuildingFactory.get().createSimpleBuilding(BuildingType.ACADEMY);
+        final Building.Container building = BuildingFactory.get().createSimpleBuilding(BuildingType.ACADEMY);
         final ImageComponent image = ImageComponent.createComponent(BuildingType.ACADEMY.name());
         Component.compositeAttach(building, image);
         assertFalse(building.getComponents(ImageInfo.class).isEmpty());

@@ -5,9 +5,9 @@ import home.model.query.Category;
 import home.model.composite.Composite;;
 
 /**
- * a building that where you can't modify internal age.
+ * a general type of building.
  */
-public interface ImmutableAgeBuilding {
+public interface Building {
     /**
      * 
      * @return
@@ -38,7 +38,7 @@ public interface ImmutableAgeBuilding {
      */
     boolean canLevelUp();
     /**
-     * a non modified building composed with some AgeComponent.
+     * a building that can contains different type of component
      */
-    interface Container extends ImmutableAgeBuilding, Composite { }
+    interface Container extends Building, Composite { }
 }

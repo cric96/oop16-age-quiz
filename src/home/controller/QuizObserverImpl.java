@@ -29,7 +29,6 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     private final Set<QuizView> views;
     QuizObserverImpl(final Set<QuizView> views) {
         this.views = views;
-
         this.views.forEach(x -> x.attachOn(this));
         this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS,
                                             Level.Building.createBuildingLevel());

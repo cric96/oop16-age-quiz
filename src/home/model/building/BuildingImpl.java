@@ -12,7 +12,7 @@ import home.model.level.Level;
 import home.model.query.Category;
 import home.utility.Utility;
 //package-protected
-final class BuildingImpl extends AbstractComposite implements BuildingComposite, Serializable {
+final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom, Serializable {
     private static final long serialVersionUID = 1L;
     private static final int FIRST_AGE = 0;
     private final BuildingType type;
@@ -65,7 +65,7 @@ final class BuildingImpl extends AbstractComposite implements BuildingComposite,
     }
     @Override
     public Class<?> getType() {
-        return ImmutableAgeBuilding.Container.class;
+        return Building.Container.class;
     }
     @Override
     public Optional<Kingdom> getParent() {

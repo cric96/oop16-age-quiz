@@ -9,10 +9,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import home.model.building.BuildingComposite;
+import home.model.building.BuildingOfKingdom;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
+import home.model.building.Building;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -30,7 +30,7 @@ class KingdomAdapter extends TypeAdapter<Kingdom> {
         reader.nextName();
         int buildingCount = reader.nextInt();
         reader.endObject();
-        final Set<BuildingComposite> buildings = new HashSet<>();
+        final Set<BuildingOfKingdom> buildings = new HashSet<>();
         reader.beginArray();
         while (buildingCount > 0) {
             reader.beginObject();
@@ -85,7 +85,7 @@ class KingdomAdapter extends TypeAdapter<Kingdom> {
 
     @Override
     public void write(final JsonWriter writer, final Kingdom king) throws IOException {
-        final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = king.getComponents(ImmutableAgeBuilding.class);
+        final Set<Pair<Building, Boolean>> buildings = king.getComponents(Building.class);
         //the node of the json file
         writer.beginArray();
         //the number of building
@@ -94,7 +94,7 @@ class KingdomAdapter extends TypeAdapter<Kingdom> {
         writer.endObject();
         //save all building in the array
         writer.beginArray();
-        for (final Pair<ImmutableAgeBuilding, Boolean> building : buildings) {
+        for (final Pair<Building, Boolean> building : buildings) {
             writer.beginObject();
             writer.name("NAME").value(building.getX().getName().name());
             writer.name("LV").value(building.getX().getLevel().getIncrementalLevel());

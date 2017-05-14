@@ -27,7 +27,7 @@ public final class BuildingFactory {
      * @return
      *  the building created
      */
-    public BuildingComposite createSimpleBuilding(final BuildingType name) {
+    public BuildingOfKingdom createSimpleBuilding(final BuildingType name) {
         return new BuildingImpl(Level.Building.createBuildingLevel(), name);
     }
     /**
@@ -35,9 +35,9 @@ public final class BuildingFactory {
      * @return
      *  return the set of building create
      */
-    public Set<BuildingComposite> createAllBuilding() {
+    public Set<BuildingOfKingdom> createAllBuilding() {
         return Arrays.stream(BuildingType.values())
-                     .<BuildingComposite>map(x -> this.createAdvanceBuilding(x, Level.Building.createBuildingLevel()))
+                     .<BuildingOfKingdom>map(x -> this.createAdvanceBuilding(x, Level.Building.createBuildingLevel()))
                      .collect(Collectors.toSet());
     }
     /**
@@ -49,8 +49,8 @@ public final class BuildingFactory {
      * @return
      *  the building created
      */
-    public BuildingComposite createAdvanceBuilding(final BuildingType name, final Level.Building level) {
-        final BuildingComposite building = new BuildingImpl(level, name);
+    public BuildingOfKingdom createAdvanceBuilding(final BuildingType name, final Level.Building level) {
+        final BuildingOfKingdom building = new BuildingImpl(level, name);
         Component.compositeAttach(building, ImageComponent.createComponent(name.name()));
         return building;
     }

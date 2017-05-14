@@ -14,14 +14,14 @@ public interface WorldObserver extends Observer {
      * tell to the observer to increase a level of a specific building.
      * @param building
      *  the building selected
-     * @throws IllegalStateExcption if is called with less experience required
+     * @throws IllegalStateException if is called with less experience required
      */
     void nextLevel(BuildingType building);
     /**
      * create a quiz associated with some building.
      * @param building
      *  the building selected
-     * @throws IllegalStateExcption if is called with less experience required
+     * @throws IllegalStateException if is called with less experience required
      */
     void createQuiz(BuildingType building);
     /**

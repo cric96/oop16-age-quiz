@@ -15,10 +15,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonStreamParser;
 
-import home.model.building.BuildingComposite;
+import home.model.building.BuildingOfKingdom;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
+import home.model.building.Building;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.serializator.Serializator;
@@ -43,7 +43,7 @@ class KingdomSerializator implements Serializator<Kingdom> {
     }
     @Override
     public void save(final Kingdom object) throws IOException {
-        final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = object.getComponents(ImmutableAgeBuilding.class);
+        final Set<Pair<Building, Boolean>> buildings = object.getComponents(Building.class);
         final JsonObject serializer = new JsonObject();
         //create an array of status
         final JsonArray arrayStatus = new JsonArray();
@@ -79,7 +79,7 @@ class KingdomSerializator implements Serializator<Kingdom> {
         final JsonObject inObj = new JsonStreamParser(in).next().getAsJsonObject();
         final JsonArray buildingsJson = inObj.getAsJsonArray(BUILDINGS);
         //Create the building used to add on kingdom
-        final Set<BuildingComposite> buildings = new HashSet<>();
+        final Set<BuildingOfKingdom> buildings = new HashSet<>();
         buildingsJson.forEach(x -> {
             final JsonObject building = x.getAsJsonObject();
             final BuildingType name = BuildingType.valueOf(building.get(NAME).getAsString());

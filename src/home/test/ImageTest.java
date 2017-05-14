@@ -1,8 +1,9 @@
-package home.model.image;
+package home.test;
 
 import org.junit.Test;
 
 import home.model.building.BuildingType;
+import home.model.image.ImageComponent;
 import home.model.kingdom.Kingdom;
 import home.model.Game;
 /**

@@ -20,7 +20,8 @@ public interface Calculator {
      * @return
      *  the corresponding XP
      * @throws 
-     *  IllegalStateException, if it is called before correct() or wrong()
+     *  IllegalStateException
+     *  if it is called before correct() or wrong()
      */
     int getXP();
     /**
@@ -28,7 +29,8 @@ public interface Calculator {
      * @return
      *  a map where status score for this query is updated
      * @throws 
-     *  IllegalStateException, if it is called before correct() or wrong() 
+     *  IllegalStateException
+     *  if it is called before correct() or wrong() 
      */
     Map<StatusName, Integer> getStatusScore();
 }

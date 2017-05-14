@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import home.model.Game;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
+import home.model.building.Building;
 import home.model.image.ImageInfo;
 import home.model.kingdom.Kingdom;
 import home.model.status.StatusName;
@@ -65,8 +65,8 @@ public class GameTest {
         }
         assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), 0);
         try {
-            final Set<Pair<ImmutableAgeBuilding, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
-            final ImmutableAgeBuilding building = this.getBuildingWithName(buildings, BUILDING_TEST);
+            final Set<Pair<Building, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
+            final Building building = this.getBuildingWithName(buildings, BUILDING_TEST);
             assertSame(building.getLevel().getIncrementalLevel(), 2);
             assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
@@ -81,7 +81,7 @@ public class GameTest {
     public void testSaveAdvance() {
         Game.getGame().newGame();
         Kingdom kingdom = Game.getGame().getCurrentKingdom();
-        ImmutableAgeBuilding.Container building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
+        Building.Container building = this.getBuildingWithName(kingdom.getComponents(Building.Container.class), BUILDING_NOT_ENABLE);
         kingdom.addExperience(EXPERIENCE);
         kingdom.nextAge();
         //the building image doesn't change
@@ -104,7 +104,7 @@ public class GameTest {
             fail();
         }
         kingdom = Game.getGame().getCurrentKingdom();
-        building = this.getBuildingWithName(kingdom.getComponents(ImmutableAgeBuilding.Container.class), BUILDING_NOT_ENABLE);
+        building = this.getBuildingWithName(kingdom.getComponents(Building.Container.class), BUILDING_NOT_ENABLE);
         im = building.getComponents(ImageInfo.class).stream().map(x -> x.getX()).findFirst().get();
         assertNotNull(im);
     }
@@ -176,8 +176,8 @@ public class GameTest {
         Game.getGame().newGame();
         final Kingdom king = Game.getGame().getCurrentKingdom();
         king.addExperience(EXPERIENCE);
-        final Set<Pair<ImmutableAgeBuilding, Boolean>> building = this.getBuildings(king);
-        final ImmutableAgeBuilding site = this.getBuildingWithName(building, BUILDING_TEST);
+        final Set<Pair<Building, Boolean>> building = this.getBuildings(king);
+        final Building site = this.getBuildingWithName(building, BUILDING_TEST);
         try {
             //try to level up a reign 
             System.out.println(site.getLevel().getExperienceAmount());
@@ -197,14 +197,14 @@ public class GameTest {
         assertNotSame(blockedBuilding, countBuilding(this.getBuildings(king)));
         assertTrue(site.getLevel().isUpgradable());
     }
-    private int countBuilding(final Set<Pair<ImmutableAgeBuilding, Boolean>> building) {
+    private int countBuilding(final Set<Pair<Building, Boolean>> building) {
         return (int) building.stream().filter(x -> !x.getY())
                 .count();
     }
-    private <E> Set<Pair<ImmutableAgeBuilding, Boolean>> getBuildings(final Kingdom king) {
-        return king.getComponents(ImmutableAgeBuilding.class);
+    private <E> Set<Pair<Building, Boolean>> getBuildings(final Kingdom king) {
+        return king.getComponents(Building.class);
     }
-    private <E extends ImmutableAgeBuilding> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
+    private <E extends Building> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
                                                         final BuildingType name) {
         return building.stream().filter(x -> x.getX().getName().equals(name))
         .map(x -> x.getX())

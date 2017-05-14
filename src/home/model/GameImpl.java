@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
-import home.model.building.BuildingComposite;
+import home.model.building.BuildingOfKingdom;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
+import home.model.building.Building;
 import home.model.composite.Component;
 import home.model.composite.Composite;
 import home.model.image.ImageComponent;
@@ -53,7 +53,7 @@ final class GameImpl implements Game {
 
     @Override
     public void newGame() {
-        final Set<BuildingComposite> buildings = BuildingFactory.get().createAllBuilding();
+        final Set<BuildingOfKingdom> buildings = BuildingFactory.get().createAllBuilding();
         final Set<Status> statuses = Status.createStatuses();
         final Component<Composite> image = ImageComponent.createComponent(KINGDOM_NAME);
         final KingdomBuilder builder = KingdomBuilder.createBuilder();
@@ -71,8 +71,8 @@ final class GameImpl implements Game {
     @Override
     public void createQuiz(final BuildingType building) {
         final Kingdom current = this.getCurrentKingdom();
-        final Set<Pair<ImmutableAgeBuilding.Container, Boolean>> buildings = current.getComponents(ImmutableAgeBuilding.Container.class);
-        final ImmutableAgeBuilding selectedBuilding = buildings.stream().filter(x -> x.getX().getName() == building)
+        final Set<Pair<Building.Container, Boolean>> buildings = current.getComponents(Building.Container.class);
+        final Building selectedBuilding = buildings.stream().filter(x -> x.getX().getName() == building)
                                                                         .filter(x -> x.getY())
                                                                         .findFirst().orElseThrow(() -> new IllegalStateException())
                                                                         .getX();

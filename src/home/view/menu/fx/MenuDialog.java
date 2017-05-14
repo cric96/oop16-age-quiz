@@ -6,7 +6,6 @@ package home.view.menu.fx;
 public interface MenuDialog {
     /**
      * show the dialog.
-     * @return 
      */
     void show();
 }

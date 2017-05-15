@@ -38,7 +38,7 @@ abstract class AbstractQuizGame implements QuizGame {
         this.currentAnswer = Optional.empty();
         this.statusScore = cat.getStatusNames().stream().collect(Collectors.toMap(x -> x, x -> 0));
         this.currentQuery = this.cQueries.next();
-        this.calculator = new MultiplierDecorator(new BasicCalculator(cat.getStatusNames()));
+        this.calculator = new MultiplierCalculator(new BasicCalculator(cat.getStatusNames()));
         this.cat = cat;
     }
 

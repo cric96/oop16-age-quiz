@@ -168,39 +168,6 @@ public class GameTest {
             assertNotNull(exc);
         }
     }
-    /**
-     * Test about the building associated with a kingdom.
-     */
-    @Test
-    public void testKingdomComponent() {
-        Game.getGame().newGame();
-        final Kingdom king = Game.getGame().getCurrentKingdom();
-        king.addExperience(EXPERIENCE);
-        final Set<Pair<Building, Boolean>> building = this.getBuildings(king);
-        final Building site = this.getBuildingWithName(building, BUILDING_TEST);
-        try {
-            //try to level up a reign 
-            System.out.println(site.getLevel().getExperienceAmount());
-            assertTrue(site.canLevelUp());
-            site.levelUp();
-            assertFalse(site.getLevel().isUpgradable());
-            assertSame(king.getExperienceAmount(), 0);
-        } catch (Exception exc) {
-            fail("there is a building!");
-        }
-        //some building is blocked at the begging of game
-        final int blockedBuilding = countBuilding(building);
-        assertNotSame(blockedBuilding, 0);
-        king.addExperience(EXPERIENCE);
-        king.nextAge();
-        //now some building is not blocked
-        assertNotSame(blockedBuilding, countBuilding(this.getBuildings(king)));
-        assertTrue(site.getLevel().isUpgradable());
-    }
-    private int countBuilding(final Set<Pair<Building, Boolean>> building) {
-        return (int) building.stream().filter(x -> !x.getY())
-                .count();
-    }
     private <E> Set<Pair<Building, Boolean>> getBuildings(final Kingdom king) {
         return king.getComponents(Building.class);
     }

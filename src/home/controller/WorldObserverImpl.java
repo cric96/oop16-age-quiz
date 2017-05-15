@@ -92,11 +92,12 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     /*what to do when the age change*/
     private void onAgeChange() {
         final Kingdom current = Game.getGame().getCurrentKingdom();
+        final String age = BundleLanguageManager.get().getBundle("AgeBundle").getString(current.getAgeName());
         final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings = createMap(current.getComponents(Building.Container.class));
         final ImageInfo kingdomImage = current.getComponents(ImageInfo.class).stream().findFirst().get().getX();
         this.views.stream().forEach(x -> {
             x.updateEra(buildings, kingdomImage);
-            x.changeEra(current.getAgeName());
+            x.changeEra(age);
             x.changeExp(current.getExperienceAmount());
         });
     }

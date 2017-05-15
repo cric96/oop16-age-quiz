@@ -57,6 +57,9 @@ final class KingdomBuilderImpl implements KingdomBuilder {
 
     @Override
     public Kingdom build() {
+        if (this.statuses.isEmpty()) {
+            throw new IllegalStateException("you cannot create a kingdom without statuses");
+        }
         this.checkBuilded();
         this.created = true;
         final Kingdom king = new KingdomImpl(this.statuses, this.age, AgeUpStrategy.createSimple());
@@ -65,6 +68,7 @@ final class KingdomBuilderImpl implements KingdomBuilder {
         king.addExperience(this.experience);
         return king;
     }
+    //to turn back all component into the correct age
     private void normalizeAge(final Kingdom king) {
        final AgeEnum age = AgeEnum.valueOf(this.age.getLevelName());
        for (int i = 1; i <= age.ordinal(); i++) {

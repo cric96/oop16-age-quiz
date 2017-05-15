@@ -4,7 +4,7 @@ import java.util.Set;
 
 import home.view.MessageType;
 import home.view.View;
-
+//a skeleton of an implementation of observer
 abstract class AbstractObserver {
     protected abstract Set<? extends View<?>> getAttached();
     protected void update() {

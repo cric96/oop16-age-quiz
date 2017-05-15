@@ -106,7 +106,7 @@ class KingdomAdapter extends TypeAdapter<Kingdom> {
         //the count of status on this kingdom
         writer.name("STATUS-COUNT").value(king.getStatusStatistic().size());
         writer.endObject();
-        //save al the status 
+        //save all the status 
         writer.beginArray();
         for (final Map.Entry<StatusName, Integer> status : king.getStatusStatistic().entrySet()) {
             writer.beginObject();

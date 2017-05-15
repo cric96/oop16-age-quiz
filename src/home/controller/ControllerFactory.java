@@ -12,6 +12,7 @@ import home.view.world.WorldView;
  */
 public final class ControllerFactory {
     private static final ControllerFactory SINGLETON = new ControllerFactory();
+    private ControllerFactory() { }
     /**
      * 
      * @return

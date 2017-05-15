@@ -33,7 +33,7 @@ public class GameTest {
     private static final int MAX_STATUS = 100;
     private static final BuildingType BUILDING_TEST = BuildingType.BUILDING_SITE;
     private static final BuildingType BUILDING_NOT_ENABLE = BuildingType.ACADEMY;
-    private static final File FILE_NAME = new File(LocalFolder.LOCAL.getInfo() + "\\prova.obj");
+    private static final File FILE_NAME = new File(LocalFolder.LOCAL + "\\prova.obj");
     /**
      * simple test for the interface Game.
      */

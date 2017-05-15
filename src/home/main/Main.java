@@ -21,8 +21,8 @@ import javafx.application.Application;
  */
 public final class Main {
     private static final boolean DEBUG = false;
-    private static final File BOX_PROFILES = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + "profile-box.obj");
-    private static final File LANGUAGE = new File(LocalFolder.CONFIG_FOLDER.getInfo() + LocalFolder.SEPARATOR.getInfo() + "language.obj");
+    private static final File BOX_PROFILES = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR.toString() + "profile-box.obj");
+    private static final File LANGUAGE = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR.toString() + "language.obj");
     private Main() { }
     /** 
      * @param args
@@ -33,7 +33,7 @@ public final class Main {
      *  the error due to load a file 
      */
     public static void main(final String[] args) throws IOException, ClassNotFoundException {
-        if (!new File(LocalFolder.CONFIG_FOLDER.getInfo()).exists()) {
+        if (!new File(LocalFolder.CONFIG_FOLDER.toString()).exists()) {
             new Installer().install();
         }
         ProfileBox.getProfileBox().setFile(BOX_PROFILES);
@@ -49,7 +49,7 @@ public final class Main {
     //a little object used for the first launch of application
     private static class  Installer {
         private void install() throws IOException {
-            new File(LocalFolder.CONFIG_FOLDER.getInfo()).mkdir();
+            new File(LocalFolder.CONFIG_FOLDER.toString()).mkdir();
             ProfileBox.getProfileBox().setFile(BOX_PROFILES);
             ProfileBox.getProfileBox().save();
             try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream(LANGUAGE))) {

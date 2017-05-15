@@ -29,8 +29,8 @@ final class ProfileBoxImpl implements ProfileBox {
     private Optional<Serializator<Set<Profile>>> seriliazator;
     private ProfileBoxImpl() {
         this.profiles = IntStream.range(0, NUM_PROFILES)
-                                 .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER.getInfo() 
-                                                                             + LocalFolder.SEPARATOR.getInfo()
+                                 .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER 
+                                                                             + LocalFolder.SEPARATOR.toString()
                                                                              + "profile" + x + ".obj")))
                                  .collect(Collectors.toSet());
     }

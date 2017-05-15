@@ -38,7 +38,7 @@ public interface Building {
      */
     boolean canLevelUp();
     /**
-     * a building that can contains different type of component
+     * a building that can contains different type of component.
      */
     interface Container extends Building, Composite { }
 }

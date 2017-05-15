@@ -30,8 +30,6 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     QuizObserverImpl(final Set<QuizView> views) {
         this.views = views;
         this.views.forEach(x -> x.attachOn(this));
-        this.currentQuiz = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS,
-                                            Level.Building.createBuildingLevel());
     }
     private void updateQuery() {
         this.views.forEach(x -> x.showQuestion(this.currentQuiz.showCurrentQuery().getQuestion()));
@@ -39,8 +37,8 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     }
     @Override
     protected void update() {
-        super.update();
         this.currentQuiz = Game.getGame().getCurrentQuiz().orElseThrow(() -> new IllegalStateException());
+        super.update();
         this.updateQuery();
         final QuizTimer qTimer = new QuizTimer(this.currentQuiz.getQuizDuration());
         qTimer.start();

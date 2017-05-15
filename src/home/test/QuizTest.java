@@ -1,16 +1,20 @@
-package home.model.quiz;
-import static org.junit.Assert.*;
+package home.test;
 import org.junit.Test;
 
 import home.model.level.Level;
 import home.model.query.Category;
+import home.model.quiz.QuizGame;
+import home.model.quiz.QuizGameFactory;
 /**
  *
  */
 public class QuizTest {
+    /**
+     * 
+     */
     @Test
     public void test1() {
-        final QuizGame quizGame = new QuizGameAdvanced(Category.LIBERAL_ARTS, Level.Building.createBuildingLevel());
+        final QuizGame quizGame = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS, Level.Building.createBuildingLevel());
         System.out.println(quizGame.showCurrentQuery());
         System.out.println(quizGame.getStatusScore());
         System.out.println(quizGame.getXP());

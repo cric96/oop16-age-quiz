@@ -69,7 +69,7 @@ final class FXQuizController {
         }
     }
     private void setIntermittence(final int time) {
-        if (time % 2 == 1) {
+        if (time % 2 == 0) {
             this.time.getStyleClass().clear();
             this.time.getStyleClass().add("my-progressBar-intermittence");
         } else {

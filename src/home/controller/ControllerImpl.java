@@ -4,7 +4,7 @@ import java.util.Set;
 
 import home.view.View;
 
-class ControllerImpl implements Controller {
+final class ControllerImpl implements Controller {
     private final AbstractObserver observer;
     ControllerImpl(final AbstractObserver observer) {
         this.observer = observer;

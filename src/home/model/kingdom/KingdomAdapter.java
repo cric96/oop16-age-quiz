@@ -19,7 +19,7 @@ import home.model.status.Status;
 import home.model.status.StatusName;
 import home.utility.Pair;
 
-class KingdomAdapter extends TypeAdapter<Kingdom> {
+final class KingdomAdapter extends TypeAdapter<Kingdom> {
 
     @Override
     public Kingdom read(final JsonReader reader) throws IOException {

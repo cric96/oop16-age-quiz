@@ -36,14 +36,14 @@ final class GameImpl implements Game {
     }
     @Override
     public void save(final File save) throws FileNotFoundException, IOException {
-        //Serializator.createSimple(save).save(this.getCurrentKingdom());
-        Kingdom.createSerializator(save).save(this.getCurrentKingdom());
+        //Serializer.createSimple(save).save(this.getCurrentKingdom());
+        Kingdom.createSerializer(save).save(this.getCurrentKingdom());
     }
 
     @Override
     public void load(final File load) throws FileNotFoundException, IOException, ClassNotFoundException {
-        //this.currentKingdom = Optional.of(Serializator.<Kingdom>createSimple(load).load());
-        this.currentKingdom = Optional.of(Kingdom.createSerializator(load).load());
+        //this.currentKingdom = Optional.of(Serializer.<Kingdom>createSimple(load).load());
+        this.currentKingdom = Optional.of(Kingdom.createSerializer(load).load());
     }
 
     @Override

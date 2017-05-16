@@ -16,7 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import home.model.serializator.Serializator;
+import home.model.serializer.Serializer;
 import home.utility.LocalFolder;
 
 final class ProfileBoxImpl implements ProfileBox {
@@ -26,7 +26,7 @@ final class ProfileBoxImpl implements ProfileBox {
     private static final AdapterProfile ADAPTER = new AdapterProfile();
     private Set<Profile> profiles;
     private Profile selected;
-    private Optional<Serializator<Set<Profile>>> seriliazator;
+    private Optional<Serializer<Set<Profile>>> seriliazator;
     private ProfileBoxImpl() {
         this.profiles = IntStream.range(0, NUM_PROFILES)
                                  .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER 
@@ -52,7 +52,7 @@ final class ProfileBoxImpl implements ProfileBox {
     @Override
     public void setFile(final File file) {
         Objects.requireNonNull(file);
-        this.seriliazator = Optional.of(Serializator.createJsonSerializator(file, SAVEDTYPE, ADAPTER));
+        this.seriliazator = Optional.of(Serializer.createJsonSerializer(file, SAVEDTYPE, ADAPTER));
     }
     @Override
     public void select(final Profile profile) {
@@ -66,7 +66,7 @@ final class ProfileBoxImpl implements ProfileBox {
     public Optional<Profile> getSelected() {
         return Optional.ofNullable(this.selected);
     }
-    private Serializator<Set<Profile>> getSerializator() {
+    private Serializer<Set<Profile>> getSerializator() {
         return this.seriliazator.orElseThrow(() -> new IllegalStateException("NO FILE SELECTED"));
     }
 

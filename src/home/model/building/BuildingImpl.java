@@ -6,8 +6,7 @@ import java.util.Optional;
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
 import home.model.kingdom.Kingdom;
-import home.model.level.AgeEnum;
-import home.model.level.ImmutableLevel;
+import home.model.level.AgeType;
 import home.model.level.Level;
 import home.model.query.Category;
 import home.utility.Utility;
@@ -16,7 +15,7 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
     private static final long serialVersionUID = 1L;
     private static final int FIRST_AGE = 0;
     private final BuildingType type;
-    private final Level.Building level;
+    private Level.Building level;
     private final AgeChangeStrategy strategy;
     //i can't use Optional<Kingdom> because it can't be saved
     private Kingdom parent;
@@ -27,8 +26,8 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
         }
         this.type = type;
         this.level = level;
-        this.enable = type.getAgeEnable() == AgeEnum.values()[FIRST_AGE];
-        this.strategy = AgeChangeStrategy.createSimpleLevel(this.level);
+        this.enable = type.getAgeEnable() == AgeType.values()[FIRST_AGE];
+        this.strategy = AgeChangeStrategy.createBasic();
     }
 
     @Override
@@ -37,7 +36,7 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
     }
 
     @Override
-    public ImmutableLevel getLevel() {
+    public Level getLevel() {
         return this.level;
     }
     @Override
@@ -54,11 +53,8 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
         /*if i don't add a kingdom i can't level up!*/
         this.getParent().orElseThrow(() -> new IllegalStateException());
         final int amount = this.level.getExperienceAmount();
-        if (this.level.nextLevel(this.parent.getExperienceAmount())) {
-            this.parent.decExperiene(amount);
-        } else {
-            throw new IllegalStateException();
-        }
+        this.level = this.level.nextLevel(this.parent.getExperienceAmount()).orElseThrow(() -> new IllegalStateException());
+        this.parent.decExperiene(amount);
     }
     public int getExperienceNecesary() {
         return this.level.getExperienceAmount();
@@ -89,7 +85,11 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
             if (this.isEnable()) {
                 this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
             }
-            enable = this.strategy.onAgeChange(Event.Age.class.cast(event), this.type.getAgeEnable());
+            final Optional<Level.Building> next = this.strategy.onAgeChange(Event.Age.class.cast(event), this.type.getAgeEnable(), this.level);
+            if (next.isPresent()) {
+                this.level = next.get();
+                this.enable = true;
+            }
         }
     }
     public boolean isEnable() {

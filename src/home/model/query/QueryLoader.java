@@ -7,7 +7,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.utility.ResourceManager;
 
 /**
@@ -21,7 +21,7 @@ public interface QueryLoader {
  * @return 
  *      a List of specific queries.
  */
-    List<Query> getQueries(Category cat, ImmutableLevel level);
+    List<Query> getQueries(Category cat, Level level);
     /**
      * 
      * @return a QueryLoader

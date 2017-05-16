@@ -5,38 +5,25 @@ import java.io.Serializable;
 //package-protected
 abstract class AbstractLevel implements Level, Serializable {
     private static final long serialVersionUID = 1L;
-    private int currentLevel;
-    private int experienceAmount;
-    AbstractLevel(final int currentLevel) {
-        if (currentLevel < 0) {
+    private final int currentLevel;
+    private final int experienceAmount;
+    AbstractLevel(final int currentLevel, final int experienceAmount) {
+        if (currentLevel < 0 && experienceAmount < 0) {
             throw new IllegalArgumentException();
         }
         this.currentLevel = currentLevel;
+        this.experienceAmount = experienceAmount;
     }
-    @Override
-    public boolean nextLevel(final int experienceAmount) {
+    protected boolean canLevelUp(final int experienceAmount) {
         if (experienceAmount < 0) {
             throw new IllegalArgumentException();
         }
         this.checkUpgradable();
-        if (checkAmout(experienceAmount)) {
-            this.currentLevel++;
-            goOnNextLevel();
-            return true;
-        } else {
-            return false;
-        }
+        return checkAmout(experienceAmount);
     }
     @Override
     public int getExperienceAmount() {
         return this.experienceAmount;
-    }
-    /*Set the experience amount for the next level*/
-    protected void setExperienceAmount(final int experienceAmount) {
-        if (experienceAmount < 0) {
-            throw new IllegalArgumentException();
-        }
-        this.experienceAmount = experienceAmount;
     }
     protected int getCurrentLevel() {
         return this.currentLevel;
@@ -53,8 +40,6 @@ abstract class AbstractLevel implements Level, Serializable {
     public String toString() {
         return "[currentLevel=" + currentLevel + " upgradable=" + this.isUpgradable() + "]";
     }
-    //TEMPLATE METHOD set of operation to do when a level pass on the other
-    protected abstract void goOnNextLevel();
     private void checkUpgradable() {
         if (!isUpgradable()) {
             throw new IllegalStateException();

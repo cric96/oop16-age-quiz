@@ -6,7 +6,7 @@ import java.util.Set;
 
 import home.model.composite.Component;
 import home.model.composite.Event;
-import home.model.level.AgeEnum;
+import home.model.level.AgeType;
 import home.model.level.Level.Age;
 import home.model.status.Status;
 
@@ -70,9 +70,9 @@ final class KingdomBuilderImpl implements KingdomBuilder {
     }
     //to turn back all component into the correct age
     private void normalizeAge(final Kingdom king) {
-       final AgeEnum age = AgeEnum.valueOf(this.age.getLevelName());
+       final AgeType age = AgeType.valueOf(this.age.getName());
        for (int i = 1; i <= age.ordinal(); i++) {
-           final Event.Age<Kingdom> e = Event.Age.createEvent(king, AgeEnum.values()[i]);
+           final Event.Age<Kingdom> e = Event.Age.createEvent(king, AgeType.values()[i]);
            this.components.forEach(x -> x.update(e));
        }
     }

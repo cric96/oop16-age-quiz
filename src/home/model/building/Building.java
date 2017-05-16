@@ -1,5 +1,5 @@
 package home.model.building;
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.model.query.Category;
 
 import home.model.composite.Composite;;
@@ -19,7 +19,7 @@ public interface Building {
      * @return
      *  an incremental value that define current level
      */
-    ImmutableLevel getLevel();
+    Level getLevel();
     /**
      * 
      * @return

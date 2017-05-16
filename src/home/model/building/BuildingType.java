@@ -1,7 +1,7 @@
 package home.model.building;
 import home.model.query.Category;
 import home.utility.BundleLanguageManager;
-import home.model.level.AgeEnum;
+import home.model.level.AgeType;
 /**
  * define all type of building with an associated category.
  */
@@ -9,26 +9,26 @@ public enum BuildingType {
     /**
      * 
      */
-    SCHOOL(Category.SCIENCE, AgeEnum.STONEAGE),
+    SCHOOL(Category.SCIENCE, AgeType.STONEAGE),
     /**
      * 
      */
-    HOSPITAL(Category.MEDICINE, AgeEnum.STONEAGE),
+    HOSPITAL(Category.MEDICINE, AgeType.STONEAGE),
     /**
      * 
      */
-    BUILDING_SITE(Category.MANUFACTURING, AgeEnum.STONEAGE),
+    BUILDING_SITE(Category.MANUFACTURING, AgeType.STONEAGE),
     /**
      * 
      */
-    ACADEMY(Category.LIBERAL_ARTS, AgeEnum.MIDDLEAGES),
+    ACADEMY(Category.LIBERAL_ARTS, AgeType.MIDDLEAGES),
     /**
      * 
      */
-    SPORT_CENTER(Category.SPORT, AgeEnum.MIDDLEAGES);
+    SPORT_CENTER(Category.SPORT, AgeType.MIDDLEAGES);
     private Category influezed;
-    private final AgeEnum ageEnable;
-    BuildingType(final Category category, final AgeEnum ageEnable) {
+    private final AgeType ageEnable;
+    BuildingType(final Category category, final AgeType ageEnable) {
         this.ageEnable = ageEnable;
         this.influezed = category;
     }
@@ -37,7 +37,7 @@ public enum BuildingType {
         return this.influezed;
     }
     //package-protected
-    AgeEnum getAgeEnable() {
+    AgeType getAgeEnable() {
         return this.ageEnable;
     }
 

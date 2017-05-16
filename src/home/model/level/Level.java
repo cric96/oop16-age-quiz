@@ -1,24 +1,43 @@
 package home.model.level;
 
+import java.util.Optional;
+
 /**
- * an interface to define a level in the game.
- * a level could be upgrade with some experience
- * every level has a specific experience to level up
+ * an interface to define an immutable level in the game.
+ * each level has a successive level unlike the last one
+ * every level has a set of properties
  */
-public interface Level extends ImmutableLevel {
+public interface Level {
     /**
      * by default this is the level with all level start.
      */
     int INITIAL_LEVEL = 1;
     /**
-     * go to the next level (if is possible).
-     * throws illegalStateException if is on the maximum level
-     * @param experienceAmount
-     *  if the experienceAmount is not enough you can't pass the level
+     * tell if a level has a successive level or not.
      * @return
-     *  true is the level goes on the next level false otherwise 
+     *  true if has a successive false otherwise
      */
-    boolean nextLevel(int experienceAmount);
+    boolean isUpgradable();
+    /**
+     * 
+     * @return
+     *  an incremental value that define the current level
+     */
+    int getIncrementalLevel();
+    /**
+     * 
+     * @return
+     *  the experience amount to go on the successive level
+     *  throws illegalStateException if is not upgradable
+     */
+    int getExperienceAmount();
+    /**
+     * 
+     * @return
+     *  the maximum incremental value of the successive level
+     */
+    int getReachMaximumLevel();
+
     /**
      * The level of a building.
      * a building can change the maximum level in base of his age
@@ -62,12 +81,23 @@ public interface Level extends ImmutableLevel {
             return new LevelBuildingImpl(currentLevel, maxLevel, experince, levelAdvance);
         }
         /**
-         * change the maximum level of a level
+         * get a level with a different maximum successive level
          * @param level
          *      the new value, if is less then 0 throw new IllegalArgumentException
          *      if is less then the current level throw new IllegalArgumentException
+         * @return 
+         *  a new level with a different maximum level
          */
-        void setMaximumLevel(int level);
+        Optional<Level.Building> maxiumLevelchanged(int level);
+        /**
+         * get the successive level
+         * @param experienceAmount
+         *  the experience amount necessary to get the successive level
+         * @return
+         *  Optional.empty if the experience is not enough
+         *  Optional.of level if the experience is enough
+         */
+        Optional<Level.Building> nextLevel(int experienceAmount);
     }
     /**
      * a specific level that define an age with the name of age.
@@ -89,12 +119,21 @@ public interface Level extends ImmutableLevel {
          * @return
          */
         static Level.Age restoreAgeLevel(final int currentAgeLevel) {
-            return new LevelAgeImpl(currentAgeLevel);
+            return AgeType.values()[currentAgeLevel - 1].getAge();
         }
         /**
          * @return
          *  name of the age
          */
-        String getLevelName();
+        String getName();
+        /**
+         * get the next age
+         * @param experienceAmount
+         *  the experience amount to take the next age
+         * @return
+         *  Optional.empty if the experience is not enough
+         *  Optional.of age if the experience is enough
+         */
+        Optional<Level.Age> nextAge(int experienceAmount);
     }
 }

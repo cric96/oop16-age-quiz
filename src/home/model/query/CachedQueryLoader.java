@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.utility.Pair;
 
 //package-protected
@@ -21,7 +21,7 @@ final class CachedQueryLoader extends QueryLoaderDecorator {
         super(queryLoader);
     }
     @Override
-    public List<Query> getQueries(final Category cat, final ImmutableLevel level) {
+    public List<Query> getQueries(final Category cat, final Level level) {
         final Pair<Category, Integer> key = Pair.createPair(cat, level.getIncrementalLevel()); 
         if (!CACHE.asMap().containsKey(key)) {
             CACHE.put(key, super.getQueries(cat, level));

@@ -5,8 +5,8 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import home.model.composite.Composite;
-import home.model.level.ImmutableLevel;
-import home.model.serializator.Serializator;
+import home.model.level.Level;
+import home.model.serializer.Serializer;
 import home.model.status.StatusName;
 
 /**
@@ -15,27 +15,21 @@ import home.model.status.StatusName;
 
 public interface Kingdom extends Composite {
     /**
-     * create a serializator used to save and restore the current kingdom.
+     * create a serializer used to save and restore the current kingdom.
      * @param file
      *  the file where the kingdom is located
      * @return
-     *  the serializator
+     *  the serializer
      */
-    static Serializator<Kingdom> createSerializator(final File file) {
-        return Serializator.createJsonSerializator(file, new TypeToken<Kingdom>() { }.getType(), new KingdomAdapter());
+    static Serializer<Kingdom> createSerializer(final File file) {
+        return Serializer.createJsonSerializer(file, new TypeToken<Kingdom>() { }.getType(), new KingdomAdapter());
     }
-    /**
-     * 
-     * @return
-     *  the current age of the kingdom
-     */
-    String getAgeName();
     /**
      * 
      * @return
      *  the level associated in this kingdom
      */
-    ImmutableLevel getAge();
+    Level.Age getAge();
     /**
      * @return
      *  the experience of the kingdom

@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
-import home.model.level.AgeEnum;
-import home.model.level.ImmutableLevel;
+import home.model.level.AgeType;
 import home.model.level.Level;
 import home.model.status.Status;
 import home.model.status.StatusName;
@@ -19,7 +18,7 @@ import home.utility.Utility;
 final class KingdomImpl extends AbstractComposite implements Kingdom, Serializable {
     private static final long serialVersionUID = 1L;
     private final Set<Status> statuses; //the status of this kingdom
-    private final Level.Age age;
+    private  Level.Age age;
     private final AgeUpStrategy strategy;
     private int experience;
     //package protected
@@ -32,11 +31,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
         this.strategy = strategy;
     }
     @Override
-    public String getAgeName() {
-        return AgeEnum.values()[age.getIncrementalLevel() - 1].name();
-    }
-    @Override
-    public ImmutableLevel getAge() {
+    public Level.Age getAge() {
         return this.age;
     }
     @Override
@@ -81,9 +76,9 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     public void nextAge() {
         final int currentAmount = this.age.getExperienceAmount();
         if (this.canUpgradeAge()) {
-            this.age.nextLevel(this.experience);
+            this.age = this.age.nextAge(this.getExperienceAmount()).get();
             this.decExperiene(currentAmount);
-            this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeEnum.valueOf(this.age.getLevelName()))));
+            this.getComponents().forEach(x -> x.update(Event.Age.createEvent(this, AgeType.valueOf(this.age.getName()))));
         } else {
             throw new IllegalStateException();
         }

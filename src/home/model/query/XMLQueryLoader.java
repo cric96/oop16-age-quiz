@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.utility.Utility;
 
 //package-protected
@@ -39,7 +39,7 @@ class XMLQueryLoader implements QueryLoader {
         throw new IllegalArgumentException("Can't find NodeList");
     }
     @Override
-    public List<Query> getQueries(final Category cat, final ImmutableLevel level) {
+    public List<Query> getQueries(final Category cat, final Level level) {
         if (Utility.checkNullOb(cat, level)) {
             throw new IllegalArgumentException("You need to specify valid arguments");
         }

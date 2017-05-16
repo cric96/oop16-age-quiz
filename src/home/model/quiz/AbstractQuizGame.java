@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import java.util.stream.Collectors;
 
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.model.query.Category;
 import home.model.query.Query;
 import home.model.query.QueryLoader;
@@ -32,7 +32,7 @@ abstract class AbstractQuizGame implements QuizGame {
      * @param cat
      * @param level
      */
-    AbstractQuizGame(final Category cat, final ImmutableLevel level) {
+    AbstractQuizGame(final Category cat, final Level level) {
         final List<Query> list = QueryLoader.getQueryLoader().getQueries(cat, level);
         cQueries = CList.createCList(list, START_POSITION).iterator();
         this.currentAnswer = Optional.empty();

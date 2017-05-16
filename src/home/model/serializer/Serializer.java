@@ -1,4 +1,4 @@
-package home.model.serializator;
+package home.model.serializer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,7 +23,7 @@ import com.google.gson.TypeAdapter;
  * @param <E>
  *  the object to serialize
  */
-public interface Serializator<E> {
+public interface Serializer<E> {
     /**
      * save the object passed.
      * @param object
@@ -45,16 +45,16 @@ public interface Serializator<E> {
      */
     E load() throws FileNotFoundException, IOException, ClassNotFoundException;
     /**
-     * create a simple serializator with object that implements serializable.
+     * create a simple serializer with object that implements serializable.
      * @param file
      *  the file used to save and load
      * @return
-     *  the serializator created
+     *  the serializer created
      * @param <E>
      *  the type of object
      */
-    static <E> Serializator<E> createSimple(final File file) {
-        return new Serializator<E>() {
+    static <E> Serializer<E> createSimple(final File file) {
+        return new Serializer<E>() {
             @Override
             public void save(final E object) throws IOException {
                 final ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
@@ -73,7 +73,7 @@ public interface Serializator<E> {
         };
     }
     /**
-     * create a serializator able to serialize in JSON.
+     * create a serializer able to serialize in JSON.
      * @param file
      *  the file to put the object and restore it
      * @param type
@@ -83,11 +83,11 @@ public interface Serializator<E> {
      * @param <E>
      *  the object to serialize
      * @return
-     *  the serializator
+     *  the serializer
      * 
      */
-    static <E> Serializator <E> createJsonSerializator(final File file, final Type type, final TypeAdapter<E> adapter) {
-        return new Serializator<E>() {
+    static <E> Serializer <E> createJsonSerializer(final File file, final Type type, final TypeAdapter<E> adapter) {
+        return new Serializer<E>() {
             @Override
             public void save(final E object) throws IOException {
                 final Gson gson = new GsonBuilder().registerTypeAdapter(type, adapter).create();

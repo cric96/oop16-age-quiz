@@ -20,29 +20,37 @@ public class LevelTest {
     @Test
     public void testLevelAge() {
         final Level.Building level = Level.Building.createBuildingLevel();
-        final Level age = Level.Age.createAgeLevel();
+        final Level.Age age = Level.Age.createAgeLevel();
         assertEquals(age.getExperienceAmount(), EXPERIENCE);
-        assertFalse(age.nextLevel(1));
-        checkNegativeExperience(age);
-        assertTrue(age.nextLevel(EXPERIENCE + 1));
-        level.setMaximumLevel(2);
+        assertFalse(age.nextAge(1).isPresent());
         try {
-            level.setMaximumLevel(1);
+            age.nextAge(-1);
+            fail();
+        } catch (IllegalArgumentException exc) {
+            assertNotNull(exc);
+        }
+        assertTrue(age.nextAge(EXPERIENCE + 1).isPresent());
+        //check if i can create a new level with a difference maximum successive level
+        level.maxiumLevelchanged(2);
+        try {
+            level.maxiumLevelchanged(1);
             fail();
         } catch (IllegalArgumentException exv) {
             assertNotNull(exv);
         }
-        assertFalse(level.nextLevel(1));
+        assertFalse(level.nextLevel(1).isPresent());
         checkNegativeExperience(level);
-        assertTrue(level.nextLevel(level.getExperienceAmount() + 1));
+        assertTrue(level.nextLevel(level.getExperienceAmount() + 1).isPresent());
+        final Level.Building blockedLevel = level.nextLevel(level.getExperienceAmount() + 1).get();
         try {
-            level.nextLevel(1);
+            //it can go on next level because it is blocked now
+            blockedLevel.nextLevel(1);
             fail();
         } catch (IllegalStateException exc) {
             assertNotNull(exc);
         }
     }
-    private void checkNegativeExperience(final Level level) {
+    private void checkNegativeExperience(final Level.Building level) {
         try {
             level.nextLevel(-1);
             fail();

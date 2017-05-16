@@ -44,18 +44,26 @@ abstract class AbstractQuizGame implements QuizGame {
 
     @Override
     public Query showCurrentQuery() {
+        this.checkFinished();
         return this.currentQuery;
     }
 
     @Override
     public void hitAnswer(final String answer) {
+        this.checkFinished();
         Objects.requireNonNull(answer);
         this.currentAnswer = Optional.of(answer);
         this.computeScore();
     }
+    private void checkFinished() {
+        if (this.isFinished()) {
+            throw new NoSuchElementException();
+        }
+    }
 
     @Override
     public boolean isAnswerCorrect() {
+        this.checkFinished();
         if (!this.currentAnswer.isPresent()) {
             throw new IllegalStateException("You must chose an answer");
         }
@@ -82,9 +90,7 @@ abstract class AbstractQuizGame implements QuizGame {
         if (!this.currentAnswer.isPresent()) {
             throw new IllegalStateException("You have to chose an answer to go on");
         }
-        if (this.isFinished()) {
-            throw new NoSuchElementException();
-        }
+        this.checkFinished();
         this.currentQuery = this.cQueries.next();
     }
     @Override

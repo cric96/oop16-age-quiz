@@ -21,6 +21,7 @@ public class QueryTest {
     private static final String ANSWER = "That's the question";
     private static final String ANSWER_2 = "May be or may not";
     private static final int LEVEL = 2;
+    private static final int TEST_LEVEL = 10;
     private static final String QUESTION = "To be or not to be??";
     private static final String QUESTION_2 = "Am I wrong?";
     private static final int QUESTION2 = 1;
@@ -64,6 +65,15 @@ public class QueryTest {
         final List<Query> list = ql.getQueries(Category.MEDICINE, Level.Building.createBuildingLevel());
         assertTrue(list.stream().allMatch(x -> x.getCategory() == Category.MEDICINE));
         assertTrue(list.stream().allMatch(x -> x.getDifficulty() == Level.Building.createBuildingLevel().getIncrementalLevel()));
+        try {
+            ql.getQueries(Category.LIBERAL_ARTS, Level.Building.restoreBuildingLevel(TEST_LEVEL,
+                                                                                     Level.Building.INITIAL_MAX_LEVEL,
+                                                                                     Level.Building.INITIAL_EXPERIACE_AMOUNT,
+                                                                                     Level.Building.LEVEL_ADVANCE));
+            fail();
+        } catch (IllegalArgumentException e) {
+            assertNotNull(e);
+        }
     }
     /**
      * 

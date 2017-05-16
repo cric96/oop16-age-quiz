@@ -16,15 +16,21 @@ import home.utility.ResourceManager;
 public interface QueryLoader {
 /**
  *  This method has to load some queries by specific level and category.
- * @param cat the query category to load
- * @param level the query level to load
+ * @throws IllegalArgumentException
+ *  when it can't find any queries for that category or level.
+ * @param cat 
+ *  the query category to load.
+ * @param level
+ *  the query level to load.
  * @return 
  *      a List of specific queries.
  */
     List<Query> getQueries(Category cat, Level level);
     /**
-     * 
-     * @return a QueryLoader
+     * @throws RuntimeException
+     *  when something goes wrong reading from the xml file.
+     * @return 
+     *  a QueryLoader
      */
     static QueryLoader getQueryLoader() {
         try {

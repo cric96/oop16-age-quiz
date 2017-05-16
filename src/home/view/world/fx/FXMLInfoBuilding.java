@@ -1,10 +1,7 @@
 package home.view.world.fx;
 
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.List;
 
-import home.controller.observer.WorldObserver;
-import home.model.building.BuildingType;
 import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.utility.ResourceManager;
@@ -16,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
@@ -32,25 +30,10 @@ public class FXMLInfoBuilding extends Parent {
     @FXML
     private Label experience;
     @FXML
-    private Button start;
-    @FXML
-    private Button upgrade;
+    private HBox buttonBox;
     @FXML
     private Button closeButton;
 
-    /**
-     * @param visible the start to set
-     */
-    public void setStart(final boolean visible) {
-       this.start.setVisible(visible);
-    }
-
-    /**
-     * @param disabled the upgrade to set
-     */
-    public void setUpgrade(final boolean disabled) {
-        this.upgrade.setDisable(disabled);
-    }
 
     /**
      * 
@@ -60,19 +43,18 @@ public class FXMLInfoBuilding extends Parent {
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
         this.closeButton.getStylesheets().add(ResourceManager.load("/style/gameButtons.css").toExternalForm());
         this.closeButton.getStyleClass().add("generalNode");
-        final ImageView exitImg = new ImageView(new Image(ResourceManager.load(Images.X_CROSS.getPath()).toExternalForm()));
+        final ImageView exitImg = new ImageView(
+                new Image(ResourceManager.load(Images.X_CROSS.getPath()).toExternalForm()));
         exitImg.setFitHeight(closeButtonDimension.getX());
         exitImg.setFitWidth(closeButtonDimension.getY());
         this.closeButton.setGraphic(exitImg);
-        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("LabelBundle");
-        this.start.setText(bundle.getString("STRQUIZ"));
-        this.upgrade.setText(bundle.getString("UPGRADE"));
         this.experience.setFont(Utility.getGeneralFont());
         this.level.setFont(Utility.getGeneralFont());
     }
 
     /**
-     * @param name the name to set
+     * @param name
+     *            the name to set
      */
     public void setName(final String name) {
         this.name.setText(name);
@@ -80,52 +62,40 @@ public class FXMLInfoBuilding extends Parent {
     }
 
     /**
-     * @param level the level to set
+     * @param level
+     *            the level to set
      */
     public void setLevel(final int level) {
         this.level.setText("Lv. " + Integer.valueOf(level));
     }
 
     /**
-     * @param experience the experience to set
+     * @param experience
+     *            the experience to set
      */
     public void setExperience(final int experience) {
-        this.experience.setText(BundleLanguageManager.get()
-                                                     .getBundle("LabelBundle")
-                                                     .getString("EXP") +  " : " + Integer.valueOf(experience));
+        this.experience.setText(BundleLanguageManager.get().getBundle("LabelBundle").getString("EXP") + " : "
+                + Integer.valueOf(experience));
     }
 
-    /**
-     * set controller world.
-     * @param controller 
-     * @param building Optional of empty to create a kingdom dialog.
-     */
-    public void setBuildingController(final WorldObserver controller, final Optional<BuildingType> building) {
-        this.upgrade.setOnMouseClicked(e -> {
-            if (building.equals(Optional.empty())) {
-                controller.nextEra();
-                this.upgrade.getScene().getWindow().hide();
-            } else {
-                controller.nextLevel(building.get());
-                this.upgrade.getScene().getWindow().hide();
-            }
-        });
-        this.start.setOnMouseClicked(e -> {
-            controller.createQuiz(building.get());
-            this.start.getScene().getWindow().hide();
-        });
-    }
-
-
-    //TO-DO pensa a come migliorare senza passare pop
     /**
      * set Popup to hide.
+     * 
      * @param pop 
      */
     public void setPop(final Popup pop) {
         this.closeButton.setOnMouseClicked(e -> {
-               pop.hide();
+            pop.hide();
         });
+    }
+
+    /**
+     * @param buttons 
+     */
+    public void setButtonBox(final List<Button> buttons) {
+        for (final Button button: buttons) {
+            this.buttonBox.getChildren().add(button);
+        }
     }
 
 }

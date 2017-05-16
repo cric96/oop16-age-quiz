@@ -10,7 +10,9 @@ import home.utility.Pair;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.world.WorldView;
+import javafx.animation.FadeTransition;
 import javafx.scene.control.ButtonType;
+import javafx.util.Duration;
 
 
 
@@ -28,7 +30,11 @@ public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements Worl
 
     @Override
     public void show() {
-        super.show();
+        final double duration = 1;
+        final FadeTransition ft = new FadeTransition(Duration.seconds(duration), this.getParent());
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
         this.getParent().addFocus();
     }
 

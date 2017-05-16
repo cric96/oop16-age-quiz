@@ -23,11 +23,18 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 //package-protected
+/**
+ *
+ */
 public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     private static final String FXML_FILE = "FXMLquizView.fxml";
     private QuizObserver qController;
     private final FXQuizController fxController;
     private final AnchorPane parent;
+    /**
+     * 
+     * @throws IOException 
+     */
     public QuizViewImpl() throws IOException {
         final FXMLLoader loader = new FXMLLoader();
         loader.setLocation(QuizViewImpl.class.getResource(FXML_FILE));

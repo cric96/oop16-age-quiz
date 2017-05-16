@@ -3,11 +3,9 @@ package home.view.fx;
 import java.util.Optional;
 
 import home.view.MessageType;
-import javafx.animation.FadeTransition;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.util.Duration;
 
 /**
  * a skeleton of world fx view.
@@ -26,17 +24,6 @@ public abstract class AbstractFXView<P extends Parent> implements FXView {
     @Override
     public P getParent() {
         return scene.get();
-    }
-
-    /**
-     * 
-     */
-    public void show() {
-        final double duration = 0.4;
-        final FadeTransition ft = new FadeTransition(Duration.seconds(duration), this.getParent());
-        ft.setFromValue(0);
-        ft.setToValue(1);
-        ft.play();
     }
 
     /**

@@ -1,12 +1,13 @@
 package home.view.world.fx;
 
 import java.util.Map;
-import java.util.Optional;
+import java.util.ResourceBundle;
 
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
+import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
@@ -16,6 +17,7 @@ import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -52,6 +54,10 @@ public final class FXMLControllerWorld {
     private Label profileName;
     @FXML
     private GridPane buildingPane;
+    @FXML
+    private Label experienceText;
+    @FXML
+    private Tooltip backButtonText;
 
     /**
      * 
@@ -77,6 +83,12 @@ public final class FXMLControllerWorld {
         this.statsImg.setGraphic(statsView);
         this.statsPane.setVgap(1);
         this.statistics.setFont(Utility.getGeneralFont(16));
+        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("ButtonBundle");
+        this.backButtonText.setText(bundle.getString("BACK"));
+        this.backButtonText.setFont(Utility.getGeneralFont());
+        this.eraLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
+        this.experienceLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
+        this.experienceText.setFont(Utility.getGeneralFont(TITLE_FONT));
     }
 
     /**
@@ -198,7 +210,7 @@ public final class FXMLControllerWorld {
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
         if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
             initBuildingStage();
-            final DialogParent p = new BuildingDialogParent(controller, Optional.of(building), dialog, this.pop);
+            final DialogParent p = new BuildingDialogParent(controller, building, dialog, this.pop);
             this.pop.getContent().addAll(p);
             this.pop.show(this.buildingPane.getScene().getWindow());
         }

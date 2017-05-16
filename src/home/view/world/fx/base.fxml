@@ -26,13 +26,13 @@
           <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Experience:" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+            <Label fx:id="experienceText" text="Experience:" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
                <font>
                   <Font size="18.0" />
                </font></Label>
             <Button fx:id="backMenuButton" mnemonicParsing="false" onMouseClicked="#backHomePressed" textOverrun="WORD_ELLIPSIS" GridPane.halignment="CENTER">
                <tooltip>
-                  <Tooltip text="Back to home menu" />
+                  <Tooltip fx:id="backButtonText" />
                </tooltip></Button>
             <Text fx:id="titleText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="age" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>

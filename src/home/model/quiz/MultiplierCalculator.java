@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 
 import home.model.status.StatusName;
 
-class MultiplierDecorator extends CalcDecorator {
+class MultiplierCalculator extends CalcDecorator {
     private static final int START_MULTIPLIER = 0;
     private static final int DIVISOR = 10;
     private static final int ADDER = 1;
     private int correctCount; 
-    MultiplierDecorator(final Calculator calc) {
+    MultiplierCalculator(final Calculator calc) {
         super(calc);
         this.correctCount = START_MULTIPLIER;
     }

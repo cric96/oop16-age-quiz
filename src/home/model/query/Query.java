@@ -41,34 +41,45 @@ public interface Query {
         }
         /** 
          * @param question
-         * @return Builder, using the fluent interface.
+         *  what is the question to ba add to the current query.
+         * @return 
+         *  Builder using the fluent interface.
          */
         Builder addQuestion(String question);
         /** 
-         * @param answers
-         * @return Builder, using the fluent interface.
+         * @param answer
+         *  the answer to be add.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addAnswer(String answer);
         /** 
          * @param correctAnswer
-         * @return Builder, using the fluent interface.
+         *  the correctAnswer, that must be between the other answers.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addCorrectAnswer(String correctAnswer);
         /** 
          * @param category
-         * @return Builder, using the fluent interface.
+         *  the Category of the current query.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addCategory(Category category);
         /** 
          * @param difficulty
-         * @return Builder, using the fluent interface.
+         *  the level of the quiz, an incremental value.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addDifficulty(int difficulty);
         /** 
          * @throws IllegalStateException if any previous method hasn't been called
-         * @return QueryImpl.
+         * @return 
+         *  Query.
          */
-        QueryImpl build();
+        Query build();
     }
 
 }

@@ -8,10 +8,14 @@ import home.model.query.Query.Builder;
 //package-protected
 class QueryBuilder implements Builder {
     private String question;
-    private final Set<String> answers = new HashSet<>();
+    private final Set<String> answers;
     private String correctAnswer;
     private Category category;
     private Integer difficulty;
+    private boolean built;
+    QueryBuilder() {
+        this.answers = new HashSet<>();
+    }
     @Override
     public Builder addQuestion(final String question) {
         Objects.requireNonNull(question);
@@ -22,9 +26,6 @@ class QueryBuilder implements Builder {
     @Override
     public Builder addAnswer(final String answer) {
         Objects.requireNonNull(answers);
-        if (this.correctAnswer != null && !answers.contains(this.correctAnswer)) {
-            throw new IllegalArgumentException("There should be the correct answer you have inserted");
-        }
         this.answers.add(answer);
         return this;
     }
@@ -32,7 +33,7 @@ class QueryBuilder implements Builder {
     @Override
     public Builder addCorrectAnswer(final String correctAnswer) {
         Objects.requireNonNull(correctAnswer);
-        if (this.answers != null && !this.answers.contains(correctAnswer)) {
+        if (!this.answers.contains(correctAnswer)) {
             throw new IllegalArgumentException("This answer is not in the possible answers");
         }
         this.correctAnswer = correctAnswer;
@@ -54,11 +55,15 @@ class QueryBuilder implements Builder {
     }
 
     @Override
-    public QueryImpl build() {
+    public Query build() {
         if (this.question == null || this.answers == null || this.correctAnswer == null
                 || this.category == null || this.difficulty == null) {
             throw new IllegalStateException();
         }
+        if (this.built) {
+            throw new IllegalStateException("This object already exists");
+        }
+        this.built = true;
         return new QueryImpl(question, answers, correctAnswer, category, difficulty);
     }
 

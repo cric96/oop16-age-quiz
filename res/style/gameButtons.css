@@ -1,0 +1,23 @@
+.generalNode{
+	-fx-background-color: rgba(0,0,0,0);
+}
+
+.generalNode:hover {
+		-fx-effect: dropshadow(gaussian, rgba(255,255,255,1), 0, 0, 0, 3);
+}
+
+.generalNode:exit {
+		-fx-effect: null;
+}
+
+.statsImage{
+		-fx-background-color: rgba(0,0,0,0);
+		-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 6, 0, 0, 3);
+}
+.statsImage:hover {
+	-fx-effect: dropshadow(gaussian, rgba(255,255,255,0.75), 6, 0, 0, 3);
+}
+
+.statsImage:exit{
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 6, 0, 0, 3);
+}

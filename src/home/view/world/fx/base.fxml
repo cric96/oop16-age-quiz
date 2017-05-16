@@ -57,7 +57,7 @@
                      <graphic>
                         <BorderPane>
                            <top>
-                              <Label text="Statistics:" BorderPane.alignment="TOP_LEFT" />
+                              <Label fx:id="statistics" text="Statistics:" BorderPane.alignment="TOP_LEFT" />
                            </top>
                            <center>
                               <GridPane fx:id="statsPane" alignment="CENTER_LEFT" BorderPane.alignment="CENTER">

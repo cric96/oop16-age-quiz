@@ -5,27 +5,24 @@ import java.util.ResourceBundle;
 
 import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
+import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.utility.ResourceManager;
-import home.utility.BundleLanguageManager;
 import home.utility.Utility;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 /**
  * 
  */
-public class FXMLInfoBuildingController extends Parent {
+public class FXMLInfoBuilding extends Parent {
     private static final int TITLE_FONT = 15;
 
     @FXML
@@ -61,16 +58,8 @@ public class FXMLInfoBuildingController extends Parent {
     @FXML
     public void initialize() {
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
-        final double dropShadow = 0.4;
-        this.closeButton.setBackground(null);
-        final DropShadow dropS = new DropShadow(dropShadow, Color.WHITE);
-        dropS.setInput(new Glow());
-        this.closeButton.setOnMouseEntered(e -> {
-            this.closeButton.setEffect(dropS);
-        });
-        this.closeButton.setOnMouseExited(e -> {
-            this.closeButton.setEffect(null);
-        });
+        this.closeButton.getStylesheets().add(ResourceManager.load("/style/gameButtons.css").toExternalForm());
+        this.closeButton.getStyleClass().add("generalNode");
         final ImageView exitImg = new ImageView(new Image(ResourceManager.load(Images.X_CROSS.getPath()).toExternalForm()));
         exitImg.setFitHeight(closeButtonDimension.getX());
         exitImg.setFitWidth(closeButtonDimension.getY());
@@ -109,7 +98,7 @@ public class FXMLInfoBuildingController extends Parent {
     /**
      * set controller world.
      * @param controller 
-     * @param building 
+     * @param building Optional of empty to create a kingdom dialog.
      */
     public void setBuildingController(final WorldObserver controller, final Optional<BuildingType> building) {
         this.upgrade.setOnMouseClicked(e -> {
@@ -138,4 +127,5 @@ public class FXMLInfoBuildingController extends Parent {
                pop.hide();
         });
     }
+
 }

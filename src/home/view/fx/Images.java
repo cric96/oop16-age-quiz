@@ -43,7 +43,7 @@ public enum Images {
      * X exit.
      */
     X_CROSS("/images/cros.png"),
-    
+
     /**
      * 
      */

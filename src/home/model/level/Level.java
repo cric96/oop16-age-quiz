@@ -9,7 +9,7 @@ import java.util.Optional;
  */
 public interface Level {
     /**
-     * by default this is the level with all level start.
+     * by default all the levels start with this value.
      */
     int INITIAL_LEVEL = 1;
     /**
@@ -44,28 +44,28 @@ public interface Level {
      */
     interface Building extends Level {
         /**
-         * by default all level building have this initial max level.
+         * by default all the levels have this initial max level.
          */
         int INITIAL_MAX_LEVEL = 2;
         /**
-         * by default all level building have this initial experience amount
+         * by default all the levels have this initial experience amount
          */
         int INITIAL_EXPERIACE_AMOUNT = 1000;
         /**
-         * by default all level when increase use this amount 
+         * by default all the levels use this amount to increase 
          */
         int LEVEL_ADVANCE = 1000;
         /**
-         * Simple factory
-         * create a level with initial value
+         * Static factory
+         * create a level with initial values
          * @return
-         *  a level with a max level 
+         *  a level of building
          */
         static Level.Building createBuildingLevel() {
             return new LevelBuildingImpl(INITIAL_LEVEL, INITIAL_MAX_LEVEL, INITIAL_EXPERIACE_AMOUNT, LEVEL_ADVANCE);
         }
         /**
-         * Simple factory
+         * Static factory
          * create a specific level
          * @param currentLevel
          *  the index of current level

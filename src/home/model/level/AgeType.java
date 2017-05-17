@@ -1,5 +1,6 @@
 package home.model.level;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import home.utility.BundleLanguageManager;
@@ -38,6 +39,7 @@ public enum AgeType {
         //package protected
         LevelAgeImpl(final int currentLevel, final int experience, final String name) {
             super(currentLevel, experience);
+            Objects.requireNonNull(name);
             this.name = name;
         }
         @Override

@@ -11,6 +11,9 @@ final class LevelBuildingImpl extends AbstractLevel implements Building {
     //package-protected
     LevelBuildingImpl(final int currentLevel, final int initialMaxLevel, final int experieceAmount, final int experienceAdvance) {
         super(currentLevel, experieceAmount);
+        if (experienceAdvance < 0 && initialMaxLevel < 0) {
+            throw new IllegalArgumentException();
+        }
         this.maxLevel = initialMaxLevel;
         this.experienceAdvance = experienceAdvance;
     }

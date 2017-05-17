@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 
 /**
  * the possible age in this contest.
@@ -30,7 +31,7 @@ public enum AgeType {
     }
     @Override
     public String toString() {
-        return BundleLanguageManager.get().getBundle("AgeBundle").getString(this.name());
+        return BundleLanguageManager.get().getBundle(Bundles.AGE).getString(this.name());
     }
 
     private static final class LevelAgeImpl extends AbstractLevel implements Level.Age {

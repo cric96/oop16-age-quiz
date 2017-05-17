@@ -1,6 +1,7 @@
 package home.model.building;
 import home.model.query.Category;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.model.level.AgeType;
 /**
  * define all type of building with an associated category.
@@ -43,6 +44,6 @@ public enum BuildingType {
 
     @Override
     public String toString() {
-        return BundleLanguageManager.get().getBundle("BuildingBundle").getString(this.name());
+        return BundleLanguageManager.get().getBundle(Bundles.BUILDING).getString(this.name());
     }
 }

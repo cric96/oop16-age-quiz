@@ -8,6 +8,7 @@ import home.controller.profile.Profile;
 import home.controller.profile.ProfileBox;
 import home.model.Game;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.view.Container;
 import home.view.MessageType;
 import home.view.View;
@@ -18,7 +19,7 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
     private static final String EXIT_MESSAGE = "EXIT";
     private static final String FILE_ERROR = "FILE_ERROR";
     private static final String PROFILE_ERROR = "PROFILE_ERROR";
-    private static final String BUNDLE = "ErrorBundle";
+    private static final String BUNDLE = Bundles.ERROR;
     private final ProfileBox profiles;
     private final Set<MenuView> views;
     MenuObserverImpl(final Set<MenuView> views) {

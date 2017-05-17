@@ -14,6 +14,7 @@ import home.model.building.Building;
 import home.model.image.ImageInfo;
 import home.model.kingdom.Kingdom;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.Pair;
 import home.view.Container;
 import home.view.View;
@@ -23,6 +24,7 @@ import home.view.world.WorldView;
 final class WorldObserverImpl extends AbstractObserver implements WorldObserver {
 
     private static final String CASTLE_NAME = "CASTLE";
+    private static final String END_QUESTION = "END_QUESTION"; 
     private final Set<WorldView> views;
     WorldObserverImpl(final Set<WorldView>  views) {
         this.views = views;
@@ -45,8 +47,13 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
 
     @Override
     public void createQuiz(final BuildingType building) {
-        Game.getGame().createQuiz(building);
-        Container.getContainer().changeDisplay(ViewType.QUIZ);
+        final String endQuestion = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(END_QUESTION);
+        try {
+            Game.getGame().createQuiz(building);
+            Container.getContainer().changeDisplay(ViewType.QUIZ);
+        } catch (Exception e) {
+            this.showErrors(endQuestion);
+        }
     }
 
     @Override
@@ -66,7 +73,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
 
     //create a dialog by a kingdom status
     private Dialog createKingdomDialog() {
-        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("BuildingBundle");
+        final ResourceBundle bundle = BundleLanguageManager.get().getBundle(Bundles.BUILDING);
         final Kingdom current = Game.getGame().getCurrentKingdom();
         return Dialog.Builder.createBuilder().setName(bundle.getString(CASTLE_NAME))
                                              .setExperience(current.getAge().getExperienceAmount())
@@ -92,7 +99,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     /*what to do when the age change*/
     private void onAgeChange() {
         final Kingdom current = Game.getGame().getCurrentKingdom();
-        final String age = BundleLanguageManager.get().getBundle("AgeBundle").getString(current.getAge().getName());
+        final String age = BundleLanguageManager.get().getBundle(Bundles.AGE).getString(current.getAge().getName());
         final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings = createMap(current.getComponents(Building.Container.class));
         final ImageInfo kingdomImage = current.getComponents(ImageInfo.class).stream().findFirst().get().getX();
         this.views.stream().forEach(x -> {

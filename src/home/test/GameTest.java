@@ -37,6 +37,25 @@ public class GameTest {
     /**
      * simple test for the interface Game.
      */
+    @Test
+    public void testBasic() {
+        Game.getGame().newGame();
+        try {
+            Game.getGame().endCurrentQuiz();
+            fail();
+        } catch (IllegalStateException exc) {
+            assertNotNull(exc);
+        }
+        assertFalse(Game.getGame().getCurrentQuiz().isPresent());
+        Game.getGame().createQuiz(BuildingType.SCHOOL);
+        assertTrue(Game.getGame().getCurrentQuiz().isPresent());
+        try {
+            Game.getGame().createQuiz(BuildingType.SPORT_CENTER);
+            fail();
+        } catch (IllegalStateException exc) {
+            assertNotNull(exc);
+        }
+    }
     /**
      * test to check save.
      */

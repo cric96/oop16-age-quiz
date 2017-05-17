@@ -13,6 +13,8 @@ import home.model.Game;
 import home.model.image.ImageComponent;
 import home.model.image.ImageInfo;
 import home.model.quiz.QuizGame;
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.ResourceManager;
 import home.view.Container;
 import home.view.View;
@@ -21,8 +23,8 @@ import home.view.quiz.QuizView;
 
 final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     private QuizGame currentQuiz;
-    private static final String FINISH_ERROR = "The game is finished";
-    private static final String IO_ERROR = "SOME ERROR DUE TO SAVE FILE";
+    private static final String FINISH_ERROR = "FINISH_ERROR";
+    private static final String IO_ERROR = "FILE_ERROR";
     private final Set<QuizView> views;
     QuizObserverImpl(final Set<QuizView> views) {
         this.views = views;
@@ -55,39 +57,42 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     @Override
     public void quizFinished() {
         Game.getGame().endCurrentQuiz();
+        final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(IO_ERROR);
         final Profile selected = ProfileBox.getProfileBox().getSelected().orElseThrow(() -> new IllegalStateException());
         try {
             Game.getGame().save(selected.getSaveGame());
         } catch (IOException e) {
-            super.showErrors(IO_ERROR);
+            super.showErrors(error);
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
     @Override
     public void next() {
+        final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(FINISH_ERROR);
         try {
             this.currentQuiz.next();
             this.updateQuery();
         } catch (NoSuchElementException exc) {
-            super.showErrors(FINISH_ERROR);
+            super.showErrors(error);
         }
     }
 
     private class QuizTimer extends Thread {
         private static final int SECOND = 1000;
-        private static final String ERROR = "an error on thread occured";
+        private static final String ERROR = "GENERIC_ERROR";
         private int time;
         QuizTimer(final int time) {
             this.time = time;
         }
         public void run() {
+            final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(ERROR);
             while (this.time >= 0) {
                 QuizObserverImpl.this.views.forEach(x -> x.showTime(time));
                 this.time--;
                 try {
                     sleep(SECOND);
                 } catch (Exception e) {
-                    QuizObserverImpl.this.showErrors(ERROR);
+                    QuizObserverImpl.this.showErrors(error);
                 }
             }
             final QuizGame quiz = QuizObserverImpl.this.currentQuiz;

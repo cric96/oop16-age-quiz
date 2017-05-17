@@ -1,8 +1,10 @@
 package home.view.world.fx;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import home.controller.dialog.Dialog;
+import home.utility.BundleLanguageManager;
 import home.utility.ResourceManager;
 import home.view.fx.Images;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +17,8 @@ import javafx.stage.Popup;
  * class who implement a dialog to start quiz or upgrade a building.
  */
 class DialogParent extends Parent {
-    private FXMLInfoBuilding c;
+    private final ResourceBundle bundle = BundleLanguageManager.get().getBundle("LabelBundle");
+    private FXMLInfoBuilding fxmlController;
 
     /**
      * create a parent for a general building dialog.
@@ -38,23 +41,21 @@ class DialogParent extends Parent {
             cloud.setFitHeight(this.getLayoutBounds().getHeight() * cloudHeightProp);
             this.getChildren().clear();
             this.getChildren().addAll(cloud, p);
-            this.c = fxmlLoader.<FXMLInfoBuilding>getController();
+            this.fxmlController = fxmlLoader.<FXMLInfoBuilding>getController();
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        if (building.isPresent()) {
-//            c.setStart(true);
-//        } else {
-//            c.setStart(false);
-//        }
-        c.setPop(pop);
-        c.setUpgrade(!dialog.levelUpEnabled());
-        c.setExperience(dialog.getExperience());
-        c.setLevel(dialog.getLevel());
-        c.setName(dialog.getName());
+        fxmlController.setPop(pop);
+        fxmlController.setExperience(dialog.getExperience());
+        fxmlController.setLevel(dialog.getLevel());
+        fxmlController.setName(dialog.getName());
+    }
+
+    protected ResourceBundle getBundle() {
+        return this.bundle;
     }
 
     protected FXMLInfoBuilding getController() {
-        return this.c;
+        return this.fxmlController;
     }
 }

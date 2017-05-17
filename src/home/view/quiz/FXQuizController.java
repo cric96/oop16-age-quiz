@@ -117,11 +117,13 @@ final class FXQuizController {
         final Task<Void> sleeper = new Task<Void>() {
             @Override
             protected Void call() throws InterruptedException {
+                answers.setDisable(true);
                 Thread.sleep(TIME_TO_CHANGE);
                 return null;
             }
         };
         sleeper.setOnSucceeded((e) -> {
+            answers.setDisable(false);
             Optional.ofNullable(this.qController).orElseThrow(() -> new IllegalStateException()).next();
             this.question.getStyleClass().clear();
             this.question.getStyleClass().add("my-label-default");

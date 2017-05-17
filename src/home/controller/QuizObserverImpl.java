@@ -67,10 +67,10 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     public void next() {
         try {
             this.currentQuiz.next();
+            this.updateQuery();
         } catch (NoSuchElementException exc) {
             super.showErrors(FINISH_ERROR);
         }
-        this.updateQuery();
     }
 
     private class QuizTimer extends Thread {

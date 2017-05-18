@@ -65,6 +65,14 @@
 				<answer>endoplasma</answer>
 			</query>
 		</level>
+		<level number="4">
+			<query>
+				<text>Quando due triangoli si dicono in generale simili?</text>
+				<answer>quando hanno i lati a due a due uguali</answer>
+				<answer>quando sono simmetrici</answer>
+				<answer correct="true">quando hanno gli angoli ordinatamente uguale e i lati in proporzione</answer>	
+			</query>
+		</level>
 	</category>
 	<category name="LIBERAL_ARTS">
 		<level number="1">
@@ -136,6 +144,14 @@
 				<answer>Carlo III</answer>
 			</query>
 		</level>
+		<level number="4">
+			<query>
+				<text>Qual era il nome originale dei protagonisti dei Promessi Sposi?</text>
+				<answer correct="true">Fermo e Lucia</answer>
+				<answer>Renzo e Lucia</answer>
+				<answer>Fermo e Gertrude</answer>
+			</query>
+		</level>
 	</category>
 	<category name="MANUFACTURING">
 		<level number="1">
@@ -201,6 +217,13 @@
 				<answer>canapa</answer>
 				<answer>cotone</answer>
 				<answer correct="true">tutte le precedenti</answer>
+			</query>
+		</level>
+		<level number="4">
+			<query>
+				<text>Qual è la materia prima del vetro?</text>
+				<answer correct="true">quarzite</answer>
+				<answer>roccia dolomia</answer>
 			</query>
 		</level>
 	</category>
@@ -271,6 +294,15 @@
 				<answer correct="true">mancanza di flusso sanguigno al cervello</answer>
 			</query>
 		</level>
+		<level number="4">
+			<query>
+				<text>Cos'è la cistifellea?</text>
+				<answer>una cisti che spunta in tarda età</answer>
+				<answer correct="true">organo in cui si raccoglie la bile</answer>
+				<answer>una malattia del fegato</answer>
+				<answer>la prima avvisaglia di problemi alla colecisti</answer>
+			</query>
+		</level>
 	</category>
 	<category name="SPORT">
 		<level number="1">
@@ -337,6 +369,14 @@
 				<answer>8"78</answer>
 				<answer correct="true">9"58</answer>
 				<answer>9"03</answer>
+			</query>
+		</level>
+		<level number="4">
+			<query>
+				<text>Quanti punti vengono assegnati per un canestro da tiro libero?</text>
+				<answer>2</answer>
+				<answer>0</answer>
+				<answer correct="true">1</answer>
 			</query>
 		</level>
 	</category>

@@ -27,7 +27,7 @@ import javafx.stage.Popup;
 /**
  * controller for base.fxml file.
  */
-public final class FXMLControllerWorld {
+final class FXMLControllerWorld {
     private WorldObserver controller;
     private final Popup pop = new Popup();
     private static final int BACK_WIDTH = 60;
@@ -49,7 +49,7 @@ public final class FXMLControllerWorld {
     @FXML
     private Button statsImg;
     @FXML
-    private GridPane statsPane;
+    private GridPane statisticsPane;
     @FXML
     private Label profileName;
     @FXML
@@ -81,14 +81,17 @@ public final class FXMLControllerWorld {
         statsView.setFitWidth(STATS_BOX);
         statsView.setFitHeight(STATS_BOX);
         this.statsImg.setGraphic(statsView);
-        this.statsPane.setVgap(1);
+        this.statisticsPane.setVgap(1);
         this.statistics.setFont(Utility.getGeneralFont(16));
-        final ResourceBundle bundle = BundleLanguageManager.get().getBundle("ButtonBundle");
-        this.backButtonText.setText(bundle.getString("BACK"));
+        final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");
+        final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle("LabelBundle");
+        this.statistics.setText(bundleLabel.getString("STATS") + ":");
+        this.backButtonText.setText(bundleButton.getString("BACK"));
         this.backButtonText.setFont(Utility.getGeneralFont());
         this.eraLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
         this.experienceLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
         this.experienceText.setFont(Utility.getGeneralFont(TITLE_FONT));
+        this.experienceText.setText(bundleLabel.getString("EXP") + ":");
     }
 
     /**
@@ -106,7 +109,6 @@ public final class FXMLControllerWorld {
             this.mousePosition = Pair.createPair(kingButton.getLayoutX(), kingButton.getLayoutY());
             this.controller.pressOnKingdom();
         });
-
         this.buildingPane.getColumnConstraints().get(0).setHalignment(HPos.CENTER);
         this.buildingPane.add(kingButton, actualCol, actualRow);
         actualCol++;
@@ -164,17 +166,16 @@ public final class FXMLControllerWorld {
         final int barCol = 1;
         final int valCol = 2;
         int actualRow = 0;
-
-        this.statsPane.getChildren().clear();
+        this.statisticsPane.getChildren().clear();
         for (final Map.Entry<String, Integer> status : statusScose.entrySet()) {
             final Label name = new Label(status.getKey());
             name.setFont(Utility.getGeneralFont());
             final Label value = new Label(status.getValue() + "/" + maxValue);
             value.setFont(Utility.getGeneralFont());
-            this.statsPane.add(name, labelCol, actualRow);
-            this.statsPane.add(value, valCol, actualRow);
+            this.statisticsPane.add(name, labelCol, actualRow);
+            this.statisticsPane.add(value, valCol, actualRow);
             final Number f = (status.getValue() / Double.valueOf(maxValue));
-            this.statsPane.add(new ProgressBar(f.doubleValue()), barCol, actualRow);
+            this.statisticsPane.add(new ProgressBar(f.doubleValue()), barCol, actualRow);
             actualRow++;
         }
     }

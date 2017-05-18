@@ -4,12 +4,10 @@ import java.io.IOException;
 
 import home.controller.ControllerFactory;
 import home.utility.Pair;
+import home.view.fx.ViewFactory;
 import home.view.menu.MenuView;
-import home.view.menu.fx.FXMenuViewImpl;
 import home.view.quiz.QuizView;
-import home.view.quiz.QuizViewImpl;
 import home.view.world.WorldView;
-import home.view.world.fx.FXWorldViewImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -30,9 +28,9 @@ public class App extends Application {
     }
 
     private static void createVisual() throws IOException {
-        attachOnController(new FXMenuViewImpl(),
-                           new FXWorldViewImpl(),
-                           new QuizViewImpl());
+        attachOnController(ViewFactory.getFactory().createMenuView(),
+                           ViewFactory.getFactory().createWorldView(),
+                           ViewFactory.getFactory().createQuizView());
     }
     private static void attachOnController(final MenuView menu, final WorldView world, final QuizView quiz) {
         final Container container = Container.getContainer();

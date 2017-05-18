@@ -19,22 +19,25 @@ import javafx.scene.shape.Rectangle;
  *
  */
 final class ParentWorld extends CustomParent {
-    private FXMLControllerWorld fxmlController;
+    private final FXMLControllerWorld fxmlController = new FXMLControllerWorld();
     private static final double OPACITY = 0.4;
 
     /**
-     * @throws IOException if the background load gone wrong.
-     * @param controller 
+     * @throws IOException
+     *             if the background load gone wrong.
+     * @param controller
      */
     ParentWorld(final WorldObserver controller) {
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("base.fxml"));
-        final VBox pane = new VBox();
-        pane.setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
-        fxmlLoader.setRoot(pane);
+        final FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ParentWorld.class.getResource("base.fxml"));
+        this.fxmlController.setController(controller);
+        final VBox parent = new VBox();
+        parent.setPrefSize(UtilityScreen.getScreenWidth(),
+        UtilityScreen.getScreenHeight());
+        loader.setRoot(parent);
+        loader.setController(this.fxmlController);
         try {
-            fxmlLoader.load();
-            fxmlController = fxmlLoader.<FXMLControllerWorld>getController();
-            fxmlController.setController(controller);
+            loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -45,7 +48,7 @@ final class ParentWorld extends CustomParent {
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.BLACK);
         bg.setOpacity(OPACITY);
-        this.getChildren().addAll(background, bg, pane);
+        this.getChildren().addAll(background, bg, parent);
     }
 
     /**

@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
  * concrete realization of menu in javafx.
  *
  */
-public class ParentMenu extends CustomParent {
+class ParentMenu extends CustomParent {
     private static final int X_TRANSLATE = 100;
     private static final int Y_TRANSLATE = 200;
     private static final int BOX = 15;
@@ -33,7 +33,7 @@ public class ParentMenu extends CustomParent {
      * @throws IOException if the background load gone wrong.
      * @param controller 
      */
-    public ParentMenu(final MenuObserver controller) {
+    ParentMenu(final MenuObserver controller) {
         final VBox menuZero = new VBox(BOX);
         menuZero.setTranslateX(X_TRANSLATE);
         menuZero.setTranslateY(Y_TRANSLATE);

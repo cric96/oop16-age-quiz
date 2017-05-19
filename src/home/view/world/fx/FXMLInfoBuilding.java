@@ -21,7 +21,7 @@ import javafx.stage.Popup;
 /**
  * 
  */
-public class FXMLInfoBuilding extends Parent {
+final class FXMLInfoBuilding extends Parent {
     private static final int TITLE_FONT = 15;
 
     @FXML

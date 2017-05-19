@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 
 /**
@@ -19,7 +20,7 @@ import javafx.stage.Popup;
  */
 class DialogParent extends Parent {
     private final ResourceBundle bundle = BundleLanguageManager.get().getBundle(Bundles.LABEL);
-    private FXMLInfoBuilding fxmlController;
+    private final FXMLInfoBuilding fxmlController = new FXMLInfoBuilding();
 
     /**
      * create a parent for a general building dialog.
@@ -34,15 +35,17 @@ class DialogParent extends Parent {
         final String path = ResourceManager.load(Images.CLOUD_PANE.getPath()).toExternalForm();
         final Image img = new Image(path);
         final ImageView cloud = new ImageView(img);
-        final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("buildingInfoDialog.fxml"));
+
+        final FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(ParentWorld.class.getResource("buildingInfoDialog.fxml"));
+        loader.setController(this.fxmlController);
         try {
-            final Parent p = fxmlLoader.load();
-            this.getChildren().add(p);
+            final Pane parent = loader.load();
+            this.getChildren().add(parent);
             cloud.setFitWidth(this.getLayoutBounds().getWidth() * cloudWidthProp);
             cloud.setFitHeight(this.getLayoutBounds().getHeight() * cloudHeightProp);
             this.getChildren().clear();
-            this.getChildren().addAll(cloud, p);
-            this.fxmlController = fxmlLoader.<FXMLInfoBuilding>getController();
+            this.getChildren().addAll(cloud, parent);
         } catch (IOException e) {
             e.printStackTrace();
         }

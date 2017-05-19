@@ -3,6 +3,7 @@ package home.view.world.fx;
 import java.util.List;
 
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
@@ -74,7 +75,7 @@ public class FXMLInfoBuilding extends Parent {
      *            the experience to set
      */
     public void setExperience(final int experience) {
-        this.experience.setText(BundleLanguageManager.get().getBundle("LabelBundle").getString("EXP") + " : "
+        this.experience.setText(BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("EXP") + " : "
                 + Integer.valueOf(experience));
     }
 

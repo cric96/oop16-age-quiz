@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import home.controller.profile.Profile;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -23,8 +24,8 @@ public abstract class AbstractMenuDialog implements MenuDialog {
     private final HBox buttonContainer; 
     private final VBox root;
     private static final int BUTTON_WIDTH = 200;
-    private final ResourceBundle buttonText = BundleLanguageManager.get().getBundle("ButtonBundle");
-    private final ResourceBundle labelText = BundleLanguageManager.get().getBundle("LabelBundle");
+    private  ResourceBundle buttonText = BundleLanguageManager.get().getBundle(Bundles.BUTTON);
+    private  ResourceBundle labelText = BundleLanguageManager.get().getBundle(Bundles.LABEL);
 
 
     /**
@@ -50,6 +51,8 @@ public abstract class AbstractMenuDialog implements MenuDialog {
        initButtonContainer();
        initNode();
        setDeleteMessage();
+       this.buttonText = BundleLanguageManager.get().getBundle(Bundles.BUTTON);
+       this.labelText = BundleLanguageManager.get().getBundle(Bundles.LABEL);
     }
 
     /**

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import home.controller.dialog.Dialog;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.ResourceManager;
 import home.view.fx.Images;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,7 @@ import javafx.stage.Popup;
  * class who implement a dialog to start quiz or upgrade a building.
  */
 class DialogParent extends Parent {
-    private final ResourceBundle bundle = BundleLanguageManager.get().getBundle("LabelBundle");
+    private final ResourceBundle bundle = BundleLanguageManager.get().getBundle(Bundles.LABEL);
     private FXMLInfoBuilding fxmlController;
 
     /**

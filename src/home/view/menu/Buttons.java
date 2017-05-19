@@ -1,6 +1,7 @@
 package home.view.menu;
 
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 
 /**
  * 
@@ -24,6 +25,6 @@ public enum Buttons {
 
     @Override
     public String toString() {
-        return BundleLanguageManager.get().getBundle("ButtonBundle").getString(this.name());
+        return BundleLanguageManager.get().getBundle(Bundles.BUTTON).getString(this.name());
     }
 }

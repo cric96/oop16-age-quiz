@@ -1,17 +1,16 @@
 package home.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
 import home.model.Game;
-import home.model.building.BuildingType;
 import home.model.building.Building;
+import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.model.kingdom.Kingdom;
 import home.utility.BundleLanguageManager;
@@ -112,10 +111,8 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     }
     /*Create a map to give a view by the internal state on kingdom*/
     private Map<BuildingType, Pair<ImageInfo, Boolean>> createMap(final Set<Pair<Building.Container, Boolean>> buildings) {
-        final Map<BuildingType, Pair<ImageInfo, Boolean>> returnBuilding = new HashMap<>();
-        final Set<Pair<Building.Container, Boolean>>orderderBuilding = new TreeSet<>((x, y) -> x.getX().getName().name().compareTo(y.getX().getName().name()));
-        orderderBuilding.addAll(buildings);
-        for (final Pair<Building.Container, Boolean> building : orderderBuilding) {
+        final Map<BuildingType, Pair<ImageInfo, Boolean>> returnBuilding = new TreeMap<>();
+        for (final Pair<Building.Container, Boolean> building : buildings) {
             final ImageInfo image = building.getX().getComponents(ImageInfo.class).stream().findFirst().get().getX();
             returnBuilding.put(building.getX().getName(), Pair.createPair(image, building.getY()));
         }

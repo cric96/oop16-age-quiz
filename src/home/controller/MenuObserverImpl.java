@@ -1,6 +1,7 @@
 package home.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Set;
 
 import home.controller.observer.MenuObserver;
@@ -98,4 +99,14 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
 
     @Override
     protected void defineUpdateView(final View<?> view) { }
+
+    @Override
+    public void changeLocale(final Locale locale) {
+        final String fileError = BundleLanguageManager.get().getBundle(BUNDLE).getString(PROFILE_ERROR);
+        try {
+            BundleLanguageManager.get().setLocale(locale);
+        } catch (IOException e) {
+            this.showMessageInViews(fileError, MessageType.ERROR);
+        }
+    }
 }

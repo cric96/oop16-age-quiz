@@ -1,5 +1,7 @@
 package home.controller.observer;
 
+import java.util.Locale;
+
 import home.controller.profile.Profile;
 /**
  * the observer of the menu. 
@@ -37,4 +39,10 @@ public interface MenuObserver extends Observer {
      * exit to the application.
      */
     void exitConfirmed();
+    /**
+     * the view tell the locale to change.
+     * @param locale
+     *  the locale passed
+     */
+    void changeLocale(Locale locale); 
 }

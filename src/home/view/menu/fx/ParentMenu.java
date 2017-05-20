@@ -73,7 +73,7 @@ class ParentMenu extends CustomParent {
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
-        final HBox languageButtonBox = new LanguageBox(this);
+        final HBox languageButtonBox = new LanguageBox(this, controller);
         languageButtonBox.setAlignment(Pos.BOTTOM_RIGHT);
         rootPane.setBottom(languageButtonBox);
         rootPane.setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());

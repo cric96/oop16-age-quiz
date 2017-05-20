@@ -21,6 +21,7 @@ public class MenuButton extends StackPane {
     private static final int DROP_SHADOW = 50;
     private static final int FONT = 20;
     private static final double BLUR = 0.4;
+    private final Text text;
 
     /**
      * 
@@ -28,7 +29,7 @@ public class MenuButton extends StackPane {
      * @param color the shape color of button exit
      */
     public MenuButton(final String name, final Color color) {
-        final Text text = new Text(name);
+        text = new Text(name);
         final int size = 30;
         text.setTranslateX(FONT);
         text.getFont();
@@ -61,5 +62,14 @@ public class MenuButton extends StackPane {
         setOnMousePressed(e -> setEffect(dropS));
         setOnMouseReleased(e -> setEffect(null));
 
+    }
+
+    /**
+     * set the text of menu button.
+     * @param text
+     *      the text of button
+     */
+    public void setText(final String text) {
+        this.text.setText(text);
     }
 }

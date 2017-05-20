@@ -33,6 +33,7 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
     @Override
     public void show() {
         this.getParent().addFocus();
+        this.getParent().repaint();
     }
 
     @Override

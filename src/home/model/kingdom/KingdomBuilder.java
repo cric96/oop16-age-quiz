@@ -53,7 +53,7 @@ public interface KingdomBuilder {
      * @return
      *  the builder
      */
-    KingdomBuilder addStrategy(AgeUpStrategy strategy);
+    KingdomBuilder addStrategy(AgeUpKingdomStrategy.Type strategy);
     /**
      * create the kingdom.
      * @return

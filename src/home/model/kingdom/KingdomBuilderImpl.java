@@ -16,7 +16,7 @@ final class KingdomBuilderImpl implements KingdomBuilder {
     private final Set<Status> statuses;
     private int experience;
     private boolean created;
-    private AgeUpStrategy strategy;
+    private AgeUpKingdomStrategy.Type strategy;
     KingdomBuilderImpl() {
         this.components = new HashSet<>();
         this.statuses = new HashSet<>();
@@ -57,7 +57,7 @@ final class KingdomBuilderImpl implements KingdomBuilder {
     }
 
     @Override
-    public KingdomBuilder addStrategy(final AgeUpStrategy strategy) {
+    public KingdomBuilder addStrategy(final AgeUpKingdomStrategy.Type strategy) {
         Objects.requireNonNull(strategy);
         this.strategy = strategy;
         return this;

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import home.model.building.BuildingType;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;
 import home.model.quiz.QuizGame;
 
@@ -25,8 +26,10 @@ public interface Game {
     }
     /**
      * create a new game.
+     * @param type
+     *  the type of strategy used by the kingdom
      */
-    void newGame();
+    void newGame(AgeUpKingdomStrategy.Type type);
     /**
      * save the current game.
      * @param  save

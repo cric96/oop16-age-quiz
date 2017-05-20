@@ -82,7 +82,7 @@ public interface Kingdom extends Composite {
     /**
      * return the strategy of this kingdom.
      * @return
-     *  the strategy created
+     *  the strategy type
      */
-    AgeUpStrategy getStrategy();
+    AgeUpKingdomStrategy.Type getStrategyType();
 }

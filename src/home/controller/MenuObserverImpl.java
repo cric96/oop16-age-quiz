@@ -7,6 +7,7 @@ import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.controller.profile.ProfileBox;
 import home.model.Game;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.view.Container;
@@ -49,7 +50,7 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
             } catch (IOException e) {
                 super.showMessageInViews(fileError, MessageType.ERROR);
             }
-            Game.getGame().newGame();
+            Game.getGame().newGame(AgeUpKingdomStrategy.Type.ADVANCED);
             try {
                 Game.getGame().save(profile.getSaveGame());
             } catch (IOException e) {

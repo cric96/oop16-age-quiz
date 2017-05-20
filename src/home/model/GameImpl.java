@@ -13,7 +13,7 @@ import home.model.building.BuildingType;
 import home.model.composite.Component;
 import home.model.composite.Composite;
 import home.model.image.ImageComponent;
-import home.model.kingdom.AgeUpStrategy;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;
 import home.model.kingdom.KingdomBuilder;
 import home.model.level.Level;
@@ -53,7 +53,7 @@ final class GameImpl implements Game {
     }
 
     @Override
-    public void newGame() {
+    public void newGame(final AgeUpKingdomStrategy.Type kingdomStrategy) {
         final Set<BuildingOfKingdom> buildings = BuildingFactory.get().createAllBuilding();
         final Set<Status> statuses = Status.createStatuses();
         final Component<Composite> image = ImageComponent.createComponent(KINGDOM_NAME);
@@ -63,7 +63,7 @@ final class GameImpl implements Game {
         builder.addComponent(image);
         builder.setExperience(0);
         builder.setAge(Level.Age.createAgeLevel());
-        builder.addStrategy(AgeUpStrategy.createSimple());
+        builder.addStrategy(kingdomStrategy);
         this.currentKingdom = Optional.of(builder.build());
     }
     @Override

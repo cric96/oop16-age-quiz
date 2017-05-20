@@ -15,7 +15,7 @@ import home.model.building.Building;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
 import home.model.image.ImageComponent;
-import home.model.kingdom.AgeUpStrategy;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;
 import home.model.kingdom.KingdomBuilder;
 import home.model.level.Level;
@@ -37,7 +37,7 @@ public class KingdomTest {
                              .addStatus(STATUS)
                              .setExperience(EXPERIENCE)
                              .setAge(Level.Age.createAgeLevel())
-                             .addStrategy(AgeUpStrategy.createSimple());
+                             .addStrategy(AgeUpKingdomStrategy.Type.SIMPLE);
     }
     /**
      * Simple test on kingdom.

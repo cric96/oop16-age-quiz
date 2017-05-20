@@ -127,7 +127,9 @@ public class KingdomTest {
         final KingdomBuilder builder = this.getBuilder();
         BuildingFactory.get().createAllBuilding().forEach(x -> builder.addComponent(x));
         final Kingdom king = builder.build();
-        final Building site = this.getBuildingWithName(king.getComponents(Building.class), BuildingType.BUILDING_SITE);
+        final Building site = king.getComponents(Building.class).stream().map(x -> x.getX())
+                                                                         .filter(x -> x.getName() == BuildingType.BUILDING_SITE)
+                                                                         .findFirst().get();
         try {
             assertTrue(site.canLevelUp());
             site.levelUp();
@@ -146,12 +148,6 @@ public class KingdomTest {
         assertTrue(site.getLevel().isUpgradable());
     }
 
-    private <E extends Building> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
-                                                        final BuildingType name) {
-        return building.stream().filter(x -> x.getX().getName().equals(name))
-        .map(x -> x.getX())
-        .findFirst().get();
-    }
     private <E> Set<Pair<Building, Boolean>> getBuildings(final Kingdom king) {
         return king.getComponents(Building.class);
     }

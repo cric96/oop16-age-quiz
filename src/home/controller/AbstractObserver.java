@@ -9,12 +9,12 @@ abstract class AbstractObserver {
     protected abstract Set<? extends View<?>> getAttached();
     protected void update() {
         this.getAttached().forEach(x -> {
-            x.show();
             this.defineUpdateView(x);
+            x.show();
         });
     }
     protected abstract void defineUpdateView(View<?> view);
-    protected final void showErrors(final String message) {
-        this.getAttached().forEach(x -> x.showMessage(message, MessageType.ERROR));
+    protected final void showMessageInViews(final String message, final MessageType type) {
+        this.getAttached().forEach(x -> x.showMessage(message, type));
     }
 }

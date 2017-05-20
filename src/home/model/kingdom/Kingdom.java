@@ -1,6 +1,7 @@
 package home.model.kingdom;
 import java.io.File;
 import java.util.Map;
+import java.util.Objects;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -22,6 +23,7 @@ public interface Kingdom extends Composite {
      *  the serializer
      */
     static Serializer<Kingdom> createSerializer(final File file) {
+        Objects.requireNonNull(file);
         return Serializer.createJsonSerializer(file, new TypeToken<Kingdom>() { }.getType(), new KingdomAdapter());
     }
     /**
@@ -67,7 +69,8 @@ public interface Kingdom extends Composite {
     /**
      * go on the next age.
      * update all component attach on kingdom
-     * @throws IllegalStateException if you can't go on next age
+     * @throws IllegalStateException 
+     *  if you can't go on next age
      */
     void nextAge();
     /**

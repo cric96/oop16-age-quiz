@@ -25,7 +25,8 @@ public interface Composite {
      */
     Set<Component<?>> getComponents();
     /**
-     * add a component in the kingdom.
+     * add a component in the composite.
+     * you can add only if it is already attach otherwise @throws IllegalStateException
      * @param component
      *  the component that i want to add
      */

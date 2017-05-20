@@ -14,7 +14,7 @@ import home.controller.profile.Profile;
 import home.view.menu.MenuView;
 
 class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements MenuView {
-
+    private static final String ERROR = "error! you must choose a numer displayed...";
     private final BufferedReader read;
     ConsoleMenuViewImpl() {
         this.read = new BufferedReader(new InputStreamReader(System.in));
@@ -38,7 +38,7 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements M
                 this.getCurrentController().exitConfirmed();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            this.getCurrentController().exitConfirmed();
         }
     }
     @Override
@@ -50,12 +50,13 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements M
     @Override
     public void showNewGame(final Set<Profile> profiles) {
         final Profile selected = this.selectedProfile(profiles).get();
-        System.out.println("Scegli un nome..");
+        System.out.println("Select a name..");
         try {
             final String name = read.readLine();
             this.getCurrentController().createGame(name, selected);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(ERROR);
+            this.getCurrentController().exitConfirmed();
         }
 
     }
@@ -67,7 +68,8 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements M
             final int scelta = Integer.parseInt(this.read.readLine());
             return Optional.of(listProfiles.get(scelta));
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(ERROR);
+            this.getCurrentController().exitConfirmed();
         }
         return Optional.empty();
     }

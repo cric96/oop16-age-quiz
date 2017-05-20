@@ -1,6 +1,7 @@
 package home.model.building;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Optional;
 
 import home.model.composite.AbstractComposite;
@@ -69,6 +70,7 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
     }
     @Override
     public void attachOn(final Kingdom parent) {
+        Objects.requireNonNull(parent);
         //if is already attach on a object it can't attach in other composite
        if (this.getParent().isPresent()) {
            throw new IllegalStateException("the component is already attach");
@@ -78,6 +80,7 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
     }
     @Override
     public void update(final Event<?> event) {
+        Objects.requireNonNull(event);
         /*if the type is age change and */
         if (Event.Age.class.isAssignableFrom(event.getClass())) {
             //if you want you can check if the source is correct

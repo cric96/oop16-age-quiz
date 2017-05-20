@@ -62,32 +62,33 @@ public class GameTest {
     @Test
     public void testSave() {
         Game.getGame().newGame();
-        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
-        System.out.println(Game.getGame().getCurrentKingdom().getComponents(Object.class));
+        final Kingdom kingBeforeSave = Game.getGame().getCurrentKingdom();
+        kingBeforeSave.addExperience(EXPERIENCE);
         //level up the building using to test this class
-        this.getBuildings(Game.getGame().getCurrentKingdom()).stream()
+        kingBeforeSave.getComponents(Building.class).stream()
                                                              .map(x -> x.getX())
                                                              .filter(x -> x.getName() == BUILDING_TEST)
                                                              .forEach(x -> x.levelUp());
-        Game.getGame().getCurrentKingdom().changeStatus(StatusName.HEALTH, MAX_STATUS);
+        kingBeforeSave.changeStatus(StatusName.HEALTH, MAX_STATUS);
         //check if the state of save object is legal or not
         try {
             Game.getGame().save(FILE_NAME);
         } catch (IOException e) {
             fail();
         }
-        Game.getGame().getCurrentKingdom().addExperience(EXPERIENCE);
+        kingBeforeSave.addExperience(EXPERIENCE);
         try {
             Game.getGame().load(FILE_NAME);
         } catch (IOException | ClassNotFoundException e) {
             fail();
         }
-        assertEquals(Game.getGame().getCurrentKingdom().getExperienceAmount(), 0);
+        final Kingdom kingAfterSave = Game.getGame().getCurrentKingdom();
+        assertEquals(kingAfterSave.getExperienceAmount(), 0);
         try {
-            final Set<Pair<Building, Boolean>> buildings = this.getBuildings(Game.getGame().getCurrentKingdom());
+            final Set<Pair<Building, Boolean>> buildings = kingAfterSave.getComponents(Building.class);
             final Building building = this.getBuildingWithName(buildings, BUILDING_TEST);
             assertSame(building.getLevel().getIncrementalLevel(), 2);
-            assertSame(Game.getGame().getCurrentKingdom().getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
+            assertSame(kingAfterSave.getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
         } catch (Exception exc) {
             fail();
         }
@@ -186,9 +187,6 @@ public class GameTest {
         } catch (IllegalStateException exc) { 
             assertNotNull(exc);
         }
-    }
-    private <E> Set<Pair<Building, Boolean>> getBuildings(final Kingdom king) {
-        return king.getComponents(Building.class);
     }
     private <E extends Building> E getBuildingWithName(final Set<Pair<E, Boolean>> building, 
                                                         final BuildingType name) {

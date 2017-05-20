@@ -1,8 +1,11 @@
 package home.view.menu.fx;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
@@ -19,6 +22,8 @@ import javafx.stage.Window;
 * a class to create a show/load dialog in javafx.
 */
 public abstract class AbstractMenuDialog implements MenuDialog {
+    private final List<ProfileButton> buttonSet = new ArrayList<>();
+    private final MenuObserver controller;
     private Optional<Profile> selectedProfile;
     private final Alert dialog = new Alert(AlertType.NONE);
     private final HBox buttonContainer; 
@@ -30,8 +35,11 @@ public abstract class AbstractMenuDialog implements MenuDialog {
 
     /**
      * @param win 
+     * @param profiles 
+     * @param controller 
      */
-    public AbstractMenuDialog(final Window win) {
+    public AbstractMenuDialog(final Window win, final List<Profile> profiles, final MenuObserver controller) {
+        this.controller = controller;
         final int boxPadding = 20;
         final int yLayoutBox = 10;
         buttonContainer = new HBox(boxPadding);
@@ -44,6 +52,7 @@ public abstract class AbstractMenuDialog implements MenuDialog {
         dialog.setResizable(false);
         dialog.initStyle(StageStyle.DECORATED);
         dialog.initModality(Modality.APPLICATION_MODAL);
+        this.setProfileButton(profiles);
     }
 
     @Override
@@ -102,8 +111,13 @@ public abstract class AbstractMenuDialog implements MenuDialog {
 
     /**
      * 
+     * @param profiles 
      */
+    protected abstract void setProfileButton(List<Profile> profiles);
 
+    /**
+     * 
+     */
     protected abstract void initNode();
     /**
      * 
@@ -129,5 +143,22 @@ public abstract class AbstractMenuDialog implements MenuDialog {
      */
     protected void setSelectedProfile(final Profile selectedProfile) {
         this.selectedProfile = Optional.ofNullable(selectedProfile);
+    }
+
+    /**
+     * 
+     * @return
+     *      the list of button to insert in the dialog.
+     */
+    protected List<ProfileButton> getButtonList() {
+        return this.buttonSet;
+    }
+
+    /**
+     * @return controller 
+     *      the controller of menu view.
+     */
+    protected MenuObserver getController() {
+        return this.controller;
     }
 }

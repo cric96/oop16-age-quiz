@@ -1,6 +1,5 @@
 package home.view.menu.fx;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +17,6 @@ import javafx.stage.Window;
 public class MenuDialogNewGame extends AbstractMenuDialog {
     private final TextField profileName = new TextField();
     private final Label messageInfo = new Label(this.getLabelText().getString("WARNING"));
-    private final List<ProfileButton> buttonSet = new ArrayList<>();
-    private final MenuObserver controller;
 
     /**
      * 
@@ -28,27 +25,10 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
      * @param controller 
      */
     public MenuDialogNewGame(final List<Profile> profiles, final Window win, final MenuObserver controller) {
-        super(win);
-        this.controller = controller;
+        super(win, profiles, controller);
         this.messageInfo.setFont(FontManager.getGeneralFont());
         this.messageInfo.setVisible(false);
         this.profileName.setVisible(false);
-        profiles.forEach(profile -> {
-            final ProfileButton button = new ButtonProfileNewGame(profile);
-            button.setPrefWidth(super.getButtonWidth());
-            buttonSet.add(button);
-            button.setOnMouseClicked(click -> {
-                if (profile.isEnabled()) {
-                    messageInfo.setVisible(true);
-                } else {
-                    messageInfo.setVisible(false);
-                }
-                this.profileName.setVisible(true);
-                this.setSelectedProfile(profile);
-                this.profileName.setText("");
-                this.getAlert().getButtonTypes().setAll(new ButtonType(this.getButtonText().getString("CREATE")));
-            });
-        });
         this.getAlert().setTitle(this.getButtonText().getString("NEW_GAME"));
     }
 
@@ -64,7 +44,7 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
 
     @Override
     protected void initButtonContainer() {
-        this.getButtonContainer().getChildren().addAll(this.buttonSet);
+        this.getButtonContainer().getChildren().addAll(this.getButtonList());
     }
 
     @Override
@@ -72,7 +52,27 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
         super.show();
         final Optional<ButtonType> res = this.getAlert().showAndWait();
         if (res.isPresent() && res.get().getText().equals(this.getButtonText().getString("CREATE"))) {
-            controller.createGame(this.profileName.getText(), this.getSelectedProfile().get());
+            this.getController().createGame(this.profileName.getText(), this.getSelectedProfile().get());
         }
+    }
+
+    @Override
+    protected void setProfileButton(final List<Profile> profiles) {
+        profiles.forEach(profile -> {
+            final ProfileButton button = new ButtonProfileNewGame(profile);
+            button.setPrefWidth(super.getButtonWidth());
+            this.getButtonList().add(button);
+            button.setOnMouseClicked(click -> {
+                if (profile.isEnabled()) {
+                    messageInfo.setVisible(true);
+                } else {
+                    messageInfo.setVisible(false);
+                }
+                this.profileName.setVisible(true);
+                this.setSelectedProfile(profile);
+                this.profileName.setText("");
+                this.getAlert().getButtonTypes().setAll(new ButtonType(this.getButtonText().getString("CREATE")));
+            });
+        });
     }
 }

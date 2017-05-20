@@ -14,5 +14,7 @@
 .my-progressBar-intermittence > .bar {
 	-fx-background-radius: 30;
 	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);
-	-fx-background-color: linear-gradient(to top left, transparent, transparent);
+	-fx-border-color: red;
+	-fx-border-radius: 30;
+	-fx-background-color: linear-gradient(to top left, rgba(255,218,185,0.1), rgba(248,1,1,0.1));
 }

@@ -15,6 +15,7 @@ import home.model.building.Building;
 import home.model.building.BuildingFactory;
 import home.model.building.BuildingType;
 import home.model.image.ImageComponent;
+import home.model.kingdom.AgeUpStrategy;
 import home.model.kingdom.Kingdom;
 import home.model.kingdom.KingdomBuilder;
 import home.model.level.Level;
@@ -35,7 +36,8 @@ public class KingdomTest {
         return KingdomBuilder.createBuilder()
                              .addStatus(STATUS)
                              .setExperience(EXPERIENCE)
-                             .setAge(Level.Age.createAgeLevel());
+                             .setAge(Level.Age.createAgeLevel())
+                             .addStrategy(AgeUpStrategy.createSimple());
     }
     /**
      * Simple test on kingdom.
@@ -87,13 +89,8 @@ public class KingdomTest {
     @Test 
     public void builderTest() {
         final KingdomBuilder builder = this.getBuilder();
+        this.checkBuildBuilder(builder);
         builder.build();
-        try {
-            builder.build();
-            fail();
-        } catch (IllegalStateException exc) {
-            assertNotNull(exc);
-        }
         try {
             builder.setAge(START_AGE);
             fail();
@@ -114,6 +111,14 @@ public class KingdomTest {
         }
         try {
             builder.addComponent(ImageComponent.createComponent("IMAGE"));
+            fail();
+        } catch (IllegalStateException exc) {
+            assertNotNull(exc);
+        }
+    }
+    private void checkBuildBuilder(final KingdomBuilder builder) {
+        try {
+            builder.build();
             fail();
         } catch (IllegalStateException exc) {
             assertNotNull(exc);

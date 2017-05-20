@@ -80,6 +80,7 @@ final class KingdomAdapter extends TypeAdapter<Kingdom> {
         builder.addComponent(ImageComponent.createComponent("KINGDOM"));
         buildings.forEach(x -> builder.addComponent(x));
         statuses.forEach(x -> builder.addStatus(x));
+        builder.addStrategy(AgeUpStrategy.createSimple());
         return builder.build();
     }
 

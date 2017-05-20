@@ -47,6 +47,14 @@ public interface KingdomBuilder {
      */
     KingdomBuilder addComponent(Component<? super Kingdom> component);
     /**
+     * set the strategy used to check when the kingdom try to age up.
+     * @param strategy
+     *  the strategy 
+     * @return
+     *  the builder
+     */
+    KingdomBuilder addStrategy(AgeUpStrategy strategy);
+    /**
      * create the kingdom.
      * @return
      *  the kingdom created

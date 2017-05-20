@@ -25,7 +25,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     //package protected
     KingdomImpl(final Set<Status> statuses, final Level.Age age, final AgeUpStrategy strategy) {
         if (Utility.checkNullOb(age, statuses, strategy)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("some argumenent is null!");
         }
         this.statuses = statuses;
         this.age = age;

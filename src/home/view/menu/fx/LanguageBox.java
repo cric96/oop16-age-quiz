@@ -15,8 +15,8 @@ import javafx.scene.layout.HBox;
  */
 class LanguageBox extends HBox {
     LanguageBox(final ParentMenu parent) {
-        final String selectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0.6);";
-        final String notSelectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0);";
+        final String selectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0.6); -fx-background-radius: 0";
+        final String notSelectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 0";
 
         final int fontSize = 25;
         final Set<Button> languageButtonSet = new HashSet<>();

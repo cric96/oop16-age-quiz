@@ -36,6 +36,7 @@ public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements Worl
         ft.setFromValue(0);
         ft.setToValue(1);
         ft.play();
+        this.fxmlController.refresh();
         this.getParent().addFocus();
     }
 

@@ -36,7 +36,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements
         System.out.println("buildings..");
         this.buildings.forEach((x, y) -> {
             if (y.getY()) {
-                System.out.println("name = " + x.toString() + " image name = " + y.getX().getPath()); 
+                System.out.println("name = " + x.name() + " image name = " + y.getX().getPath()); 
             }
         });
         System.out.println("kingdom : image info = " + kingdom.getPath());

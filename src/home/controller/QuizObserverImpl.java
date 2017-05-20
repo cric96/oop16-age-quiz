@@ -17,6 +17,7 @@ import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.ResourceManager;
 import home.view.Container;
+import home.view.MessageType;
 import home.view.View;
 import home.view.ViewType;
 import home.view.quiz.QuizView;
@@ -37,8 +38,8 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     @Override
     protected void update() {
         this.currentQuiz = Game.getGame().getCurrentQuiz().orElseThrow(() -> new IllegalStateException());
-        super.update();
         this.updateQuery();
+        super.update();
         final QuizTimer qTimer = new QuizTimer(this.currentQuiz.getQuizDuration());
         qTimer.start();
     }
@@ -62,7 +63,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
         try {
             Game.getGame().save(selected.getSaveGame());
         } catch (IOException e) {
-            super.showErrors(error);
+            this.showMessageInViews(error, MessageType.ERROR);
         }
         Container.getContainer().changeDisplay(ViewType.WORLD);
     }
@@ -73,7 +74,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
             this.currentQuiz.next();
             this.updateQuery();
         } catch (NoSuchElementException exc) {
-            super.showErrors(error);
+            this.showMessageInViews(error, MessageType.ERROR);
         }
     }
 
@@ -92,7 +93,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
                 try {
                     sleep(SECOND);
                 } catch (Exception e) {
-                    QuizObserverImpl.this.showErrors(error);
+                    QuizObserverImpl.this.showMessageInViews(error, MessageType.ERROR);
                 }
             }
             final QuizGame quiz = QuizObserverImpl.this.currentQuiz;

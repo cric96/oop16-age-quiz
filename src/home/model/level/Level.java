@@ -28,7 +28,6 @@ public interface Level {
      * 
      * @return
      *  the experience amount to go on the successive level
-     *  throws illegalStateException if is not upgradable
      */
     int getExperienceAmount();
     /**
@@ -116,7 +115,9 @@ public interface Level {
          * Simple factory
          * create an Age with a specific index of age
          * @param currentAgeLevel
+         *  the current index of age
          * @return
+         *  the age created
          */
         static Level.Age restoreAgeLevel(final int currentAgeLevel) {
             return AgeType.values()[currentAgeLevel - 1].getAge();

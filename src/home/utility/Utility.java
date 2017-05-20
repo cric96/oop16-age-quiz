@@ -57,7 +57,6 @@ public final class Utility {
      */
     public static String getTitle() {
         return "Age of Quiz";
-
     }
 
 }

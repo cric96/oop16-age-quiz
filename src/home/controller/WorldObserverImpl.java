@@ -17,6 +17,7 @@ import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.Pair;
 import home.view.Container;
+import home.view.MessageType;
 import home.view.View;
 import home.view.ViewType;
 import home.view.world.WorldView;
@@ -52,7 +53,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
             Game.getGame().createQuiz(building);
             Container.getContainer().changeDisplay(ViewType.QUIZ);
         } catch (Exception e) {
-            this.showErrors(endQuestion);
+            this.showMessageInViews(endQuestion, MessageType.ERROR);
         }
     }
 
@@ -130,8 +131,8 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     }
     @Override
     protected void update() {
-        super.update();
         this.onAgeChange();
+        super.update();
     }
 
 }

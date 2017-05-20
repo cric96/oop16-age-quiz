@@ -2,6 +2,7 @@ package home.model.kingdom;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -59,6 +60,7 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     }
     @Override
     public boolean changeStatus(final StatusName name, final int amount) {
+        Objects.requireNonNull(name);
         final Optional<Status> status = this.statuses.stream().filter(x -> x.getName() == name)
                                                               .findFirst();
         if (status.isPresent()) {

@@ -19,6 +19,7 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
     private static final String EXIT_MESSAGE = "EXIT";
     private static final String FILE_ERROR = "FILE_ERROR";
     private static final String PROFILE_ERROR = "PROFILE_ERROR";
+    private static final String EMPTY_ERROR = "EMPTY_ERROR";
     private static final String BUNDLE = Bundles.ERROR;
     private final ProfileBox profiles;
     private final Set<MenuView> views;
@@ -36,22 +37,27 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
     @Override
     public void createGame(final String name, final Profile profile) {
         final String fileError = BundleLanguageManager.get().getBundle(BUNDLE).getString(PROFILE_ERROR);
-        profile.setEnabled(true);
-        profile.setName(name);
-        this.profiles.select(profile);
-        try {
-            this.profiles.save();
-        } catch (IOException e) {
-            super.showErrors(fileError);
+        final String emptyError = BundleLanguageManager.get().getBundle(BUNDLE).getString(EMPTY_ERROR);
+        if (name.isEmpty()) {
+            this.showMessageInViews(emptyError, MessageType.ALERT);
+        } else {
+            profile.setEnabled(true);
+            profile.setName(name);
+            this.profiles.select(profile);
+            try {
+                this.profiles.save();
+            } catch (IOException e) {
+                super.showMessageInViews(fileError, MessageType.ERROR);
+            }
+            Game.getGame().newGame();
+            try {
+                Game.getGame().save(profile.getSaveGame());
+            } catch (IOException e) {
+                super.showMessageInViews(fileError, MessageType.ERROR);
+            }
+            ProfileBox.getProfileBox().select(profile);
+            Container.getContainer().changeDisplay(ViewType.WORLD);
         }
-        Game.getGame().newGame();
-        try {
-            Game.getGame().save(profile.getSaveGame());
-        } catch (IOException e) {
-            super.showErrors(fileError);
-        }
-        ProfileBox.getProfileBox().select(profile);
-        Container.getContainer().changeDisplay(ViewType.WORLD);
     }
 
     @Override
@@ -64,12 +70,12 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
         final String fileError = BundleLanguageManager.get().getBundle(BUNDLE).getString(PROFILE_ERROR);
         final String profileError = BundleLanguageManager.get().getBundle(BUNDLE).getString(FILE_ERROR);
         if (!profile.isEnabled()) {
-            super.showErrors(profileError);
+            super.showMessageInViews(profileError, MessageType.ERROR);
         }
         try {
             Game.getGame().load(profile.getSaveGame());
         } catch (ClassNotFoundException | IOException e) {
-            super.showErrors(fileError);
+            super.showMessageInViews(fileError, MessageType.ERROR);
         }
         ProfileBox.getProfileBox().select(profile);
         Container.getContainer().changeDisplay(ViewType.WORLD);

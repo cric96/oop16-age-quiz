@@ -29,6 +29,8 @@ public interface Component <E> {
      * if the source of event is invalid throws @IllegalSourceException
      * @param event
      *  the event of what i want
+     * @throws IllegalStateException 
+     *  if the component has already a parent
      */
     void update(Event<?> event);
     /**

@@ -2,8 +2,8 @@ package home.controller.profile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 /**
  * a box that contains all type of profile.
  * a user can select one and it can played with it
@@ -39,7 +39,7 @@ public interface ProfileBox {
      * @return
      *  all profile associated with this box
      */
-    Set<Profile> getProfile();
+    List<Profile> getProfile();
     /**
      * 
      * @param file

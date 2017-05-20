@@ -1,8 +1,8 @@
 package home.view.menu.fx;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
@@ -18,7 +18,7 @@ import javafx.stage.Window;
 public class MenuDialogNewGame extends AbstractMenuDialog {
     private final TextField profileName = new TextField();
     private final Label messageInfo = new Label(this.getLabelText().getString("WARNING"));
-    private final Set<ProfileButton> buttonSet = new HashSet<>();
+    private final List<ProfileButton> buttonSet = new ArrayList<>();
     private final MenuObserver controller;
 
     /**
@@ -27,7 +27,7 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
      * @param win 
      * @param controller 
      */
-    public MenuDialogNewGame(final Set<Profile> profiles, final Window win, final MenuObserver controller) {
+    public MenuDialogNewGame(final List<Profile> profiles, final Window win, final MenuObserver controller) {
         super(win);
         this.controller = controller;
         this.messageInfo.setFont(FontManager.getGeneralFont());

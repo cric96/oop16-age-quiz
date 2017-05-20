@@ -1,8 +1,9 @@
 package home.view.menu.fx;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.view.FontManager;
@@ -14,7 +15,7 @@ import javafx.stage.Window;
  * specialization of AbstractMenuDialog to create a load dialog.
  */
 public class MenuDialogLoadGame extends AbstractMenuDialog {
-    private final Set<ProfileButton> buttonSet = new HashSet<>();
+    private final List<ProfileButton> buttonSet = new ArrayList<>();
     private final MenuObserver controller;
     private final Label date = new Label();
     /**
@@ -22,7 +23,7 @@ public class MenuDialogLoadGame extends AbstractMenuDialog {
      * @param window 
      * @param controller 
      */
-    public MenuDialogLoadGame(final Set<Profile> profiles, final Window window, final MenuObserver controller) {
+    public MenuDialogLoadGame(final List<Profile> profiles, final Window window, final MenuObserver controller) {
         super(window);
         this.date.setFont(FontManager.getGeneralFont());
         this.controller = controller;

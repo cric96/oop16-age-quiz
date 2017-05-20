@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 import home.controller.observer.MenuObserver;
@@ -42,13 +41,13 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements M
         }
     }
     @Override
-    public void showSavedGames(final Set<Profile> profiles) {
+    public void showSavedGames(final List<Profile> profiles) {
         final Profile selected = this.selectedProfile(profiles).get();
         this.getCurrentController().loadGame(selected);
     }
 
     @Override
-    public void showNewGame(final Set<Profile> profiles) {
+    public void showNewGame(final List<Profile> profiles) {
         final Profile selected = this.selectedProfile(profiles).get();
         System.out.println("Select a name..");
         try {
@@ -60,7 +59,7 @@ class ConsoleMenuViewImpl extends AbstractConsoleView<MenuObserver> implements M
         }
 
     }
-    private Optional<Profile> selectedProfile(final Set<Profile> profiles) {
+    private Optional<Profile> selectedProfile(final List<Profile> profiles) {
         final List<Profile> listProfiles = new ArrayList<>(profiles);
         System.out.println("Wich profile you choose??");
         IntStream.range(0, listProfiles.size()).forEach(x -> System.out.println(x + listProfiles.get(x).getName().orElse("EMPTY")));

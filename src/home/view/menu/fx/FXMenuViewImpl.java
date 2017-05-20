@@ -1,13 +1,14 @@
 package home.view.menu.fx;
 
-import javafx.scene.control.ButtonType;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
 import home.view.menu.MenuView;
+import javafx.scene.control.ButtonType;
 
 /**
  * Implementation of Menu view in javafx.
@@ -35,7 +36,7 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
     }
 
     @Override
-    public void showSavedGames(final Set<Profile> profiles) {
+    public void showSavedGames(final List<Profile> profiles) {
         this.getParent().removeFocus();
         final MenuDialogLoadGame dialog = new MenuDialogLoadGame(profiles, this.getParent().getScene().getWindow(), controller.get());
         dialog.show();
@@ -43,7 +44,7 @@ public class FXMenuViewImpl extends AbstractFXView<ParentMenu> implements MenuVi
     }
 
     @Override
-    public void showNewGame(final Set<Profile> profiles) {
+    public void showNewGame(final List<Profile> profiles) {
         this.getParent().removeFocus();
         final MenuDialogNewGame dialog = new MenuDialogNewGame(profiles, this.getParent().getScene().getWindow(), controller.get());
         dialog.show();

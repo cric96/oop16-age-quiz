@@ -11,6 +11,8 @@ import home.utility.BundleLanguageManager;
 import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
+import home.utility.view.FontManager;
+import home.view.fx.FXMLController;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -27,7 +29,7 @@ import javafx.stage.Popup;
 /**
  * controller for base.fxml file.
  */
-final class FXMLControllerWorld {
+final class FXMLControllerWorld implements FXMLController {
     private WorldObserver controller;
     private final Popup pop = new Popup();
     private static final int BACK_WIDTH = 60;
@@ -59,18 +61,15 @@ final class FXMLControllerWorld {
     @FXML
     private Tooltip backButtonText;
 
-    /**
-     * 
-     */
     @FXML
-    public void initialize() {
+    private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
         final String styleSheet = ResourceManager.load("/style/gameButtons.css").toExternalForm();
         this.backMenuButton.getStylesheets().add(styleSheet);
         this.backMenuButton.getStyleClass().add("generalNode");
         this.statsImg.getStylesheets().add(styleSheet);
         this.statsImg.getStyleClass().add("statsImage");
         titleText.setText(Utility.getTitle());
-        titleText.setFont(Utility.titleFont(TITLE_FONT));
+        titleText.setFont(FontManager.titleFont(TITLE_FONT));
         String fileName = ResourceManager.load(Images.BACK_HOME_PICTURE.getPath()).toExternalForm();
         final ImageView backButton = new ImageView(new Image(fileName));
         backButton.setFitWidth(BACK_WIDTH);
@@ -82,15 +81,15 @@ final class FXMLControllerWorld {
         statsView.setFitHeight(STATS_BOX);
         this.statsImg.setGraphic(statsView);
         this.statisticsPane.setVgap(1);
-        this.statistics.setFont(Utility.getGeneralFont(16));
+        this.statistics.setFont(FontManager.getGeneralFont(16));
         final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");
         final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle("LabelBundle");
         this.statistics.setText(bundleLabel.getString("STATS") + ":");
         this.backButtonText.setText(bundleButton.getString("BACK"));
-        this.backButtonText.setFont(Utility.getGeneralFont());
-        this.eraLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
-        this.experienceLabel.setFont(Utility.getGeneralFont(TITLE_FONT));
-        this.experienceText.setFont(Utility.getGeneralFont(TITLE_FONT));
+        this.backButtonText.setFont(FontManager.getGeneralFont());
+        this.eraLabel.setFont(FontManager.getGeneralFont(TITLE_FONT));
+        this.experienceLabel.setFont(FontManager.getGeneralFont(TITLE_FONT));
+        this.experienceText.setFont(FontManager.getGeneralFont(TITLE_FONT));
         this.experienceText.setText(bundleLabel.getString("EXP") + ":");
     }
 
@@ -169,9 +168,9 @@ final class FXMLControllerWorld {
         this.statisticsPane.getChildren().clear();
         for (final Map.Entry<String, Integer> status : statusScose.entrySet()) {
             final Label name = new Label(status.getKey());
-            name.setFont(Utility.getGeneralFont());
+            name.setFont(FontManager.getGeneralFont());
             final Label value = new Label(status.getValue() + "/" + maxValue);
-            value.setFont(Utility.getGeneralFont());
+            value.setFont(FontManager.getGeneralFont());
             this.statisticsPane.add(name, labelCol, actualRow);
             this.statisticsPane.add(value, valCol, actualRow);
             final Number f = (status.getValue() / Double.valueOf(maxValue));

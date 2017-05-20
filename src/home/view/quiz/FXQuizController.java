@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import home.controller.observer.QuizObserver;
 import home.utility.ResourceManager;
+import home.view.fx.FXMLController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,7 +17,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 //package-protected
-final class FXQuizController {
+final class FXQuizController implements FXMLController {
     private static final int TIME_TO_CHANGE = 500;
     private static final double WARNING_PERCENTAGE = 0.2; 
     private int startTime;
@@ -36,7 +37,7 @@ final class FXQuizController {
         Platform.runLater(() -> this.question.setText(question));
     }
     @FXML
-    public void initialize() {
+    private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
         this.answers.getStylesheets().add(ResourceManager.load("/style/answers.css").toExternalForm());
         this.question.getStylesheets().add(ResourceManager.load("/style/question.css").toExternalForm());
         this.question.getStyleClass().add("my-label-default");

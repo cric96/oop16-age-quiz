@@ -1,4 +1,4 @@
-package home.utility;
+package home.utility.view;
 
 import javafx.stage.Screen;
 

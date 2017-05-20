@@ -3,9 +3,10 @@ package home.view.menu.fx;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
-import home.utility.Utility;
+import home.utility.view.FontManager;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,7 +30,7 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
     public MenuDialogNewGame(final Set<Profile> profiles, final Window win, final MenuObserver controller) {
         super(win);
         this.controller = controller;
-        this.messageInfo.setFont(Utility.getGeneralFont());
+        this.messageInfo.setFont(FontManager.getGeneralFont());
         this.messageInfo.setVisible(false);
         this.profileName.setVisible(false);
         profiles.forEach(profile -> {

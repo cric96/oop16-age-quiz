@@ -35,7 +35,7 @@ public interface QuizGame {
      * @return 
      *  true if answer is correct, false otherwise
      */
-    boolean isAnswerCorrect(); //questo metodo non c'è nell'UML
+    boolean isAnswerCorrect();
     /**
      * It will be true only if time for this specific quiz elapsed.
      * @return 
@@ -48,14 +48,14 @@ public interface QuizGame {
      * @return 
      *  an int that means how many XP you have reached with this quiz
      */
-    int getXP(); //metodo cambiato di nome rispetto all'UML
+    int getXP();
     /**
      * At the end of the quiz the statistic will be better or worse, it depends on the number
      * of correct answers.
      * @return 
      *  a set of pair of StatusName and the score to add or to remove from it
      */
-    Map<StatusName, Integer> getStatusScore(); //metodo che non c'è sull'UML
+    Map<StatusName, Integer> getStatusScore();
     /**
      * @return 
      *  number of seconds quiz will last 

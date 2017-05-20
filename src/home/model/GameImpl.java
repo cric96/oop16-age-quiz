@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
-import home.model.building.BuildingOfKingdom;
-import home.model.building.BuildingFactory;
-import home.model.building.BuildingType;
 import home.model.building.Building;
+import home.model.building.BuildingFactory;
+import home.model.building.BuildingOfKingdom;
+import home.model.building.BuildingType;
 import home.model.composite.Component;
 import home.model.composite.Composite;
 import home.model.image.ImageComponent;

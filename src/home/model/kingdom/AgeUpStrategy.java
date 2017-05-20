@@ -25,7 +25,6 @@ public interface AgeUpStrategy extends BooleanSupplier {
      *  the strategy created
     */
     static AgeUpStrategy createBuildingCheck(final Set<BuildingOfKingdom> buildings) {
-        System.out.println(buildings);
         return (AgeUpStrategy & Serializable) () -> buildings.stream()
                                                              .filter(x -> x.isEnable())
                                                              .allMatch(x -> !x.getLevel().isUpgradable());

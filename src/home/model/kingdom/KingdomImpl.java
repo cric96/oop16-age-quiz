@@ -86,6 +86,10 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
         }
     }
     @Override
+    public AgeUpStrategy getStrategy() {
+        return this.strategy;
+    }
+    @Override
     public boolean canUpgradeAge() {
         return this.experience >= this.age.getExperienceAmount() && this.age.isUpgradable() && this.strategy.getAsBoolean();
     }

@@ -89,7 +89,6 @@ public class KingdomTest {
     @Test 
     public void builderTest() {
         final KingdomBuilder builder = this.getBuilder();
-        this.checkBuildBuilder(builder);
         builder.build();
         try {
             builder.setAge(START_AGE);
@@ -111,14 +110,6 @@ public class KingdomTest {
         }
         try {
             builder.addComponent(ImageComponent.createComponent("IMAGE"));
-            fail();
-        } catch (IllegalStateException exc) {
-            assertNotNull(exc);
-        }
-    }
-    private void checkBuildBuilder(final KingdomBuilder builder) {
-        try {
-            builder.build();
             fail();
         } catch (IllegalStateException exc) {
             assertNotNull(exc);

@@ -9,10 +9,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import home.model.building.BuildingOfKingdom;
-import home.model.building.BuildingFactory;
-import home.model.building.BuildingType;
 import home.model.building.Building;
+import home.model.building.BuildingFactory;
+import home.model.building.BuildingOfKingdom;
+import home.model.building.BuildingType;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.status.Status;

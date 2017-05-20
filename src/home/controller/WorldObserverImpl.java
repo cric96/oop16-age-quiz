@@ -79,7 +79,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
         return Dialog.Builder.createBuilder().setName(bundle.getString(CASTLE_NAME))
                                              .setExperience(current.getAge().getExperienceAmount())
                                              .setLevel(current.getAge().getIncrementalLevel())
-                                             .setLevelBlocked(current.getAge().isUpgradable())
+                                             .setLevelBlocked(!current.getAge().isUpgradable())
                                              .setLevelEnable(current.canUpgradeAge()).build();
     }
     /*return a building attach on the kingdom*/

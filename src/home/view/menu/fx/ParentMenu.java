@@ -1,28 +1,18 @@
 package home.view.menu.fx;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 import home.controller.observer.MenuObserver;
-import home.utility.BundleLanguageManager;
 import home.utility.ResourceManager;
 import home.utility.Utility;
-import home.utility.view.FontManager;
 import home.utility.view.UtilityScreen;
 import home.view.Fonts;
 import home.view.fx.CustomParent;
 import home.view.fx.Images;
 import home.view.menu.Buttons;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -83,47 +73,11 @@ class ParentMenu extends CustomParent {
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         bg.setFill(Color.GREY);
         bg.setOpacity(OPACITY);
-        final HBox languageButtonBox = new HBox();
-        addButtonLanguage(languageButtonBox);
+        final HBox languageButtonBox = new LanguageBox(this);
+        languageButtonBox.setAlignment(Pos.BOTTOM_RIGHT);
         rootPane.setBottom(languageButtonBox);
         rootPane.setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
         getChildren().addAll(bg, rootPane);
-    }
-
-    private void addButtonLanguage(final HBox box) {
-        final Background background = new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY));
-        final int fontSize = 25;
-        final Set<Button> languageButtonSet = new HashSet<>();
-        box.setAlignment(Pos.BOTTOM_RIGHT);
-        BundleLanguageManager.get().getSupportedLanguage().forEach(language -> {
-            final Button langButton = new Button(language.toString());
-            langButton.setStyle(" -fx-text-fill: white;");
-            langButton.setFont(FontManager.getGeneralFont(fontSize));
-            if (language.equals(BundleLanguageManager.get().getCurrentLocale())) {
-                langButton.setBackground(background);
-            } else {
-                langButton.setBackground(null);
-            }
-            languageButtonSet.add(langButton);
-            langButton.setOnMouseClicked(e -> {
-                try {
-                    BundleLanguageManager.get().setLocale(language);
-                } catch (FileNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-                this.repaint();
-                langButton.setBackground(background);
-                languageButtonSet.stream().filter(button -> !button.equals(langButton))
-                                          .forEach(button -> {
-                                              button.setBackground(null);
-                                          });
-            });
-            box.getChildren().add(langButton);
-        });
     }
 
     /**

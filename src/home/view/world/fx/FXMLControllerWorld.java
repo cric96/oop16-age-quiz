@@ -82,15 +82,10 @@ final class FXMLControllerWorld implements FXMLController {
         this.statsImg.setGraphic(statsView);
         this.statisticsPane.setVgap(1);
         this.statistics.setFont(FontManager.getGeneralFont(16));
-        final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");
-        final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle("LabelBundle");
-        this.statistics.setText(bundleLabel.getString("STATS") + ":");
-        this.backButtonText.setText(bundleButton.getString("BACK"));
         this.backButtonText.setFont(FontManager.getGeneralFont());
         this.eraLabel.setFont(FontManager.getGeneralFont(TITLE_FONT));
         this.experienceLabel.setFont(FontManager.getGeneralFont(TITLE_FONT));
         this.experienceText.setFont(FontManager.getGeneralFont(TITLE_FONT));
-        this.experienceText.setText(bundleLabel.getString("EXP") + ":");
     }
 
     /**
@@ -227,5 +222,16 @@ final class FXMLControllerWorld implements FXMLController {
           this.pop.getContent().add(p);
           this.pop.show(this.buildingPane.getScene().getWindow());
         }
+    }
+
+    /**
+     * method used to refresh label if I change language game.
+     */
+    public void refresh() {
+        final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");
+        final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle("LabelBundle");
+        this.statistics.setText(bundleLabel.getString("STATS") + ":");
+        this.experienceText.setText(bundleLabel.getString("EXP") + ":");
+        this.backButtonText.setText(bundleButton.getString("BACK"));
     }
 }

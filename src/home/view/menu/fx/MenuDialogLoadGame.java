@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
-import home.utility.Utility;
+import home.utility.view.FontManager;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Window;
@@ -24,7 +24,7 @@ public class MenuDialogLoadGame extends AbstractMenuDialog {
      */
     public MenuDialogLoadGame(final Set<Profile> profiles, final Window window, final MenuObserver controller) {
         super(window);
-        this.date.setFont(Utility.getGeneralFont());
+        this.date.setFont(FontManager.getGeneralFont());
         this.controller = controller;
         profiles.forEach(profile -> {
             final ProfileButton button = new ButtonProfileLoadGame(profile);

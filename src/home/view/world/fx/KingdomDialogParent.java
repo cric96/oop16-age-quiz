@@ -23,7 +23,7 @@ public class KingdomDialogParent extends DialogParent {
             pop.hide();
             controller.nextEra();
         });
-        upgrade.setDisable(dialog.isLevelBlocked());
+        upgrade.setDisable(!dialog.levelUpEnabled());
         this.getController().setButtonBox(Arrays.asList(upgrade));
     }
 

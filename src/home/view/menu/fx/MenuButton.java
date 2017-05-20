@@ -1,6 +1,6 @@
 package home.view.menu.fx;
 
-import home.utility.Utility;
+import home.utility.view.FontManager;
 import javafx.geometry.Pos;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
@@ -32,7 +32,7 @@ public class MenuButton extends StackPane {
         final int size = 30;
         text.setTranslateX(FONT);
         text.getFont();
-        text.setFont(Utility.getGeneralFont(size));
+        text.setFont(FontManager.getGeneralFont(size));
         text.setFill(Color.WHITE);
         final Rectangle bg = new Rectangle(BOX_HEIGHT, BOX_WIDTH);
         bg.setOpacity(BOX_OPACITY);

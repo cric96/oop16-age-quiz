@@ -6,7 +6,8 @@ import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.Pair;
 import home.utility.ResourceManager;
-import home.utility.Utility;
+import home.utility.view.FontManager;
+import home.view.fx.FXMLController;
 import home.view.fx.Images;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -19,9 +20,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Popup;
 
 /**
- * 
+ * controller of fxml view that represent dialog building/kingdom
  */
-final class FXMLInfoBuilding extends Parent {
+final class FXMLInfoBuilding extends Parent implements FXMLController {
     private static final int TITLE_FONT = 15;
 
     @FXML
@@ -35,12 +36,8 @@ final class FXMLInfoBuilding extends Parent {
     @FXML
     private Button closeButton;
 
-
-    /**
-     * 
-     */
     @FXML
-    public void initialize() {
+    private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
         this.closeButton.getStylesheets().add(ResourceManager.load("/style/gameButtons.css").toExternalForm());
         this.closeButton.getStyleClass().add("generalNode");
@@ -49,8 +46,8 @@ final class FXMLInfoBuilding extends Parent {
         exitImg.setFitHeight(closeButtonDimension.getX());
         exitImg.setFitWidth(closeButtonDimension.getY());
         this.closeButton.setGraphic(exitImg);
-        this.experience.setFont(Utility.getGeneralFont());
-        this.level.setFont(Utility.getGeneralFont());
+        this.experience.setFont(FontManager.getGeneralFont());
+        this.level.setFont(FontManager.getGeneralFont());
     }
 
     /**
@@ -59,7 +56,7 @@ final class FXMLInfoBuilding extends Parent {
      */
     public void setName(final String name) {
         this.name.setText(name);
-        this.name.setFont(Utility.getGeneralFont(TITLE_FONT));
+        this.name.setFont(FontManager.getGeneralFont(TITLE_FONT));
     }
 
     /**
@@ -80,9 +77,8 @@ final class FXMLInfoBuilding extends Parent {
     }
 
     /**
-     * set Popup to hide.
-     * 
      * @param pop 
+     *          to hide
      */
     public void setPop(final Popup pop) {
         this.closeButton.setOnMouseClicked(e -> {
@@ -92,6 +88,7 @@ final class FXMLInfoBuilding extends Parent {
 
     /**
      * @param buttons 
+     *          set of buttons in the dialog
      */
     public void setButtonBox(final List<Button> buttons) {
         for (final Button button: buttons) {

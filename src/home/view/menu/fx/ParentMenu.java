@@ -5,7 +5,7 @@ import java.io.IOException;
 import home.controller.observer.MenuObserver;
 import home.utility.ResourceManager;
 import home.utility.Utility;
-import home.utility.UtilityScreen;
+import home.utility.view.UtilityScreen;
 import home.view.Fonts;
 import home.view.fx.CustomParent;
 import home.view.fx.Images;

@@ -1,7 +1,7 @@
 package home.view.menu.fx;
 
 import home.controller.profile.Profile;
-import home.utility.Utility;
+import home.utility.view.FontManager;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
@@ -16,7 +16,7 @@ public class ProfileButton extends Button {
      */
     public ProfileButton(final Profile profile) {
         super(profile.getName().orElse("Empty slot"));
-        this.setFont(Utility.getGeneralFont());
+        this.setFont(FontManager.getGeneralFont());
     }
 
     /**

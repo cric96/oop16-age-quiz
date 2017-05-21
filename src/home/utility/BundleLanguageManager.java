@@ -82,7 +82,7 @@ public class BundleLanguageManager {
      * @return
      *  the bundle associated 
      */
-    public ResourceBundle getBundle(final String bundleName) {
+    public ResourceBundle getBundle(final Bundles bundleName) {
         return ResourceBundle.getBundle(PACKAGE + bundleName, this.language);
     }
     /**

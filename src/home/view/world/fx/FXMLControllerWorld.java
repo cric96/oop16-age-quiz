@@ -8,6 +8,7 @@ import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
@@ -236,8 +237,8 @@ final class FXMLControllerWorld implements FXMLController {
      * method used to refresh label if I change language game.
      */
     public void refresh() {
-        final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");
-        final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle("LabelBundle");
+        final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle(Bundles.BUTTON);
+        final ResourceBundle bundleLabel = BundleLanguageManager.get().getBundle(Bundles.LABEL);
         this.statistics.setText(bundleLabel.getString("STATS") + ":");
         this.experienceText.setText(bundleLabel.getString("EXP") + ":");
         this.backButtonText.setText(bundleButton.getString("BACK"));

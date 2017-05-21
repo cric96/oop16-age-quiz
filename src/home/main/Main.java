@@ -21,8 +21,8 @@ import javafx.application.Application;
  */
 public final class Main {
     private static final boolean DEBUG = false;
-    private static final File BOX_PROFILES = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR.toString() + "profile-box.obj");
-    private static final File LANGUAGE = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR.toString() + "language.obj");
+    private static final File BOX_PROFILES = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR + "profile-box.obj");
+    private static final File LANGUAGE = new File(LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR + "language.obj");
     private Main() { }
     /** 
      * @param args

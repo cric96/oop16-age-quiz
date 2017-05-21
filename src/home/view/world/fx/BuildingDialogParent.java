@@ -4,6 +4,7 @@ import java.util.Arrays;
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.stage.Popup;
 
@@ -31,11 +32,13 @@ public class BuildingDialogParent extends DialogParent {
             pop.hide();
             controller.createQuiz(building);
         });
+        start.setAlignment(Pos.CENTER_RIGHT);
         final Button upgrade = new Button(this.getBundle().getString("UPGRADE"));
         upgrade.setOnMouseClicked(e -> {
             pop.hide();
             controller.nextLevel(building);
         });
+        upgrade.setAlignment(Pos.CENTER_LEFT);
         upgrade.setDisable(!dialog.levelUpEnabled());
         this.getController().setButtonBox(Arrays.asList(upgrade, start));
     }

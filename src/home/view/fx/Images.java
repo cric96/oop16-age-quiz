@@ -47,8 +47,11 @@ public enum Images {
     /**
      * 
      */
-    CLOUD_PANE("/images/cloud.png");
-
+    CLOUD_PANE("/images/cloud.png"),
+    /**
+     * 
+     */
+    SPLASH_SCREEN("/images/splashscreen.png");
     private String path;
 
     Images(final String path) {

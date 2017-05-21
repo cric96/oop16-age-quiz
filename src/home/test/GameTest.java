@@ -40,6 +40,8 @@ public class GameTest {
      */
     @Test
     public void testBasic() {
+        //used to initialize 
+        InitializeLanguage.initialize();
         Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         try {
             Game.getGame().endCurrentQuiz();

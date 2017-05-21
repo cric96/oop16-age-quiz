@@ -8,6 +8,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import home.model.level.Level;
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.ResourceManager;
 
 /**
@@ -33,10 +35,11 @@ public interface QueryLoader {
      *  a QueryLoader
      */
     static QueryLoader getQueryLoader() {
+        final String file = BundleLanguageManager.get().getBundle(Bundles.QUERY).getString("FILE");
         try {
             return new ShuffleQueryLoader(
                     new CachedQueryLoader(
-                    new XMLQueryLoader(ResourceManager.load(QueryFile.getPath()).toExternalForm())));
+                    new XMLQueryLoader(ResourceManager.load(file).toExternalForm())));
         } catch (SAXException | IOException | ParserConfigurationException e) {
             throw new RuntimeException("Something goes wrong with resource loader");
         }

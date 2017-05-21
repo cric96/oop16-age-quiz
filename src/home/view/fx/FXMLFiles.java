@@ -17,6 +17,6 @@ public final class FXMLFiles {
     /**
      * the fxml file path of quiz parent.
      */
-    public static final String QUIZ = "/fxml/FXMLQuizView.fxml";
+    public static final String QUIZ = "/fxml/FXMLquizView.fxml";
     private FXMLFiles() { }
 }

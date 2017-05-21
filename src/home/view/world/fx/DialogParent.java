@@ -1,18 +1,17 @@
 package home.view.world.fx;
 
-import java.io.IOException;
 import java.util.ResourceBundle;
 
 import home.controller.dialog.Dialog;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.ResourceManager;
+import home.view.fx.FXMLFiles;
+import home.view.fx.FxmlResourceManager;
 import home.view.fx.Images;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 
 /**
@@ -35,20 +34,13 @@ class DialogParent extends Parent {
         final String path = ResourceManager.load(Images.CLOUD_PANE.getPath()).toExternalForm();
         final Image img = new Image(path);
         final ImageView cloud = new ImageView(img);
-
-        final FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ParentWorld.class.getResource("buildingInfoDialog.fxml"));
-        loader.setController(this.fxmlController);
-        try {
-            final Pane parent = loader.load();
-            this.getChildren().add(parent);
-            cloud.setFitWidth(this.getLayoutBounds().getWidth() * cloudWidthProp);
-            cloud.setFitHeight(this.getLayoutBounds().getHeight() * cloudHeightProp);
-            this.getChildren().clear();
-            this.getChildren().addAll(cloud, parent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.BUILDING_INFO, this.fxmlController);
+        final Parent parent = fxmlManager.load();
+        this.getChildren().add(parent);
+        cloud.setFitWidth(this.getLayoutBounds().getWidth() * cloudWidthProp);
+        cloud.setFitHeight(this.getLayoutBounds().getHeight() * cloudHeightProp);
+        this.getChildren().clear();
+        this.getChildren().addAll(cloud, parent);
         fxmlController.setPop(pop);
         fxmlController.setExperience(dialog.getExperience());
         fxmlController.setLevel(dialog.getLevel());

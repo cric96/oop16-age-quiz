@@ -10,7 +10,7 @@ import home.view.world.WorldView;
 import home.view.world.fx.FXWorldViewImpl;
 
 /**
- * views factor.
+ * views factory.
  */
 public final class ViewFactory {
     private static final ViewFactory SINGLETON = new ViewFactory();
@@ -20,7 +20,7 @@ public final class ViewFactory {
     /**
      * 
      * @return
-     * a factory of views.
+     *      a factory of views.
      */
     public static ViewFactory getFactory() {
         return ViewFactory.SINGLETON;

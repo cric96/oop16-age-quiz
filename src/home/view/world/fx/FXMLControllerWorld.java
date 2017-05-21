@@ -35,7 +35,7 @@ final class FXMLControllerWorld implements FXMLController {
     private static final int BACK_WIDTH = 60;
     private static final int BACK_HEIGHT = 50;
     private static final int STATS_BOX = 40;
-    private static final int TITLE_FONT = 25;
+    private static final int TITLE_FONT = 30;
     private Pair<Double, Double> mousePosition;
 
     @FXML
@@ -52,8 +52,6 @@ final class FXMLControllerWorld implements FXMLController {
     private Button statsImg;
     @FXML
     private GridPane statisticsPane;
-    @FXML
-    private Label profileName;
     @FXML
     private GridPane buildingPane;
     @FXML
@@ -89,8 +87,11 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
+     * used to insert in the word the castle and other buildings.
      * @param buildings 
+     *              map used to create button for any building inside the world.
      * @param kingdom 
+     *              the path of kingdom image.
      */
     public void setBuildingPane(final Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, final ImageInfo kingdom) {
         int actualRow = 0;
@@ -127,14 +128,6 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
-     * @param profileName
-     *            the profileName to set
-     */
-    public void setProfileName(final String profileName) {
-        this.profileName.setText(profileName);
-    }
-
-    /**
      * @param experienceLabel
      *            the experienceLabel to set
      */
@@ -144,15 +137,16 @@ final class FXMLControllerWorld implements FXMLController {
 
     /**
      * @param eraLabel
-     *            the eraLabel to set
+     *            the name of actual era.
      */
     public void setEraLabel(final String eraLabel) {
         this.eraLabel.setText(eraLabel);
     }
 
     /**
+     * used to create the tooltip of statsImage
      * @param statusScose
-     *            Map of status
+     *            Map of status <name of status, value>
      */
     public void setStatsPane(final Map<String, Integer> statusScose) {
         final int maxValue = 100;
@@ -176,6 +170,7 @@ final class FXMLControllerWorld implements FXMLController {
 
     /**
      * action clicked button home.
+     * if a pup building/kingdom is showing hide it.
      */
     @FXML
     public void backHomePressed() {
@@ -184,8 +179,9 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
-     * 
+     *  used to set the controller of world view and call its methods. 
      * @param controller 
+     *          controller of MVC.
      */
     public void setController(final WorldObserver controller) {
         this.controller = controller;
@@ -198,9 +194,11 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
-     * 
+     * show a popUp from a specific building.
      * @param building 
+     *              type of building owner of popUp
      * @param dialog 
+     *              information to display in the popUp
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
         if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
@@ -212,8 +210,9 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
-     * 
+     * show a popUp from kingdom.
      * @param dialog 
+     *          information to display in the popUp
      */
     public void showBuildingDialog(final Dialog dialog) {
         if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
@@ -225,7 +224,7 @@ final class FXMLControllerWorld implements FXMLController {
     }
 
     /**
-     * method used to refresh label if I change language game.
+     * method used to refresh label if the player change language game.
      */
     public void refresh() {
         final ResourceBundle bundleButton = BundleLanguageManager.get().getBundle("ButtonBundle");

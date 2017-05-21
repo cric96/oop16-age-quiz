@@ -51,6 +51,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     }
 
     /**
+     * name of the building represented by this scene.
      * @param name
      *            the name to set
      */
@@ -60,6 +61,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     }
 
     /**
+     * set the level of the building represented by this scene.
      * @param level
      *            the level to set
      */
@@ -68,6 +70,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     }
 
     /**
+     * set the value of necessary ecperience to upgrade the building/kingdom represented by this scene.
      * @param experience
      *            the experience to set
      */
@@ -77,6 +80,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     }
 
     /**
+     * set the action when close button in this parent is clicked.
      * @param pop 
      *          to hide
      */
@@ -87,6 +91,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     }
 
     /**
+     * add a list of button in this parent.
      * @param buttons 
      *          set of buttons in the dialog
      */

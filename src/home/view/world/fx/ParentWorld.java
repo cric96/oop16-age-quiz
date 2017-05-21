@@ -16,8 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * concrete realization of world in javafx.
- *
+ * concrete realization of the parent world in javafx.
  */
 final class ParentWorld extends CustomParent {
     private final FXMLControllerWorld fxmlController = new FXMLControllerWorld();
@@ -51,7 +50,7 @@ final class ParentWorld extends CustomParent {
     }
 
     /**
-     * @return the c
+     * @return the fxmlController (used by FXWorldView to set graphic elements)
      */
     public FXMLControllerWorld getFxmlControllerWorld() {
         return fxmlController;

@@ -17,8 +17,11 @@ public class MenuDialogLoadGame extends AbstractMenuDialog {
     private final Label date = new Label();
     /**
      * @param profiles 
-     * @param window 
+     *          profiles that the dialog should display
+     * @param window
+     *          owner of this dialog
      * @param controller 
+     *          observer of menu
      */
     public MenuDialogLoadGame(final List<Profile> profiles, final Window window, final MenuObserver controller) {
         super(window, profiles, controller);

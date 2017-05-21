@@ -6,15 +6,19 @@ import home.controller.observer.WorldObserver;
 import javafx.scene.control.Button;
 import javafx.stage.Popup;
 /**
- * 
- *
+ * sub class to create a kingdom parent dialog. 
  */
 public class KingdomDialogParent extends DialogParent {
     /**
      * 
      * @param controller 
+     *          observer of this view
+     * @param building 
+     *          buildig representer by this parent
      * @param dialog 
+     *          information showed in this dialog
      * @param pop 
+     *          container of this parent
      */
     public KingdomDialogParent(final WorldObserver controller, final Dialog dialog, final Popup pop) {
         super(dialog, pop);

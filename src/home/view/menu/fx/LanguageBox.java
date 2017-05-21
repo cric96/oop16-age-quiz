@@ -11,7 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 /**
- * class that represent a horizontal box used to display button to select language in the main menu.
+ * class that represent a horizontal box used to display buttons to select language in the main menu.
  */
 class LanguageBox extends HBox {
     LanguageBox(final ParentMenu parent) {
@@ -32,6 +32,7 @@ class LanguageBox extends HBox {
             }
             languageButtonSet.add(langButton);
             langButton.setOnMouseClicked(e -> {
+                //TO-DO l'eccezione deve essere gestita dal controller.
                 try {
                     BundleLanguageManager.get().setLocale(language);
                 } catch (FileNotFoundException e1) {

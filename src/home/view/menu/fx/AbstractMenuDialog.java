@@ -35,8 +35,11 @@ public abstract class AbstractMenuDialog implements MenuDialog {
 
     /**
      * @param win 
-     * @param profiles 
+     *          the window owner of dialog
+     * @param profiles
+     *          possible saving slots 
      * @param controller 
+     *          observer of menu view
      */
     public AbstractMenuDialog(final Window win, final List<Profile> profiles, final MenuObserver controller) {
         this.controller = controller;
@@ -110,22 +113,23 @@ public abstract class AbstractMenuDialog implements MenuDialog {
     }
 
     /**
-     * 
+     * insert buttons that represent profiles in the allert.
      * @param profiles 
+     *          possible usable profiles
      */
     protected abstract void setProfileButton(List<Profile> profiles);
 
     /**
-     * 
+     * initialize the node under the profiles button.
      */
     protected abstract void initNode();
     /**
-     * 
+     * used by NewGameDialog to insert a allert message when user override a profile.
      */
     protected abstract void setDeleteMessage();
 
     /**
-     * 
+     * initialize the container of button.
      */
     protected abstract void initButtonContainer();
 

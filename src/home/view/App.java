@@ -32,6 +32,7 @@ public class App extends Application {
                            ViewFactory.getFactory().createWorldView(),
                            ViewFactory.getFactory().createQuizView());
     }
+
     private static void attachOnController(final MenuView menu, final WorldView world, final QuizView quiz) {
         final Container container = Container.getContainer();
         final ControllerFactory factory = ControllerFactory.create();

@@ -21,7 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- * concrete realization of menu in javafx.
+ * concrete realization of paretn menu in javafx.
  *
  */
 class ParentMenu extends CustomParent {
@@ -36,8 +36,10 @@ class ParentMenu extends CustomParent {
     private final MenuButton btnExit;
 
     /**
-     * @throws IOException if the background load gone wrong.
+     * @throws IOException 
+     *              if the background load gone wrong.
      * @param controller 
+     *              observer of menu
      */
     ParentMenu(final MenuObserver controller) {
         final BorderPane rootPane = new BorderPane();
@@ -81,7 +83,7 @@ class ParentMenu extends CustomParent {
     }
 
     /**
-     * repaint the button in the menu.
+     * repaint the text button in the menu.
      */
     public final void repaint() {
         btnLoadGame.setText(Buttons.LOAD_GAME.toString());

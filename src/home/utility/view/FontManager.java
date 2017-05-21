@@ -28,8 +28,9 @@ public final class FontManager {
     }
 
     /**
-     * the font on title.
+     * the title font.
      * @param size 
+     *         size of font
      * @return 
      *  font created
      */

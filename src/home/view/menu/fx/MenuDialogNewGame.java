@@ -19,10 +19,12 @@ public class MenuDialogNewGame extends AbstractMenuDialog {
     private final Label messageInfo = new Label(this.getLabelText().getString("WARNING"));
 
     /**
-     * 
      * @param profiles 
+     *          profiles that the dialog should display
      * @param win 
+     *          owner of this dialog
      * @param controller 
+     *          observer of menu
      */
     public MenuDialogNewGame(final List<Profile> profiles, final Window win, final MenuObserver controller) {
         super(win, profiles, controller);

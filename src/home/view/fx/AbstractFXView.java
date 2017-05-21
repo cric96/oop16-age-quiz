@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 /**
  * a skeleton of world fx view.
  * @param <P> 
+ *         for example WorldParent or MenuParent.
  */
 public abstract class AbstractFXView<P extends Parent> implements FXView {
     private Optional<P> scene;

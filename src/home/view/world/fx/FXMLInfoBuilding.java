@@ -7,8 +7,10 @@ import home.utility.Bundles;
 import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.view.FontManager;
+import home.view.fx.CSSManager;
 import home.view.fx.FXMLController;
 import home.view.fx.Images;
+import home.view.fx.StyleSheet;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -39,8 +41,8 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
     @FXML
     private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
-        this.closeButton.getStylesheets().add(ResourceManager.load("/style/gameButtons.css").toExternalForm());
-        this.closeButton.getStyleClass().add("generalNode");
+        CSSManager.addStyleSheet(StyleSheet.GAME_BUTTONS, this.closeButton);
+        CSSManager.addStyleClass("generalNode", this.closeButton);
         final ImageView exitImg = new ImageView(
                 new Image(ResourceManager.load(Images.X_CROSS.getPath()).toExternalForm()));
         exitImg.setFitHeight(closeButtonDimension.getX());

@@ -2,9 +2,11 @@ package home.view.quiz;
 
 import java.util.List;
 import java.util.Optional;
+
 import home.controller.observer.QuizObserver;
-import home.utility.ResourceManager;
+import home.view.fx.CSSManager;
 import home.view.fx.FXMLController;
+import home.view.fx.StyleSheet;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -38,11 +40,11 @@ final class FXQuizController implements FXMLController {
     }
     @FXML
     private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
-        this.answers.getStylesheets().add(ResourceManager.load("/style/answers.css").toExternalForm());
-        this.question.getStylesheets().add(ResourceManager.load("/style/question.css").toExternalForm());
-        this.question.getStyleClass().add("my-label-default");
-        this.time.getStylesheets().add(ResourceManager.load("/style/progressBar.css").toExternalForm());
-        this.time.getStyleClass().add("my-progressBar");
+        CSSManager.addStyleSheet(StyleSheet.ANSWERS, this.answers);
+        CSSManager.addStyleSheet(StyleSheet.QUESTION, this.question);
+        CSSManager.addStyleClass("my-label-default", this.question);
+        CSSManager.addStyleSheet(StyleSheet.PROGRESS_BAR, this.time);
+        CSSManager.addStyleClass("my-progressBar", this.time);
     }
     /**
      * 
@@ -65,17 +67,14 @@ final class FXQuizController implements FXMLController {
         }
         if (time == 0) {
             this.startTime = 0;
-            this.time.getStyleClass().clear();
-            this.time.getStyleClass().add("my-progressBar");
+            CSSManager.addStyleClass("my-progressBar", this.time);
         }
     }
     private void setIntermittence(final int time) {
         if (time % 2 == 0) {
-            this.time.getStyleClass().clear();
-            this.time.getStyleClass().add("my-progressBar-intermittence");
+            CSSManager.addStyleClass("my-progressBar-intermittence", this.time);
         } else {
-            this.time.getStyleClass().clear();
-            this.time.getStyleClass().add("my-progressBar-warning");
+            CSSManager.addStyleClass("my-progressBar-warning", this.time);
         }
     }
     /**
@@ -87,8 +86,8 @@ final class FXQuizController implements FXMLController {
         Platform.runLater(() -> {
             this.answers.getChildren().clear();
             answers.forEach(y -> {
-                final Button ans = new Button(y);
-                ans.getStyleClass().add("my-button");
+               final Button ans = new Button(y);
+               CSSManager.addStyleClass("my-button", ans);
                this.answers.getChildren().add(ans);
                ans.setMaxWidth(Double.MAX_VALUE);
                ans.setOnAction(e -> {
@@ -112,8 +111,7 @@ final class FXQuizController implements FXMLController {
      */
     public void showIfIsCorrect(final boolean answer) {
         Platform.runLater(() -> {
-            this.question.getStyleClass().clear();
-            this.question.getStyleClass().add(answer ? "my-label-correct" : "my-label-wrong");
+            CSSManager.addStyleClass(answer ? "my-label-correct" : "my-label-wrong", this.question);
         });
         final Task<Void> sleeper = new Task<Void>() {
             @Override
@@ -126,8 +124,7 @@ final class FXQuizController implements FXMLController {
         sleeper.setOnSucceeded((e) -> {
             answers.setDisable(false);
             Optional.ofNullable(this.qController).orElseThrow(() -> new IllegalStateException()).next();
-            this.question.getStyleClass().clear();
-            this.question.getStyleClass().add("my-label-default");
+            CSSManager.addStyleClass("my-label-default", this.question);
         });
         new Thread(sleeper).start();
     }

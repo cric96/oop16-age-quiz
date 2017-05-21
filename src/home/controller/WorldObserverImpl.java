@@ -1,6 +1,7 @@
 package home.controller;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeMap;
@@ -26,6 +27,8 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
 
     private static final String CASTLE_NAME = "CASTLE";
     private static final String END_QUESTION = "END_QUESTION"; 
+    private static final String EXPERIENCE_ERROR = "EXPERIENCE_ERROR";
+    private static final String BUILDING_ERROR = "BUILDING_ERROR";
     private final Set<WorldView> views;
     WorldObserverImpl(final Set<WorldView>  views) {
         this.views = views;
@@ -33,17 +36,27 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     }
     @Override
     public void nextEra() {
-        Game.getGame().getCurrentKingdom().nextAge();
-        //update all thing in the view
-        this.onAgeChange();
+        final String experienceError = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(EXPERIENCE_ERROR);
+        try {
+            Game.getGame().getCurrentKingdom().nextAge();
+            //update all thing in the view
+            this.onAgeChange();
+        } catch (IllegalStateException exc) {
+            this.showMessageInViews(experienceError, MessageType.ERROR);
+        }
     }
 
     @Override
     public void nextLevel(final BuildingType building) {
-        final Building build = this.getBuilding(building);
-        build.levelUp();
-        //update the experience amount in the views
-        this.views.forEach(x -> x.changeExp(Game.getGame().getCurrentKingdom().getExperienceAmount()));
+        final String experienceError = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(EXPERIENCE_ERROR);
+        try {
+            final Building build = this.getBuilding(building);
+            build.levelUp();
+            //update the experience amount in the views
+            this.views.forEach(x -> x.changeExp(Game.getGame().getCurrentKingdom().getExperienceAmount()));
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            this.showMessageInViews(experienceError, MessageType.ERROR);
+        }
     }
 
     @Override
@@ -89,12 +102,18 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
                 .orElseThrow(() -> new IllegalArgumentException());
     }
     //crea un dialogo dato un building type
-    private Dialog createBuildingDialog(final BuildingType type) {
-        final Building building = this.getBuilding(type);
-        return Dialog.Builder.createBuilder().setName(building.getName().toString())
-                                             .setExperience(building.getLevel().getExperienceAmount())
-                                             .setLevel(building.getLevel().getIncrementalLevel()).setLevelBlocked(building.getLevel().isUpgradable())
-                                             .setLevelEnable(building.canLevelUp()).build();
+    private Optional<Dialog> createBuildingDialog(final BuildingType type) {
+        final String buildingError = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(BUILDING_ERROR);
+        try {
+            final Building building = this.getBuilding(type);
+            return Optional.of(Dialog.Builder.createBuilder().setName(building.getName().toString())
+                    .setExperience(building.getLevel().getExperienceAmount())
+                    .setLevel(building.getLevel().getIncrementalLevel()).setLevelBlocked(building.getLevel().isUpgradable())
+                    .setLevelEnable(building.canLevelUp()).build());
+        } catch (IllegalArgumentException exc) {
+            this.showMessageInViews(buildingError, MessageType.ERROR);
+        }
+        return Optional.empty();
     }
     //TODO PENSA SE FARE UN OPTIONAL DI IMAGE AL POSTO DI UN IMAGE
     /*what to do when the age change*/
@@ -134,5 +153,4 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
         this.onAgeChange();
         super.update();
     }
-
 }

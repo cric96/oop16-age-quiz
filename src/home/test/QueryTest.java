@@ -31,6 +31,7 @@ public class QueryTest {
      */
     @Test
     public void builderTest() {
+        InitializeLanguage.initialize();
         final Query.Builder builder = Query.Builder.createBuilder();
         this.buildTest(builder);
         try {

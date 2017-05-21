@@ -79,4 +79,10 @@ public interface Kingdom extends Composite {
      *  true if it can false otherwise 
      */
     boolean canUpgradeAge();
+    /**
+     * return the strategy of this kingdom.
+     * @return
+     *  the strategy type
+     */
+    AgeUpKingdomStrategy.Type getStrategyType();
 }

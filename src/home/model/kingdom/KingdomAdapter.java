@@ -9,10 +9,10 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import home.model.building.BuildingOfKingdom;
-import home.model.building.BuildingFactory;
-import home.model.building.BuildingType;
 import home.model.building.Building;
+import home.model.building.BuildingFactory;
+import home.model.building.BuildingOfKingdom;
+import home.model.building.BuildingType;
 import home.model.image.ImageComponent;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -73,6 +73,8 @@ final class KingdomAdapter extends TypeAdapter<Kingdom> {
         reader.beginObject();
         reader.nextName();
         final int exp = reader.nextInt();
+        reader.nextName();
+        final AgeUpKingdomStrategy.Type strategy = AgeUpKingdomStrategy.Type.valueOf(reader.nextString());
         reader.endObject();
         reader.endArray();
         builder.setAge(Level.Age.restoreAgeLevel(age));
@@ -80,6 +82,7 @@ final class KingdomAdapter extends TypeAdapter<Kingdom> {
         builder.addComponent(ImageComponent.createComponent("KINGDOM"));
         buildings.forEach(x -> builder.addComponent(x));
         statuses.forEach(x -> builder.addStatus(x));
+        builder.addStrategy(strategy);
         return builder.build();
     }
 
@@ -121,6 +124,7 @@ final class KingdomAdapter extends TypeAdapter<Kingdom> {
         writer.endObject();
         writer.beginObject();
         writer.name("EXP").value(king.getExperienceAmount());
+        writer.name("STRATEGY").value(king.getStrategyType().name());
         writer.endObject();
         writer.endArray();
     }

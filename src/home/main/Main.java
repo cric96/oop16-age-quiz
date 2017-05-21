@@ -33,13 +33,13 @@ public final class Main {
      *  the error due to load a file 
      */
     public static void main(final String[] args) throws IOException, ClassNotFoundException {
+        BundleLanguageManager.get().setLocaleFile(LANGUAGE);
         if (!new File(LocalFolder.CONFIG_FOLDER.toString()).exists()) {
             new Installer().install();
         }
         ProfileBox.getProfileBox().setFile(BOX_PROFILES);
         ProfileBox.getProfileBox().load();
-        BundleLanguageManager.get().setLocaleFile(LANGUAGE);
-        BundleLanguageManager.get().setLocale(Locale.ITALIAN);
+        BundleLanguageManager.get().loadLanguage();
         if (DEBUG) {
             DebugApplication.launch();
         } else {
@@ -48,13 +48,14 @@ public final class Main {
     }
     //a little object used for the first launch of application
     private static class  Installer {
-        private void install() throws IOException {
+        private void install() throws IOException, ClassNotFoundException {
             new File(LocalFolder.CONFIG_FOLDER.toString()).mkdir();
             ProfileBox.getProfileBox().setFile(BOX_PROFILES);
             ProfileBox.getProfileBox().save();
             try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream(LANGUAGE))) {
                 out.writeObject(Locale.getDefault());
             }
+            BundleLanguageManager.get().setLocale(Locale.ITALIAN);
         }
     }
 }

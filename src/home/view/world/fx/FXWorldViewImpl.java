@@ -61,8 +61,10 @@ public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements Worl
     }
 
     @Override
-    public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        this.fxmlController.showBuildingDialog(building, dialog);
+    public void showBuildingDialog(final BuildingType building, final Optional<Dialog> dialog) {
+        if (dialog.isPresent()) {
+            this.fxmlController.showBuildingDialog(building, dialog.get());
+        }
     }
 
     @Override

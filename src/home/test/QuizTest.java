@@ -25,6 +25,7 @@ public class QuizTest {
      */
     @Test
     public void simpleTest() {
+        InitializeLanguage.initialize();
         final QuizGame quizGame = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS, Level.Building.createBuildingLevel());
         assertSame(quizGame.getXP(), INITIAL_VALUE);
         quizGame.getStatusScore().forEach((x, y) -> assertSame(y, INITIAL_VALUE));

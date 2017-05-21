@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import home.model.composite.AbstractComposite;
 import home.model.composite.Event;
+import home.model.kingdom.AgeUpKingdomStrategy.Type;
 import home.model.level.AgeType;
 import home.model.level.Level;
 import home.model.status.Status;
@@ -20,16 +21,16 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
     private static final long serialVersionUID = 1L;
     private final Set<Status> statuses; //the status of this kingdom
     private  Level.Age age;
-    private final AgeUpStrategy strategy;
+    private final AgeUpKingdomStrategy.Type type;
     private int experience;
     //package protected
-    KingdomImpl(final Set<Status> statuses, final Level.Age age, final AgeUpStrategy strategy) {
+    KingdomImpl(final Set<Status> statuses, final Level.Age age, final AgeUpKingdomStrategy.Type strategy) {
         if (Utility.checkNullOb(age, statuses, strategy)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("some argumenent is null!");
         }
         this.statuses = statuses;
         this.age = age;
-        this.strategy = strategy;
+        this.type = strategy;
     }
     @Override
     public Level.Age getAge() {
@@ -85,9 +86,16 @@ final class KingdomImpl extends AbstractComposite implements Kingdom, Serializab
             throw new IllegalStateException();
         }
     }
+
+    @Override
+    public Type getStrategyType() {
+        return this.type;
+    }
     @Override
     public boolean canUpgradeAge() {
-        return this.experience >= this.age.getExperienceAmount() && this.age.isUpgradable() && this.strategy.getAsBoolean();
+        return this.experience >= this.age.getExperienceAmount() 
+                && this.age.isUpgradable() 
+                && AgeUpKingdomStrategy.createStrategy(type, this.getComponents()).getAsBoolean();
     }
     @Override
     public String toString() {

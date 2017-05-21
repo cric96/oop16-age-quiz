@@ -1,10 +1,9 @@
 package home.view.menu.fx;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import home.controller.observer.MenuObserver;
 import home.utility.BundleLanguageManager;
 import home.utility.view.FontManager;
 import javafx.geometry.Pos;
@@ -14,7 +13,7 @@ import javafx.scene.layout.HBox;
  * class that represent a horizontal box used to display buttons to select language in the main menu.
  */
 class LanguageBox extends HBox {
-    LanguageBox(final ParentMenu parent) {
+    LanguageBox(final ParentMenu parent, final MenuObserver menu) {
         final String selectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0.6); -fx-background-radius: 0";
         final String notSelectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 0";
 
@@ -32,16 +31,7 @@ class LanguageBox extends HBox {
             }
             languageButtonSet.add(langButton);
             langButton.setOnMouseClicked(e -> {
-                //TO-DO l'eccezione deve essere gestita dal controller.
-                try {
-                    BundleLanguageManager.get().setLocale(language);
-                } catch (FileNotFoundException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                menu.changeLocale(language);
                 parent.repaint();
                 langButton.setStyle(selectedButtonEffect);
                 languageButtonSet.stream().filter(button -> !button.equals(langButton))

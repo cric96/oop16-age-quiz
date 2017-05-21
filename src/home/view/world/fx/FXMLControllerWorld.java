@@ -12,8 +12,10 @@ import home.utility.Pair;
 import home.utility.ResourceManager;
 import home.utility.Utility;
 import home.utility.view.FontManager;
+import home.view.fx.CSSManager;
 import home.view.fx.FXMLController;
 import home.view.fx.Images;
+import home.view.fx.StyleSheet;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
@@ -61,11 +63,10 @@ final class FXMLControllerWorld implements FXMLController {
 
     @FXML
     private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
-        final String styleSheet = ResourceManager.load("/style/gameButtons.css").toExternalForm();
-        this.backMenuButton.getStylesheets().add(styleSheet);
-        this.backMenuButton.getStyleClass().add("generalNode");
-        this.statsImg.getStylesheets().add(styleSheet);
-        this.statsImg.getStyleClass().add("statsImage");
+        CSSManager.addStyleSheet(StyleSheet.GAME_BUTTONS, this.backMenuButton);
+        CSSManager.addStyleClass("generalNode", this.backMenuButton);
+        CSSManager.addStyleSheet(StyleSheet.GAME_BUTTONS, this.statsImg);
+        CSSManager.addStyleClass("statsImage", this.statsImg);
         titleText.setText(Utility.getTitle());
         titleText.setFont(FontManager.titleFont(TITLE_FONT));
         String fileName = ResourceManager.load(Images.BACK_HOME_PICTURE.getPath()).toExternalForm();
@@ -201,11 +202,9 @@ final class FXMLControllerWorld implements FXMLController {
      *              information to display in the popUp
      */
     public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
-            initBuildingStage();
+        if (this.checkAndPreparePopup()) {
             final DialogParent p = new BuildingDialogParent(controller, building, dialog, this.pop);
-            this.pop.getContent().addAll(p);
-            this.pop.show(this.buildingPane.getScene().getWindow());
+            this.popUpShow(p);
         }
     }
 
@@ -215,14 +214,23 @@ final class FXMLControllerWorld implements FXMLController {
      *          information to display in the popUp
      */
     public void showBuildingDialog(final Dialog dialog) {
-        if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
-          initBuildingStage();
+        if (this.checkAndPreparePopup()) {
           final DialogParent p = new KingdomDialogParent(this.controller, dialog, this.pop);
-          this.pop.getContent().add(p);
-          this.pop.show(this.buildingPane.getScene().getWindow());
+          this.popUpShow(p);
         }
     }
-
+    //REFACTOR
+    private void popUpShow(final DialogParent dialog) {
+        this.pop.getContent().add(dialog);
+        this.pop.show(this.buildingPane.getScene().getWindow());
+    }
+    private boolean checkAndPreparePopup() {
+        if ((this.pop.getAnchorX() != this.mousePosition.getX()) || (this.pop.getAnchorY() != this.mousePosition.getY()) || !this.pop.isShowing()) {
+            initBuildingStage();
+            return true;
+        }
+        return false;
+    }
     /**
      * method used to refresh label if the player change language game.
      */

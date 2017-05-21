@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.Optional;
 
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
@@ -81,29 +82,32 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements
     }
 
     @Override
-    public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        boolean canLevelUp = false;
-        System.out.println("BUILDING = " + dialog.getName());
-        System.out.println("level = " + dialog.getLevel());
-        if (dialog.isLevelBlocked() && dialog.levelUpEnabled()) {
-            System.out.println(dialog.getExperience());
-            System.out.println("to level up write " + LEVELUP);
-            canLevelUp = true;
-        }
-        System.out.println("To start a quiz write " + START);
-        System.out.println("to turn back write something..");
-        try {
-            final String value = this.reader.readLine();
-            if (value.equals(START)) {
-                this.getCurrentController().createQuiz(building);
-            } else if (value.equals(LEVELUP) && canLevelUp) {
-                this.getCurrentController().nextLevel(building);
-                this.show();
-            } else {
-                this.show();
+    public void showBuildingDialog(final BuildingType building, final Optional<Dialog> buildingDialog) {
+        if (buildingDialog.isPresent()) {
+            final Dialog dialog = buildingDialog.get();
+            boolean canLevelUp = false;
+            System.out.println("BUILDING = " + dialog.getName());
+            System.out.println("level = " + dialog.getLevel());
+            if (dialog.isLevelBlocked() && dialog.levelUpEnabled()) {
+                System.out.println(dialog.getExperience());
+                System.out.println("to level up write " + LEVELUP);
+                canLevelUp = true;
             }
-        } catch (IOException e) {
-            this.close();
+            System.out.println("To start a quiz write " + START);
+            System.out.println("to turn back write something..");
+            try {
+                final String value = this.reader.readLine();
+                if (value.equals(START)) {
+                    this.getCurrentController().createQuiz(building);
+                } else if (value.equals(LEVELUP) && canLevelUp) {
+                    this.getCurrentController().nextLevel(building);
+                    this.show();
+                } else {
+                    this.show();
+                }
+            } catch (IOException e) {
+                this.close();
+            }
         }
     }
 

@@ -27,6 +27,10 @@ public final class Bundles {
      * the name of bundle where is located all string for the buildings.
      */
     public static final String BUILDING = "BuildingBundle";
+    /**
+     * the name of bundle where is located the string to load the right file.
+     */
+    public static final String QUERY = "QueryBundle";
 
     private Bundles() { }; 
 }

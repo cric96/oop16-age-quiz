@@ -1,6 +1,7 @@
 package home.view.world;
 
 import java.util.Map;
+import java.util.Optional;
 
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
@@ -48,9 +49,9 @@ public interface WorldView extends View<WorldObserver> {
      * 
      * @param building type.
      * @param dialog
-     *  the dialog of building selected
+     *  the dialog of building selected empty if the building is not present
      */
-    void showBuildingDialog(BuildingType building, Dialog dialog);
+    void showBuildingDialog(BuildingType building, Optional<Dialog> dialog);
 
     /**
      * show dialog from the castle.

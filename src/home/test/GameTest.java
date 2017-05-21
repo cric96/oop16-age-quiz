@@ -19,6 +19,7 @@ import home.model.Game;
 import home.model.building.BuildingType;
 import home.model.building.Building;
 import home.model.image.ImageInfo;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;
 import home.model.status.StatusName;
 import home.utility.LocalFolder;
@@ -39,7 +40,9 @@ public class GameTest {
      */
     @Test
     public void testBasic() {
-        Game.getGame().newGame();
+        //used to initialize 
+        InitializeLanguage.initialize();
+        Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         try {
             Game.getGame().endCurrentQuiz();
             fail();
@@ -61,7 +64,7 @@ public class GameTest {
      */
     @Test
     public void testSave() {
-        Game.getGame().newGame();
+        Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         final Kingdom kingBeforeSave = Game.getGame().getCurrentKingdom();
         kingBeforeSave.addExperience(EXPERIENCE);
         //level up the building using to test this class
@@ -99,7 +102,7 @@ public class GameTest {
      */
     @Test
     public void testSaveAdvance() {
-        Game.getGame().newGame();
+        Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         Kingdom kingdom = Game.getGame().getCurrentKingdom();
         Building.Container building = this.getBuildingWithName(kingdom.getComponents(Building.Container.class), BUILDING_NOT_ENABLE);
         kingdom.addExperience(EXPERIENCE);
@@ -133,7 +136,7 @@ public class GameTest {
      */
     @Test
     public void testKingdom() {
-        Game.getGame().newGame();
+        Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         final Kingdom king = Game.getGame().getCurrentKingdom();
         //at the beginning the experience amount is equals to 0
         assertEquals(king.getExperienceAmount(), 0);

@@ -1,12 +1,14 @@
 package home.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Set;
 
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.controller.profile.ProfileBox;
 import home.model.Game;
+import home.model.kingdom.AgeUpKingdomStrategy;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.view.Container;
@@ -46,17 +48,13 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
             this.profiles.select(profile);
             try {
                 this.profiles.save();
-            } catch (IOException e) {
-                super.showMessageInViews(fileError, MessageType.ERROR);
-            }
-            Game.getGame().newGame();
-            try {
+                Game.getGame().newGame(AgeUpKingdomStrategy.Type.ADVANCED);
                 Game.getGame().save(profile.getSaveGame());
+                ProfileBox.getProfileBox().select(profile);
+                Container.getContainer().changeDisplay(ViewType.WORLD);
             } catch (IOException e) {
                 super.showMessageInViews(fileError, MessageType.ERROR);
             }
-            ProfileBox.getProfileBox().select(profile);
-            Container.getContainer().changeDisplay(ViewType.WORLD);
         }
     }
 
@@ -74,11 +72,11 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
         }
         try {
             Game.getGame().load(profile.getSaveGame());
-        } catch (ClassNotFoundException | IOException e) {
+            ProfileBox.getProfileBox().select(profile);
+            Container.getContainer().changeDisplay(ViewType.WORLD);
+        } catch (ClassNotFoundException | IOException | IllegalArgumentException e) {
             super.showMessageInViews(fileError, MessageType.ERROR);
-        }
-        ProfileBox.getProfileBox().select(profile);
-        Container.getContainer().changeDisplay(ViewType.WORLD);
+        } 
     }
 
     @Override
@@ -97,4 +95,14 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
 
     @Override
     protected void defineUpdateView(final View<?> view) { }
+
+    @Override
+    public void changeLocale(final Locale locale) {
+        final String fileError = BundleLanguageManager.get().getBundle(BUNDLE).getString(PROFILE_ERROR);
+        try {
+            BundleLanguageManager.get().setLocale(locale);
+        } catch (IOException e) {
+            this.showMessageInViews(fileError, MessageType.ERROR);
+        }
+    }
 }

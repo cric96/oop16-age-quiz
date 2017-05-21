@@ -52,18 +52,9 @@ public class BundleLanguageManager {
      * set a file where put the locale.
      * @param file
      *  the file where is store a locale
-     * @throws FileNotFoundException
-     *  if the file is not legal
-     * @throws IOException
-     *  if the file is not legal
-     * @throws ClassNotFoundException
-     *  if the file don't contains the locale
      */
-    public void setLocaleFile(final File file) throws FileNotFoundException, IOException, ClassNotFoundException {
-        try (ObjectInput input = new ObjectInputStream(new FileInputStream(file))) {
-            this.language = (Locale) input.readObject();
-            this.locale = file; 
-        }
+    public void setLocaleFile(final File file) {
+        this.locale = file; 
     }
     /**
      * set the locale of a current session of game.
@@ -75,6 +66,7 @@ public class BundleLanguageManager {
      *  if there is some error in the file
      */
     public void setLocale(final Locale locale) throws FileNotFoundException, IOException {
+        checkFile();
         if (!this.getSupportedLanguage().contains(locale)) {
             throw new IllegalArgumentException();
         }
@@ -92,5 +84,23 @@ public class BundleLanguageManager {
      */
     public ResourceBundle getBundle(final String bundleName) {
         return ResourceBundle.getBundle(PACKAGE + bundleName, this.language);
+    }
+    /**
+     * try to load the language in the specified file.
+     * @throws FileNotFoundException
+     *  if the file is not present
+     * @throws IOException
+     *  if there is an error during the reading
+     * @throws ClassNotFoundException
+     *  if there is an error during the cast
+     */
+    public void loadLanguage() throws FileNotFoundException, IOException, ClassNotFoundException {
+        checkFile();
+        try (ObjectInput input = new ObjectInputStream(new FileInputStream(this.locale))) {
+            this.language = (Locale) input.readObject();
+        }
+    }
+    private void checkFile() {
+        Optional.ofNullable(this.locale).orElseThrow(() -> new IllegalStateException());
     }
 }

@@ -16,6 +16,7 @@ final class KingdomBuilderImpl implements KingdomBuilder {
     private final Set<Status> statuses;
     private int experience;
     private boolean created;
+    private AgeUpKingdomStrategy.Type strategy;
     KingdomBuilderImpl() {
         this.components = new HashSet<>();
         this.statuses = new HashSet<>();
@@ -56,13 +57,22 @@ final class KingdomBuilderImpl implements KingdomBuilder {
     }
 
     @Override
+    public KingdomBuilder addStrategy(final AgeUpKingdomStrategy.Type strategy) {
+        Objects.requireNonNull(strategy);
+        this.strategy = strategy;
+        return this;
+    }
+    @Override
     public Kingdom build() {
         if (this.statuses.isEmpty()) {
             throw new IllegalStateException("you cannot create a kingdom without statuses");
         }
+        if (this.age == null || this.strategy == null) {
+            throw new IllegalStateException("you must add all argument");
+        }
         this.checkBuilded();
         this.created = true;
-        final Kingdom king = new KingdomImpl(this.statuses, this.age, AgeUpStrategy.createSimple());
+        final Kingdom king = new KingdomImpl(this.statuses, this.age, strategy);
         this.components.forEach(x -> x.attachOn(king));
         this.normalizeAge(king);
         king.addExperience(this.experience);

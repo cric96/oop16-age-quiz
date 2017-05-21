@@ -6,8 +6,9 @@ import home.controller.observer.WorldObserver;
 import home.utility.ResourceManager;
 import home.utility.view.UtilityScreen;
 import home.view.fx.CustomParent;
+import home.view.fx.FXMLFiles;
+import home.view.fx.FxmlResourceManager;
 import home.view.fx.Images;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,8 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * concrete realization of world in javafx.
- *
+ * concrete realization of the parent world in javafx.
  */
 final class ParentWorld extends CustomParent {
     private final FXMLControllerWorld fxmlController = new FXMLControllerWorld();
@@ -29,21 +29,14 @@ final class ParentWorld extends CustomParent {
      * @param controller
      */
     ParentWorld(final WorldObserver controller) {
-        final FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(ParentWorld.class.getResource("base.fxml"));
-        this.fxmlController.setController(controller);
-        loader.setController(this.fxmlController);
+        final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.WORLD, fxmlController);
+        fxmlController.setController(controller);
         final String fileName = ResourceManager.load(Images.WORLD_BACKGROUND.getPath()).toExternalForm();
         final ImageView background = new ImageView(new Image(fileName));
         final Rectangle bg = new Rectangle(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
-        try {
-            final Parent parent = loader.load();
-            ((Region) parent).setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
-            this.getChildren().addAll(background, bg, parent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        final Parent parent = fxmlManager.load();
+        ((Region) parent).setPrefSize(UtilityScreen.getScreenWidth(), UtilityScreen.getScreenHeight());
+        this.getChildren().addAll(background, bg, parent);
         background.setFitWidth(UtilityScreen.getScreenWidth());
         background.setFitHeight(UtilityScreen.getScreenHeight());
         bg.setFill(Color.BLACK);
@@ -51,7 +44,7 @@ final class ParentWorld extends CustomParent {
     }
 
     /**
-     * @return the c
+     * @return the fxmlController (used by FXWorldView to set graphic elements)
      */
     public FXMLControllerWorld getFxmlControllerWorld() {
         return fxmlController;

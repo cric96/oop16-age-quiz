@@ -7,12 +7,12 @@ import home.model.image.ImageInfo;
 import home.utility.Pair;
 
 /**
- * 
- *
+ * sub class to model a butto that represent a general building
  */
 class BuildingButtonGeneral extends BuildingButton {
     /**
      * @param building 
+     *          information of building represented by this button
      */
     BuildingButtonGeneral(final Entry<BuildingType, Pair<ImageInfo, Boolean>> building) {
         super(building.getValue().getX().getPath());

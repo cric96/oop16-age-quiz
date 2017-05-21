@@ -73,8 +73,5 @@ public class FXWorldViewImpl extends AbstractFXView<ParentWorld> implements Worl
     }
 
     @Override
-    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) {
-        // TODO Auto-generated method stub
-
-    }
+    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) { }
 }

@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+
 import home.controller.observer.QuizObserver;
 import home.view.MessageType;
 import home.view.fx.AbstractFXView;
+import home.view.fx.FXMLFiles;
+import home.view.fx.FxmlResourceManager;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -27,7 +29,6 @@ import javafx.scene.layout.BackgroundSize;
  *
  */
 public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
-    private static final String FXML_FILE = "FXMLquizView.fxml";
     private QuizObserver qController;
     private final FXQuizController fxController;
     private final AnchorPane parent;
@@ -36,11 +37,9 @@ public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
      * @throws IOException 
      */
     public QuizViewImpl() throws IOException {
-        final FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(QuizViewImpl.class.getResource(FXML_FILE));
         this.fxController = new FXQuizController();
-        loader.setController(this.fxController);
-        this.parent = loader.load();
+        final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.QUIZ, this.fxController);
+        this.parent = (AnchorPane) fxmlManager.load();
         this.setParent(parent);
     }
     @Override

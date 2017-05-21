@@ -8,17 +8,20 @@ import javafx.scene.control.Button;
 import javafx.stage.Popup;
 
 /**
- *
- *
+ *sub class to create a general building pop up parent.
  */
 public class BuildingDialogParent extends DialogParent {
 
     /**
      * 
      * @param controller 
+     *          observer of this view
      * @param building 
+     *          buildig representer by this parent
      * @param dialog 
+     *          information showed in this dialog
      * @param pop 
+     *          container of this parent
      */
     public BuildingDialogParent(final WorldObserver controller, final BuildingType building, final Dialog dialog,
             final Popup pop) {

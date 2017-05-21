@@ -10,13 +10,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 /**
- * class that represent a horizontal box used to display button to select language in the main menu.
+ * class that represent a horizontal box used to display buttons to select language in the main menu.
  */
 class LanguageBox extends HBox {
     LanguageBox(final ParentMenu parent, final MenuObserver menu) {
         final String selectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0.6); -fx-background-radius: 0";
         final String notSelectedButtonEffect = "-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0); -fx-background-radius: 0";
-
         final int fontSize = 25;
         final Set<Button> languageButtonSet = new HashSet<>();
         this.setAlignment(Pos.BOTTOM_RIGHT);

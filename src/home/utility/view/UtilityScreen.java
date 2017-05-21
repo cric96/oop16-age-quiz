@@ -12,14 +12,14 @@ public final class UtilityScreen {
     private UtilityScreen() { }
 
     /**
-     * @return the screenWidth
+     * @return the visual screenWidth
      */
     public static double getScreenWidth() {
         return SCREEN_WIDTH;
     }
 
     /**
-     * @return the screenHeight
+     * @return the visual screenHeight
      */
     public static double getScreenHeight() {
         return SCREEN_HEIGHT;

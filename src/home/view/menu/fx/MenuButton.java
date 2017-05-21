@@ -11,7 +11,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * 
  * a sub class used to represent a general button in the menu.
  */
 public class MenuButton extends StackPane {
@@ -25,8 +24,10 @@ public class MenuButton extends StackPane {
 
     /**
      * 
-     * @param name name.
-     * @param color the shape color of button exit
+     * @param name 
+     *          text in the button
+     * @param color 
+     *          the shape color of button exit
      */
     public MenuButton(final String name, final Color color) {
         text = new Text(name);
@@ -65,7 +66,7 @@ public class MenuButton extends StackPane {
     }
 
     /**
-     * set the text of menu button.
+     * set the text of menu button when menu is repainted.
      * @param text
      *      the text of button
      */

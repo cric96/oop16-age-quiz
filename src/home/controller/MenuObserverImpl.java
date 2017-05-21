@@ -48,17 +48,13 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
             this.profiles.select(profile);
             try {
                 this.profiles.save();
-            } catch (IOException e) {
-                super.showMessageInViews(fileError, MessageType.ERROR);
-            }
-            Game.getGame().newGame(AgeUpKingdomStrategy.Type.ADVANCED);
-            try {
+                Game.getGame().newGame(AgeUpKingdomStrategy.Type.ADVANCED);
                 Game.getGame().save(profile.getSaveGame());
+                ProfileBox.getProfileBox().select(profile);
+                Container.getContainer().changeDisplay(ViewType.WORLD);
             } catch (IOException e) {
                 super.showMessageInViews(fileError, MessageType.ERROR);
             }
-            ProfileBox.getProfileBox().select(profile);
-            Container.getContainer().changeDisplay(ViewType.WORLD);
         }
     }
 
@@ -76,11 +72,11 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
         }
         try {
             Game.getGame().load(profile.getSaveGame());
-        } catch (ClassNotFoundException | IOException e) {
+            ProfileBox.getProfileBox().select(profile);
+            Container.getContainer().changeDisplay(ViewType.WORLD);
+        } catch (ClassNotFoundException | IOException | IllegalArgumentException e) {
             super.showMessageInViews(fileError, MessageType.ERROR);
-        }
-        ProfileBox.getProfileBox().select(profile);
-        Container.getContainer().changeDisplay(ViewType.WORLD);
+        } 
     }
 
     @Override

@@ -7,24 +7,18 @@ import home.model.building.BuildingType;
 public interface WorldObserver extends Observer {
     /**
      * tell to the observer to go on the next era.
-     *  @throws IllegalStateExcption 
-     *   if is called with less experience required
      */
     void nextEra();
     /**
      * tell to the observer to increase a level of a specific building.
      * @param building
      *  the building selected
-     * @throws IllegalStateException 
-     *  if is called with less experience required
      */
     void nextLevel(BuildingType building);
     /**
      * create a quiz associated with some building.
      * @param building
      *  the building selected
-     * @throws IllegalStateException 
-     *  if is called with less experience required
      */
     void createQuiz(BuildingType building);
     /**

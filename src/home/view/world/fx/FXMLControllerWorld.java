@@ -220,6 +220,7 @@ final class FXMLControllerWorld implements FXMLController {
           this.popUpShow(p);
         }
     }
+    //REFACTOR
     private void popUpShow(final DialogParent dialog) {
         this.pop.getContent().add(dialog);
         this.pop.show(this.buildingPane.getScene().getWindow());

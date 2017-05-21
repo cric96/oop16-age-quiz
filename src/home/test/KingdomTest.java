@@ -143,7 +143,36 @@ public class KingdomTest {
         assertNotSame(blockedBuilding, countBuilding(this.getBuildings(king)));
         assertTrue(site.getLevel().isUpgradable());
     }
-
+    /**
+     * test advance kingdom.
+     */
+    @Test
+    public void testKingdomAdvanced() {
+        final KingdomBuilder builder = this.getBuilder();
+        builder.addStrategy(AgeUpKingdomStrategy.Type.ADVANCED);
+        BuildingFactory.get().createAllBuilding().forEach(x -> builder.addComponent(x));
+        final Kingdom kingdom = builder.build();
+        kingdom.addExperience(EXPERIENCE * EXPERIENCE);
+        //the experience is not enough to age up, it check if all building are at the maximum level
+        assertFalse(kingdom.canUpgradeAge());
+        //now i try to level up all the building
+        this.getBuildings(kingdom).stream()
+                                  .filter(x -> x.getY())
+                                  .map(x -> x.getX())
+                                  .forEach(x -> {
+                                      try {
+                                          x.levelUp();
+                                      } catch (IllegalStateException exc) {
+                                          fail();
+                                      }
+                                  });
+        assertTrue(kingdom.canUpgradeAge());
+        try {
+            kingdom.nextAge();
+        } catch (IllegalStateException exc) {
+            fail();
+        }
+    }
     private <E> Set<Pair<Building, Boolean>> getBuildings(final Kingdom king) {
         return king.getComponents(Building.class);
     }

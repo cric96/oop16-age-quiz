@@ -22,7 +22,7 @@ final class MenuObserverImpl extends AbstractObserver implements MenuObserver {
     private static final String FILE_ERROR = "FILE_ERROR";
     private static final String PROFILE_ERROR = "PROFILE_ERROR";
     private static final String EMPTY_ERROR = "EMPTY_ERROR";
-    private static final String BUNDLE = Bundles.ERROR;
+    private static final Bundles BUNDLE = Bundles.ERROR;
     private final ProfileBox profiles;
     private final Set<MenuView> views;
     MenuObserverImpl(final Set<MenuView> views) {

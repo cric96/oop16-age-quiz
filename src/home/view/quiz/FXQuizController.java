@@ -1,9 +1,13 @@
 package home.view.quiz;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import home.controller.observer.QuizObserver;
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
+import home.utility.view.UtilityScreen;
 import home.view.fx.CSSManager;
 import home.view.fx.FXMLController;
 import home.view.fx.StyleSheet;
@@ -13,6 +17,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -22,6 +27,7 @@ import javafx.util.Duration;
 final class FXQuizController implements FXMLController {
     private static final int TIME_TO_CHANGE = 500;
     private static final double WARNING_PERCENTAGE = 0.2; 
+    private static final double MARGIN = UtilityScreen.getScreenWidth() / 5;
     private int startTime;
     private QuizObserver qController;
     @FXML
@@ -54,6 +60,8 @@ final class FXQuizController implements FXMLController {
     //using timeLine to allow smoothing progressBar
     public void setTime(final int time) {
         if (this.startTime == 0) {
+            //i must remove the event that call end quiz
+            this.answers.setOnMouseClicked(e -> { });
             this.startTime = time;
             this.time.setProgress(1.0);
             final Timeline timeline = new Timeline();
@@ -95,6 +103,31 @@ final class FXQuizController implements FXMLController {
                });
             });
         });
+    }
+    /**
+     * 
+     * @param exp
+     *  exp earned in this quiz.
+     * @param score
+     *  status results for this quiz.
+     */
+    public void end(final int exp, final Map<String, Integer> score) {
+        this.question.setText(BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("QUIZFINISHED"));
+        final VBox results = new VBox();
+        VBox.setMargin(results, new Insets(0, MARGIN, 0, MARGIN));
+        CSSManager.addStyleClass("my-vbox", results);
+        this.answers.getChildren().clear();
+        final String expLang = BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("EXP");
+        final Label experience = new Label(expLang + ": " + exp);
+        CSSManager.addStyleClass("my-label", experience);
+        results.getChildren().add(experience);
+        for (final Map.Entry<String, Integer> value : score.entrySet()) {
+            final Label statusScore = new Label(value.getKey() + ": " + value.getValue() + "\n");
+            CSSManager.addStyleClass("my-label", statusScore);
+            results.getChildren().add(statusScore);
+        }
+        this.answers.setOnMouseClicked(e -> this.qController.quizFinished());
+        this.answers.getChildren().add(results);
     }
     /**
      * 

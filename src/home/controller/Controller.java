@@ -1,6 +1,7 @@
 package home.controller;
-import home.view.View;
 import java.util.Set;
+
+import home.view.View;
 /**
  * A generic controller where you can attach all type of views.
 */

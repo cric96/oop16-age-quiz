@@ -1,7 +1,9 @@
 package home.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
 import java.util.Set;
+
 import org.junit.Test;
 
 import home.model.status.Status;

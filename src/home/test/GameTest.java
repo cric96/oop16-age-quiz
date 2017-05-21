@@ -12,12 +12,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-
 import org.junit.Test;
 
 import home.model.Game;
-import home.model.building.BuildingType;
 import home.model.building.Building;
+import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;

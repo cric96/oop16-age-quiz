@@ -1,8 +1,8 @@
 package home.model.building;
+import home.model.level.AgeType;
 import home.model.query.Category;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
-import home.model.level.AgeType;
 /**
  * define all type of building with an associated category.
  */

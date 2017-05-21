@@ -97,13 +97,15 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements
             System.out.println("to turn back write something..");
             try {
                 final String value = this.reader.readLine();
-                if (value.equals(START)) {
-                    this.getCurrentController().createQuiz(building);
-                } else if (value.equals(LEVELUP) && canLevelUp) {
-                    this.getCurrentController().nextLevel(building);
-                    this.show();
-                } else {
-                    this.show();
+                if (value != null) {
+                    if (value.equals(START)) {
+                        this.getCurrentController().createQuiz(building);
+                    } else if (value.equals(LEVELUP) && canLevelUp) {
+                        this.getCurrentController().nextLevel(building);
+                        this.show();
+                    } else {
+                        this.show();
+                    }
                 }
             } catch (IOException e) {
                 this.close();
@@ -123,7 +125,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements
         System.out.println("to turn back write something..");
         try {
             final String value = this.reader.readLine();
-            if (value.equals(LEVELUP) && canLevelUp) {
+            if (value != null && value.equals(LEVELUP) && canLevelUp) {
                 this.getCurrentController().nextEra();
                 this.show();
             } else {

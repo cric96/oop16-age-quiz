@@ -3,17 +3,15 @@ package home.model.quiz;
 import java.util.Map;
 
 import home.model.status.StatusName;
-/**
- *
- */
-public abstract class CalcDecorator implements Calculator {
+//package-protected
+abstract class CalcDecorator implements Calculator {
     private final Calculator calc;
     /**
      * 
      * @param calc
      *  what I want to decorate
      */
-    public CalcDecorator(final Calculator calc) {
+    CalcDecorator(final Calculator calc) {
         this.calc = calc;
     }
 

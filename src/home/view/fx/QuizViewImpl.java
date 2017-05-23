@@ -1,0 +1,105 @@
+package home.view.fx;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+
+import home.controller.observer.QuizObserver;
+import home.view.MessageType;
+import home.view.fx.parents.FXQuizController;
+import home.view.quiz.QuizView;
+import javafx.application.Platform;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+//package-protected
+/**
+ *
+ */
+class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
+    private QuizObserver qController;
+    private final FXQuizController fxController;
+    private final AnchorPane parent;
+    /**
+     * 
+     * @throws IOException 
+     */
+    QuizViewImpl() throws IOException {
+        this.fxController = new FXQuizControllerImpl();
+        final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.QUIZ, this.fxController);
+        this.parent = (AnchorPane) fxmlManager.load();
+        this.setParent(parent);
+    }
+    @Override
+    public void showQuestion(final String question) {
+        Objects.requireNonNull(question);
+        this.fxController.setQuestion(question);
+
+    }
+
+    @Override
+    public void showAnswers(final List<String> answers) {
+        Objects.requireNonNull(answers);
+        this.fxController.setAnswers(answers);
+    }
+
+    @Override
+    public void showTime(final int time) {
+        if (time < 0) {
+            throw new IllegalArgumentException("Cannot solve negative time");
+        }
+        this.fxController.setTime(time);
+
+    }
+
+    @Override
+    public void showFinalScore(final int exp, final Map<String, Integer> score) {
+        Platform.runLater(() -> {
+            final Alert alert = new Alert(AlertType.INFORMATION);
+            alert.initOwner(this.getParent().getScene().getWindow());
+            alert.setTitle("");
+            String results = "";
+            for (final Map.Entry<String, Integer> value : score.entrySet()) {
+                results += value.getKey() + ": " + value.getValue() + "\n";
+            }
+            alert.setHeaderText("Experience earned: " + exp + "\n" + results); 
+            alert.showAndWait();
+            this.qController.quizFinished();
+        });
+    }
+
+    @Override
+    public void isCorrect(final boolean isAnswerCorrect) {
+        this.fxController.showIfIsCorrect(isAnswerCorrect);
+    }
+
+    @Override
+    public void show() { }
+    @Override
+    protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) { }
+    @Override
+    public void attachOn(final QuizObserver controller) {
+        this.qController = controller;
+        this.fxController.setController(controller);
+    }
+    @Override
+    public void showBackground(final URL image) {
+        final Image img = new Image(image.toExternalForm());
+        final BackgroundImage background = new BackgroundImage(img, 
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, 
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false));
+        this.parent.setBackground(new Background(background));
+    }
+}

@@ -3,6 +3,7 @@ package home.view.fx;
 import java.util.Optional;
 
 import home.view.MessageType;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -43,7 +44,7 @@ public abstract class AbstractFXView<P extends Parent> implements FXView {
      */
     public void showMessage(final String message, final MessageType messageType) {
         final Alert alert = new Alert(messageType.getAlertType());
-        alert.initOwner(this.getParent().getScene().getWindow());
+        alert.initOwner(((Node) this.getParent()).getScene().getWindow());
         alert.setTitle(messageType.getMessageTitle());
         alert.setHeaderText(message);
         this.onClickMessage(messageType, alert.showAndWait());

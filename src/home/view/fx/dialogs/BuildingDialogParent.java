@@ -1,6 +1,7 @@
 package home.view.fx.dialogs;
 
 import java.util.Arrays;
+
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;

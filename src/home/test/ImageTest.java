@@ -2,11 +2,11 @@ package home.test;
 
 import org.junit.Test;
 
+import home.model.Game;
 import home.model.building.BuildingType;
 import home.model.image.ImageComponent;
 import home.model.kingdom.AgeUpKingdomStrategy;
 import home.model.kingdom.Kingdom;
-import home.model.Game;
 /**
  * some simple test on image.
  */

@@ -1,6 +1,7 @@
 package home.view.fx.parents;
 
 import java.util.List;
+import java.util.Map;
 
 import home.controller.observer.QuizObserver;
 import home.view.fx.FXMLController;
@@ -45,5 +46,14 @@ public interface FXQuizController extends FXMLController {
      *      the answer to be checked.
      */
     void showIfIsCorrect(boolean answer);
+
+    /**
+     * 
+     * @param exp
+     *  exp earned in this quiz.
+     * @param score
+     *  status results for this quiz.
+     */
+    void end(int exp, Map<String, Integer> score);
 
 }

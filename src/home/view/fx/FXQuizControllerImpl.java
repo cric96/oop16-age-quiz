@@ -1,9 +1,13 @@
 package home.view.fx;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import home.controller.observer.QuizObserver;
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
+import home.utility.view.UtilityScreen;
 import home.view.fx.parents.FXQuizController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -11,6 +15,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -20,6 +25,7 @@ import javafx.util.Duration;
 final class FXQuizControllerImpl implements FXQuizController {
     private static final int TIME_TO_CHANGE = 500;
     private static final double WARNING_PERCENTAGE = 0.2; 
+    private static final double MARGIN = UtilityScreen.getScreenWidth() / 5;
     private int startTime;
     private QuizObserver qController;
     @FXML
@@ -28,9 +34,7 @@ final class FXQuizControllerImpl implements FXQuizController {
     private ProgressBar time;
     @FXML
     private VBox answers;
-    /* (non-Javadoc)
-     * @see home.view.fx.parents.FXQuizController#setQuestion(java.lang.String)
-     */
+
     @Override
     public void setQuestion(final String question) {
         Platform.runLater(() -> this.question.setText(question));
@@ -43,13 +47,13 @@ final class FXQuizControllerImpl implements FXQuizController {
         CSSManager.addStyleSheet(StyleSheet.PROGRESS_BAR, this.time);
         CSSManager.addStyleClass("my-progressBar", this.time);
     }
-    /* (non-Javadoc)
-     * @see home.view.fx.parents.FXQuizController#setTime(int)
-     */
+
     //using timeLine to allow smoothing progressBar
     @Override
     public void setTime(final int time) {
         if (this.startTime == 0) {
+            //i must remove the event that call end quiz
+            this.answers.setOnMouseClicked(e -> { });
             this.startTime = time;
             this.time.setProgress(1.0);
             final Timeline timeline = new Timeline();
@@ -73,9 +77,7 @@ final class FXQuizControllerImpl implements FXQuizController {
             CSSManager.addStyleClass("my-progressBar-warning", this.time);
         }
     }
-    /* (non-Javadoc)
-     * @see home.view.fx.parents.FXQuizController#setAnswers(java.util.List)
-     */
+
     @Override
     public void setAnswers(final List<String> answers) {
         Platform.runLater(() -> {
@@ -91,16 +93,32 @@ final class FXQuizControllerImpl implements FXQuizController {
             });
         });
     }
-    /* (non-Javadoc)
-     * @see home.view.fx.parents.FXQuizController#setController(home.controller.observer.QuizObserver)
-     */
+
+    @Override
+    public void end(final int exp, final Map<String, Integer> score) {
+        this.question.setText(BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("QUIZFINISHED"));
+        final VBox results = new VBox();
+        VBox.setMargin(results, new Insets(0, MARGIN, 0, MARGIN));
+        CSSManager.addStyleClass("my-vbox", results);
+        this.answers.getChildren().clear();
+        final String expLang = BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("EXP");
+        final Label experience = new Label(expLang + ": " + exp);
+        CSSManager.addStyleClass("my-label", experience);
+        results.getChildren().add(experience);
+        for (final Map.Entry<String, Integer> value : score.entrySet()) {
+            final Label statusScore = new Label(value.getKey() + ": " + value.getValue() + "\n");
+            CSSManager.addStyleClass("my-label", statusScore);
+            results.getChildren().add(statusScore);
+        }
+        this.answers.setOnMouseClicked(e -> this.qController.quizFinished());
+        this.answers.getChildren().add(results);
+    }
+
     @Override
     public void setController(final QuizObserver qController) {
         this.qController = qController;
     }
-    /* (non-Javadoc)
-     * @see home.view.fx.parents.FXQuizController#showIfIsCorrect(boolean)
-     */
+
     @Override
     public void showIfIsCorrect(final boolean answer) {
         Platform.runLater(() -> {

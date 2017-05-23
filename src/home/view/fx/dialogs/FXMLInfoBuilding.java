@@ -40,7 +40,7 @@ final class FXMLInfoBuilding extends Parent implements FXMLController {
 
     @FXML
     private void initialize() { //NOPMD - private metod called by itself when fxml file is load.
-        final int buttonBoxSpacing = 65;
+        final int buttonBoxSpacing = 40;
         final Pair<Integer, Integer> closeButtonDimension = Pair.createPair(20, 20);
         CSSManager.addStyleSheet(StyleSheet.GAME_BUTTONS, this.closeButton);
         CSSManager.addStyleClass("generalNode", this.closeButton);

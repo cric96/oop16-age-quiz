@@ -1,8 +1,7 @@
 package home.model.building;
+import home.model.composite.Composite;
 import home.model.level.Level;
-import home.model.query.Category;
-
-import home.model.composite.Composite;;
+import home.model.query.Category;;
 
 /**
  * a general type of building.

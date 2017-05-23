@@ -13,8 +13,6 @@ import home.view.fx.parents.FXQuizController;
 import home.view.quiz.QuizView;
 import javafx.application.Platform;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -25,10 +23,9 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 //package-protected
 /**
- *
+ * Implementation of QuizView.
  */
 class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
-    private QuizObserver qController;
     private final FXQuizController fxController;
     private final AnchorPane parent;
     /**
@@ -65,17 +62,9 @@ class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
 
     @Override
     public void showFinalScore(final int exp, final Map<String, Integer> score) {
+        Objects.requireNonNull(score);
         Platform.runLater(() -> {
-            final Alert alert = new Alert(AlertType.INFORMATION);
-            alert.initOwner(this.getParent().getScene().getWindow());
-            alert.setTitle("");
-            String results = "";
-            for (final Map.Entry<String, Integer> value : score.entrySet()) {
-                results += value.getKey() + ": " + value.getValue() + "\n";
-            }
-            alert.setHeaderText("Experience earned: " + exp + "\n" + results); 
-            alert.showAndWait();
-            this.qController.quizFinished();
+            this.fxController.end(exp, score);
         });
     }
 
@@ -90,7 +79,6 @@ class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     protected void onClickMessage(final MessageType type, final Optional<ButtonType> button) { }
     @Override
     public void attachOn(final QuizObserver controller) {
-        this.qController = controller;
         this.fxController.setController(controller);
     }
     @Override

@@ -100,7 +100,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
             quiz.setFinished();
             QuizObserverImpl.this.views.forEach(x -> x.showFinalScore(quiz.getXP(), 
                                 quiz.getStatusScore().entrySet().stream().collect(
-                                        Collectors.toMap(y -> y.getKey().name(), y -> y.getValue()))));
+                                        Collectors.toMap(y -> y.getKey().toString(), y -> y.getValue()))));
         }
     }
 

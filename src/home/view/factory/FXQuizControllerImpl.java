@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.util.List;
 import java.util.Map;
@@ -8,6 +8,8 @@ import home.controller.observer.QuizObserver;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.view.UtilityScreen;
+import home.view.fx.CSSManager;
+import home.view.fx.StyleSheet;
 import home.view.fx.parents.FXQuizController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

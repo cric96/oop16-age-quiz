@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.view.MessageType;
+import home.view.fx.AbstractFXView;
 import home.view.fx.dialogs.MenuDialog;
 import home.view.fx.dialogs.MenuDialogFactory;
 import home.view.fx.parents.CustomParent;

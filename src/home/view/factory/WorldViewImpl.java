@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +9,7 @@ import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.MessageType;
+import home.view.fx.AbstractFXView;
 import home.view.fx.parents.CustomParent;
 import home.view.fx.parents.FXMLControllerWorld;
 import home.view.fx.parents.ParentFXML;

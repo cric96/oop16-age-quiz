@@ -1,7 +1,8 @@
-package home.view;
+package home.view.container;
 
 import home.controller.Controller;
 import home.utility.Pair;
+import home.view.ViewType;
 
 /**
  * the container of the different controller with its view.

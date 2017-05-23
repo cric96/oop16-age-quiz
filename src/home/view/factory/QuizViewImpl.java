@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +9,9 @@ import java.util.Optional;
 
 import home.controller.observer.QuizObserver;
 import home.view.MessageType;
+import home.view.fx.AbstractFXView;
+import home.view.fx.FXMLFiles;
+import home.view.fx.FxmlResourceManager;
 import home.view.fx.parents.FXQuizController;
 import home.view.quiz.QuizView;
 import javafx.application.Platform;

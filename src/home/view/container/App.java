@@ -1,10 +1,11 @@
-package home.view;
+package home.view.container;
 
 import java.io.IOException;
 
 import home.controller.ControllerFactory;
 import home.utility.Pair;
-import home.view.fx.ViewFactory;
+import home.view.ViewType;
+import home.view.factory.ViewFactory;
 import home.view.menu.MenuView;
 import home.view.quiz.QuizView;
 import home.view.world.WorldView;

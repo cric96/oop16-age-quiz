@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.io.IOException;
 

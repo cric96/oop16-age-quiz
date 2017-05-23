@@ -10,7 +10,7 @@ import java.util.Locale;
 import home.controller.profile.ProfileBox;
 import home.utility.BundleLanguageManager;
 import home.utility.LocalFolder;
-import home.view.App;
+import home.view.container.App;
 import home.view.debug.DebugApplication;
 import javafx.application.Application;
 

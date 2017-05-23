@@ -16,10 +16,10 @@ import home.model.quiz.QuizGame;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.ResourceManager;
-import home.view.Container;
 import home.view.MessageType;
 import home.view.View;
 import home.view.ViewType;
+import home.view.container.Container;
 import home.view.quiz.QuizView;
 
 final class QuizObserverImpl extends AbstractObserver implements QuizObserver {

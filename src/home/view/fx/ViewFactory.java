@@ -5,7 +5,7 @@ import java.io.IOException;
 import home.view.menu.MenuView;
 import home.view.menu.fx.FXMenuViewImpl;
 import home.view.quiz.QuizView;
-import home.view.quiz.QuizViewImpl;
+import home.view.quiz.FXQuizViewImpl;
 import home.view.world.WorldView;
 import home.view.world.fx.FXWorldViewImpl;
 
@@ -47,6 +47,6 @@ public final class ViewFactory {
      * @throws IOException 
      */
     public QuizView createQuizView() throws IOException {
-        return new QuizViewImpl();
+        return new FXQuizViewImpl();
     }
 }

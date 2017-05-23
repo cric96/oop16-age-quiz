@@ -26,14 +26,14 @@ import javafx.scene.layout.BackgroundSize;
 /**
  *
  */
-public class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
+public class FXQuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     private final FXQuizController fxController;
     private final AnchorPane parent;
     /**
      * 
      * @throws IOException 
      */
-    public QuizViewImpl() throws IOException {
+    public FXQuizViewImpl() throws IOException {
         this.fxController = new FXQuizController();
         final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.QUIZ, this.fxController);
         this.parent = (AnchorPane) fxmlManager.load();

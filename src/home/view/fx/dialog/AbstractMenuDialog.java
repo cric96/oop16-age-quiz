@@ -109,7 +109,7 @@ abstract class AbstractMenuDialog implements MenuDialog {
     /**
      * @return the labelText
      */
-    public ResourceBundle getLabelText() {
+    protected ResourceBundle getLabelText() {
         return labelText;
     }
 

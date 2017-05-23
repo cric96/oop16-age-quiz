@@ -1,22 +1,32 @@
 package home.view.fx.button;
 
 import home.controller.profile.Profile;
+import home.utility.ResourceManager;
 import home.utility.view.FontManager;
+import home.view.fx.Images;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /** 
  *      Create a custom button used in Load/New Game dialog.
  */
 //package-protected
-class ProfileButton extends Button {
+abstract class AbstractButtonProfile extends Button {
     private static final int BOX_DIMENSION = 30;
 
     /**
      * @param profile the profile represented by the button.
      */
-    ProfileButton(final Profile profile) {
+    AbstractButtonProfile(final Profile profile) {
         super(profile.getName().orElse("Empty slot"));
+        String fileName;
+        if (profile.isEnabled()) {
+            fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();
+        } else {
+            fileName = this.getLockedPath();
+        }
+        this.setGraphic(new ImageView(new Image(fileName)));
         this.setFont(FontManager.getGeneralFont());
     }
 
@@ -29,4 +39,6 @@ class ProfileButton extends Button {
         img.setFitWidth(BOX_DIMENSION);
         super.setGraphic(img);
     }
+
+    protected abstract String getLockedPath();
 }

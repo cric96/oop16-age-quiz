@@ -24,7 +24,7 @@ public interface WorldView extends View<WorldObserver> {
     void updateEra(Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, ImageInfo kingdom);
 
     /**
-     * change the graphics Era of the word.
+     * change tchangeExèhe graphics Era of the word.
      * 
      * @param era era.
      */

@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import home.model.status.StatusName;
-
+//package protected
 class MultiplierCalculator extends CalcDecorator {
     private static final int START_MULTIPLIER = 0;
     private static final int DIVISOR = 10;

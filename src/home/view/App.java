@@ -28,9 +28,9 @@ public class App extends Application {
     }
 
     private static void createVisual() throws IOException {
-        attachOnController(ViewFactory.getFactory().createMenuView(),
-                           ViewFactory.getFactory().createWorldView(),
-                           ViewFactory.getFactory().createQuizView());
+        attachOnController(ViewFactory.createMenuView(),
+                           ViewFactory.createWorldView(),
+                           ViewFactory.createQuizView());
     }
 
     private static void attachOnController(final MenuView menu, final WorldView world, final QuizView quiz) {

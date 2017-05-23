@@ -1,7 +1,6 @@
 package home.view.fx;
 
 import java.io.IOException;
-
 import home.view.menu.MenuView;
 import home.view.quiz.QuizView;
 import home.view.world.WorldView;

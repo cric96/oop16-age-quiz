@@ -2,6 +2,7 @@ package home.view.fx;
 
 import java.io.IOException;
 
+import home.view.fx.parent.FXMLController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
@@ -9,7 +10,7 @@ import javafx.scene.layout.Pane;
 /**
  * class used to load an fxml file.
  */
-public class FxmlResourceManager {
+public final class FxmlResourceManager {
     private final String path;
     private final FXMLController fxmlController;
 

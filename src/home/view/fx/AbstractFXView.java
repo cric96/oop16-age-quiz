@@ -13,13 +13,13 @@ import javafx.scene.control.ButtonType;
  * @param <P> 
  *         for example WorldParent or MenuParent.
  */
-public abstract class AbstractFXView<P extends Parent> implements FXView {
+abstract class AbstractFXView<P extends Parent> implements FXView {
     private Optional<P> scene;
 
     /**
      * create a abstractFxView with a Optiona.empty scene.
      */
-    public AbstractFXView() {
+   AbstractFXView() {
         this.scene = Optional.empty();
     }
 

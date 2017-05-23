@@ -9,7 +9,7 @@ import java.util.Optional;
 
 import home.controller.observer.QuizObserver;
 import home.view.MessageType;
-import home.view.fx.parents.FXQuizController;
+import home.view.fx.parent.FXQuizController;
 import home.view.quiz.QuizView;
 import javafx.application.Platform;
 import javafx.scene.Parent;

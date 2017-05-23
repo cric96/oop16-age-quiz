@@ -8,7 +8,7 @@ import home.controller.observer.QuizObserver;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.view.UtilityScreen;
-import home.view.fx.parents.FXQuizController;
+import home.view.fx.parent.FXQuizController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;

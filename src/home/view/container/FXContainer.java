@@ -1,4 +1,4 @@
-package home.view;
+package home.view.container;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +7,7 @@ import java.util.Optional;
 import home.controller.Controller;
 import home.utility.Pair;
 import home.utility.Utility;
+import home.view.ViewType;
 import home.view.fx.FXView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

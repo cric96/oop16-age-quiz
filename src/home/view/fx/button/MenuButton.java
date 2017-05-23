@@ -9,5 +9,5 @@ public interface MenuButton {
      * @param text
      *      the text of button
      */
-    void setText(final String text);
+    void setText(String text);
 }

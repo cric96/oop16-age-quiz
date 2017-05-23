@@ -1,8 +1,9 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.util.Optional;
 
 import home.view.MessageType;
+import home.view.fx.FXView;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;

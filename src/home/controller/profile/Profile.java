@@ -8,18 +8,7 @@ import java.util.Optional;
   Define a profile of game.
 */
 public interface Profile extends Serializable {
-    /**
-     * 
-     * a simple factory to create a profile.
-     * @param file
-     *  the file associated with this profile
-     * @return
-     *  the profile created
-     * 
-     */
-    static Profile createProfile(File file) {
-        return new ProfileImpl(file);
-    }
+
     /**
      * get the name associated with this profile.
      * @return

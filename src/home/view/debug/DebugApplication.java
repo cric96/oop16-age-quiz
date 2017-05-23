@@ -2,8 +2,8 @@ package home.view.debug;
 
 import home.controller.ControllerFactory;
 import home.utility.Pair;
-import home.view.Container;
 import home.view.ViewType;
+import home.view.container.Container;
 
 /**
  * a platform to test the application with the console view.

@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.util.List;
 import java.util.Optional;

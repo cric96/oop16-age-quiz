@@ -1,4 +1,4 @@
-package home.view.fx;
+package home.view.factory;
 
 import java.io.IOException;
 import home.view.menu.MenuView;
@@ -32,6 +32,7 @@ public final class ViewFactory {
      * @return new QuizView
      * @throws IOException 
      */
+
     public static QuizView createQuizView() throws IOException {
         return new QuizViewImpl();
     }

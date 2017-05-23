@@ -17,10 +17,10 @@ import home.model.kingdom.Kingdom;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
 import home.utility.Pair;
-import home.view.Container;
 import home.view.MessageType;
 import home.view.View;
 import home.view.ViewType;
+import home.view.container.Container;
 import home.view.world.WorldView;
 
 final class WorldObserverImpl extends AbstractObserver implements WorldObserver {

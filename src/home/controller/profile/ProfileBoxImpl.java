@@ -30,7 +30,7 @@ final class ProfileBoxImpl implements ProfileBox {
     private Optional<Serializer<List<Profile>>> serializer;
     private ProfileBoxImpl() {
         this.profiles = IntStream.range(0, NUM_PROFILES)
-                                 .mapToObj(x -> Profile.createProfile(new File(LocalFolder.CONFIG_FOLDER 
+                                 .mapToObj(x -> new ProfileImpl(new File(LocalFolder.CONFIG_FOLDER 
                                                                              + LocalFolder.SEPARATOR.toString()
                                                                              + "profile" + x + ".obj")))
                                  .collect(Collectors.toList());
@@ -80,7 +80,7 @@ final class ProfileBoxImpl implements ProfileBox {
             while (reader.hasNext()) {
                 reader.beginObject();
                 reader.nextName();
-                final Profile current = Profile.createProfile(new File(reader.nextString()));
+                final Profile current = new ProfileImpl(new File(reader.nextString()));
                 reader.nextName();
                 final String name = reader.nextString();
                 if (!name.isEmpty()) {

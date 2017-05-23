@@ -11,10 +11,10 @@ import home.model.Game;
 import home.model.kingdom.AgeUpKingdomStrategy;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
-import home.view.Container;
 import home.view.MessageType;
 import home.view.View;
 import home.view.ViewType;
+import home.view.container.Container;
 import home.view.menu.MenuView;
 
 final class MenuObserverImpl extends AbstractObserver implements MenuObserver {

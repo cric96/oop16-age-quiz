@@ -19,9 +19,9 @@ import javafx.stage.Window;
  * specialization of menu dialog to create a new game profile.
  */
 class MenuDialogNewGame extends AbstractMenuDialog {
+    private static final int MAX_CHAR = 8;
     private final TextField profileName = new TextField();
     private final Label messageInfo = new Label(this.getLabelText().getString("WARNING"));
-
     /**
      * @param profiles 
      *          profiles that the dialog should display
@@ -32,6 +32,12 @@ class MenuDialogNewGame extends AbstractMenuDialog {
      */
     MenuDialogNewGame(final List<Profile> profiles, final Window win, final MenuObserver controller) {
         super(win, profiles, controller);
+        //TO LIMIT THE MAX NUMER OF ELEMENT 
+        this.profileName.lengthProperty().addListener((ob, oldV, newV) -> {
+            if (newV.intValue() > oldV.intValue() && newV.intValue() > MAX_CHAR) {
+                this.profileName.setText(this.profileName.getText().substring(0, MAX_CHAR));
+            }
+        });
         this.messageInfo.setFont(FontManager.getGeneralFont());
         this.messageInfo.setVisible(false);
         this.profileName.setVisible(false);

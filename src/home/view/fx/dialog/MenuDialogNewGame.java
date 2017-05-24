@@ -6,7 +6,9 @@ import java.util.Optional;
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.view.FontManager;
+import home.view.fx.button.ButtonProfile;
 import home.view.fx.button.MenuButtonFactory;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -67,11 +69,14 @@ class MenuDialogNewGame extends AbstractMenuDialog {
             button.setPrefWidth(super.getButtonWidth());
             this.getButtonList().add(button);
             button.setOnMouseClicked(click -> {
+                ((ButtonProfile) button).select();
+                this.getButtonList().stream().filter(b -> !b.equals(button)).forEach(x -> ((ButtonProfile) x).deselect());
                 if (profile.isEnabled()) {
                     messageInfo.setVisible(true);
                 } else {
                     messageInfo.setVisible(false);
                 }
+                Platform.runLater(() -> this.profileName.requestFocus());
                 this.profileName.setVisible(true);
                 this.setSelectedProfile(profile);
                 this.profileName.setText("");

@@ -32,7 +32,7 @@ class MenuViewImpl extends AbstractFXView<Parent> implements MenuView {
     @Override
     public void attachOn(final MenuObserver controller) {
         this.controller = Optional.of(controller);
-        this.setParent((Parent) ParentFactory.createMenuParent(controller));
+        this.setParent(((Parent) ParentFactory.createMenuParent(controller)));
     }
 
     @Override

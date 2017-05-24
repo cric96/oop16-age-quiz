@@ -25,7 +25,7 @@ public final class MenuDialogFactory {
      */
     public static MenuDialog createDialogNewGame(final List<Profile> profiles, final Window window,
             final MenuObserver controller) {
-        return new MenuDialogLoadGame(profiles, window, controller);
+        return new MenuDialogNewGame(profiles, window, controller);
     }
 
     /**

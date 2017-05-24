@@ -5,14 +5,16 @@ import home.utility.ResourceManager;
 import home.utility.view.FontManager;
 import home.view.fx.Images;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 /** 
  *      Create a custom button used in Load/New Game dialog.
  */
 //package-protected
-abstract class AbstractButtonProfile extends Button {
+abstract class AbstractButtonProfile extends Button implements ButtonProfile {
     private static final int BOX_DIMENSION = 30;
 
     /**
@@ -38,6 +40,17 @@ abstract class AbstractButtonProfile extends Button {
         img.setFitHeight(BOX_DIMENSION);
         img.setFitWidth(BOX_DIMENSION);
         super.setGraphic(img);
+    }
+
+    @Override
+    public void deselect() {
+        this.setEffect(null);
+    }
+
+    @Override
+    public void select() {
+        final DropShadow dropS = new DropShadow(40, Color.CORNFLOWERBLUE);
+        this.setEffect(dropS);
     }
 
     protected abstract String getLockedPath();

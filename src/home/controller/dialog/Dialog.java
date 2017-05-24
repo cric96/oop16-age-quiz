@@ -1,6 +1,7 @@
 package home.controller.dialog;
 /**
  * an interface that define what to show in view.
+ * the dialog is an immutable object 
  */
 public interface Dialog {
     /**
@@ -41,6 +42,8 @@ public interface Dialog {
     interface Builder {
         /**
          * create a dialog builder.
+         * @return
+         *  the builder created
          */
         static Dialog.Builder createBuilder() {
             return new DialogImpl.DialogBuilderImpl();
@@ -64,6 +67,7 @@ public interface Dialog {
         /**
          * 
          * @param experience
+         *  the experience about
          * @return
          *      the builder
          */

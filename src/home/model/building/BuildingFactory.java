@@ -15,7 +15,8 @@ public final class BuildingFactory {
     private static final BuildingFactory SINGLETON = new BuildingFactory();
     private BuildingFactory() { }
     /**
-     * @return the instance of factory
+     * @return 
+     *  the instance of factory
      */
     public static BuildingFactory get() {
         return BuildingFactory.SINGLETON;

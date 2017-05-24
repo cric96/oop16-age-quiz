@@ -7,6 +7,7 @@ import home.controller.observer.Observer;
  * Generic View Interface.
  *
  * @param <E>
+ *  the type of the observer
  */
 public interface View <E extends Observer> {
     /**

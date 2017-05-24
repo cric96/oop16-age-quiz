@@ -1,6 +1,5 @@
 package home.view.factory;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -30,11 +29,7 @@ import javafx.scene.layout.BackgroundSize;
 class QuizViewImpl extends AbstractFXView<Parent> implements QuizView {
     private final FXQuizController fxController;
     private final AnchorPane parent;
-    /**
-     * 
-     * @throws IOException 
-     */
-    QuizViewImpl() throws IOException {
+    QuizViewImpl() {
         this.fxController = new FXQuizControllerImpl();
         final FxmlResourceManager fxmlManager = new FxmlResourceManager(FXMLFiles.QUIZ, this.fxController);
         this.parent = (AnchorPane) fxmlManager.load();

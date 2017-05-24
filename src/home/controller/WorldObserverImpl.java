@@ -115,7 +115,6 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
         }
         return Optional.empty();
     }
-    //TODO PENSA SE FARE UN OPTIONAL DI IMAGE AL POSTO DI UN IMAGE
     /*what to do when the age change*/
     private void onAgeChange() {
         final Kingdom current = Game.getGame().getCurrentKingdom();

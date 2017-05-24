@@ -14,7 +14,6 @@ final class InitializeLanguage {
         try {
             BundleLanguageManager.get().setLocale(Locale.ITALIAN);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

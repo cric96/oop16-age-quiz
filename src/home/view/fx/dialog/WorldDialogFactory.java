@@ -13,10 +13,14 @@ public final class WorldDialogFactory {
 
     /**
      * create a new parent dialog for kingdom.
-     * @param controller controller of world
-     * @param dialog information of parent
-     * @param pop popuP owner of this parent
-     * @return the parent
+     * @param controller 
+     *  controller of world
+     * @param dialog 
+     *  information of parent
+     * @param pop
+     *  popuP owner of this parent
+     * @return 
+     *  the parent
      */
     public static DialogParentWorld createKingdomDialogParent(final WorldObserver controller, final Dialog dialog, final Popup pop) {
         return new KingdomDialogParent(controller, dialog, pop);
@@ -24,11 +28,16 @@ public final class WorldDialogFactory {
 
     /**
      * create a new parent dialog for a building.
-     * @param controller 
+     * @param controller
+     *  controller of world
      * @param building 
+     *  the building selected
      * @param dialog 
+     *  the information about the parent
      * @param pop 
-     * @return the parent
+     *  the popup owner of this pare
+     * @return 
+     * the parent
      */
     public static DialogParentWorld createBuildingParent(final WorldObserver controller, final BuildingType building, final Dialog dialog,
             final Popup pop) {

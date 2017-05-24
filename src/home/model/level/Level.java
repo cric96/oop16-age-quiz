@@ -75,6 +75,7 @@ public interface Level {
          * @param levelAdvance
          *  an amount to define how to go on the next level
          * @return
+         *  the level created
          */
         static Level.Building restoreBuildingLevel(final int currentLevel, final int maxLevel, final int experince, final int levelAdvance) {
             return new LevelBuildingImpl(currentLevel, maxLevel, experince, levelAdvance);

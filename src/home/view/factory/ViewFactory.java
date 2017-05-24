@@ -1,6 +1,5 @@
 package home.view.factory;
 
-import java.io.IOException;
 import home.view.menu.MenuView;
 import home.view.quiz.QuizView;
 import home.view.world.WorldView;
@@ -13,7 +12,8 @@ public final class ViewFactory {
 
     /**
      * 
-     * @return new MenuView
+     * @return 
+     *  new MenuView
      */
     public static MenuView createMenuView() {
         return new MenuViewImpl();
@@ -21,7 +21,8 @@ public final class ViewFactory {
 
     /**
      * 
-     * @return new WorldView
+     * @return
+     *  new WorldView
      */
     public static WorldView createWorldView() {
         return new WorldViewImpl();
@@ -29,11 +30,11 @@ public final class ViewFactory {
 
     /**
      * 
-     * @return new QuizView
-     * @throws IOException 
+     * @return 
+     *  new QuizView
      */
 
-    public static QuizView createQuizView() throws IOException {
+    public static QuizView createQuizView()  {
         return new QuizViewImpl();
     }
 }

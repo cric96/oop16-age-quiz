@@ -8,28 +8,34 @@ import java.util.Set;
 public interface Query {
     /**
      * This method push out question to be done.
-     * @return String representing the current question.
+     * @return 
+     *  String representing the current question.
      */
     String getQuestion();
     /**
      * We have a set of answers for each query, only one of these will be correct.
-     * @return Set<String>, every String is an answer for the current query.
+     * @return 
+     *  Set of String , every String is an answer for the current query.
      */
     Set<String> getAnswers();
     /**
      * 
      * @param answer 
-     * @return true if the answer passed is correct, false otherwise.
+     *  the answer to be checked
+     * @return 
+     *  true if the answer passed is correct, false otherwise.
      */
     boolean isAnswerCorrect(String answer);
     /**
      * 
-     * @return an incremental int depending on the difficulty of the query.
+     * @return
+     *  an incremental int depending on the difficulty of the query.
      */
     int getDifficulty();
     /**
      * it shows what is the Category for this query.
-     * @return Category.
+     * @return 
+     *  the Category.
      */
     Category getCategory();
 /**
@@ -75,7 +81,8 @@ public interface Query {
          */
         Builder addDifficulty(int difficulty);
         /** 
-         * @throws IllegalStateException if any previous method hasn't been called
+         * @throws IllegalStateException 
+         *  if any previous method hasn't been called
          * @return 
          *  Query.
          */

@@ -23,7 +23,7 @@ public final class MenuButtonFactory {
      *          the menu button
      */
     public static MenuButton createMenuButton(final String name, final Color color) {
-        return new MenuButtonImpl(name, Color.RED);
+        return new MenuButtonImpl(name, color);
     }
 
     /**

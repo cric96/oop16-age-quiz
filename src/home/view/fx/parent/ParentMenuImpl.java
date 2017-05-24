@@ -52,12 +52,12 @@ class ParentMenuImpl extends CustomParentImpl implements ParentMenu {
         final String font = ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm();
         text.setFont(Font.loadFont(font, TITLE_SIZE));
         menuZero.getChildren().add(text);
-        btnNewGame = MenuButtonFactory.createMenuButton(Buttons.NEW_GAME.toString(), Color.BLACK);
+        btnNewGame = MenuButtonFactory.createMenuButton(Buttons.NEW_GAME.toString(), Color.FORESTGREEN);
         ((Node) btnNewGame).setOnMouseClicked(e -> {
             controller.newGamePressed();
         });
 
-        btnLoadGame = MenuButtonFactory.createMenuButton(Buttons.LOAD_GAME.toString(), Color.BLACK);
+        btnLoadGame = MenuButtonFactory.createMenuButton(Buttons.LOAD_GAME.toString(), Color.CORNFLOWERBLUE);
         ((Node) btnLoadGame).setOnMouseClicked(e -> {
             controller.loadGamePressed();
         });

@@ -19,7 +19,7 @@ import javafx.stage.Window;
  * specialization of menu dialog to create a new game profile.
  */
 class MenuDialogNewGame extends AbstractMenuDialog {
-    private static final int MAX_CHAR = 8;
+    private static final int MAX_CHAR = 10;
     private final TextField profileName = new TextField();
     private final Label messageInfo = new Label(this.getLabelText().getString("WARNING"));
     /**

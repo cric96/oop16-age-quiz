@@ -1,7 +1,5 @@
 package home.view.container;
 
-import java.io.IOException;
-
 import home.controller.ControllerFactory;
 import home.utility.Pair;
 import home.view.ViewType;
@@ -19,16 +17,12 @@ public class App extends Application {
     @Override
     public void start(final Stage primaryStage) {
         FXContainer.getContainer().setStage(primaryStage);
-        try {
-            createVisual();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createVisual();
         FXContainer.getContainer().changeDisplay(ViewType.MENU);
         primaryStage.show();
     }
 
-    private static void createVisual() throws IOException {
+    private static void createVisual() {
         attachOnController(ViewFactory.createMenuView(),
                            ViewFactory.createWorldView(),
                            ViewFactory.createQuizView());

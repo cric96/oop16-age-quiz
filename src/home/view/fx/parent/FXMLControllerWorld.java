@@ -38,7 +38,7 @@ public interface FXMLControllerWorld extends FXMLController {
     /**
      * used to create the tooltip of statsImage.
      * @param statusScose
-     *            Map of status <name of status, value>
+     *            Map of status name of status, value
      */
     void setStatsPane(Map<String, Integer> statusScose);
 

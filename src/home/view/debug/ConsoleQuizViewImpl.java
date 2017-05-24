@@ -71,8 +71,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizObserver> implements Q
         try {
             System.in.read();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("ERROR");
         }
         finish = true;
         this.getInternalController().quizFinished();

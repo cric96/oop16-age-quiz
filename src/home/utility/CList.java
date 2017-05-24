@@ -8,6 +8,7 @@ import java.util.List;
  * A cyclic list is constructed from a standard list, but then you can access elements at any
  * non-negative position, which is done by moving back at the beginning as you reach the end.
  * @param <X>
+ *  the element that contains the list
  */
 public interface CList<X> {
     /**
@@ -17,7 +18,7 @@ public interface CList<X> {
      * @param pos
      *  starting position of the cyclic list
      * @param <E>
-     *  generic method in <E>
+     *  generic method in E
      * @return
      *  a cyclic list with the same elements of the list passed
      */

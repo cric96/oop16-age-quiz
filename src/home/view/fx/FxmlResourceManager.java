@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
  * class used to load an fxml file.
  */
 public final class FxmlResourceManager {
+    private static final String ERROR = "ERROR DURING THE FXML LOADING";
     private final String path;
     private final FXMLController fxmlController;
 
@@ -30,8 +31,6 @@ public final class FxmlResourceManager {
      * to load the file.
      * @return 
      *      the loaded parent
-     * @throws IOException
-     *      if the file load gone wrong
      */
     public Parent load() {
         final FXMLLoader loader = new FXMLLoader();
@@ -41,7 +40,7 @@ public final class FxmlResourceManager {
         try {
             parent = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(ERROR + " Exception : " + e.getMessage());
         }
         return parent;
     }

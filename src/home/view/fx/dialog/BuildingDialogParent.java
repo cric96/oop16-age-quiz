@@ -19,7 +19,7 @@ class BuildingDialogParent extends DialogParentWorldImpl {
      * @param controller 
      *          observer of this view
      * @param building 
-     *          buildig representer by this parent
+     *          building representer by this parent
      * @param dialog 
      *          information showed in this dialog
      * @param pop 

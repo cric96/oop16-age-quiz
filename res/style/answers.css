@@ -39,6 +39,16 @@
 		radius 100.0%, rgb(153,179,255) 0.0, rgb(255,255,128) 100.0);
 	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);
 	-fx-padding: 8 15 15 15;
-	-fx-background-radius: 30;
+	-fx-background-radius: 10;
 	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.75), 4, 0, 0, 1);
+}
+.my-goBack {
+	-fx-font-size: 300%;
+	-fx-effect: dropshadow(gaussian,  rgba(0,0,0,0.9), 4, 0, 0, 1); 
+	-fx-font-weight: bold;
+	-fx-alignment: center;
+	-fx-border-width: 4;
+	-fx-text-fill: radial-gradient( focus-angle 0.0deg, focus-distance 0.0%, 
+		center 50.0% 50.0%, radius 100.0%, rgb(77,102,204) 0.0, rgb(26,255,26) 100.0);
+	-fx-font-style: oblique;
 }

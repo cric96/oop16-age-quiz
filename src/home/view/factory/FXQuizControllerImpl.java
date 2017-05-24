@@ -112,8 +112,11 @@ final class FXQuizControllerImpl implements FXQuizController {
             CSSManager.addStyleClass("my-label", statusScore);
             results.getChildren().add(statusScore);
         }
+        final Label goBack = new Label(BundleLanguageManager.get().getBundle(Bundles.LABEL).getString("GOBACK"));
+        CSSManager.addStyleClass("my-goBack", goBack);
         this.answers.setOnMouseClicked(e -> this.qController.quizFinished());
         this.answers.getChildren().add(results);
+        this.answers.getChildren().add(goBack);
     }
 
     @Override
@@ -136,7 +139,10 @@ final class FXQuizControllerImpl implements FXQuizController {
         };
         sleeper.setOnSucceeded((e) -> {
             answers.setDisable(false);
-            Optional.ofNullable(this.qController).orElseThrow(() -> new IllegalStateException()).next();
+            //this check is to avoid problems when the user click on an answer after the timeout and before the screen update
+            if (this.startTime != 0) {
+                Optional.ofNullable(this.qController).orElseThrow(() -> new IllegalStateException()).next();
+            }
             CSSManager.addStyleClass("my-label-default", this.question);
         });
         new Thread(sleeper).start();

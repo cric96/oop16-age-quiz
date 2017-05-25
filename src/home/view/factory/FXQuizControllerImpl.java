@@ -1,5 +1,6 @@
 package home.view.factory;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -82,6 +83,7 @@ final class FXQuizControllerImpl implements FXQuizController {
 
     @Override
     public void setAnswers(final List<String> answers) {
+        Collections.shuffle(answers);
         Platform.runLater(() -> {
             this.answers.getChildren().clear();
             answers.forEach(y -> {

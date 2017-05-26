@@ -9,6 +9,7 @@ import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.BundleLanguageManager;
 import home.utility.Bundles;
+import home.view.fx.button.ButtonProfile;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -118,8 +119,34 @@ abstract class AbstractMenuDialog implements MenuDialog {
      * @param profiles 
      *          possible usable profiles
      */
-    protected abstract void setProfileButton(List<Profile> profiles);
-
+    protected final void setProfileButton(final List<Profile> profiles) {
+        profiles.forEach(profile -> {
+            final Button button = this.createButton(profile);
+            button.setPrefWidth(getButtonWidth());
+            this.getButtonList().add(button);
+            button.setOnMouseClicked(click -> {
+                ((ButtonProfile) button).select();
+                this.getButtonList().stream().filter(b -> !b.equals(button)).forEach(x -> ((ButtonProfile) x).deselect());
+                onClickButton(profile);
+            });
+        });
+    }
+    //TEMPLATE-METHOD ## GUARDA RICHI
+    /**
+     * what to do when the button is clicked
+     * @param profile
+     *  the profile selected
+     */
+    protected abstract void onClickButton(Profile profile);
+    //TEMPLATE-METHOD ## GUARDA RICHI
+    /**
+     * what button the menu want to create
+     * @param profile
+     *  the profile of button
+     * @return
+     *  the button created
+     */
+    protected abstract Button createButton(Profile profile);
     /**
      * initialize the node under the profiles button.
      */

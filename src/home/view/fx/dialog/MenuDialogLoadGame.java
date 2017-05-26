@@ -6,7 +6,6 @@ import java.util.Optional;
 import home.controller.observer.MenuObserver;
 import home.controller.profile.Profile;
 import home.utility.view.FontManager;
-import home.view.fx.button.ButtonProfile;
 import home.view.fx.button.MenuButtonFactory;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -55,23 +54,15 @@ class MenuDialogLoadGame extends AbstractMenuDialog {
     }
 
     @Override
-    protected void setProfileButton(final List<Profile> profiles) {
-        profiles.forEach(profile -> {
-            final Button button = MenuButtonFactory.createProfileButtonLoadGame(profile);
-            button.setPrefWidth(super.getButtonWidth());
-            this.getButtonList().add(button);
-            button.setOnMouseClicked(click -> {
-                ((ButtonProfile) button).select();
-                this.getButtonList().stream().filter(b -> !b.equals(button)).forEach(x -> ((ButtonProfile) x).deselect());
-                onProfileAction(profile);
-            });
-        });
-    }
-
-    private void onProfileAction(final Profile profile) {
+    protected void onClickButton(final Profile profile) {
         this.date.setText(profile.getSaveDate());
         this.setSelectedProfile(profile);
         final ButtonType btype = new ButtonType(this.getButtonText().getString("LOAD"));
         this.getAlert().getButtonTypes().setAll(btype);
+    }
+
+    @Override
+    protected Button createButton(final Profile profile) {
+        return MenuButtonFactory.createProfileButtonLoadGame(profile);
     }
 }

@@ -17,18 +17,18 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
     private static final int FIRST_AGE = 0;
     private final BuildingType type;
     private Level.Building level;
-    private final AgeChangeBuildingStrategy strategy;
+    private final AgeChangeBuildingStrategy.Type strategy;
     //i can't use Optional<Kingdom> because it can't be saved
     private Kingdom parent;
     private boolean enable;
-    BuildingImpl(final Level.Building level, final BuildingType type) {
+    BuildingImpl(final Level.Building level, final BuildingType type, final AgeChangeBuildingStrategy.Type strat) {
         if (Utility.checkNullOb(level, type)) {
             throw new IllegalArgumentException();
         }
         this.type = type;
         this.level = level;
         this.enable = type.getAgeEnable() == AgeType.values()[FIRST_AGE];
-        this.strategy = AgeChangeBuildingStrategy.createBasic();
+        this.strategy = strat;
     }
 
     @Override
@@ -88,7 +88,8 @@ final class BuildingImpl extends AbstractComposite implements BuildingOfKingdom,
             if (this.isEnable()) {
                 this.getComponents().forEach(x -> x.update((Event.Age<?>) event));
             }
-            final Optional<Level.Building> next = this.strategy.onAgeChange(Event.Age.class.cast(event), this.type.getAgeEnable(), this.level);
+            final AgeChangeBuildingStrategy strat = AgeChangeBuildingStrategy.createStrategy(this.strategy, this.type);
+            final Optional<Level.Building> next = strat.onAgeChange(Event.Age.class.cast(event), this.type.getAgeEnable(), this.level);
             if (next.isPresent()) {
                 this.level = next.get();
                 this.enable = true;

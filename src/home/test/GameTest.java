@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -89,12 +88,11 @@ public class GameTest {
         try {
             final Set<Pair<Building, Boolean>> buildings = kingAfterSave.getComponents(Building.class);
             final Building building = this.getBuildingWithName(buildings, BUILDING_TEST);
-            assertSame(building.getLevel().getIncrementalLevel(), 2);
-            assertSame(kingAfterSave.getStatusStatistic().get(StatusName.HEALTH), MAX_STATUS);
+            assertEquals(building.getLevel().getIncrementalLevel(), 2);
+            assertEquals(kingAfterSave.getStatusStatistic().get(StatusName.HEALTH), Integer.valueOf(MAX_STATUS));
         } catch (Exception exc) {
             fail();
         }
-        FILE_NAME.delete();
     }
     /**
      * check if the component of building remain the same.
@@ -163,20 +161,20 @@ public class GameTest {
         //now i can go on the next age
         assertTrue(king.canUpgradeAge());
         king.nextAge();
-        assertSame(king.getExperienceAmount(), 0);
+        assertEquals(king.getExperienceAmount(), 0);
         //if i go in the next age the incremental value must be change
         assertNotSame(king.getAge().getIncrementalLevel(), 0);
-        assertSame(king.getAge().getIncrementalLevel(), 2);
+        assertEquals(king.getAge().getIncrementalLevel(), 2);
         //at the beginning all stats are equal to zero
-        king.getStatusStatistic().forEach((x, y) -> assertSame(y, 0));
+        king.getStatusStatistic().forEach((x, y) -> assertEquals(y, Integer.valueOf(0)));
         king.changeStatus(StatusName.HAPPINESS, MAX_STATUS);
         king.getStatusStatistic().forEach((x, y) -> {
             if (x == StatusName.HAPPINESS) {
-                assertSame(y, 100);
+                assertEquals(y, Integer.valueOf(100));
             }
         });
         king.changeStatus(StatusName.HAPPINESS, -MAX_STATUS);
-        king.getStatusStatistic().forEach((x, y) -> assertSame(y, 0));
+        king.getStatusStatistic().forEach((x, y) -> assertEquals(y, Integer.valueOf(0)));
         king.addExperience(EXPERIENCE * EXPERIENCE);
         //try if there are some bugs in age
         while (king.getAge().isUpgradable()) {

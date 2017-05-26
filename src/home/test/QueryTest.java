@@ -1,7 +1,7 @@
 package home.test;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -99,8 +99,8 @@ public class QueryTest {
                 .build());
         assertNotNull(queryList.get(QUESTION2).getCategory());
         assertFalse(queryList.get(QUESTION2).isAnswerCorrect(ANSWER));
-        assertSame(queryList.get(QUESTION2).getAnswers().size(), 2);
-        assertSame(queryList.get(QUESTION1).getQuestion(), QUESTION);
+        assertEquals(Integer.valueOf(queryList.get(QUESTION2).getAnswers().size()), Integer.valueOf(2));
+        assertEquals(queryList.get(QUESTION1).getQuestion(), QUESTION);
         try {
             queryList.get(QUESTION1).getAnswers().add(ANSWER_2);
             fail();

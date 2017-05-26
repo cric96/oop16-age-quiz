@@ -87,7 +87,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
         }
         public void run() {
             final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(ERROR);
-            while (this.time >= 0) {
+            while (this.time > 0) {
                 QuizObserverImpl.this.views.forEach(x -> x.showTime(time));
                 this.time--;
                 try {
@@ -96,6 +96,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
                     QuizObserverImpl.this.showMessageInViews(error, MessageType.ERROR);
                 }
             }
+            QuizObserverImpl.this.views.forEach(x -> x.showTime(time));
             final QuizGame quiz = QuizObserverImpl.this.currentQuiz;
             quiz.setFinished();
             QuizObserverImpl.this.views.forEach(x -> x.showFinalScore(quiz.getXP(), 

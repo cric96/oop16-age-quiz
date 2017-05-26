@@ -137,7 +137,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements
     }
     private void close() {
         System.out.println(ERROR);
-        System.exit(0);
+        throw new RuntimeException();
     }
     private WorldObserver getCurrentController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());

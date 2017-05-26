@@ -1,5 +1,6 @@
 package home.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
@@ -18,7 +19,7 @@ import home.model.quiz.QuizGameFactory;
  *
  */
 public class QuizTest {
-    private static final int INITIAL_VALUE = 0;
+    private static final Integer INITIAL_VALUE = 0;
     private static final String ANSWER = "I don't know why";
     /**
      * 
@@ -27,8 +28,8 @@ public class QuizTest {
     public void simpleTest() {
         InitializeLanguage.initialize();
         final QuizGame quizGame = QuizGameFactory.createQuizGameAdvanced(Category.LIBERAL_ARTS, Level.Building.createBuildingLevel());
-        assertSame(quizGame.getXP(), INITIAL_VALUE);
-        quizGame.getStatusScore().forEach((x, y) -> assertSame(y, INITIAL_VALUE));
+        assertEquals(Integer.valueOf(quizGame.getXP()), INITIAL_VALUE);
+        quizGame.getStatusScore().forEach((x, y) -> assertEquals(y, INITIAL_VALUE));
         assertFalse(quizGame.isFinished());
         quizGame.showCurrentQuery();
         try {

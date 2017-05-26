@@ -1,17 +1,15 @@
 package home.model.building;
 
 import java.io.Serializable;
-
 import java.util.Optional;
 
 import home.model.composite.Event;
 import home.model.level.AgeType;
-
 import home.model.level.Level;
 /**
  * define what the building do when the age change.
  */
-public interface AgeChangeBuildingStrategy {
+public interface AgeChangeBuildingStrategy  {
     /**
      * what to do when the age change.
      * @param event
@@ -25,11 +23,15 @@ public interface AgeChangeBuildingStrategy {
      */
     Optional<Level.Building> onAgeChange(Event.Age<?> event, AgeType age, Level.Building current);
     /**
-     * create a simple age up strategy.
+     * 
+     * @param type
+     *  the type of strategy
+     * @param building
+     *  the name of building
      * @return
      *  the strategy created
      */
-    static AgeChangeBuildingStrategy createBasic() {
+    static AgeChangeBuildingStrategy createStrategy(Type type, BuildingType building) {
         return (AgeChangeBuildingStrategy & Serializable) (e, a, l) -> {
             if (e.currentAge().ordinal() >= a.ordinal()) {
                 return l.maxiumLevelchanged(l.getReachMaximumLevel() + 1);
@@ -37,5 +39,14 @@ public interface AgeChangeBuildingStrategy {
                 return Optional.empty();
             }
         };
+    }
+    /**
+     * the type of strategy.
+     */
+     enum Type {
+        /**
+         * simple strategy
+         */
+        SIMPLE;
     }
 }

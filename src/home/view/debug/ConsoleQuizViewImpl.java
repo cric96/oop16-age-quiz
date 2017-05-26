@@ -38,7 +38,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizObserver> implements Q
             //IF IS NOT FINISH THERE IS SOME ERROR..
             if (!finish) {
                 System.out.println("ERROR IN SELECTION! THE APPLICATION SHUTDOWN..");
-                System.exit(0);
+                throw new RuntimeException();
             }
         } catch (IOException e) { 
             System.out.println("END TO READ QUESTION...");

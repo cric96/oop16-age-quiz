@@ -1,5 +1,8 @@
 package home.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import home.model.Game;
@@ -18,13 +21,13 @@ public class ImageTest {
     @Test
     public void basicTest() {
         final ImageComponent component = ImageComponent.createComponent(BuildingType.ACADEMY.name());
-        System.out.println(component.getPath());
         Game.getGame().newGame(AgeUpKingdomStrategy.Type.SIMPLE);
         final Kingdom king = Game.getGame().getCurrentKingdom();
         component.attachOn(king);
         king.addComponent(component);
         king.addExperience(EXPERIENCE);
         king.nextAge();
-        System.out.println(component.getPath());
+        assertTrue(component.getPath().contains("1"));
+        assertEquals(component.getParent().get(), king);
     }
 }

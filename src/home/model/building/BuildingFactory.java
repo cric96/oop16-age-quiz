@@ -29,7 +29,7 @@ public final class BuildingFactory {
      *  the building created
      */
     public BuildingOfKingdom createSimpleBuilding(final BuildingType name) {
-        return new BuildingImpl(Level.Building.createBuildingLevel(), name);
+        return new BuildingImpl(Level.Building.createBuildingLevel(), name, AgeChangeBuildingStrategy.Type.SIMPLE);
     }
     /**
      * create all type of building.
@@ -51,7 +51,7 @@ public final class BuildingFactory {
      *  the building created
      */
     public BuildingOfKingdom createAdvanceBuilding(final BuildingType name, final Level.Building level) {
-        final BuildingOfKingdom building = new BuildingImpl(level, name);
+        final BuildingOfKingdom building = new BuildingImpl(level, name, AgeChangeBuildingStrategy.Type.SIMPLE);
         Component.compositeAttach(building, ImageComponent.createComponent(name.name()));
         return building;
     }

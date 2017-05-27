@@ -51,7 +51,12 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
     }
     @Override
     public void hitAnswer(final String answer) {
-        this.currentQuiz.hitAnswer(answer);
+        final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(FINISH_ERROR);
+        try {
+            this.currentQuiz.hitAnswer(answer);
+        } catch (NoSuchElementException exc) {
+            this.showMessageInViews(error, MessageType.ALERT);
+        }
         this.views.forEach(x -> x.isCorrect(this.currentQuiz.isAnswerCorrect()));
     }
 
@@ -74,7 +79,7 @@ final class QuizObserverImpl extends AbstractObserver implements QuizObserver {
             this.currentQuiz.next();
             this.updateQuery();
         } catch (NoSuchElementException exc) {
-            this.showMessageInViews(error, MessageType.ERROR);
+            this.showMessageInViews(error, MessageType.ALERT);
         }
     }
 

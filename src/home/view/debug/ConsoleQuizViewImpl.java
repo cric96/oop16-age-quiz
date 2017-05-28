@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.IntStream;
 
-import home.controller.QuizController;
+import home.controller.observer.QuizObserver;
 import home.view.quiz.QuizView;
 
-class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements QuizView {
+class ConsoleQuizViewImpl extends AbstractConsoleView<QuizObserver> implements QuizView {
     private String question;
     private List<String> answers;
     private BufferedReader scan;
@@ -38,7 +38,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
             //IF IS NOT FINISH THERE IS SOME ERROR..
             if (!finish) {
                 System.out.println("ERROR IN SELECTION! THE APPLICATION SHUTDOWN..");
-                System.exit(0);
+                throw new RuntimeException();
             }
         } catch (IOException e) { 
             System.out.println("END TO READ QUESTION...");
@@ -71,8 +71,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
         try {
             System.in.read();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("ERROR");
         }
         finish = true;
         this.getInternalController().quizFinished();
@@ -93,7 +92,7 @@ class ConsoleQuizViewImpl extends AbstractConsoleView<QuizController> implements
         }
     }
 
-    private QuizController getInternalController() {
+    private QuizObserver getInternalController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());
     }
 

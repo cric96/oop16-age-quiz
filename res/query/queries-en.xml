@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <category name="SCIENCE">
+    <level number="1">
+      <query>
+        <text>In a rectangular triangle, if the two catheters measure 3 and 4 cm respectively, what is the hypotenuse measure?</text>
+        <answer>7 cm</answer>
+        <answer correct="true">0.5 dm</answer>
+        <answer>5 mm</answer>
+        <answer>12 cm</answer>
+      </query>
+      <query>
+        <text>What is the chemical formula of sodium chloride?</text>
+        <answer>Na2Cl3</answer>
+        <answer correct="true">NaCl</answer>
+        <answer>SoCl</answer>
+        <answer>ClSo</answer>
+      </query>
+      <query>
+        <text>The blue whalebird is an animal?</text>
+        <answer>oviparo</answer>
+        <answer correct="true">mammal</answer>
+      </query>
+      <query>
+        <text>Is the square also a parallelogram?</text>
+        <answer correct="true">yes</answer>
+        <answer>no</answer>
+      </query>
+    </level>
+    <level number="2">
+      <query>
+        <text>When two ocean plates collide, which one of them descends into subduction?</text>
+        <answer>the latest</answer>
+        <answer>the oldest</answer>
+        <answer correct="true">the densest</answer>
+        <answer>the least dense</answer>
+      </query>
+      <query>
+        <text>What is the derivative before sin (x)?</text>
+        <answer correct="true">cos (x)</answer>
+        <answer>-cos(x)</answer>
+        <answer>-sin(x)</answer>
+        <answer>tan(x)</answer>
+      </query>
+      <query>
+        <text>What is the cytosine?</text>
+        <answer>a protein</answer>
+        <answer>an amino acid</answer>
+        <answer correct="true">a nitrogen base</answer>
+        <answer>none of the previous</answer>
+      </query>
+      <query>
+        <text>Is the passage of water from solid to gaseous state is said?</text>
+        <answer>vaporization</answer>
+        <answer correct="true">sublimation</answer>
+        <answer>brine</answer>
+        <answer>condensation</answer>
+      </query>
+    </level>
+    <level number="3">
+      <query>
+        <text>The aqueous/gelatinous substance that fills the inside of the cell is called?</text>
+        <answer>vacuolo</answer>
+        <answer correct="true">cytoplasm</answer>
+        <answer>endoplasma</answer>
+      </query>
+    </level>
+    <level number="4">
+      <query>
+        <text>When two triangles are generally said to be similar?</text>
+        <answer>when they have sides of two to two equal</answer>
+        <answer>when they are symmetrical</answer>
+        <answer correct="true">when they have the angles neatly equal and the sides in proportion</answer>
+      </query>
+    </level>
+  </category>
+  <category name="LIBERAL_ARTS">
+    <level number="1">
+      <query>
+        <text>How many musical notes are there?</text>
+        <answer>5</answer>
+        <answer>6</answer>
+        <answer correct="true">7</answer>
+        <answer>9</answer>
+      </query>
+      <query>
+        <text>What disease died of Freddie Mercury?</text>
+        <answer>cold</answer>
+        <answer correct="true">bronchopneumonia</answer>
+        <answer>pertosse</answer>
+        <answer>morbillo</answer>
+      </query>
+      <query>
+        <text>What is the name of Quasimodo Hermetic poet?</text>
+        <answer>Gobbo</answer>
+        <answer>Fosco</answer>
+        <answer>Giuseppe</answer>
+        <answer correct="true">Salvatore</answer>
+      </query>
+      <query>
+        <text>Which of these artists is considered the father of Impressionism?</text>
+        <answer>Manet</answer>
+        <answer>Picasso</answer>
+        <answer correct="true">Monet</answer>
+        <answer>Giotto</answer>
+      </query>
+    </level>
+    <level number="2">
+      <query>
+        <text>Which of these is a work by René Magritte?</text>
+        <answer correct="true">The trahison des images (ceci n 'est after a pipe.)</answer>
+        <answer>The persistence of memory</answer>
+        <answer>La danse</answer>
+        <answer>Notte stellata</answer>
+      </query>
+      <query>
+        <text>Who was one of the major exponents of Italian decadentism?</text>
+        <answer>Giacomo Leopardi</answer>
+        <answer correct="true">Luigi Pirandello</answer>
+        <answer>Ugo Foscolo</answer>
+        <answer>Giuseppe Parini</answer>
+      </query>
+      <query>
+        <text>Where did the Italian poet Dante Alighieri die?</text>
+        <answer>Firenze</answer>
+        <answer correct="true">Ravenna</answer>
+        <answer>where he was born</answer>
+        <answer>still alive</answer>
+      </query>
+      <query>
+        <text>Who wrote the Decameron?</text>
+        <answer>Pier Paolo Pasolini</answer>
+        <answer>Dante Alighieri</answer>
+        <answer correct="true">Giovanni Boccaccio</answer>
+        <answer>Francesco Petrarca</answer>
+      </query>
+    </level>
+    <level number="3">
+      <query>
+        <text>The Carolingian Cycle is centered on the figure of?</text>
+        <answer correct="true">Carlo Magno</answer>
+        <answer>Carlo Martello</answer>
+        <answer>Carlomanno</answer>
+        <answer>Carlo III</answer>
+      </query>
+    </level>
+    <level number="4">
+      <query>
+        <text>What was the original name of the protagonists of the Promessi Sposi?</text>
+        <answer correct="true">Fermo e Lucia</answer>
+        <answer>Renzo e Lucia</answer>
+        <answer>Fermo e Gertrude</answer>
+      </query>
+    </level>
+  </category>
+  <category name="MANUFACTURING">
+    <level number="1">
+      <query>
+        <text>What does plastic make of?</text>
+        <answer>decomposition of marine animals</answer>
+        <answer correct="true">petroleum</answer>
+        <answer>gums</answer>
+        <answer>is a raw material</answer>
+      </query>
+      <query>
+        <text>What do you get from the paper?</text>
+        <answer correct="true">from tree cellulose</answer>
+        <answer>from tree bark</answer>
+        <answer>from petroleum-derived material</answer>
+      </query>
+      <query>
+        <text>Cotton is of origin?</text>
+        <answer>extraterrestrial</answer>
+        <answer correct="true">vegetable</answer>
+        <answer>animal</answer>
+        <answer>human</answer>
+      </query>
+      <query>
+        <text>Technology is the set of human abilities, means and materials for building artifacts?</text>
+        <answer correct="true">true</answer>
+        <answer>false</answer>
+      </query>
+    </level>
+    <level number="2">
+      <query>
+        <text>Which of the following is NOT a raw material?</text>
+        <answer>textile fibers</answer>
+        <answer>minerals</answer>
+        <answer correct="true">wood table</answer>
+        <answer>agricultural product</answer>
+      </query>
+      <query>
+        <text>By what copper properties do you produce very thin electrical wires?</text>
+        <answer>malleability</answer>
+        <answer>Stainlessity</answer>
+        <answer correct="true">Ductility</answer>
+        <answer>Lightness</answer>
+      </query>
+      <query>
+        <text>When does the felling of the trees preferably take place?</text>
+        <answer>in the summer</answer>
+        <answer correct="true">in winter</answer>
+        <answer>in the middle seasons</answer>
+      </query>
+      <query>
+        <text>What does the ductility mean for a material?</text>
+        <answer>l be cheap</answer>
+        <answer>the flexural strength</answer>
+        <answer>let it deform to cold or hot</answer>
+        <answer correct="true">let it be reduced to thin wires</answer>
+      </query>
+    </level>
+    <level number="3">
+      <query>
+        <text>In the past, what made the cellulose used to make paper?</text>
+        <answer>lino</answer>
+        <answer>hemp</answer>
+        <answer>cotton</answer>
+        <answer correct="true">all the previous</answer>
+      </query>
+    </level>
+    <level number="4">
+      <query>
+        <text>What is the raw material of the glass?</text>
+        <answer correct="true">quartzite</answer>
+        <answer>rock dolomite</answer>
+      </query>
+    </level>
+  </category>
+  <category name="MEDICINE">
+    <level number="1">
+      <query>
+        <text>Which of these bacteria causes salmonellosis?</text>
+        <answer>Streptococcus</answer>
+        <answer correct="true">Salmonella</answer>
+        <answer>Staphylococcus</answer>
+        <answer>Pneumococcus</answer>
+      </query>
+      <query>
+        <text>What is a vaccine?</text>
+        <answer>cow puppy</answer>
+        <answer correct="true">virally apatogenic viruses</answer>
+        <answer>bacteria that cause gastritis</answer>
+        <answer>dead epithelial cells</answer>
+      </query>
+      <query>
+        <text>What are the typical symptoms of the varicella?</text>
+        <answer>cough and diarrhea</answer>
+        <answer>skin rash</answer>
+        <answer correct="true">skin rash and fever</answer>
+        <answer>fever</answer>
+      </query>
+      <query>
+        <text>What is the active ingredient of Tachipirina?</text>
+        <answer>Betamethasone</answer>
+        <answer>Tachipirolo</answer>
+        <answer correct="true">Paracetamol</answer>
+        <answer>Ketoprofen</answer>
+      </query>
+    </level>
+    <level number="2">
+      <query>
+        <text>Which endocrine gland secretes GH (growth hormone)?</text>
+        <answer>ipotalamo</answer>
+        <answer correct="true">ipofisi</answer>
+        <answer>thyroid</answer>
+        <answer>testicles</answer>
+      </query>
+      <query>
+        <text>yellow fever is a disease?</text>
+        <answer>bacterial</answer>
+        <answer correct="true">acute viral</answer>
+        <answer>invented by Chinese historians</answer>
+      </query>
+      <query>
+        <text>What is the best known name for Hansen's disease?</text>
+        <answer>dysentery</answer>
+        <answer>colder</answer>
+        <answer correct="true">leprosy</answer>
+      </query>
+      <query>
+        <text>What is the sodium-potassium pump?</text>
+        <answer>simple sugar</answer>
+        <answer>protein</answer>
+        <answer correct="true">enzyme</answer>
+        <answer>gaseous molecule</answer>
+      </query>
+    </level>
+    <level number="3">
+      <query>
+        <text>What is an ischemic stroke?</text>
+        <answer>intracerebral hemorrhage</answer>
+        <answer>excess of blood flow to the brain</answer>
+        <answer correct="true">lack of blood flow to the brain</answer>
+      </query>
+    </level>
+    <level number="4">
+      <query>
+        <text>What is the gall bladder?</text>
+        <answer>a cyst that shines at a late age</answer>
+        <answer correct="true">organ in which bile is collected</answer>
+        <answer>a liver disease</answer>
+        <answer>the first cause of gallbladder problems</answer>
+      </query>
+    </level>
+  </category>
+  <category name="SPORT">
+    <level number="1">
+      <query>
+        <text>How many goals can be made, at most, in a football match?</text>
+        <answer correct="true">there isn't any theoretical limit</answer>
+        <answer>2</answer>
+        <answer>for at least 4</answer>
+        <answer>23</answer>
+      </query>
+      <query>
+        <text>Is basketball an Olympic discipline?</text>
+        <answer>no</answer>
+        <answer correct="true">Yes</answer>
+      </query>
+      <query>
+        <text>How often can you repeat the beat in tennis?</text>
+        <answer>can not be repeated</answer>
+        <answer correct="true">once</answer>
+        <answer>twice</answer>
+        <answer>as long as the ball is not valid</answer>
+      </query>
+      <query>
+        <text>What is the highest category of circuit racing?</text>
+        <answer correct="true">MotoGP</answer>
+        <answer>Motocross</answer>
+        <answer>Formula1</answer>
+        <answer>Formula2</answer>
+      </query>
+    </level>
+    <level number="2">
+      <query>
+        <text>Did the tour de France take place for the first time in?</text>
+        <answer>1958</answer>
+        <answer>1899</answer>
+        <answer correct="true">1903</answer>
+        <answer>1907</answer>
+      </query>
+      <query>
+        <text>What can be in a boxing bag?</text>
+        <answer>water</answer>
+        <answer>sand</answer>
+        <answer>cotton</answer>
+        <answer correct="true">all the previous</answer>
+      </query>
+      <query>
+        <text>What is the category of horseback in Handicap?</text>
+        <answer>run to trot</answer>
+        <answer correct="true">racing to gallop</answer>
+      </query>
+      <query>
+        <text>What is the Jeet Kune Do?</text>
+        <answer>Chinese national sport</answer>
+        <answer correct="true">martial art designed by Bruce Lee</answer>
+        <answer>Russian martial art</answer>
+        <answer>a particular type of Caribbean dance</answer>
+        <answer>an Olympic sport of doubtful origin</answer>
+      </query>
+    </level>
+    <level number="3">
+      <query>
+        <text>What is the current world record for the 100 m male planes?</text>
+        <answer>10"49</answer>
+        <answer>8"78</answer>
+        <answer correct="true">9"58</answer>
+        <answer>9"03</answer>
+      </query>
+    </level>
+    <level number="4">
+      <query>
+        <text>How many points are awarded for a free throw basket?</text>
+        <answer>2</answer>
+        <answer>0</answer>
+        <answer correct="true">1</answer>
+      </query>
+    </level>
+  </category>
+</quiz>

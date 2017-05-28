@@ -42,8 +42,16 @@ public enum Images {
     /**
      * X exit.
      */
-    X_CROSS("/images/cros.pngs");
+    X_CROSS("/images/cros.png"),
 
+    /**
+     * 
+     */
+    CLOUD_PANE("/images/cloud.png"),
+    /**
+     * 
+     */
+    SPLASH_SCREEN("/images/splashscreen.png");
     private String path;
 
     Images(final String path) {

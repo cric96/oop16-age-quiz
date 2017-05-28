@@ -8,28 +8,34 @@ import java.util.Set;
 public interface Query {
     /**
      * This method push out question to be done.
-     * @return String representing the current question.
+     * @return 
+     *  String representing the current question.
      */
     String getQuestion();
     /**
      * We have a set of answers for each query, only one of these will be correct.
-     * @return Set<String>, every String is an answer for the current query.
+     * @return 
+     *  Set of String, every String is an answer for the current query.
      */
     Set<String> getAnswers();
     /**
      * 
      * @param answer 
-     * @return true if the answer passed is correct, false otherwise.
+     *  the answer to be checked
+     * @return 
+     *  true if the answer passed is correct, false otherwise.
      */
     boolean isAnswerCorrect(String answer);
     /**
      * 
-     * @return an incremental int depending on the difficulty of the query.
+     * @return
+     *  an incremental int depending on the difficulty of the query.
      */
     int getDifficulty();
     /**
      * it shows what is the Category for this query.
-     * @return Category.
+     * @return 
+     *  the Category.
      */
     Category getCategory();
 /**
@@ -41,34 +47,46 @@ public interface Query {
         }
         /** 
          * @param question
-         * @return Builder, using the fluent interface.
+         *  what is the question to ba add to the current query.
+         * @return 
+         *  Builder using the fluent interface.
          */
         Builder addQuestion(String question);
         /** 
-         * @param answers
-         * @return Builder, using the fluent interface.
+         * @param answer
+         *  the answer to be add.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addAnswer(String answer);
         /** 
          * @param correctAnswer
-         * @return Builder, using the fluent interface.
+         *  the correctAnswer, that must be between the other answers.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addCorrectAnswer(String correctAnswer);
         /** 
          * @param category
-         * @return Builder, using the fluent interface.
+         *  the Category of the current query.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addCategory(Category category);
         /** 
          * @param difficulty
-         * @return Builder, using the fluent interface.
+         *  the level of the quiz, an incremental value.
+         * @return 
+         *  Builder, using the fluent interface.
          */
         Builder addDifficulty(int difficulty);
         /** 
-         * @throws IllegalStateException if any previous method hasn't been called
-         * @return QueryImpl.
+         * @throws IllegalStateException 
+         *  if any previous method hasn't been called
+         * @return 
+         *  Query.
          */
-        QueryImpl build();
+        Query build();
     }
 
 }

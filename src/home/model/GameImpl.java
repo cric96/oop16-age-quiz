@@ -1,22 +1,21 @@
 package home.model;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
 import java.util.Optional;
 import java.util.Set;
 
+import home.model.building.Building;
 import home.model.building.BuildingFactory;
+import home.model.building.BuildingOfKingdom;
 import home.model.building.BuildingType;
-import home.model.building.ImmutableAgeBuilding;
 import home.model.composite.Component;
+import home.model.composite.Composite;
 import home.model.image.ImageComponent;
+import home.model.kingdom.AgeUpKingdomStrategy;
+import home.model.kingdom.Kingdom;
+import home.model.kingdom.KingdomBuilder;
 import home.model.level.Level;
 import home.model.quiz.QuizGame;
 import home.model.quiz.QuizGameFactory;
@@ -38,16 +37,14 @@ final class GameImpl implements Game {
     }
     @Override
     public void save(final File save) throws FileNotFoundException, IOException {
-        final ObjectOutput out = new ObjectOutputStream(new FileOutputStream(save));
-        out.writeObject(this.currentKingdom.orElseThrow(() -> new IllegalStateException()));
-        out.close();
+        //Serializer.createSimple(save).save(this.getCurrentKingdom());
+        Kingdom.createSerializer(save).save(this.getCurrentKingdom());
     }
 
     @Override
     public void load(final File load) throws FileNotFoundException, IOException, ClassNotFoundException {
-        final ObjectInput in = new ObjectInputStream(new FileInputStream(load));
-        this.currentKingdom = Optional.of((Kingdom) in.readObject());
-        in.close();
+        //this.currentKingdom = Optional.of(Serializer.<Kingdom>createSimple(load).load());
+        this.currentKingdom = Optional.of(Kingdom.createSerializer(load).load());
     }
 
     @Override
@@ -56,13 +53,18 @@ final class GameImpl implements Game {
     }
 
     @Override
-    public void newGame() {
-        final Kingdom current = new KingdomImpl(Status.createStatuses(), Level.Age.createAgeLevel(), AgeUpStrategy.createSimple());
-        BuildingFactory.get().createAllBuilding().forEach(x -> {
-            Component.compositeAttach(current, x);
-        });
-        Component.compositeAttach(current, ImageComponent.createComponent(KINGDOM_NAME));
-        this.currentKingdom = Optional.of(current);
+    public void newGame(final AgeUpKingdomStrategy.Type kingdomStrategy) {
+        final Set<BuildingOfKingdom> buildings = BuildingFactory.get().createAllBuilding();
+        final Set<Status> statuses = Status.createStatuses();
+        final Component<Composite> image = ImageComponent.createComponent(KINGDOM_NAME);
+        final KingdomBuilder builder = KingdomBuilder.createBuilder();
+        statuses.forEach(x -> builder.addStatus(x));
+        buildings.forEach(x -> builder.addComponent(x));
+        builder.addComponent(image);
+        builder.setExperience(0);
+        builder.setAge(Level.Age.createAgeLevel());
+        builder.addStrategy(kingdomStrategy);
+        this.currentKingdom = Optional.of(builder.build());
     }
     @Override
     public Optional<QuizGame> getCurrentQuiz() {
@@ -71,8 +73,8 @@ final class GameImpl implements Game {
     @Override
     public void createQuiz(final BuildingType building) {
         final Kingdom current = this.getCurrentKingdom();
-        final Set<Pair<ImmutableAgeBuilding.Container, Boolean>> buildings = current.getComponents(ImmutableAgeBuilding.Container.class);
-        final ImmutableAgeBuilding selectedBuilding = buildings.stream().filter(x -> x.getX().getName() == building)
+        final Set<Pair<Building.Container, Boolean>> buildings = current.getComponents(Building.Container.class);
+        final Building selectedBuilding = buildings.stream().filter(x -> x.getX().getName() == building)
                                                                         .filter(x -> x.getY())
                                                                         .findFirst().orElseThrow(() -> new IllegalStateException())
                                                                         .getX();
@@ -87,5 +89,4 @@ final class GameImpl implements Game {
         this.getCurrentKingdom().addExperience(quiz.getXP());
         quiz.getStatusScore().forEach((x, y) -> this.getCurrentKingdom().changeStatus(x, y));
     }
-
 }

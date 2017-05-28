@@ -1,5 +1,7 @@
 package home.model.image;
 
+import java.util.Objects;
+
 import home.model.composite.AbstractComponent;
 import home.model.composite.Composite;
 import home.model.composite.Event;
@@ -16,6 +18,7 @@ final class ImageComponentImpl extends AbstractComponent<Composite> implements I
     private final String name;
     private int currentImage;
     ImageComponentImpl(final String name) {
+        Objects.requireNonNull(name);
         this.name = name;
         this.currentImage = 0;
     }

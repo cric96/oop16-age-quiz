@@ -2,11 +2,11 @@ package home.controller.profile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 /**
- * a box that contains all type of profile.
- * a user can select one and it can played with it
+ * a box that contains all type of profiles.
+ * a user can select one and it can play with it
  */
 public interface ProfileBox {
     /**
@@ -17,7 +17,7 @@ public interface ProfileBox {
         return ProfileBoxImpl.get();
     }
     /**
-     * save the box contains the profile.
+     * save the box that contains the profiles.
      * @throws IOException
      *  if the file name is illegal
      * @throws IllegalStateException
@@ -25,7 +25,7 @@ public interface ProfileBox {
      */
     void save() throws IOException;
     /**
-     * load the box contains the profile.
+     * load the box contains the profiles.
      * @throws IOException
      *  if the file name is illegal
      * @throws IllegalStateException
@@ -39,7 +39,7 @@ public interface ProfileBox {
      * @return
      *  all profile associated with this box
      */
-    Set<Profile> getProfile();
+    List<Profile> getProfile();
     /**
      * 
      * @param file
@@ -47,7 +47,7 @@ public interface ProfileBox {
      */
     void setFile(File file);
     /**
-     * Select a profile to start the game.
+     * select a profile to start the game.
      * @param profile
      *  the profile selected
      * @throws IllegalArgumentException 
@@ -56,7 +56,7 @@ public interface ProfileBox {
     void select(Profile profile);
     /**
      * @return
-     *  Optional.of profile if is select someone empty otherwise
+     *  Optional.of profile if is selected someone, empty otherwise
      */
     Optional<Profile> getSelected();
 }

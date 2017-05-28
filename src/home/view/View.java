@@ -1,14 +1,15 @@
 package home.view;
 
-import home.controller.Controller;
+import home.controller.observer.Observer;
 
 
 /**
  * Generic View Interface.
  *
  * @param <E>
+ *  the type of the observer
  */
-public interface View <E extends Controller> {
+public interface View <E extends Observer> {
     /**
      * method used to attach a view to a specific controller.
      * 

@@ -6,12 +6,14 @@ import java.io.IOException;
 import java.util.Optional;
 
 import home.model.building.BuildingType;
+import home.model.kingdom.AgeUpKingdomStrategy;
+import home.model.kingdom.Kingdom;
 import home.model.quiz.QuizGame;
 
 /**
- * define a session of game.
- * this interface be interested in maintain a unique instance of Kingdom
- * 
+ * define a session of the game.
+ * this interface is done to maintain a unique instance of the Kingdom
+ * during a game session.
  */
 public interface Game {
     /**
@@ -24,14 +26,18 @@ public interface Game {
     }
     /**
      * create a new game.
+     * @param type
+     *  the type of strategy used by the kingdom
      */
-    void newGame();
+    void newGame(AgeUpKingdomStrategy.Type type);
     /**
      * save the current game.
      * @param  save
      *  where put my current kingdom
      * @throws IOException 
+     *  if there is some error to load the file
      * @throws FileNotFoundException 
+     *  if there is some error to find file
      */
     void save(File save) throws FileNotFoundException, IOException;
     /**
@@ -39,8 +45,11 @@ public interface Game {
      * @param load
      *  what to load
      * @throws IOException 
+     *  if there is some error to load the file
      * @throws FileNotFoundException 
+     *  if there is some error to find the file
      * @throws ClassNotFoundException 
+     *  if there is some error to cast the object in the file
      */
     void load(File load) throws FileNotFoundException, IOException, ClassNotFoundException;
     /**
@@ -51,9 +60,10 @@ public interface Game {
     Kingdom getCurrentKingdom();
     /**
      * @return
-     *  optional.empty if there aren't no quiz , Optional.of if there is
-     *  a quiz play and it's not finish
-     * @throws IllegalStateException if there isn't kingdom created
+     *  optional.empty if there are no more quiz , Optional.of if there is
+     *  an active quiz and it's not been finished yet
+     * @throws IllegalStateException 
+     *  if there isn't kingdom created
      */
     Optional<QuizGame> getCurrentQuiz();
     /**
@@ -64,7 +74,8 @@ public interface Game {
     void createQuiz(BuildingType building);
     /**
      * end the current quiz and modify the status of kingdom.
-     * @throws IllegalStateException if there isn't no quiz or if the quiz isn't finished
+     * @throws IllegalStateException 
+     *  if there isn't no quiz or if the quiz isn't finished
      */
     void endCurrentQuiz();
 }

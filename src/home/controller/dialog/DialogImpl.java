@@ -5,7 +5,7 @@ import java.util.Objects;
 import home.utility.Utility;
 
 //package-protected
-class DialogImpl implements Dialog {
+final class DialogImpl implements Dialog {
     private final String name;
     private final int level;
     private final int experience;

@@ -9,10 +9,11 @@ import home.model.status.StatusName;
 
 /**
  * Models what Category means in a video game and what status it influences.
+ *  Every category influences some status.
  */
 public enum Category {
     /**
-     * Every category influences some status.
+     *
      */
     SCIENCE(StatusName.KNOWLEDGE), 
     /**
@@ -41,5 +42,4 @@ public enum Category {
     public Set<StatusName> getStatusNames() {
         return Collections.unmodifiableSet(this.influencingStatus);
     }
-
 }

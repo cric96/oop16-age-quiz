@@ -3,13 +3,13 @@ package home.model.composite;
 import java.util.Optional;
 
 /**
- * a component attach on an object.
+ * a component attached on an object.
  * @param <E> the parent type of component
 */
 public interface Component <E> {
     /**
      * @return
-     *  the type of component or what the component wrap
+     *  the type of component or what the component wraps
      */
     Class<?> getType();
     /**
@@ -19,16 +19,18 @@ public interface Component <E> {
      */
     Optional<E> getParent();
     /**
-     * attach the component in a parent.
+     * attach the component on a parent.
      * @param parent
-     *  the parent where the component is attach
+     *  the parent on which the component is attached
      */
     void attachOn(E parent);
     /**
-     * the composite send a message on all of its components.
-     * if the source of event is invalid throws @IllegalSourceException
+     * the composite sends a message to all of its components.
+     * if the source of the event is invalid throws @IllegalSourceException
      * @param event
-     *  the event of what i want
+     *  the event of what I want
+     * @throws IllegalStateException 
+     *  if the component has already a parent
      */
     void update(Event<?> event);
     /**

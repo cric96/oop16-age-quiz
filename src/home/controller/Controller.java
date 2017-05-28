@@ -1,8 +1,9 @@
 package home.controller;
-import home.view.View;
 import java.util.Set;
+
+import home.view.View;
 /**
- * A generic controller where you can attach all type of views.
+ * A generic controller on which you can attach all type of views.
 */
 public interface Controller {
     /**
@@ -10,10 +11,9 @@ public interface Controller {
      * @return
      *  the views.
      */
-    Set<View<?>> getViews();
-    /**
-     * when the controller is switched check if the model
-     * is changed and notify to his own views.
+    Set<? extends View<?>> getViews();
+    /** 
+     * check if the model is changed and notify the changes to the views.
      */
     void checkUpdate();
 }

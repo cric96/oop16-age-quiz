@@ -23,22 +23,7 @@ public interface Pair<X, Y> {
      *  the pair created
      */
     static <Z, U> Pair<Z, U>createPair(final Z first, final U second) {
-        return new Pair<Z, U>() {
-            @Override
-            public Z getX() {
-                return first;
-            }
-
-            @Override
-            public U getY() {
-                return second;
-            }
-
-            @Override
-            public String toString() {
-                return "[" + first.toString() + " - " + second.toString() + "]";
-            }
-        };
+        return new PairImpl<Z, U>(first, second);
     }
     /**
      * @return

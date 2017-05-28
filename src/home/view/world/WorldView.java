@@ -1,9 +1,10 @@
 package home.view.world;
 
 import java.util.Map;
+import java.util.Optional;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
@@ -12,7 +13,7 @@ import home.view.View;
 /**
  * Specification of View used to implement a generic WordView.
  */
-public interface WorldView extends View<WorldController> {
+public interface WorldView extends View<WorldObserver> {
 
     /**
      * update the actual Era.
@@ -23,7 +24,7 @@ public interface WorldView extends View<WorldController> {
     void updateEra(Map<BuildingType, Pair<ImageInfo, Boolean>> buildings, ImageInfo kingdom);
 
     /**
-     * change the graphics Era of the word.
+     * change tchangeExèhe graphics Era of the word.
      * 
      * @param era era.
      */
@@ -48,9 +49,9 @@ public interface WorldView extends View<WorldController> {
      * 
      * @param building type.
      * @param dialog
-     *  the dialog of building selected
+     *  the dialog of building selected empty if the building is not present
      */
-    void showBuildingDialog(BuildingType building, Dialog dialog);
+    void showBuildingDialog(BuildingType building, Optional<Dialog> dialog);
 
     /**
      * show dialog from the castle.

@@ -5,7 +5,7 @@ import java.util.Set;
 import home.utility.Pair;
 
 /**
- * a container of component objects.
+ * Component container.
  */
 public interface Composite {
     /**
@@ -15,17 +15,18 @@ public interface Composite {
      * @param <Y> 
      *  the type of interface
      * @return
-     *  a Set of component with type selected and a boolean that specify if a component is enable or not
+     *  a Set of components with selected type and a boolean that specify if a component is enabled or not
      */
     <Y> Set<Pair<Y, Boolean>> getComponents(Class<Y> type);
     /**
-     * get all component attach on this composite.
+     * get all the components attached on this composite.
      * @return
      *  the set of component
      */
     Set<Component<?>> getComponents();
     /**
-     * add a component in the kingdom.
+     * add a component in the composite.
+     * you can add only if it is already attach otherwise @throws IllegalStateException
      * @param component
      *  the component that i want to add
      */

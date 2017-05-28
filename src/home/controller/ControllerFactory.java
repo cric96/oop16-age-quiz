@@ -1,6 +1,7 @@
 package home.controller;
 
-import java.util.Objects;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import home.view.menu.MenuView;
 import home.view.quiz.QuizView;
@@ -11,6 +12,7 @@ import home.view.world.WorldView;
  */
 public final class ControllerFactory {
     private static final ControllerFactory SINGLETON = new ControllerFactory();
+    private ControllerFactory() { }
     /**
      * 
      * @return
@@ -26,8 +28,9 @@ public final class ControllerFactory {
      * @return
      *  the controller created
      */
-    public MenuController createMenuController(final MenuView ... views) {
-        return new MenuControllerImpl(views);
+    public Controller createMenuController(final MenuView ... views) {
+        final AbstractObserver observer = new MenuObserverImpl(Arrays.stream(views).collect(Collectors.toSet()));
+        return new ControllerImpl(observer);
     }
     /**
      * create a new quiz controller.
@@ -36,9 +39,9 @@ public final class ControllerFactory {
      * @return
      *  the controller created
      */
-    public QuizController createQuizController(final QuizView ... views) {
-        Objects.requireNonNull(views);
-        return new QuizControllerImpl(views);
+    public Controller createQuizController(final QuizView ... views) {
+        final AbstractObserver observer = new QuizObserverImpl(Arrays.stream(views).collect(Collectors.toSet()));
+        return new ControllerImpl(observer);
     }
 
     /**
@@ -48,8 +51,8 @@ public final class ControllerFactory {
      * @return
      *  the controller created
      */
-    public WorldController createWorldController(final WorldView ...views) {
-        Objects.requireNonNull(views);
-        return new WorldControllerImpl(views);
+    public Controller createWorldController(final WorldView ...views) {
+        final AbstractObserver observer = new WorldObserverImpl(Arrays.stream(views).collect(Collectors.toSet()));
+        return new ControllerImpl(observer);
     }
 }

@@ -1,0 +1,49 @@
+.generalNode{
+	-fx-background-color: rgba(0,0,0,0);
+}
+
+.generalNode:hover {
+		-fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 0, 0, 0, 2);
+}
+
+.generalNode:exit {
+		-fx-effect: null;
+}
+
+.statsImage{
+		-fx-background-color: rgba(0,0,0,0);
+		-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 6, 0, 0, 3);
+}
+.statsImage:hover {
+	-fx-effect: dropshadow(gaussian, rgba(255,255,255,0.75), 6, 0, 0, 3);
+}
+
+.statsImage:exit{
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 6, 0, 0, 3);
+}
+
+.button-game{
+	-fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 5, 4, 3;
+    -fx-padding: 1, 1, 1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button-game:disabled {
+	-fx-opacity: 0.5;
+}
+
+.button-game:hover {
+		-fx-padding: 2 2 2;
+	
+}
+
+.button-game:pressed{
+-fx-background-color: 
+        linear-gradient( #cccccc, #999999),
+        linear-gradient(#f2f2f2 0%, #ccf2ff  90%);
+}

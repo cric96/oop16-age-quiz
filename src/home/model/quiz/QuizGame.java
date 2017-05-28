@@ -17,12 +17,13 @@ public interface QuizGame {
 
     /**
      * It shows the current query for this quiz, it should be a specific query for level and for category.
-     * @return Query
+     * @return 
+     *  the Query
      */
     Query showCurrentQuery();
     /**
-     * It allows to hit an @param answer from those that are showed.
-     * @param answer
+     * It allows to hit an answer.
+     * @param answer from those that are showed.
      */
     void hitAnswer(String answer);
     /**
@@ -31,28 +32,33 @@ public interface QuizGame {
     void next();
     /**
      * It tests the answer.
-     * @return true if answer is correct, false otherwise
+     * @return 
+     *  true if answer is correct, false otherwise
      */
-    boolean isAnswerCorrect(); //questo metodo non c'è nell'UML
+    boolean isAnswerCorrect();
     /**
      * It will be true only if time for this specific quiz elapsed.
-     * @return true if you have finished the questions for this game, false otherwise.
+     * @return 
+     *  true if you have finished the questions for this game, false otherwise.
      */
     boolean isFinished();
     /**
      * When you have finished the quiz (you decide when or when isFinished is true,
      * it gets you the experience points.
-     * @return an int that means how many XP you have reached with this quiz
+     * @return 
+     *  an int that means how many XP you have reached with this quiz
      */
-    int getXP(); //metodo cambiato di nome rispetto all'UML
+    int getXP();
     /**
      * At the end of the quiz the statistic will be better or worse, it depends on the number
      * of correct answers.
-     * @return a set of pair of StatusName and the score to add or to remove from it
+     * @return 
+     *  a set of pair of StatusName and the score to add or to remove from it
      */
-    Map<StatusName, Integer> getStatusScore(); //metodo che non c'è sull'UML
+    Map<StatusName, Integer> getStatusScore();
     /**
-     * @return number of seconds quiz will last 
+     * @return 
+     *  number of seconds quiz will last 
      */
     int getQuizDuration();
     /**
@@ -60,7 +66,8 @@ public interface QuizGame {
      */
     void setFinished();
     /**
-     * @return the Category of the quiz
+     * @return 
+     *  the Category of the quiz
      */
     Category getCategory();
 }

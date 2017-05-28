@@ -1,5 +1,8 @@
 package home.view.menu;
 
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
+
 /**
  * 
  * the menu's buttons who a player can press.
@@ -10,26 +13,18 @@ public enum Buttons {
     /**
      * load an old game.
      */
-    NEW_GAME("New Game"),
+    NEW_GAME,
     /**
      * create a new game.
      */
-    LOAD_GAME("Load Game"),
+    LOAD_GAME,
     /**
      * close the application.
      */
-    EXIT("Exit");
+    EXIT;
 
-    private final String text;
-
-    /**
-     * @return the name of button.
-     */
-    public String getText() {
-        return this.text;
-    }
-
-    Buttons(final String text) {
-        this.text = text;
+    @Override
+    public String toString() {
+        return BundleLanguageManager.get().getBundle(Bundles.BUTTON).getString(this.name());
     }
 }

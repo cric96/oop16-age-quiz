@@ -4,15 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+import java.util.Optional;
 
-import home.controller.WorldController;
 import home.controller.dialog.Dialog;
+import home.controller.observer.WorldObserver;
 import home.model.building.BuildingType;
 import home.model.image.ImageInfo;
 import home.utility.Pair;
 import home.view.world.WorldView;
 
-class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implements WorldView {
+class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldObserver> implements WorldView {
     private static final String LEVELUP = "LVUP";
     private static final String START = "START";
     private static final String ERROR = "ERROR DURING THE READING, NOW THE APPLICATION IS CLOSING...";
@@ -36,7 +37,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implemen
         System.out.println("buildings..");
         this.buildings.forEach((x, y) -> {
             if (y.getY()) {
-                System.out.println("name = " + x.toString() + " image name = " + y.getX().getPath()); 
+                System.out.println("name = " + x.name() + " image name = " + y.getX().getPath()); 
             }
         });
         System.out.println("kingdom : image info = " + kingdom.getPath());
@@ -81,29 +82,34 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implemen
     }
 
     @Override
-    public void showBuildingDialog(final BuildingType building, final Dialog dialog) {
-        boolean canLevelUp = false;
-        System.out.println("BUILDING = " + dialog.getName());
-        System.out.println("level = " + dialog.getLevel());
-        if (dialog.isLevelBlocked() && dialog.levelUpEnabled()) {
-            System.out.println(dialog.getExperience());
-            System.out.println("to level up write " + LEVELUP);
-            canLevelUp = true;
-        }
-        System.out.println("To start a quiz write " + START);
-        System.out.println("to turn back write something..");
-        try {
-            final String value = this.reader.readLine();
-            if (value.equals(START)) {
-                this.getCurrentController().createQuiz(building);
-            } else if (value.equals(LEVELUP) && canLevelUp) {
-                this.getCurrentController().nextLevel(building);
-                this.show();
-            } else {
-                this.show();
+    public void showBuildingDialog(final BuildingType building, final Optional<Dialog> buildingDialog) {
+        if (buildingDialog.isPresent()) {
+            final Dialog dialog = buildingDialog.get();
+            boolean canLevelUp = false;
+            System.out.println("BUILDING = " + dialog.getName());
+            System.out.println("level = " + dialog.getLevel());
+            if (dialog.isLevelBlocked() && dialog.levelUpEnabled()) {
+                System.out.println(dialog.getExperience());
+                System.out.println("to level up write " + LEVELUP);
+                canLevelUp = true;
             }
-        } catch (IOException e) {
-            this.close();
+            System.out.println("To start a quiz write " + START);
+            System.out.println("to turn back write something..");
+            try {
+                final String value = this.reader.readLine();
+                if (value != null) {
+                    if (value.equals(START)) {
+                        this.getCurrentController().createQuiz(building);
+                    } else if (value.equals(LEVELUP) && canLevelUp) {
+                        this.getCurrentController().nextLevel(building);
+                        this.show();
+                    } else {
+                        this.show();
+                    }
+                }
+            } catch (IOException e) {
+                this.close();
+            }
         }
     }
 
@@ -119,7 +125,7 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implemen
         System.out.println("to turn back write something..");
         try {
             final String value = this.reader.readLine();
-            if (value.equals(LEVELUP) && canLevelUp) {
+            if (value != null && value.equals(LEVELUP) && canLevelUp) {
                 this.getCurrentController().nextEra();
                 this.show();
             } else {
@@ -131,9 +137,9 @@ class ConsoleWolrdViewImpl extends AbstractConsoleView<WorldController> implemen
     }
     private void close() {
         System.out.println(ERROR);
-        System.exit(0);
+        throw new RuntimeException();
     }
-    private WorldController getCurrentController() {
+    private WorldObserver getCurrentController() {
         return this.getController().orElseThrow(() -> new IllegalStateException());
     }
 

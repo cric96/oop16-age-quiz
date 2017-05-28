@@ -7,10 +7,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Optional;
-
 import java.util.stream.Collectors;
 
-import home.model.level.ImmutableLevel;
+import home.model.level.Level;
 import home.model.query.Category;
 import home.model.query.Query;
 import home.model.query.QueryLoader;
@@ -32,30 +31,38 @@ abstract class AbstractQuizGame implements QuizGame {
      * @param cat
      * @param level
      */
-    AbstractQuizGame(final Category cat, final ImmutableLevel level) {
+    AbstractQuizGame(final Category cat, final Level level) {
         final List<Query> list = QueryLoader.getQueryLoader().getQueries(cat, level);
         cQueries = CList.createCList(list, START_POSITION).iterator();
         this.currentAnswer = Optional.empty();
         this.statusScore = cat.getStatusNames().stream().collect(Collectors.toMap(x -> x, x -> 0));
         this.currentQuery = this.cQueries.next();
-        this.calculator = new MultiplierDecorator(new BasicCalculator(cat.getStatusNames()));
+        this.calculator = new MultiplierCalculator(new BasicCalculator(cat.getStatusNames()));
         this.cat = cat;
     }
 
     @Override
     public Query showCurrentQuery() {
+        this.checkFinished();
         return this.currentQuery;
     }
 
     @Override
     public void hitAnswer(final String answer) {
+        this.checkFinished();
         Objects.requireNonNull(answer);
         this.currentAnswer = Optional.of(answer);
         this.computeScore();
     }
+    private void checkFinished() {
+        if (this.isFinished()) {
+            throw new NoSuchElementException();
+        }
+    }
 
     @Override
     public boolean isAnswerCorrect() {
+        this.checkFinished();
         if (!this.currentAnswer.isPresent()) {
             throw new IllegalStateException("You must chose an answer");
         }
@@ -82,9 +89,7 @@ abstract class AbstractQuizGame implements QuizGame {
         if (!this.currentAnswer.isPresent()) {
             throw new IllegalStateException("You have to chose an answer to go on");
         }
-        if (this.isFinished()) {
-            throw new NoSuchElementException();
-        }
+        this.checkFinished();
         this.currentQuery = this.cQueries.next();
     }
     @Override

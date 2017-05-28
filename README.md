@@ -4,7 +4,7 @@
 
 ## Motivation
 
-**Age of quiz** is born to try a create a very basic and fun videogame. 
+**Age of quiz** is born to try to create a very basic but fun videogame. 
 
 ## Contributors
 * **Aguzzi Gianluca**

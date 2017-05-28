@@ -237,7 +237,7 @@
         <answer>Pneumococcus</answer>
       </query>
       <query>
-        <text>Cos is a vaccine?</text>
+        <text>What is a vaccine?</text>
         <answer>cow puppy</answer>
         <answer correct="true">virally apatogenic viruses</answer>
         <answer>bacteria that cause gastritis</answer>
@@ -279,7 +279,7 @@
         <answer correct="true">leprosy</answer>
       </query>
       <query>
-        <text>Cos is the sodium-potassium pump?</text>
+        <text>What is the sodium-potassium pump?</text>
         <answer>simple sugar</answer>
         <answer>protein</answer>
         <answer correct="true">enzyme</answer>
@@ -288,7 +288,7 @@
     </level>
     <level number="3">
       <query>
-        <text>Cos is an ischemic stroke?</text>
+        <text>What is an ischemic stroke?</text>
         <answer>intracerebral hemorrhage</answer>
         <answer>excess of blood flow to the brain</answer>
         <answer correct="true">lack of blood flow to the brain</answer>
@@ -308,7 +308,7 @@
     <level number="1">
       <query>
         <text>How many goals can be made, at most, in a football match?</text>
-        <answer correct="true">not c &amp;apos; is a theoretical limit</answer>
+        <answer correct="true">there isn't any theoretical limit</answer>
         <answer>2</answer>
         <answer>for at least 4</answer>
         <answer>23</answer>
@@ -354,7 +354,7 @@
         <answer correct="true">racing to gallop</answer>
       </query>
       <query>
-        <text>Cos is the Jeet Kune Do?</text>
+        <text>What is the Jeet Kune Do?</text>
         <answer>Chinese national sport</answer>
         <answer correct="true">martial art designed by Bruce Lee</answer>
         <answer>Russian martial art</answer>

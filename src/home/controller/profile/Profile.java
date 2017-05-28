@@ -5,14 +5,14 @@ import java.io.Serializable;
 import java.util.Optional;
 
 /** 
-  Define a profile of game.
+  Define a game profile.
 */
 public interface Profile extends Serializable {
 
     /**
      * get the name associated with this profile.
      * @return
-     *  optional.Empty if the profile isn't enable Optional.of(profileName) otherwise
+     *  optional.Empty if the profile isn't enabled Optional.of(profileName) otherwise
      */
     Optional<String> getName();
     /**
@@ -40,7 +40,8 @@ public interface Profile extends Serializable {
      */
     File getSaveGame();
     /**
-     * @return the date of the file
+     * @return 
+     *  the date of the file
      */
     String getSaveDate();
 }

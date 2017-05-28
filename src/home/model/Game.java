@@ -11,9 +11,9 @@ import home.model.kingdom.Kingdom;
 import home.model.quiz.QuizGame;
 
 /**
- * define a session of game.
- * this interface be interested in maintain a unique instance of Kingdom
- * 
+ * define a session of the game.
+ * this interface is done to maintain a unique instance of the Kingdom
+ * during a game session.
  */
 public interface Game {
     /**
@@ -60,8 +60,8 @@ public interface Game {
     Kingdom getCurrentKingdom();
     /**
      * @return
-     *  optional.empty if there aren't no quiz , Optional.of if there is
-     *  a quiz play and it's not finish
+     *  optional.empty if there are no more quiz , Optional.of if there is
+     *  an active quiz and it's not been finished yet
      * @throws IllegalStateException 
      *  if there isn't kingdom created
      */

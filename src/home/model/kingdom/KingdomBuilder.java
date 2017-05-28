@@ -39,7 +39,7 @@ public interface KingdomBuilder {
      */
     KingdomBuilder addStatus(Status status);
     /**
-     * add a components to the kingdom.
+     * add a component to the kingdom.
      * @param component
      *  the component that you want to add
      * @return

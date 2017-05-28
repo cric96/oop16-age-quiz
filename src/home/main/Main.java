@@ -26,7 +26,7 @@ public final class Main {
     private Main() { }
     /** 
      * @param args
-     *  not used in this contest 
+     *  not used in this context 
      * @throws IOException 
      *  the error due to load a file
      * @throws ClassNotFoundException

@@ -29,7 +29,7 @@ public interface Kingdom extends Composite {
     /**
      * 
      * @return
-     *  the level associated in this kingdom
+     *  the level associated with this kingdom
      */
     Level.Age getAge();
     /**

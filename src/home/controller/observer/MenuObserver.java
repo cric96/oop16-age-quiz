@@ -4,25 +4,25 @@ import java.util.Locale;
 
 import home.controller.profile.Profile;
 /**
- * the observer of the menu. 
+ * a menu observer.
 */
 public interface MenuObserver extends Observer {
     /**
-     * notify at the observer that is pressed newGame.
-     * the controller check its internal state and check what it can to do
+     * notify the observer that newGame has been pressed.
+     * the controller check its internal state and check what it can do
      */
     void newGamePressed();
     /**
-     * create a game associated with a profile.
+     * create a game associated to a profile.
      * @param name
-     *  the name of profile
+     *  the name of the profile
      * @param profile
      *  the profile to load
      */
     void createGame(String name, Profile profile);
     /**
-     * notify at the observer that is pressed load game.
-     * the controller check its internal state and check what it can to do
+     * notify the observer that load game has been pressed.
+     * the controller check its internal state and check what it can do
      */
     void loadGamePressed();
     /**
@@ -32,15 +32,15 @@ public interface MenuObserver extends Observer {
      */
     void loadGame(Profile profile);
     /**
-     * tells that someone click on exit.
+     * tells that someone clicks on exit.
      */
     void exitPressed();
     /**
-     * exit to the application.
+     * exit from the application.
      */
     void exitConfirmed();
     /**
-     * the view tell the locale to change.
+     * the view tells the locale to change.
      * @param locale
      *  the locale passed
      */

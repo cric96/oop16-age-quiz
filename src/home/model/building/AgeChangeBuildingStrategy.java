@@ -7,11 +7,11 @@ import home.model.composite.Event;
 import home.model.level.AgeType;
 import home.model.level.Level;
 /**
- * define what the building do when the age change.
+ * define what the building does when the age changes.
  */
 public interface AgeChangeBuildingStrategy  {
     /**
-     * what to do when the age change.
+     * what to do when the age changes.
      * @param event
      *  the value created
      * @param age
@@ -19,7 +19,7 @@ public interface AgeChangeBuildingStrategy  {
      * @param current
      *  the current level of building
      * @return
-     *  Optional.empty if the building can enable, Optional.of level if the building is enable
+     *  Optional.empty if the building is disabled, Optional.of level if the building is enabled
      */
     Optional<Level.Building> onAgeChange(Event.Age<?> event, AgeType age, Level.Building current);
     /**

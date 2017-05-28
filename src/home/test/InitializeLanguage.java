@@ -8,7 +8,7 @@ import home.utility.BundleLanguageManager;
 import home.utility.LocalFolder;
 //package-protected
 final class InitializeLanguage {
-    private static final String FILE = LocalFolder.CONFIG_FOLDER + LocalFolder.SEPARATOR + "test-language";
+    private static final String FILE = LocalFolder.LOCAL + LocalFolder.SEPARATOR + "test-language";
     public static void initialize() {
         BundleLanguageManager.get().setLocaleFile(new File(FILE));
         try {

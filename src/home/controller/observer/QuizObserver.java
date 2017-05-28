@@ -1,13 +1,13 @@
 package home.controller.observer;
 /**
- * the observer of the quiz.
+ * the quiz observer.
  */
 public interface QuizObserver extends Observer {
     /**
-     * The QuizView calls this method and it has to verify if the answer is correct, go on with the quiz
-     * and let the model calculate the score.
+     * The QuizView calls this method and it has to verify if the answer is correct
+     * it should go on with the quiz and let the model calculate the score.
      * @param answer
-     *          the answer hitten
+     *  the answer hitten
      */
     void hitAnswer(String answer);
     /**

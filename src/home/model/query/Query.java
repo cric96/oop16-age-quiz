@@ -15,7 +15,7 @@ public interface Query {
     /**
      * We have a set of answers for each query, only one of these will be correct.
      * @return 
-     *  Set of String , every String is an answer for the current query.
+     *  Set of String, every String is an answer for the current query.
      */
     Set<String> getAnswers();
     /**

@@ -1,7 +1,7 @@
 package home.controller.dialog;
 /**
  * an interface that define what to show in view.
- * the dialog is an immutable object 
+ * The dialog is an immutable object 
  */
 public interface Dialog {
     /**
@@ -75,7 +75,7 @@ public interface Dialog {
         /**
          * 
          * @param enable
-         *      tell if the level can be upgrade or not
+         *      tell if the level can be upgraded or not
          * @return
          *      the builder
          */

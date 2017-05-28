@@ -1,6 +1,6 @@
 package home.controller.observer;
 /**
- * a generic observer that can be observe a view.
+ * a generic observer that can observe a view.
  */
 public interface Observer {
 

@@ -2,15 +2,15 @@ package home.controller.observer;
 
 import home.model.building.BuildingType;
 /**
- * the observer of the world.
+ * the world observer.
  */
 public interface WorldObserver extends Observer {
     /**
-     * tell to the observer to go on the next era.
+     * tell the observer to go on the next era.
      */
     void nextEra();
     /**
-     * tell to the observer to increase a level of a specific building.
+     * tell the observer to increase a level of a specific building.
      * @param building
      *  the building selected
      */
@@ -22,17 +22,17 @@ public interface WorldObserver extends Observer {
      */
     void createQuiz(BuildingType building);
     /**
-     * turn on menu.
+     * go back on menu.
      */
     void goOnMenu();
     /**
-     * tell to the observer that someone want information of specific building.
+     * tell the observer that someone wants information of specific building.
      * @param building
      *  the building selected
      */
     void pressOnBuilding(BuildingType building);
     /**
-     * tell to the observer that someone want information of Kingdom.
+     * tell the observer that someone want information of Kingdom.
      */
     void pressOnKingdom();
 }

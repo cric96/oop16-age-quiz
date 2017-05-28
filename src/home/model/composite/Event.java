@@ -2,7 +2,7 @@ package home.model.composite;
 
 import home.model.level.AgeType;
 /**
- * an event that can be send by object to another.
+ * an event that can be sent from an object to another.
  * @param <E> the source of the event
  */
 public interface Event <E> {

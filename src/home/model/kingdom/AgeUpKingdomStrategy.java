@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import home.model.building.Building;
 import home.model.composite.Component;
 /**
- * a strategy to define if the kingdom can age up or not.
+ * a strategy to define if the kingdom can age-up or not.
 */
 public interface AgeUpKingdomStrategy extends BooleanSupplier {
     /**
-     * create a age strategy.
+     * create an age strategy.
      * by default create a simple age strategy
      * @param type
      *  the type of strategy used

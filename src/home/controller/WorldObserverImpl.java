@@ -1,5 +1,6 @@
 package home.controller;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -9,6 +10,8 @@ import java.util.stream.Collectors;
 
 import home.controller.dialog.Dialog;
 import home.controller.observer.WorldObserver;
+import home.controller.profile.Profile;
+import home.controller.profile.ProfileBox;
 import home.model.Game;
 import home.model.building.Building;
 import home.model.building.BuildingType;
@@ -29,6 +32,7 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
     private static final String END_QUESTION = "END_QUESTION"; 
     private static final String EXPERIENCE_ERROR = "EXPERIENCE_ERROR";
     private static final String BUILDING_ERROR = "BUILDING_ERROR";
+    private static final String PROFILE_ERROR = "PROFILE_ERROR"; 
     private final Set<WorldView> views;
     WorldObserverImpl(final Set<WorldView>  views) {
         this.views = views;
@@ -72,7 +76,18 @@ final class WorldObserverImpl extends AbstractObserver implements WorldObserver 
 
     @Override
     public void goOnMenu() {
-        Container.getContainer().changeDisplay(ViewType.MENU);
+        final String error = BundleLanguageManager.get().getBundle(Bundles.ERROR).getString(PROFILE_ERROR);
+        if (!ProfileBox.getProfileBox().getSelected().isPresent()) {
+            this.showMessageInViews(error, MessageType.ERROR);
+        } else {
+            final Profile selected = ProfileBox.getProfileBox().getSelected().get();
+            try {
+                Game.getGame().save(selected.getSaveGame());
+                Container.getContainer().changeDisplay(ViewType.MENU);
+            } catch (IOException e) {
+                this.showMessageInViews(error, MessageType.ERROR);
+            }
+        }
     }
 
     @Override

@@ -4,8 +4,8 @@ import java.util.Optional;
 
 /**
  * an interface to define an immutable level in the game.
- * each level has a successive level unlike the last one
- * every level has a set of properties
+ * Each level has a successive level.
+ * Every level has a set of properties
  */
 public interface Level {
     /**

@@ -5,7 +5,7 @@ import java.util.Map;
 import home.model.status.StatusName;
 
 /**
- *It allows to calculate the score for every single query.
+ *It allows to calculate the score for every single query answered.
  */
 public interface Calculator {
     /**

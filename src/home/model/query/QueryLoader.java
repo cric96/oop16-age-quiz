@@ -19,7 +19,7 @@ public interface QueryLoader {
 /**
  *  This method has to load some queries by specific level and category.
  * @throws IllegalArgumentException
- *  when it can't find any queries for that category or level.
+ *  when it can't find any query for that category or level.
  * @param cat 
  *  the query category to load.
  * @param level

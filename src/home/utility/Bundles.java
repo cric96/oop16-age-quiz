@@ -4,31 +4,31 @@ package home.utility;
  */
 public enum Bundles {
     /**
-     * the name of bundle where is located all string for the ages.
+     * the name of bundle where are located all of the strings for the ages.
      */
     AGE("AgeBundle"),
     /**
-     * the name of bundle where is located all string for the errors.
+     * the name of bundle where are located all of the strings for the errors.
      */
     ERROR("ErrorBundle"),
     /**
-     * the name of bundle where is located all string for the buttons.
+     * the name of bundle where are located all of the strings for the buttons.
      */
     BUTTON("ButtonBundle"),
     /**
-     * the name of bundle where is located all string for the labels.
+     * the name of bundle where are located all of the strings for the labels.
      */
     LABEL("LabelBundle"),
     /**
-     * the name of bundle where is located all string for the statuses.
+     * the name of bundle where are located all of the strings for the statuses.
      */
     STATUS("StatusBundle"),
     /**
-     * the name of bundle where is located all string for the buildings.
+     * the name of bundle where are located all of the stringa for the buildings.
      */
     BUILDING("BuildingBundle"),
     /**
-     * the name of bundle where is located the string to load the right file.
+     * the name of bundle where are located all of the strings to load the right file.
      */
     QUERY("QueryBundle");
 

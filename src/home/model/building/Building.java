@@ -16,7 +16,7 @@ public interface Building {
     /**
      * 
      * @return
-     *  an incremental value that define current level
+     *  an incremental value that define the current level
      */
     Level getLevel();
     /**

@@ -43,7 +43,7 @@
         <answer>tan(x)</answer>
       </query>
       <query>
-        <text>Cos is the cytosine?</text>
+        <text>What is the cytosine?</text>
         <answer>a protein</answer>
         <answer>an amino acid</answer>
         <answer correct="true">a nitrogen base</answer>

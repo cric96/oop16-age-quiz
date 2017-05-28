@@ -30,7 +30,11 @@ public enum Bundles {
     /**
      * the name of bundle where are located all of the strings to load the right file.
      */
-    QUERY("QueryBundle");
+    QUERY("QueryBundle"),
+    /**
+     * the name of bundle where are located all of the strings for the bundle.
+     */
+    DIALOG("DialogBundle");
 
     private final String bundleName;
     Bundles(final String bundleName) { 

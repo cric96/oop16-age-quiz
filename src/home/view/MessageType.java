@@ -1,5 +1,7 @@
 package home.view;
 
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import javafx.scene.control.Alert.AlertType;
 
 /**
@@ -9,17 +11,17 @@ public enum MessageType {
     /**
      * alert message.
      */
-    ALERT("Alert", AlertType.WARNING),
+    ALERT("ALERT", AlertType.WARNING),
 
     /**
      * error message.
      */
-    ERROR("Error", AlertType.ERROR),
+    ERROR("ERROR", AlertType.ERROR),
 
     /**
      * exit message.
      */
-    EXIT("Exit", AlertType.CONFIRMATION);
+    EXIT("EXIT", AlertType.WARNING);
 
     private String messageTitle;
     private AlertType alertType;
@@ -35,7 +37,7 @@ public enum MessageType {
      * @return message title.
      */
     public String getMessageTitle() {
-        return this.messageTitle;
+        return BundleLanguageManager.get().getBundle(Bundles.DIALOG).getString(this.messageTitle);
     }
 
     /**

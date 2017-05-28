@@ -49,7 +49,7 @@ public final class Main {
     //a little object used for the first launch of application
     private static class  Installer {
         private void install() throws IOException, ClassNotFoundException {
-            if (new File(LocalFolder.CONFIG_FOLDER.toString()).mkdir()) {
+            if (!new File(LocalFolder.CONFIG_FOLDER.toString()).mkdir()) {
                 throw new IOException();
             }
             ProfileBox.getProfileBox().setFile(BOX_PROFILES);

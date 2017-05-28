@@ -131,14 +131,14 @@ abstract class AbstractMenuDialog implements MenuDialog {
             });
         });
     }
-    //TEMPLATE-METHOD ## GUARDA RICHI
+    //TEMPLATE-METHOD
     /**
      * what to do when the button is clicked
      * @param profile
      *  the profile selected
      */
     protected abstract void onClickButton(Profile profile);
-    //TEMPLATE-METHOD ## GUARDA RICHI
+    //TEMPLATE-METHOD
     /**
      * what button the menu want to create
      * @param profile

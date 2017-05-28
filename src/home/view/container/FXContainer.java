@@ -10,6 +10,7 @@ import home.utility.Utility;
 import home.view.ViewType;
 import home.view.fx.FXView;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**
@@ -37,7 +38,7 @@ final class FXContainer implements Container {
         if (!this.stage.get().equals(Optional.empty())) {
             this.stage.get().setFullScreen(true);
             this.stage.get().setResizable(false);
-            //this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+            this.stage.get().setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             this.stage.get().setTitle(Utility.getTitle());
         }
     }

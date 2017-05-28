@@ -1,6 +1,8 @@
 package home.view.fx.button;
 
 import home.controller.profile.Profile;
+import home.utility.BundleLanguageManager;
+import home.utility.Bundles;
 import home.utility.ResourceManager;
 import home.utility.view.FontManager;
 import home.view.fx.Images;
@@ -16,12 +18,12 @@ import javafx.scene.paint.Color;
 //package-protected
 abstract class AbstractButtonProfile extends Button implements ButtonProfile {
     private static final int BOX_DIMENSION = 30;
-
     /**
      * @param profile the profile represented by the button.
      */
     AbstractButtonProfile(final Profile profile) {
-        super(profile.getName().orElse("Empty slot"));
+        final String empty = BundleLanguageManager.get().getBundle(Bundles.BUTTON).getString("EMPTY_SLOT");
+        this.setText(profile.getName().orElse(empty));
         String fileName;
         if (profile.isEnabled()) {
             fileName = ResourceManager.load(Images.PROFILE_IMAGE_UNLOCK.getPath()).toExternalForm();

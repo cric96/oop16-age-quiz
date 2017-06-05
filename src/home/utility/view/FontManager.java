@@ -15,7 +15,7 @@ public final class FontManager {
      * @return the general Font
      */
     public static Font getGeneralFont(final int dimension) {
-        return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), dimension);
+        return Font.loadFont(ResourceManager.loadAsStream(Fonts.COURIER_NEW.getFontPath()), dimension);
     }
 
     /**
@@ -24,7 +24,7 @@ public final class FontManager {
      */
     public static Font getGeneralFont() {
         final int defalutSize = 15;
-        return Font.loadFont(ResourceManager.load(Fonts.COURIER_NEW.getFontPath()).toExternalForm(), defalutSize);
+        return Font.loadFont(ResourceManager.loadAsStream(Fonts.COURIER_NEW.getFontPath()), defalutSize);
     }
 
     /**
@@ -35,6 +35,6 @@ public final class FontManager {
      *  font created
      */
     public static Font titleFont(final int size) {
-        return Font.loadFont(ResourceManager.load(Fonts.FAITH_COLLAPSING.getFontPath()).toExternalForm(), size);
+        return Font.loadFont(ResourceManager.loadAsStream(Fonts.FAITH_COLLAPSING.getFontPath()), size);
     }
 }

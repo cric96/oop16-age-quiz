@@ -1,5 +1,6 @@
 package home.utility;
 
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -12,9 +13,19 @@ public final class ResourceManager {
      * @param resourceName
      *  the name of resource
      * @return
-     *  the URL associated with this resource
+     *  the URL associated to this resource
      */
     public static URL load(final String resourceName) {
         return ResourceManager.class.getResource(resourceName);
+    }
+    /**
+     * load a resource with the filename specified as a stream.
+     * @param resourceName
+     *  the resource name
+     * @return
+     *  the InputStream associated to this resource
+     */
+    public static InputStream loadAsStream(final String resourceName) {
+        return ResourceManager.class.getResourceAsStream(resourceName);
     }
 }
